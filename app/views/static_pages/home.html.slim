@@ -1,2 +1,367 @@
-h1 StaticPages#home
-p Find me in app/views/static_pages/home.html.slim
+doctype html
+html
+  head
+    title
+      | The Motley Tones
+    meta[http-equiv="content-type" content="text/html; charset=utf-8"]
+    meta[name="description" content=""]
+    meta[name="keywords" content=""]
+		/[if lte IE 8]
+        script src="css/ie/html5shiv.js"
+    /
+      script[src="js/jquery.min.js"]
+      script[src="js/jquery.dropotron.min.js"]
+      script[src="js/skel.min.js"]
+      script[src="js/skel-layers.min.js"]
+      script[src="js/init.js"]
+    noscript
+      /
+        link[rel="stylesheet" href="css/skel.css"]
+        link[rel="stylesheet" href="css/style.css"]
+        link[rel="stylesheet" href="css/style-desktop.css"]
+        link[rel="stylesheet" href="css/style-mobile.css"]
+		/[if lte IE 8]
+      link rel="stylesheet" href="css/ie/v8.css"
+  body.homepage
+    #header-wrapper
+      header#header.container
+        #logo
+          h1
+            = image_tag "banner_logo.jpg", alt: "Motley Banner Logo"
+            |  Pirates for Hire
+        nav#nav
+          ul
+            li.current
+              a[href="index.html"]
+                | Home
+            li
+              a[href=""]
+                | Navigation &or;
+              ul
+                li
+                  a[href="aboutmt.html"]
+                    | Motley Tones: Past+Present
+                li
+                  a[href="booking.html"]
+                    | Booking Info
+                li
+                  a[href="PerformanceSchedule.html"]
+                    | Performance Schedule
+                li
+                  a[href="bios.html"]
+                    | Group Bios
+                li
+                  a[href="photos.html"]
+                    | Photo Gallery
+            li
+              a[href="left-sidebar.html"]
+    #banner-wrapper
+      #banner.box.container
+        .row
+          .7u
+            h2
+              | We are the Motley Tones!
+            h3
+              | The Mid-Atlantic's Premiere Purveyors of Music+Mayhem
+            = image_tag "banner_home.jpg", alt: "home banner"
+            p[style="font-size:large"]
+              | We have pub shows, stage shows, and can perform as strolling minstrels to entertain adults and children alike. So 
+              a[href="booking.html"]
+                | book a performance
+              |  and add some pirate songs and pirate swagger to your next event! Or check out our 
+              a[href="https://www.facebook.com/MotleyTones"]
+                | Facebook page
+              |  for the latest news+chatter. 
+          .5u
+            ul
+
+            div[style="border:3px solid black;width:420px;height:565px;overflow:scroll;overflow-y:scroll;overflow-x:hidden;color:#696969;"]
+              p[style="font-size:smaller;"]
+
+              h3
+                | 2015 Performance Schedule
+              ul.scroll
+                li
+                  | Jan 9: Corporate Luncheon - Durham NC 10am-2pm 
+                li
+                  | Jan 10: Private Birthday Party- email 
+                  a[href="mailto:info@motleytones.com"]
+                    | info@motleytones.com
+                  |  to book your own! 
+                li
+                  | Feb 28: 
+                  a[href="https://www.facebook.com/events/1578589885710131/"]
+                    | Arlene the Pirate Mermaid Colonial Seaport Fundraiser for the Luna
+                  |  - Williamsburg Regional Library, Williamsburg VA 
+                li
+                  | Apr 10-11: 
+                  a[href="http://www.piratefestnc.info/"]
+                    | Greenville Piratefest
+                  | , Greenville NC 
+                li
+                  | Apr 26: 
+                  a[href="http://www.littlewashingtonnc.com/organizer/washington-harbor-district-alliance"]
+                    | Washington Harbor District Art Walk 
+                  | , Washington NC 
+                li
+                  | May 2: 
+                  a[href="http://www.onslowcountync.gov/WorkArea/linkit.aspx?LinkIdentifier=id&ItemID=28167&libID=28108"]
+                    | Onslow Beach State Park Piratefest
+                  | , Swansboro NC 
+                li
+                  | Oct 17: Private Wedding 
+              = image_tag "schedule_separator.jpg", alt: "Schedule Separator"
+              h3
+                | 2014 Performance Schedule
+              ul.scroll
+                li
+                  | Mar 1, Garner Talent Showcase, 
+                  a[href="http://www.garnerperformingartscenter.com/EventInformation.asp"]
+                    | Garner Performing Arts Center
+                li
+                  | Mar 16: Private Party (Contact info@motleytones.com for yours!) 
+                li
+                  | Mar 22: 
+                  a[href="http://www.townofcary.org/Departments/townmanagersoffice/pio/Annual_Events_Calendar/A_Ceilidh_at_The_Cary_s0_p24954.htm?EventMode=View&amp;EventOccurrence=0"]
+                    | Ceilidh Irish Festival
+                  |  in Cary, NC: 7pm 
+                li
+                  | Apr 5: 
+                  a[href="http://caryfarmersmarket.com/" target="_blank"]
+                    | Downtown Cary Farmer's Market
+                  |  Opening Day, Cary NC 
+                li
+                  | Apr 6: 
+                  a[href="http://www.beaufortpirateinvasion.com/"]
+                    | Night in Tortuga's
+                  |  Pancakes & Pirates Breakfast, Beaufort NC 
+                li
+                  | Apr 11-12: 
+                  a[href="http://www.piratefestnc.com/"]
+                    | PirateFest
+                  | , Greenville NC 
+                li
+                  | Apr 26:
+                  a<[href="http://www.washingtononthewater.com/index.html"]
+                    | Washington Harbor's Marine Market
+                  |  in Washington NC! 
+                li
+                  | May 3: Swansboro Pirate Festival at 
+                  a[href="http://www.ncparks.gov/Visit/parks/habe/main.php"]
+                    | Hammock Beach State Park
+                  | ! 
+                li
+                  | May 11: Cary National Train Day! 
+                li
+                  | May 17:
+                  a< href="http://www.piratesonpungo.org/"
+                    | Pirates on the Pungo Regatta
+                  |  in Belhaven NC 
+                li
+                  | May 18: Private Party 
+                li
+                  | May 31-June 1:
+                  a<[href="http://www.hampton.gov/parks/blackbeard/"]
+                    | Blackbeard Pirate Jamboree
+                  |  Hampton VA 
+                li
+                  | Jun 28: <a href="http://caryfarmersmarket.com/">Downtown Cary Farmer's Market
+                li
+                  | Jun 7: 
+                  a[href="http://www.makerfairenc.com/"]
+                    | Maker's Faire 
+                  |  in Raleigh NC 
+                li
+                  | Jun 23: 
+                  a[href="http://www.nogrunclub.com/charity/"]
+                    | Tir Na Nog Running Club
+                  | , Charity event: 
+                  a[href="http://wakemow.org/"]
+                    | Wake Meals on Wheels
+                  | , in Raleigh, NC 
+                li
+                  | Jul 12: 
+                  a[href="http://www.lickingholecreek.com/"]
+                    | Lickinghole Creek Brewery
+                  | , Pirate Beer Launch, Goochland VA 
+                li
+                  | Jul 23: Performance for The Goddard School, Apex NC 
+                li
+                  | Aug 1-3: 
+                  a[href="http://www.baldheadisland.com/events/pirates-are-coming-festival"]
+                    | PIRATES ARE COMING!
+                  |  to Baldhead Island NC 
+                li
+                  | Aug 8-9: 
+                  a[href="http://www.beaufortpirateinvasion.com/"]
+                    | Beaufort Pirate Invasion
+                  |  Beaufort NC 
+                li
+                  | Aug 9: Private party in Beaufort NC- call to schedule yours today! 
+                li
+                  | Aug 14: 4pm, 
+                  a[href="http://www.parkwestvillage.net/ai1ec_event/back-to-school-bash/"]
+                    | Park West Village
+                  | , Morrisville NC 
+                li
+                  | Aug 23: 
+                  a[href="http://www.townofcary.org/departments/parks__recreation___cultural_resources/events/festivals/lazy_daze_arts_and_crafts_festival.htm"]
+                    | Cary Lazy Daze
+                  |  in Cary NC 
+                li
+                  |  Sep 19-20: 
+                  a[href="http://www.cityofsouthport.com/index.aspx?page=16&amp;recordid=666"]
+                    | Southport Pirate Invasion
+                  |  Southport NC (Cancelled) 
+                li
+                  | Sep 27: 
+                  a[href="https://collegenanniesandtutors.com/carync"]
+                    | Grand Opening College Nannies and Tutors | Cary
+                li
+                  | October 26: Private Party, Raleigh NC 
+                li
+                  | October 27: Garner Food Truck Rodeo 
+                li
+                  | Oct 31-Nov 1: 
+                  a[href="https://www.facebook.com/pages/Ocracoke-Hattaras-Blackbeards-Pirate-Jamboree/186552064811019" title="Ocracoke Pirate Jamboree"]
+                    | Ocracoke Pirate Jamboree
+                li
+                  | Dec 6: 
+                  a[href="https://www.facebook.com/pages/Ocracoke-Hattaras-Blackbeards-Pirate-Jamboree/186552064811019" title="Ocracoke Pirate Jamboree"]
+                    | Ocracoke Pirate Jamboree
+                  | , Cary NC 
+                li
+                  | Dec 19> Private Party, Raleigh NC 
+            br
+            br
+    #features-wrapper
+      .container
+        .row
+          .4u
+            section.box.feature
+              a.image.featured[href="aboutmt.html"]
+                = image_tag "about.jpg", alt: "About picture"
+              .inner
+                header
+                  h2
+                    | Motley Tones: 
+                    br
+                    | Past and Present
+                  p
+                    | How a band of scalawags traded murder for music-making. Now all they slay is the crowds in the aisle. 
+                p
+
+          .4u
+            section.box.feature
+              a.image.featured[href="booking.html"]
+                = image_tag "booking.jpg", alt: "Booking Picture"
+              .inner
+                header
+                  h2
+                    | Book us for a Performance!
+                  p
+                    | Got an event that could use more swagger and/or song? Whether it's public or private, kiddies or corporate, the Motley Tones have you covered.
+                p
+          .4u
+            section.box.feature
+              a.image.featured[href="PerformanceSchedule.html"]
+                = image_tag "schedule.jpg", alt: "Schedule picture"
+              .inner
+                header
+                  h2
+                    | Performance Schedule+
+                    br
+                    | Information
+                  p
+                    | Don't miss out on the action - follow our schedule and come see a show! 
+                    br
+                    | (2015 dates coming soon)
+                p
+
+    #features-wrapper
+      .container
+        .row
+          .4u
+            section.box.feature
+              a.image.featured[href="bios.html"]
+                = image_tag "bios.jpg", alt: "Bio picture"
+              .inner
+                header
+                  h2
+                    | Meet the Tones: Bios+Pictures
+                  p
+                    | A Who’s Who on the eastern seaboard’s seven best and most musical pirates-for-hire. 
+                p
+          .4u
+            section.box.feature.last
+              a.image.featured[href="photos.html"]
+                = image_tag "photos.jpg", alt: "Photos picture"
+              .inner
+                header
+                  h2
+                    | Photo Gallery
+                  p
+                    | Albums showcasing the Tones' performance history - and the many friends they've made (and occasionally corrupted) along the way.
+                p
+          .4u
+            section.box.feature.last
+              a.image.featured[href="videos.html"]
+                = image_tag "videos.jpg", alt: "Videos picture"
+              .inner
+                header
+                  h2
+                    | Video Gallery
+                  p
+                    | Get a little taste of the musical pirate life from videos of our past shows - the perfect thing to tide you over til Pirate Season 2015.
+                p
+      #footer-wrapper
+        footer#footer.container
+          .row
+            .3u
+              section.widget.links
+                h3
+                  | Our Friends
+                ul.style2
+                  li
+                    a[href="http://collegenannies.com/carync"]
+                      | College Nannies+Tutors|Cary
+                  li
+                    a[href="http://www.shadowcombat.com/"]
+                      | Shadow Players Stage Combat
+                  li
+                    a[href="http://www.hystericallycorrect.com/"]
+                      | Hysterically Correct Pirate Crew
+                  li
+                    a[href="http://www.yourdoorandmore.com/"]
+                      | Your Door & More Illustrations
+                  li
+                    a[href="mailto:YCovington@gmail.com&subject=Inquiry from Motley Tones Website"]
+                      | Bagpiping by Yance Covington
+            .3u
+              section.widget.links
+
+            .3u
+
+            .3u
+              section.widget.contact.last
+                h3
+                  | Contact Us
+                ul
+                  li
+                    a.icon.fa-facebook[href="http://www.facebook.com/pages/Motley-Tones/221149304589518"]
+                      span.label
+                        | Facebook
+                p
+                  a[href="mailto:info@motleytones.com"]
+                    | info@motleytones.com
+                  br
+          .row
+            .12u
+              #copyright
+                ul.menu
+                  li
+                    | © The Motley Tones. All rights reserved
+                  li
+                    | Design: 
+                    a[href="http://html5up.net"]
+                      | HTML5 UP
