@@ -1,16 +1,14 @@
 class StaticPagesController < ApplicationController
+  def home
+  end
   def about
   end
-
   def bios
   end
-
-  def schedule
+  def schedules
   end
-
   def photos
   end
-
-  def videos
+  def photos
   end
 end
