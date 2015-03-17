@@ -14,13 +14,17 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use sqlite3 as the database for Active Record
 
 group :development, :test do
-  gem 'byebug'
+  gem 'rspec-rails'
+  gem 'pry-byebug'
   gem 'sqlite3'
   gem 'web-console', '~> 2.0'  # console when execption or <%= console %> in views
   gem 'spring'
+  gem 'pry-rescue'
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'poltergeist'
 end
 
