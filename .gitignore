@@ -15,3 +15,11 @@
 /log/*
 !/log/.keep
 /tmp
+tmp*
+
+# Ignore all editor droppings
+*~
+*.vim
+
+# ignore Motley tones raw files
+website-Motleytones.com

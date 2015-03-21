@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title = yield :title
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    /meta[http-equiv="content-type" content="text/html; charset=utf-8"]
+    /meta[name="description" content=""]
+    /meta[name="keywords" content=""]
+    /[if lte IE 8]
+      script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"
+		/[if lte IE 8]
+      = stylesheet_link_tag "ie/v8"
+
+= render "header"
+
+= yield
+
+= render "footer"
