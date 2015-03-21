@@ -17,8 +17,9 @@
 /tmp
 tmp*
 
-# Ignore all emacs droppings
+# Ignore all editor droppings
 *~
+*.vim
 
 # ignore Motley tones raw files
 website-Motleytones.com
