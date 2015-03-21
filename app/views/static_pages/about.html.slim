@@ -1,2 +1,128 @@
-h1 StaticPages#about
-p Find me in app/views/static_pages/about.html.slim
+doctype html
+html
+  head
+    title Motley Tones: Past + Present
+    meta[http-equiv="content-type" content="text/html; charset=utf-8"]
+    meta[name="description" content=""]
+    meta[name="keywords" content=""]
+    /
+      script[src="js/jquery.min.js"]
+      script[src="js/jquery.dropotron.min.js"]
+      script[src="js/skel.min.js"]
+      script[src="js/skel-layers.min.js"]
+      script[src="js/init.js"]
+      noscript
+      link[rel="stylesheet" href="css/skel.css"]
+      link[rel="stylesheet" href="css/style.css"]
+      link[rel="stylesheet" href="css/style-desktop.css"]
+  body.no-sidebar
+    #header-wrapper
+      header#header.container
+        #logo
+          h1
+            = image_tag "banner_logo.jpg", alt: "Motley Logo", "vertical-align": "middle"
+            | Pirates for Hire
+        nav#nav
+          ul
+            li.current
+              a[href="index.html"]
+                | Home
+            li
+              a[href=""]
+                | Navigation &#9660
+              ul
+                li
+                  a[href="aboutmt.html"]
+                    | Motley Tones: Past+Present
+                li
+                  a[href="booking.html"]
+                    | Booking Info
+                li
+                  a[href="PerformanceSchedule.html"]
+                    | Performance Schedule
+                li
+                  a[href="bios.html"]
+                    | Group Bios
+                li
+                  a[href="photos.html"]
+                    | Photo Gallery
+            li
+              a[href="left-sidebar.html"]
+    #main-wrapper
+      .container
+        #content
+          article
+            h2
+              | Motley Tones: Past + Present
+            p
+              = image_tag "SillyGroup.jpg", alt: "Silly Tones"
+            p
+              | The Motley Tones began their swashbuckling careers as plain old ordinary pirates. But they abandoned their murderous ways for more melodious piratical pursuits long ago, trading the life on the high seas for the comforts of Raleigh, North Carolina. After four years as the musical voice of the NC Renaissance Faire, they washed ashore at the 2010 Blackbeard Festival in Hampton, VA. Helped by friends and fans, they have emerged as one of the more popular pirate performing groups, entertaining adults and children alike with their unique blend of classical and folk harmonies and off-kilter sense of humor.
+            p
+              | The Motley Tones perform a wide variety of delightfully harmonious and oft-times amusing story songs, sea shanties, acapella songs and more. Whatever the situation, the Tones have it covered: madrigals for the king by day, pub songs for the hoi polloi by night, and love songs & sailor songs all the day long. Don’t be surprised if you get “roped in” to some of their antics on stage and off. Be sure to bring the wee ones for the sing-alongs!
+            h3
+              | The Group's Interests Include: 
+            ul
+              li beer
+              li singing about beer
+              li spreading pirate wisdom
+              li sea shanties
+              li plundering
+              li wenching
+              li wordsmithing
+              li hand to guitar combat
+              li harmonizing
+              li making mayhem while harmonizing
+              li corrupting members of the audience
+              li the sound of gold pieces clinking together 
+    #footer-wrapper
+      footer#footer.container
+        .row
+          .3u
+            section.widget.links
+              h3
+                | Our Friends
+              ul.style2
+                li
+                  a[href="http://collegenannies.com/carync"]
+                    | College Nannies+Tutors|Cary
+                li
+                  a[href="http://www.shadowcombat.com/"]
+                    | Shadow Players Stage Combat
+                li
+                  a[href="http://www.hystericallycorrect.com/"]
+                    | Hysterically Correct Pirate Crew
+                li
+                  a[href="http://www.yourdoorandmore.com/"]
+                    | Your Door & More Illustrations
+                li
+                  a[href="mailto:YCovington@gmail.com&subject=Inquiry from Motley Tones Website"]
+                    | Bagpiping by Yance Covington
+          .3u
+            section.widget.links
+
+          .3u
+
+          .3u
+            section.widget.contact.last
+              h3
+                | Contact Us
+              ul
+                li
+                  a.icon.fa-facebook[href="http://www.facebook.com/pages/Motley-Tones/221149304589518"]
+                    span.label
+                      | Facebook
+              p
+                a[href="mailto:info@motleytones.com"]
+                  | info@motleytones.com
+                br
+        .row
+          .12u
+            #copyright
+              ul.menu
+                li
+                  | © The Motley Tones. All rights reserved
+                li
+                  | Design: 
+                  a[href="http://html5up.net"]
+                    | HTML5 UP
