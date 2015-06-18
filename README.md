@@ -17,4 +17,4 @@ Ultimately, it will have the following features:
 * Optional: allow system to strike out gigs that are past
 * Optional: generate video page from database
 
-
+Trello Board for this project can be [found here](https://trello.com/b/VwHfdHD4/motley-tones-web-app).
