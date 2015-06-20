@@ -32,20 +32,17 @@ footer#footer.container
           | Contact Us
         ul
           li
-            a.icon.fa-facebook[href="http://www.facebook.com/pages/Motley-Tones/221149304589518"]
-              span.label
-                | Facebook
+            =link_to "Facebook", "http://www.facebook.com/motleytones"
         p
-          a[href="mailto:info@motleytones.com"]
-            | info@motleytones.com
+          =mail_to "info@motleytones.com",
+            "info@motleytones.com",
+            subject: "Motley Tones information needed"
           br
   .row
     .12u
       #copyright
         ul.menu
           li
-            | © The Motley Tones. All rights reserved
-          li
-            | Design: 
-            a[href="http://html5up.net"]
-              | HTML5 UP
+            | ©
+            => Time.now.strftime("%Y")
+            | The Motley Tones. All rights reserved.
