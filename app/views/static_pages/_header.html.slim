@@ -7,26 +7,24 @@ header#header.container
   nav#nav
     ul
       li.current
-        a[href="index.html"]
-          | Home
+        = link_to "Home", "/"
       li
-        a[href=""]
-          | Navigation &#9660
+        ==link_to "Navigation &#9660".html_safe
         ul
           li
-            a[href="aboutmt.html"]
-              | Motley Tones: Past+Present
+            =link_to "Motley Tones: Past+Present", about_path
           li
-            a[href="booking.html"]
-              | Booking Info
+            = mail_to "info@motleytons.com",
+              "Booking Request",
+              subject: "Motley Tones Booking Request",
+              body: "We would love to perform for you.  Please provide some basic info and we will get back to you as soon as possible.\n_______________________\n\nWhat do you need?\n\nWhen is your event?\n\nOther information?\n\n"
           li
-            a[href="PerformanceSchedule.html"]
-              | Performance Schedule
+            =link_to "Performance Schedule", schedule_path
           li
-            a[href="bios.html"]
-              | Group Bios
+            =link_to "Group Bios", bios_path
           li
-            a[href="photos.html"]
-              | Photo Gallery
+            =link_to "Photo Gallery", photos_path
+          li
+            =link_to "Video Gallery", videos_path
       li
         a[href="left-sidebar.html"]
