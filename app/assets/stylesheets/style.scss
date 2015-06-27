@@ -1,5 +1,4 @@
 @charset 'UTF-8';
-@import url("font-awesome.min.css");
 @import url("http://fonts.googleapis.com/css?family=Oleo+Script:400|Open+Sans:300,300italic,600,600italic,800");
 
 /*
@@ -19,9 +18,9 @@ body {
   background-image:		-o-linear-gradient(top, rgba(0,0,0,0.05), rgba(0,0,0,0)), asset-url('theme/Ocean.jpg');
   background-image:		-ms-linear-gradient(top, rgba(0,0,0,0.05), rgba(0,0,0,0)), asset-url('theme/Ocean.jpg');
   background-image:		linear-gradient(top, rgba(0,0,0,0.05), rgba(0,0,0,0)), asset-url('theme/Ocean.jpg');
-  background-position:	top left,														top left;
-  background-repeat:		no-repeat,														;
-  background-size:		100% 100%,														auto;
+  background-position:	top left, top left;
+  background-repeat:	repeat-y;
+  background-size:		 100% 100%, auto;
 }
 
 body.is-loading * {
