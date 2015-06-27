@@ -2,27 +2,21 @@
 body.no-sidebar#banner-wrapper
   #banner.box.container
     .row
-      .7u
-        h2
-          | We are the Motley Tones!
-        h3
-          | The Mid-Atlantic's Premiere Purveyors of Music+Mayhem
-        = image_tag "banner_home.jpg", alt: "home banner"
+      .6u
+        h2 We are the Motley Tones!
+        h3 The Mid-Atlantic's Premiere Purveyors of Music+Mayhem
+        = image_tag "banner_home.jpg", alt: "home banner", width: "90%"
         p[style="font-size:large"]
-          | We have pub shows, stage shows, and can perform as strolling minstrels to entertain adults and children alike. So 
-          a[href="booking.html"]
-            | book a performance
-          |  and add some pirate songs and pirate swagger to your next event! Or check out our 
-          a[href="https://www.facebook.com/MotleyTones"]
-            | Facebook page
-          |  for the latest news+chatter. 
+          | We have pub shows, stage shows, and can perform as strolling minstrels to entertain adults and children alike. So
+          a<[href="booking.html"] book a performance
+          |  and add some pirate songs and pirate swagger to your next event! Or check out our
+          a<[href="https://www.facebook.com/MotleyTones"] Facebook page
+          |  for the latest news+chatter.
       .5u
         ul
-
-        div[style="border:3px solid black;width:420px;height:565px;overflow:scroll;overflow-y:scroll;overflow-x:hidden;color:#696969;"]
-          p[style="font-size:smaller;"]
-
-          = render "static_pages/schedule"
+          div[style="border:3px solid black;width:420px;height:565px;overflow:scroll;overflow-y:scroll;overflow-x:hidden;color:#696969;"]
+            p[style="font-size:smaller;"]
+            = render "static_pages/schedule"
         br
 #features-wrapper
   .container
@@ -34,12 +28,10 @@ body.no-sidebar#banner-wrapper
           .inner
             header
               h2
-                | Motley Tones: 
+                | Motley Tones:
                 br
                 | Past and Present
-              p
-                | How a band of scalawags traded murder for music-making. Now all they slay is the crowds in the aisle. 
-            p
+              p How a band of scalawags traded murder for music-making. Now all they slay is the crowds in the aisle.
 
       .4u
         section.box.feature
@@ -47,11 +39,8 @@ body.no-sidebar#banner-wrapper
             = image_tag "booking.jpg", alt: "Booking Picture"
           .inner
             header
-              h2
-                | Book us for a Performance!
-              p
-                | Got an event that could use more swagger and/or song? Whether it's public or private, kiddies or corporate, the Motley Tones have you covered.
-            p
+              h2 Book us for a Performance!
+              p Got an event that could use more swagger and/or song? Whether it's public or private, kiddies or corporate, the Motley Tones have you covered.
       .4u
         section.box.feature
           a.image.featured[href="PerformanceSchedule.html"]
@@ -63,10 +52,9 @@ body.no-sidebar#banner-wrapper
                 br
                 | Information
               p
-                | Don't miss out on the action - follow our schedule and come see a show! 
+                | Don't miss out on the action - follow our schedule and come see a show!
                 br
                 | (2015 dates coming soon)
-            p
 
 #features-wrapper
   .container
@@ -77,29 +65,21 @@ body.no-sidebar#banner-wrapper
             = image_tag "bios.jpg", alt: "Bio picture"
           .inner
             header
-              h2
-                | Meet the Tones: Bios+Pictures
-              p
-                | A Who’s Who on the eastern seaboard’s seven best and most musical pirates-for-hire. 
-            p
+              h2 Meet the Tones: Bios+Pictures
+              p A Who’s Who on the eastern seaboard’s seven best and most musical pirates-for-hire.
       .4u
         section.box.feature.last
           a.image.featured[href="photos.html"]
             = image_tag "photos.jpg", alt: "Photos picture"
           .inner
             header
-              h2
-                | Photo Gallery
-              p
-                | Albums showcasing the Tones' performance history - and the many friends they've made (and occasionally corrupted) along the way.
-            p
+              h2 Photo Gallery
+              p Albums showcasing the Tones' performance history - and the many friends they've made (and occasionally corrupted) along the way.
       .4u
         section.box.feature.last
           a.image.featured[href="videos.html"]
             = image_tag "videos.jpg", alt: "Videos picture"
           .inner
             header
-              h2
-                | Video Gallery
-              p
-                | Get a little taste of the musical pirate life from videos of our past shows - the perfect thing to tide you over til Pirate Season 2015.
+              h2 Video Gallery
+              p Get a little taste of the musical pirate life from videos of our past shows - the perfect thing to tide you over til Pirate Season 2015.
