@@ -32,7 +32,9 @@ footer#footer.container
           | Contact Us
         ul
           li
-            =link_to "Facebook", "http://www.facebook.com/motleytones"
+            =link_to "http://www.facebook.com/motleytones", class: "icon fa-facebook" do
+              span.label
+                | Facebook
         p
           =mail_to "info@motleytones.com",
             "info@motleytones.com",
