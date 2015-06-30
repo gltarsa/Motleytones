@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require skel.min
+//= require jquery.dropotron.min
 //= require_tree .
