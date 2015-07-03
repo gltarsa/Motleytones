@@ -23,9 +23,14 @@ group :development, :test do
   gem 'pry-rescue'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'poltergeist'
 end
 
+ruby "2.2.0"
