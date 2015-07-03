@@ -363,6 +363,12 @@ ul {font-family: 'Open Sans', sans-serif;
   font-weight: bold;
 }
 
+ul.dark {
+  list-style: disc;
+  margin-left: 2em;
+  color: #444;
+}
+
 ul.default {
   list-style: disc;
   padding-left: 1em;
