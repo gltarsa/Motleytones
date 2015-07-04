@@ -11,6 +11,7 @@ gem 'turbolinks' # Read more: https://github.com/rails/turbolinks
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'font-awesome-rails'
+gem 'pg'
 
 # Use sqlite3 as the database for Active Record
 
