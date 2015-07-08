@@ -1,20 +1,30 @@
 # README
 
-This app will serve up the Motley Tones website.
+This app serves up the current static Motley Tones website.
 
-Ultimately, it will have the following features:
+Currently
 
-* Deliver static pages
+* Delivers static pages with DRY (Don't Repeat Yourself) layout
  * About Motley Tones
  * Biographies of the group
  * Performance Schedule and Bookint
  * Photos
  * Videos
-* Have spinach tests for access to mandatory pages and mandatory sections on those pages.
-* Deliver pages with standard headers and footers
+
+Future features:
+
 * Generate schedule from independent data source
-* Optional: create user logins for administratie use
-* Optional: allow system to strike out gigs that are past
+* Strike out gigs on schedule that are past
+* Optional: create user logins for administrative use
+* Optional: Allow gig information to be added/updated/deleted via web
 * Optional: generate video page from database
 
 Trello Board for this project can be [found here](https://trello.com/b/VwHfdHD4/motley-tones-web-app).
+
+The original static page was created using the [HTML5 Verti design](http://html5up.net/verti).  It utilizes the following external packages:
+
+* Jquery (using jquery-rails)
+* Jquery.jumbotron (origin unknown)
+* [skel](https://github.com/n33/skel/blob/master/docs/skel-layout.md)
+* [Font-Awesome](http://fortawesome.github.io/Font-Awesome/)
+

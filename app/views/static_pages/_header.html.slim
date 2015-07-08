@@ -9,22 +9,22 @@ header#header.container
       li.current
         = link_to "Home", "/"
       li
-        ==link_to "Navigation &#9660".html_safe
+        = link_to "Navigation &#9660".html_safe
         ul
           li
-            =link_to "Motley Tones: Past+Present", about_path
+            = link_to "Motley Tones: Past+Present", about_path
           li
             = mail_to "info@motleytons.com",
               "Booking Request",
               subject: "Motley Tones Booking Request",
               body: "We would love to perform for you.  Please provide some basic info and we will get back to you as soon as possible.\n_______________________\n\nWhat do you need?\n\nWhen is your event?\n\nOther information?\n\n"
           li
-            =link_to "Performance Schedule", schedule_path
+            = link_to "Performance Schedule", schedule_path
           li
-            =link_to "Group Bios", bios_path
+            = link_to "Group Bios", bios_path
           li
-            =link_to "Photo Gallery", photos_path
+            = link_to "Photo Gallery", photos_path
           li
-            =link_to "Video Gallery", videos_path
+            = link_to "Video Gallery", videos_path
       li
         a[href="left-sidebar.html"]
