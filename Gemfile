@@ -11,6 +11,7 @@ gem 'turbolinks' # Read more: https://github.com/rails/turbolinks
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'font-awesome-rails'
+gem 'pg'
 
 # Use sqlite3 as the database for Active Record
 
@@ -23,9 +24,14 @@ group :development, :test do
   gem 'pry-rescue'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'poltergeist'
 end
 
+ruby "2.2.0"
