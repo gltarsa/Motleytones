@@ -253,6 +253,11 @@ table.default tbody {
   outline: 0;
 }
 
+img.image.adjustable {
+  display: block;
+  width:95%;
+}
+
 .image img {
   display: block;
   width: 100%;
@@ -379,6 +384,7 @@ ul.scroll {font-size: 12pt;
   font-weight: normal;
   list-style: disc;
   padding-left: 1em;
+  text-align: left;
 }
 
 ul.default li {

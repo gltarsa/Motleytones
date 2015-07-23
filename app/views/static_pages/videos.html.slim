@@ -1,23 +1,21 @@
 = provide :title, "Motley Videos"
 body.no-sidebar
-  #main-wrapper
-    article.container#content
+  #banner-wrapper
+    #banner.box.container
       h2
         |  Motley Tones: Video Gallery
       p
         | Here are some videos provided by friends and fans. If you have any to share, please send the URL to us at
-        a>[href="mailto:info@motleytones.com"]
+        a<>[href="mailto:info@motleytones.com"]
           | info@motleytones.com.
         |  Thank you!
+      br
+      .8u
+        center
+          = image_tag "video-icons/video_page_main.jpg", class: "image adjustable"
+          font[size="-2"] Belle, Flintz and Copper Tone in Performance at Blackbeard's Festival 2010
       table.video-list
         tbody
-          tr
-            td
-              center
-                = image_tag "video-icons/video_page_main.jpg", height: "300"
-                font[size="-2"]
-                  br
-                  |  Belle, Flintz and Copper Tone in Performance at Blackbeard's Festival 2010
           tr
             td[colspan="3" height="21"]
               hr
