@@ -23,6 +23,20 @@ describe User, type: :model do
       expect(@user.valid?).to be false
     end
 
+    it "fails if the user name is > 50 characters" do
+      @user.name = "Long"
+      @user.name += "g" * (51 - @user.name.length)
+      expect(@user.valid?).to be false
+    end
+
+    it "fails if the email is > 254 characters" do
+      suffix = ".com"
+      @user.email = "a@long"
+      @user.email += "g" * (255 - @user.email.length - suffix.length)
+      @user.email += suffix
+      expect(@user.valid?).to be false
+    end
+
     it "fails with an invalid email" do
       @user.email = "myemail#is.incorrect"
       expect(@user.valid?).to be false
