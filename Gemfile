@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'font-awesome-rails'
 gem 'pg'
+gem 'simple_form'
 
 # Use sqlite3 as the database for Active Record
 

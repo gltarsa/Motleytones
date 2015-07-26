@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get 'schedule', to: 'static_pages#schedule'
   get 'photos',   to: 'static_pages#photos'
   get 'videos',   to: 'static_pages#videos'
-  get 'add_user',   to: 'users#new'
+
+  resources :users  #  add full complement of CRUD screens for new users
 end
