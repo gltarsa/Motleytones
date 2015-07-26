@@ -10,7 +10,6 @@ describe User, type: :model do
 
   describe "validation tests" do
     it "checks user and email validity" do
-      binding.pry
       expect(@user.valid?).to be true
     end
 
@@ -30,14 +29,15 @@ describe User, type: :model do
     end
 
     it "fails if an email is not unique" do
+      user2 = User.new(name: @user.name, email: @user.email)
       @user.save
-      expect(@user.valid?).to be false
+      expect(user2.valid?).to be false
     end
 
     it "tests email uniqueness in a case-insensitive manner" do
+      user2 = User.new(name: @user.name, email: @user.email.upcase)
       @user.save
-      @user.email.upcase!
-      expect(@user.valid?).to be false
+      expect(user2.valid?).to be false
     end
   end
 end

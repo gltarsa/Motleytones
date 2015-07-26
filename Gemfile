@@ -22,6 +22,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'  # console when execption or <%= console %> in views
   gem 'spring'
   gem 'pry-rescue'
+  gem 'database_cleaner'
 end
 
 group :production do
