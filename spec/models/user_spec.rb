@@ -23,9 +23,19 @@ describe User, type: :model do
       expect(@user.valid?).to be false
     end
 
+    it "fails if the user name is < 5 characters" do
+      @user.name = "a" * 4
+      expect(@user.valid?).to be false
+    end
+
     it "fails if the user name is > 50 characters" do
       @user.name = "Long"
       @user.name += "g" * (51 - @user.name.length)
+      expect(@user.valid?).to be false
+    end
+
+    it "fails if the email is < 6 characters" do
+      @user.email = "a@b.c"  # min internet email "a@b.cn"
       expect(@user.valid?).to be false
     end
 
@@ -48,7 +58,7 @@ describe User, type: :model do
       expect(user2.valid?).to be false
     end
 
-    it "tests email uniqueness in a case-insensitive manner" do
+    it "email uniqueness is case-insensitive" do
       user2 = User.new(name: @user.name, email: @user.email.upcase)
       @user.save
       expect(user2.valid?).to be false
