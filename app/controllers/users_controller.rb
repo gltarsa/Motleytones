@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "User has been created"
+      # this is trying to go to a list of users, do we want to go to a display of the newly created user?
       redirect_to users_path
     else
       puts "--------------- user not saved -----------------------"
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
+    # we must have "user" in the params hash and we will only accept the permitted parameters
     params.require(:user).permit(:name, :email, :admin)
   end
 end

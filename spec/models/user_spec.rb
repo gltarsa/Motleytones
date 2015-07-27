@@ -63,5 +63,24 @@ describe User, type: :model do
       @user.save
       expect(user2.valid?).to be false
     end
+
+    describe "email format validation tests" do
+      it "accepts email addresses with proper format" do
+        valid_addresses = %w{ user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn }
+        valid_addresses.each do |addr|
+          @user.email = addr
+          expect(@user.valid?).to be true
+        end
+      end
+
+      it "rejects email addresses with proper format" do
+        invalid_addresses = %w[ user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com ]
+
+        invalid_addresses.each do |addr|
+          @user.email = addr
+          expect(@user.valid?).to be false
+        end
+      end
+    end
   end
 end
