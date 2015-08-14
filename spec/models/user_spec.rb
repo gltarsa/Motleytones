@@ -5,6 +5,8 @@ describe User, type: :model do
     @user = User.new do |u|
       u.name = "Test Man1"
       u.email = "good@email.com"
+      u.password = "secret"
+      u.password_confirmation = "secret"
     end
   end
 
@@ -80,6 +82,18 @@ describe User, type: :model do
           @user.email = addr
           expect(@user.valid?).to be false
         end
+      end
+    end
+
+    describe "password validation tests" do
+      it "password must be present" do
+        @user.password  = @user.password_confirmation = " " * 6
+        expect(@user.valid?).to be false
+      end
+
+      it "password must be at least 6 characters long" do
+        @user.password = @user.password_confirmation = "12345"
+        expect(@user.valid?).to be false
       end
     end
   end

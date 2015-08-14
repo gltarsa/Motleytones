@@ -368,6 +368,12 @@ ul {font-family: 'Open Sans', sans-serif;
   font-weight: bold;
 }
 
+ul.errors {
+  color: red;
+  margin-left: 2em;
+  font-weight: normal;
+}
+
 ul.dark {
   list-style: disc;
   margin-left: 2em;
