@@ -14,8 +14,15 @@ html
 		/[if lte IE 8]
       = stylesheet_link_tag "ie/v8"
 
-= render "header"
+  body
+    = render "shared/header"
 
-= yield
+    div.container
+      ul.alert
+        - flash.each do |msg_type, msg|
+          .alert class=".alert-#{msg_type}"
+            li #{msg_type}: #{msg}
 
-= render "footer"
+    = yield
+
+    = render "shared/footer"

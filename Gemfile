@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
+gem 'bcrypt', '~> 3.1.7'
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails'
 gem 'sprockets'
@@ -12,6 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'font-awesome-rails'
 gem 'pg'
+gem 'simple_form'
 
 # Use sqlite3 as the database for Active Record
 
@@ -22,6 +24,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'  # console when execption or <%= console %> in views
   gem 'spring'
   gem 'pry-rescue'
+  gem 'database_cleaner'
 end
 
 group :production do

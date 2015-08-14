@@ -1,4 +1,6 @@
-describe "static pages" do
+require 'rails_helper'
+
+describe "static_pages" do
   @copyright = "© The Motley Tones. All rights reserved"
 
   it "has a Root page" do
