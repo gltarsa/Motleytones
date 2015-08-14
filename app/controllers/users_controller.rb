@@ -15,13 +15,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = "User has been created"
+      flash[:success] = "Successful addition: Welcome to the Motley Tones"
       # this is trying to go to a list of users, do we want to go to a display of the newly created user?
       redirect_to users_path
     else
-      puts "--------------- user not saved -----------------------"
-      puts "#{@user.errors.inspect}"
-      puts "--------------- user not saved -----------------------"
       render :new
     end
   end
@@ -29,7 +26,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    # we must have "user" in the params hash and we will only accept the permitted parameters
-    params.require(:user).permit(:name, :email, :admin)
+    # we must have "user" in the params hash.  Only those fields in the permittedr
+    # list will be allowed into the app from the view.
+    params.require(:user).permit(:name, :email, :tone_name, :password, :password_confirmation, :admin)
   end
 end
