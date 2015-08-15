@@ -1,29 +1,29 @@
 #header-wrapper
-header#header.container
-  #logo
-    h1
-      = image_tag "banner_logo.jpg", alt: "Motley Logo", "vertical-align": "middle"
-      | Pirates for Hire
-  nav#nav
-    ul
-      li.current
-        = link_to "Home", "/"
-      li
-        = link_to "Navigation &#9660".html_safe
-        ul
-          li
-            = link_to "Motley Tones: Past+Present", about_path
-          li
-            = link_to "Booking Information", booking_path
-          li
-            = link_to "Performance Schedule", schedule_path
-          li
-            = link_to "Group Bios", bios_path
-          li
-            = link_to "Photo Gallery", photos_path
-          li
-            = link_to "Video Gallery", videos_path
-          li
-            = link_to "Add New User", new_user_path
-      li
-        a[href="left-sidebar.html"]
+  header#header.container
+    #logo
+      h1
+        = image_tag "banner_logo.jpg", alt: "Motley Logo", style: "vertical-align: middle;"
+        |   Pirates for Hire
+    nav#nav
+      ul
+        li.current
+          = link_to "Home", "/"
+        li
+          = link_to "Navigation &#9660".html_safe
+          ul
+            li
+              = link_to "Motley Tones: Past+Present", about_path
+            li
+              = link_to "Booking Information", booking_path
+            li
+              = link_to "Performance Schedule", schedule_path
+            li
+              = link_to "Group Bios", bios_path
+            li
+              = link_to "Photo Gallery", photos_path
+            li
+              = link_to "Video Gallery", videos_path
+            li
+              = link_to "Add New User", new_user_path
+        li
+          a[href="left-sidebar.html"]
