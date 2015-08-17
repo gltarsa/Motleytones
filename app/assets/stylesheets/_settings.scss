@@ -1,0 +1,64 @@
+// override skeleton defaults, below
+$container-width-larger-than-mobile:  95%;
+$container-width-larger-than-phablet: 90%;
+
+/*
+ Motley App variables
+ */
+$bkg-green        : #A7BF8F;
+$text-color       : White;
+$section-bkg-color  : White;
+$article-bkg-color  : White;
+$section-font-color : DimGray;
+$main-text-color : #444444;
+$page-bkg         : asset-url('theme/Ocean.jpg');
+$gradient-specs   : top, rgba(0,0,0,0.05), rgba(0,0,0,0);
+$border-radius    : 6px;
+$nav-button-bkg   : #444444;
+$def-font-color   : DimGray;
+$menu-bkg-color   : Gainsboro; // could be lighter, say #eeeeee
+$copyright-color  : Silver;
+
+/* Lines to end of page were extracted from the front of the skeleton-sass.scss file */
+// Variables
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Breakpoints
+$bp-larger-than-mobile    : "min-width: 400px" !default;
+$bp-larger-than-phablet   : "min-width: 550px" !default;
+$bp-larger-than-tablet    : "min-width: 750px" !default;
+$bp-larger-than-desktop   : "min-width: 1000px" !default;
+$bp-larger-than-desktophd : "min-width: 1200px" !default;
+
+// Colors
+$light-grey: #e1e1e1 !default;
+$dark-grey: #333 !default;
+$primary-color: #33c3f0 !default;
+$secondary-color: lighten($dark-grey, 13.5%) !default;
+$border-color: #bbb !default;
+$link-color: #1eaedb !default;
+$font-color: #222 !default;
+
+// Typography
+$font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+//Grid Variables
+$container-width: 960px !default;
+$container-width-larger-than-mobile: 85% !default;
+$container-width-larger-than-phablet: 80% !default;
+$total-columns: 12 !default;
+$column-width: 100 / $total-columns !default; // calculates individual column width based off of # of columns
+$column-margin: 4% !default; // space between columns
+
+// Misc
+$global-radius: 4px !default;
+
+// Functions
+@function grid-column-width($n) {
+  @return $column-width * $n - ($column-margin*($total-columns - $n)/$total-columns);
+}
+
+@function grid-offset-length($n) {
+  @return grid-column-width($n) + $column-margin;
+}
+

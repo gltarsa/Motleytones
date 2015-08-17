@@ -1,11 +1,11 @@
-#footer-wrapper
-  footer#footer.container
+footer
+  .container
     .row
-      .6u
-        section.widget.links
-          h3
+      .two-thirds.column
+        section
+          h2
             | Our Friends
-          ul.friend-list
+          ul.widget.friend-list
             li
               a[href="http://collegenannies.com/carync"] College Nannies+Tutors | Cary
             li
@@ -16,28 +16,25 @@
               a[href="http://www.yourdoorandmore.com/"] Your Door & More Illustrations
             li
               a[href="mailto:YCovington@gmail.com&subject=Inquiry from Motley Tones Website"] Bagpiping by Yance Covington
-      .3u
-        section.widget.links
 
-      .3u
-        section.widget.contact.last
-          h3
+      .one-third.column
+        section.widget.contact
+          h2
             | Contact Us
           ul
             li
-              =link_to "http://www.facebook.com/motleytones", class: "icon fa-facebook" do
+              =link_to "http://www.facebook.com/motleytones", class: "icon fa fa-facebook" do
                 span.label
                   | Facebook
           p
             =mail_to "info@motleytones.com",
               "info@motleytones.com",
               subject: "Motley Tones information needed"
-            br
+
     .row
-      .12u
-        #copyright
-          ul.menu
-            li
-              | ©
-              => Time.now.strftime("%Y")
-              | The Motley Tones. All rights reserved.
+      .twelve.columns
+        ul.copyright
+          li
+            | ©
+            => Time.now.strftime("%Y")
+            | The Motley Tones. All rights reserved.

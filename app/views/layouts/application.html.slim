@@ -3,6 +3,7 @@ html
   head
     title = yield :title
     = favicon_link_tag 'favicon.32px.ico'
+    meta name="viewport" content="width=device-width"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -17,10 +18,10 @@ html
   body
     = render "shared/header"
 
-    div.container
-      ul.alert
+    div.alert.container
+      ul
         - flash.each do |msg_type, msg|
-          .alert class=".alert-#{msg_type}"
+          .alert class="alert-#{msg_type}"
             li #{msg_type}: #{msg}
 
     = yield

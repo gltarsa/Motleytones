@@ -1,12 +1,13 @@
 = provide :title, 'Motley User'
-#banner-wrapper
-  #banner.box.container
-    .6u
-      h2 User Info
-      p User ID: #{@user.id}
-      p User Name: #{@user.name}
-      p Tone Name: #{(@user.tone_name) ? @user.tone_name : "(none)"}
-      p Email Address: #{@user.email}
-      - if @user.admin?
-        p User is an administrator
-      p -----
+section.main-content.container
+  .row
+    .eight.columns.offset-by-two.columns
+      article
+        h2 User Info
+        p User ID: #{@user.id}
+        p User Name: #{@user.name}
+        p Tone Name: #{(@user.tone_name) ? @user.tone_name : "(none)"}
+        p Email Address: #{@user.email}
+        - if @user.admin?
+          p User is an administrator
+        p -----
