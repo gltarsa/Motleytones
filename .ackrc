@@ -1,0 +1,3 @@
+# directories for ack to ignore
+--ignore-dir=.sass-cache
+

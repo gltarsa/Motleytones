@@ -228,7 +228,7 @@ nav {
 /***********/
 .dropotron {
   background: $text-color;
-  //letter-spacing: 0.025em;
+  letter-spacing: 0.025em;
   color: $def-font-color;
   text-decoration: none;
   border-radius: 6px;
@@ -240,8 +240,11 @@ nav {
 
   li {
     border-top: solid 1px $menu-bkg-color;
-    line-height: 2.5em;
+    line-height: 3rem;
     list-style: none;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 0;
   }
 
   li:first-child {
@@ -393,7 +396,7 @@ img.image.adjustable {
 }
 
 .widget.contact ul {
-  overflow: hidden;
+  //overflow: hidden;
   position: relative;
   left: -4px;
   top: 4px;

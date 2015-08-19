@@ -1,11 +1,10 @@
 = provide :title, "Book the Tones"
 section.main-content.container
-  article
-    .row
-      .one-third.columns
+  .row
+    .eight.columns.offset-by-two.columns
+      article
         h2 Book us for a performance!
         = image_tag "Bookings.png", alt: "Write to Book Us!", class: "image adjustable two-thirds"
-      .eight.columns.offset-by-two.columns
         p
           |To learn more about hiring us to perform at your event, make a
           =<> mail_to "info@motleytons.com",

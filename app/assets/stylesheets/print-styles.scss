@@ -1,0 +1,45 @@
+/****************/
+/* Print styles.  some things are better left unprinted.
+/* !important is used to ensure print styles override all others.
+/****************/
+
+@media print {
+  .no-print, .no-print * { display: none !important; }
+
+  *, *:before, *:after {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  .simple-print a[href]:after { content : none; }
+  .contact { font-size: x-small; }
+
+  /* Don't show links that are fragment identifiers, * or use the `javascript:` pseudo protocol */
+  a[href^="#"]:after, a[href^="javascript:"]:after {
+    content: none;
+  }
+
+
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /* Printing Tables: http://css-discuss.incutio.com/wiki/Printing_Tables */
+  thead { display: table-header-group; }
+
+  tr, img { page-break-inside: avoid; }
+
+  img { max-width: 100% !important; }
+
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2, h3 { page-break-after: avoid; }
+}
+
