@@ -1,9 +1,9 @@
 = provide :title, 'Motley User'
-section.main-content.container
-  .row
-    .eight.columns.offset-by-two.columns
-      article
-        - @users.each do |user|
+section.main-content
+  - @users.each do |user|
+    .row
+      .eight.columns.offset-by-two.columns
+        article
           h2 #{user.name}
           p User id: #{user.id}
           p Tone Name: #{(user.tone_name) ? user.tone_name : "(none)"}
