@@ -18,11 +18,12 @@ html
   body
     = render "shared/header"
 
-    div.alert.container
-      ul
-        - flash.each do |msg_type, msg|
-          .alert class="alert-#{msg_type}"
-            li #{msg_type}: #{msg}
+    - unless flash.empty?
+      article.alert.row.ten.columns.offset-by-one
+        ul
+          - flash.each do |msg_type, msg|
+            .alert class="alert-#{msg_type}"
+              li #{msg_type}: #{msg}
 
     = yield
 

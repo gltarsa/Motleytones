@@ -467,9 +467,16 @@ img.image.adjustable {
   }
 }
 
-.alert.container {
-  font-weight: 800;
-  margin-bottom: 0;
+article.alert {
+  padding: 0;
+  ul {
+    padding: 0;
+    margin: 1rem 0 1rem 1rem;
+  }
+}
+
+.alert {
+  font-weight: 600;
   background-color: $section-bkg-color;
   color: $main-text-color;
   border-radius: $border-radius;
@@ -506,6 +513,28 @@ img.image.adjustable {
   color: red;
   margin: 0 0 2em 0;
 }
+
+/*
+ Current status: hints are hidden, but have not got the incantations
+ to make them show.
+ 8/20/2015
+ */
+$hint-bkg-color: Cornsilk;
+.hint {
+  background: $hint-bkg-color;
+  border-radius: .3rem .3rem .3rem .3rem;
+  color: $main-text-color;
+  margin-left: 8px;
+  padding: 1px 6px;
+  z-index: 999;        // hints stay above all other elements
+  position: absolute;  // allows proper formatting if hint is two lines
+  display: none;
+}
+
+form .hint:hover + .hint  { display: inline; }
+form .hint:focus + .hint  { display: inline; }
+form input:required:valid + .hint {background: #28921f;} /* change form hint color when valid */
+.contact_form input:required:valid + .hint::before {color:#28921f;} /* change form hint arrow color when valid */
 
 .main-content, .details {
   color: $main-text-color;

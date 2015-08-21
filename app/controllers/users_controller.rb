@@ -15,9 +15,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = "#{@user.name} added -- Welcome to the Motley Tones"
-      # this is trying to go to a list of users, do we want to go to a display of the newly created user?
-      redirect_to users_path
+      flash[:success] = "\"#{@user.name}\" added -- Welcome to the Motley Tones"
+      redirect_to user_path(@user.id)
     else
       render :new
     end
