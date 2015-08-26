@@ -1,0 +1,12 @@
+/*
+ * This is a manifest file that controls how the other SCSS files will be pulled in and used.
+ *
+ * It is overriding the default Rails application pipeline so you will have to manually include
+ * any SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory using the @import directive in SCSS.
+ */
+@import "normalize";
+@import "font-awesome";
+@import "skeleton-sass.scss";
+@import "semantic_style.scss";
+@import "print-styles.scss";
