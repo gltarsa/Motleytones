@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'font-awesome-rails'
 gem 'pg'
 gem 'simple_form'
+gem 'devise'
 
 # Use sqlite3 as the database for Active Record
 

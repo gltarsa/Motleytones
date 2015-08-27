@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'users/new'
 
   root              'static_pages#home'
@@ -9,5 +10,5 @@ Rails.application.routes.draw do
   get 'photos'   => 'static_pages#photos'
   get 'videos'   => 'static_pages#videos'
 
-  resources :users  #  add full complement of CRUD screens for new users
+  resources :users, only: [:index, :show]
 end

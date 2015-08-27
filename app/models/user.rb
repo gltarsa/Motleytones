@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
@@ -12,6 +16,4 @@ class User < ActiveRecord::Base
     uniqueness: { case_sensitive: false }
   validates :password, presence: true,
     length: {minimum: 6, maximum: 72 } # password length constraints are arbitrary
-
-  has_secure_password
 end

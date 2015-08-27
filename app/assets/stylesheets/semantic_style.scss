@@ -19,8 +19,8 @@ body {
 
 body,input,select,textarea {
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.8rem;
-  color: $def-font-color;
+  font-size: $basic-font-size;
+  color: $basic-font-color;
   font-weight: 300;
 }
 
@@ -53,10 +53,10 @@ header {
     font-family: 'Oleo Script', serif;
     letter-spacing: .1rem;
 
-    font-size: 2rem;
+    font-size: $logo-font-size;
     padding-bottom: .5rem;
     @media (#{$bp-larger-than-mobile}) { // 400px
-      font-size: 3.5rem;
+      font-size: $logo-font-size * 1.75;
       padding-bottom: 0;
     }
 
@@ -80,7 +80,7 @@ nav {
   // position: absolute;
   // right: 0;
   // top: 0;
-  font-size: 1rem;
+  font-size: 10rem;
 
   ul {
     margin-bottom: 0;
@@ -224,7 +224,7 @@ article {
 .dropotron {
   background: $text-color;
   letter-spacing: 0.025em;
-  color: $def-font-color;
+  color: $basic-font-color;
   text-decoration: none;
   border-radius: 6px;
   padding: 0.25em 0;
@@ -245,6 +245,18 @@ article {
       line-height: 3rem;
       font-size: 1.6rem;
     }
+  }
+
+  .informational {
+    font-size: $basic-font-size * .80;
+  }
+
+  .informational::before {
+    content: "user ";
+  }
+
+  .informational::after {
+    content: ":";
   }
 
   li:first-child {
@@ -491,7 +503,7 @@ article.alert {
   }
 
   .alert-error   { color: red; }
-  .alert-notice  { color: $main-text-color; }
+  .alert-notice  { color: green; }
   .alert-success { color: green; }
 }
 

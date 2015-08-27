@@ -28,3 +28,6 @@ html
     = yield
 
     = render "shared/footer"
+    - if Rails.env.development?
+      section.alert
+        = debug(params)

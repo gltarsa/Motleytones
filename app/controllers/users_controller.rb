@@ -21,12 +21,4 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  private
-
-  def user_params
-    # we must have "user" in the params hash.  Only those fields in the permitted
-    # list will be allowed into the app from the view.
-    params.require(:user).permit(:name, :email, :tone_name, :password, :password_confirmation, :admin)
-  end
 end
