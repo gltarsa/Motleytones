@@ -35,6 +35,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'poltergeist'
+  gem 'launchy'
 end
 
 ruby "2.2.0"
