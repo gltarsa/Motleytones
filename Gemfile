@@ -20,6 +20,8 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'spinach-rails'
+  gem 'factory_girl_rails', '~> 4.5.0'
   gem 'pry-byebug'
   gem 'sqlite3'
   gem 'web-console', '~> 2.0'  # console when execption or <%= console %> in views
