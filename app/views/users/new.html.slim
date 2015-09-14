@@ -1,4 +1,4 @@
-= provide :title, 'Add New Motley Tone'
+= provide :title, 'Obsolete: Add New Motley Tone'
 section.main-content.container
   .row
     .eight.columns.offset-by-two.columns
@@ -6,7 +6,7 @@ section.main-content.container
         h2 Add User
         = render 'shared/error_messages'
         = simple_form_for @user do |f|
-          = f.input :name, placeholder: "<real name>", hint: "Your actual name"
+          = f.input :name, placeholder: "<obsolete real name>", hint: "Your actual name"
           = f.input :tone_name, placeholder: "<stage name>", hint: "What you want to be called"
           = f.input :email, hint: "contact e-mail (must be unique)"
           = f.input :password

@@ -1,9 +1,20 @@
 require 'rails_helper'
 
 describe UsersController, type: :controller do
-  describe "GET #new" do
+  before (:each) do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+  end
+
+  describe "GET #index" do
     it "returns http success" do
-      get :new
+      get :index
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET #show" do
+    it "returns http success" do
+      get :show
       expect(response).to have_http_status(:success)
     end
   end

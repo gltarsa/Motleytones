@@ -19,15 +19,20 @@ html
     = render "shared/header"
 
     - unless flash.empty?
-      article.alert.row.ten.columns.offset-by-one
+      article.flash.row.ten.columns.offset-by-one
+        /* below comment is the Devise canonical way to do alerts and notices */
+        /* p.notice */
+        /*   = notice */
+        /* p.alert */
+        /*   = alert */
         ul
           - flash.each do |msg_type, msg|
-            .alert class="alert-#{msg_type}"
-              li #{msg_type}: #{msg}
+            li
+              = content_tag :span, ((Rails.env.test? || Rails.env.development?) ? "#{msg_type}: " + msg : msg), class: "flash #{msg_type}"
 
     = yield
 
     = render "shared/footer"
     - if Rails.env.development?
-      section.alert
+      section.flash
         = debug(params)

@@ -4,9 +4,10 @@ section.main-content.container
     .eight.columns.offset-by-two.columns
       article
         h2 User Info
-        p User ID: #{@user.id}
-        p User Name: #{@user.name}
-        p Tone Name: #{(@user.tone_name) ? @user.tone_name : "(none)"}
-        p Email Address: #{@user.email}
+        p.user_id User ID: #{@user.id}
+        p.user_name User Name: #{@user.name}
+        p.user_tone_name Tone Name: #{(@user.tone_name) ? @user.tone_name : "(none)"}
+        p.user_email Email Address: #{@user.email}
         - if @user.admin?
-          p User is an administrator
+          p.user_admin User is an administrator
+        = render 'shared/user_mgt_buttons', locals: { user: @user }

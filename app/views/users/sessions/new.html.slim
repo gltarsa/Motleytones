@@ -1,4 +1,4 @@
-= provide :title, 'Log In'
+= provide :title, 'Sign In'
 section.main-content.container
   .row
     .eight.columns.offset-by-two.colums
@@ -12,6 +12,6 @@ section.main-content.container
             = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
           .form-actions
-            = f.button :submit, "Log in"
+            = f.button :submit, "Sign in"
 
         = render "users/shared/links"

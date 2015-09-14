@@ -248,15 +248,8 @@ article {
   }
 
   .informational {
-    font-size: $basic-font-size * .80;
-  }
-
-  .informational::before {
-    content: "user ";
-  }
-
-  .informational::after {
-    content: ":";
+    font-weight: 800;
+    &::after { content: ":"; }
   }
 
   li:first-child {
@@ -479,19 +472,22 @@ img.image.adjustable {
   }
 }
 
-article.alert {
-  padding: 0;
-  ul {
-    padding: 0;
-    margin: 1rem 0 1rem 1rem;
+.simple_form {
+  .error_notification {
+    color: red;
+  }
+  .error{
+    color: red;
+    font-weight: 600;
   }
 }
 
-.alert {
+.flash {
   font-weight: 600;
   background-color: $section-bkg-color;
   color: $main-text-color;
   border-radius: $border-radius;
+  float: none;
 
   ul, li {
     margin-bottom: 0;
@@ -502,9 +498,9 @@ article.alert {
     margin-left: .5rem;
   }
 
-  .alert-error   { color: red; }
-  .alert-notice  { color: green; }
-  .alert-success { color: green; }
+  .alert   { color: red; }
+  .notice  { color: limegreen; }
+  .success { color: green; }
 }
 
 .content {
@@ -527,9 +523,9 @@ article.alert {
 }
 
 /*
- Current status: hints are hidden, but have not got the incantations
- to make them show.
- 8/20/2015
+Current status: hints are hidden, but have not got the incantations
+to make them show.
+8/20/2015
  */
 $hint-bkg-color: Cornsilk;
 .hint {
@@ -605,5 +601,44 @@ $schedule-box-margin: 0.3rem;
     padding: 0;
     vertical-align: middle;
     text-align: center;
+  }
+}
+
+//  Simple_form styling
+  form {
+    margin-bottom: 0;
+  }
+.simple_form {
+  .btn {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+  }
+
+  abbr {
+    text-decoration: none !important;
+    border-bottom: none;
+    color: Maroon;
+  }
+  input {
+    margin-bottom: 0;
+  }
+  input[type='checkbox'] {
+    margin-right: .5rem;
+  }
+}
+
+// Rails button_to styling
+.button_to {
+  display: inline;
+  input {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    margin-left: 1.5em;
+  }
+  .edit {
+  }
+  .delete {
+    color: red;
+    float: right;
   }
 }

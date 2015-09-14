@@ -9,9 +9,8 @@ class ApplicationController < ActionController::Base
 
   # We must tell Devise that we have extra paramaters in the params hash.
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:sign_up) << :tone_name
-    devise_parameter_sanitizer.for(:sign_up) << :admin
+    devise_parameter_sanitizer.for(:sign_up) << :name << :tone_name << :admin
+    devise_parameter_sanitizer.for(:account_update) << :name << :tone_name
   end
 
   def after_sign_in_path_for(resource)

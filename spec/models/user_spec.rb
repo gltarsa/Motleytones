@@ -1,8 +1,9 @@
 require 'rails_helper'
+require 'devise'
 
 describe User, type: :model do
   before(:each) do
-    @user = User.new do |u|
+    @user = FactoryGirl.create :user do |u|
       u.name = "Test Man1"
       u.email = "good@email.com"
       u.password = "secret"

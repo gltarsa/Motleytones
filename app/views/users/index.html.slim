@@ -1,4 +1,4 @@
-= provide :title, 'Motley User'
+= provide :title, 'Motley Users'
 section.main-content
   - @users.each do |user|
     .row
@@ -10,4 +10,4 @@ section.main-content
           p Email Address: #{user.email}
           -if user.admin?
             p User is an administrator
-
+          = render 'shared/user_mgt_buttons', locals: { user: user }

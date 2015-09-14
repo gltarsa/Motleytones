@@ -1,0 +1,89 @@
+Feature: Sign-In
+  Most users of the site do not need an account in order to make use of the site/app.  Band members and select others will need access to private features.
+
+  * A user can sign into the app with registered email and password
+
+  * A user who is not signed up cannot access any of the user management buttons on the Users page.
+  * A  non-admin user cannot add a new user
+  * A non-admin user can manage his own profile information, but cannot delete his account.
+
+  @javascript
+  Scenario: A user can sign into the system with registered email and password
+    Given I am not signed in
+    When I navigate to the Sign In page
+    And I enter a registered email
+    And I enter the associated password
+    And I click Sign In
+    Then I am sent to the Profile page for that user
+    And I see a success message containing "Signed in successfully"
+
+  @javascript
+  Scenario: A user cannot sign into the system with an unregistered email or password
+    Given I am not signed in
+    When I navigate to the Sign In page
+    And I enter an unregistered email
+    And I enter an invalid password
+    And I click Sign In
+    Then I see an alert containing "Invalid email or password"
+    When I enter a registered email
+    And I enter an invalid password
+    And I click Sign In
+    Then I see an alert containing "Invalid email or password"
+
+  @javascript
+  Scenario: A user who is not signed in cannot access any of the user management buttons
+    Given I am not signed in
+    When I look at the Navigation Menu
+    Then I do not see a List Users link
+    And I do not see a Profile link
+    And I do not see a Sign Out link
+
+    When I visit the Users page directly
+    Then I am sent to the Sign In page
+    And I see an alert containing "You need to sign in or sign up before continuing"
+
+    When I visit the Sign Up page directly
+    Then I am sent to the Sign In page
+    And I see an alert containing "You need to sign in or sign up before continuing"
+
+    When I visit the Edit Profile page directly
+    Then I am sent to the Sign In page
+    And I see an alert containing "You need to sign in or sign up before continuing"
+
+  @javascript
+  Scenario: A non-admin user cannot add a new user
+    Given I am signed in as a non-admin user
+    When I look at the Navigation Menu
+    Then I do not see an Add User link
+
+    When I visit the Add User page directly
+    Then I am sent to the Profile page
+    And I see an error containing "You must be an admin user to access that page"
+
+  @javascript
+  Scenario: A non-admin user cannot delete his own profile
+    Given I am signed in as a non-admin user
+    When I navigate to the Profile page
+    And I do not see a Delete button
+
+  @javascript
+  Scenario: A non-admin user can edit his own profile
+    Given I am signed in as a non-admin user
+    When I navigate to the Profile page
+    When I click Edit for that user
+    Then I am sent to the Change User Information page
+    When I change the mutable fields
+    And I change the admin checkbox
+    And I click Update
+    Then the mutable fields are changed
+    And the admin field is not changed
+
+  @chrome
+  Scenario: A non-admin user can cancel the edit of his profile
+    Given I am signed in as a non-admin user
+    When I navigate to the Profile page
+    When I click Edit for that user
+    Then I am sent to the Change User Information page
+    When I change the mutable fields
+    And I click Cancel
+    Then the mutable fields are not changed
