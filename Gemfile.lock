@@ -80,6 +80,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faker (1.5.0)
+      i18n (~> 0.5)
     ffi (1.9.10)
     font-awesome-rails (4.4.0.0)
       railties (>= 3.2, < 5.0)
@@ -258,6 +260,7 @@ DEPENDENCIES
   database_cleaner (~> 1.4)
   devise (~> 3.5)
   factory_girl_rails (~> 4.5.0)
+  faker
   font-awesome-rails (~> 4.4)
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0)

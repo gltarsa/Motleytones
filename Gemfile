@@ -25,6 +25,7 @@ group :development, :test do
   gem 'spring'
   gem 'pry-rescue'
   gem 'database_cleaner', '~> 1.4'
+  gem 'faker'
 end
 
 group :production do

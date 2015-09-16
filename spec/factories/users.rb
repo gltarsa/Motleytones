@@ -1,18 +1,18 @@
 PASSWORD ||= "secretpw"
 FactoryGirl.define do
   factory :user do
-    name      "Brantley Ill"
-    tone_name "Mono Tone"
-    email      "somewhere@around.here.com"
+    name      { Faker::Name.name }
+    tone_name { "#{Faker::Company.name} Tone" }
+    email     { Faker::Internet.email }
     password              PASSWORD
     password_confirmation PASSWORD
     admin      false
   end
 
   factory :admin, class: User do
-    name      "Rex Staffley"
-    tone_name "King Tone"
-    email      "elsewhere@around.here.com"
+    name      { Faker::Name.name }
+    tone_name { "#{Faker::Company.name} Tone" }
+    email     { Faker::Internet.email }
     password              PASSWORD
     password_confirmation PASSWORD
     admin      true
