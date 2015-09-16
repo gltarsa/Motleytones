@@ -5,12 +5,24 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
     sign_in_non_admin_user
   end
 
+  step "I am signed in as an admin user" do
+    sign_in_admin_user
+  end
+
   step 'I am not signed in' do
     visit root_path
   end
 
   step 'I look at the Navigation menu' do
     nav_li = find("li.navigation").hover
+  end
+
+  # admin
+  step 'I navigate to the Add Pirate page' do
+    nav_li = find("li.navigation").hover
+    click_link "Add Pirate"
+    sync_page
+    expect(page.title).to eq("Add New Motley Tone")
   end
 
   step 'I navigate to the Users page' do
@@ -22,8 +34,7 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
 
   step 'I navigate to the Sign In page' do
     nav_li = find("li.navigation").hover
-    click_link "Sign in"
-    sync_page
+    i_click_sign_in
     expect(page.title).to eq("Sign In")
   end
 
@@ -34,20 +45,17 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
     expect(page.title).to eq("Motley User")
   end
 
+  # admin
+  step 'I visit the Add Pirate page directly' do
+    visit new_user_registration_path
+  end
+
   step 'I visit the Users page directly' do
     visit users_path
   end
 
   step 'I visit the Add User page directly' do
     visit users_new_path
-  end
-
-  step 'I visit the Sign Up page directly' do
-    visit new_user_registration_path
-  end
-
-  step 'I visit the Sign Up page directly' do
-    visit new_user_registration_path
   end
 
   step 'I visit the Edit Profile page directly' do
@@ -87,10 +95,10 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   end
 
   step 'I am sent to the Change User Information page' do
-    expect(page.title).to eq("Modify Motley Tone Profile")
+    expect(page.title).to eq("Modify Pirate Profile")
   end
 
-  step 'I am sent to the Profile page for that user' do
+  step 'I am sent to the Profile page' do
     expect(page.title).to eq("Motley User")
     expect(page.text).to match(Regexp.new(".*#{@user.name}.*"))
   end
@@ -115,10 +123,6 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
     has_flash_msg(severity: :alert, containing: "You must be an admin user to access that page")
   end
 
-  # step 'I see an error containing "You must be signed in to access that page"' do
-  #   has_flash_msg(severity: :alert, containing: "You must be signed in to access that page")
-  # end
-
   step 'I see an alert containing "Invalid email or password"' do
     has_flash_msg(severity: :alert, containing: "Invalid email or password")
   end
@@ -131,10 +135,47 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
     expect(page.title).to match(/Motley User Profile.*/)
   end
 
-  step 'I click Edit for that user' do
+  step 'I click Edit' do
     # need test to see that the page is for the right user
     click_on "Edit Info"
     sync_page
+  end
+
+  step 'I click Edit for that other user' do
+    click_on "Edit Info"
+    sync_page
+  end
+
+  #admin
+  step 'there is at least one other user' do
+    i_navigate_to_the_add_pirate_page
+    i_fill_in_the_fields
+    i_click_sign_up
+    expect(page.text).to have_content(@another_user.name)
+  end
+
+  #admin
+  step 'I fill in the fields' do
+    password = "secretpw"
+    @another_user = FactoryGirl.build(:user)
+    fill_in "user_name", with: @another_user.name
+    fill_in "user_tone_name", with: @another_user.tone_name
+    fill_in "user_email", with: @another_user.email
+    fill_in "user_password", with: password
+    fill_in "user_password_confirmation", with: password
+    check "user_admin"
+  end
+
+  #admin
+  step 'I click Sign Up' do
+    click_link "Sign up"
+    sync_page
+  end
+
+  #admin
+  step 'the account is created' do
+    user = User.find_by(email: @another_user.email)
+    expect(user).not_to be_nil
   end
 
   step 'I change the mutable fields' do
@@ -159,23 +200,22 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   end
 
   step 'the mutable fields are not changed' do
-    binding.pry
-    expect(find("p.user_name")).to have_content(@user.name)
-    expect(find("p.user_tone_name")).to have_content(@user.tone_name)
-    expect(find("p.user_email")).to have_content(@user.email)
+    expect(find(".user_name")).to have_content(@user.name)
+    expect(find(".user_tone_name")).to have_content(@user.tone_name)
+    expect(find(".user_email")).to have_content(@user.email)
   end
 
   step 'the mutable fields are changed' do
-    expect(find("input#user_name").value).to eql(change(@user.name))
-    expect(find("input#user_tone_name").value).to eql(change(@user.tone_name))
-    expect(find("input#user_email").value).to eql(change(@user.email))
+    expect(find(".user_name").text).to match("#{change(@user.name)}")
+    expect(find(".user_tone_name").text).to match("#{change(@user.tone_name)}")
+    expect(find(".user_email").text).to match("#{change(@user.email)}")
   end
 
   step 'the admin field is not changed' do
     if @old_admin_value
-      expect(find('#user_admin')).to be_checked
+      expect(page).to have_css("p.user_admin")
     else
-      expect(find('#user_admin')).not_to be_checked
+      expect(page).not_to have_css("p.user_admin")
     end
   end
 
@@ -187,6 +227,10 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   step 'I click Sign In' do
     click_on "Sign in"
     sync_page
+  end
+
+  step 'I am still in the admin account' do
+    binding.pry
   end
 
   step 'I enter a registered email' do
@@ -218,7 +262,7 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
     end
 
     def change(item)
-      item + "2"
+      item + "changed"
     end
 
     def sync_page

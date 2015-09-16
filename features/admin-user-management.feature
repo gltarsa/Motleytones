@@ -1,15 +1,17 @@
 Feature: Admin User Management
-  As an admin user, I can create and manage user accounts.
+  A user who has his admin flag set can perform certainother operations in the app.
 
-  Scenario: Admin users can create new user accounts
+  * An admin user can create user accounts.
+  * An admin user can delete accounts from the Users List page, including
+    changing the admin flag.
+ # * An admin user can deactivate an account from the Users List page.
+
+  Scenario: Admin users can create a new user account
     Given I am signed in as an admin user
-    When I visit the Sign Up page
-    Then I see the page title "Add New Motley Tone"
-    And I see the user_name field
-    And I see the tone_name field
-    And I see the email field
+    When I navigate to the Sign Up page
+    Then I see the page title "Add New Pirate"
+    And I see the appropriate fields
     And I see the password and password_confirmation fields
-    And I see the admin checkbox
     When I fill in the fields
     And I click Sign up
     Then the account is created
@@ -26,29 +28,25 @@ Feature: Admin User Management
     When I click Yes
     Then the user is deleted
 
-  Scenario:  Admin users can deactivate a user account
+  Scenario:  Admin users can edit a user account from the Users Page
     Given I am signed in as an admin user
     And there is at least one other user
-    When I visit the Users page
-    And I see the window tile "Motley Users"
-    And I see information for another user
-    When I click the Deactivate button for that user
-    Then the user is Deactivated
-
-  Scenario:  Admin users can edit a user account
-    Given I am signed in as an admin user
-    And there is at least one other user
-    When I visit the Users page
-    And I see the window tile "Motley Users"
+    When I navigate to the Users page
     And I see information for another user
     When I click the Edit button for that user
-    Then I see the page title "Change User Information"
-    And I see an Update button
-    When I change the user_name field
+    Then I am sent to the Change User Information page
+    When I change the mutable fields
     And I change the user_name field
-    And I change the tone_name field
-    And I change the email field
     And I change the admin checkbox
-    And I click the Update button
-    Then the user fields are updated
+    And I click Update
+    Then the mutable fields are updated
+    And the admin field is changed
 
+  # Scenario:  Admin users can deactivate a user account
+  #   Given I am signed in as an admin user
+  #   And there is at least one other user
+  #   When I visit the Users page
+  #   And I see the window tile "Motley Users"
+  #   And I see information for another user
+  #   When I click the Deactivate button for that user
+  #   Then the user is Deactivated
