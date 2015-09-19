@@ -1,0 +1,13 @@
+= simple_form_for @user do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name, required: true, autofocus: true, placeholder: "<real name>", hint: "Your actual name"
+    = f.input :tone_name, required: true, placeholder: "<stage name>", hint: "What you want to be called"
+    = f.input :email, required: true
+    = f.input :password, required: false, autocomplete: "off", hint: "leave it blank if you don't want to change it"
+    = f.input :password_confirmation, required: false
+    = f.input :admin
+  .form-actions
+    = f.button :submit, yield(:button_name)
+    = link_to "Cancel", :back
+    = render "users/shared/links"

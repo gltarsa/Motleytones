@@ -3,11 +3,13 @@ section.main-content
   - @users.each do |user|
     .row
       .eight.columns.offset-by-two.columns
-        article
+        article.user-information class="user-id-#{user.id}"
           h2.user_name #{user.name}
           p.user_id User id: #{user.id}
           p.user_tone_name Tone Name: #{(user.tone_name) ? user.tone_name : "(none)"}
           p.user_email Email Address: #{user.email}
           -if user.admin?
             p.user_admin User is an administrator
+          p.user_created #{user.created_at.strftime("Added: %F %H:%M")}
+          p.user_updated #{user.updated_at.strftime("Updated: %F %H:%M")}
           = render 'shared/user_mgt_buttons', locals: { user: user }

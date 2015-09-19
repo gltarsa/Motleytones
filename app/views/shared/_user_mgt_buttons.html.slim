@@ -1,10 +1,12 @@
-= button_to "Edit Info for #{user_path(locals[:user].id)} (#{locals[:user].tone_name})",
-  edit_user_path(locals[:user]),
-  method: :get,
-  class: "edit"
--if current_user.admin?
-  = button_to "Delete Pirate",
-    user_path(locals[:user]),
-    method: :delete,
-    class: "delete",
-    data: { confirm: "Are you sure (action is permanent)?" }
+- if current_user.admin? || current_user.id == locals[:user].id
+  = button_to "Edit Info for #{user_path(locals[:user].id)} (#{locals[:user].tone_name})",
+    edit_user_path(locals[:user]),
+    method: :get,
+    class: "edit"
+- if current_user.admin?
+  -if current_user.id != locals[:user].id
+    = button_to "Delete Pirate",
+      user_path(locals[:user]),
+      method: :delete,
+      class: "delete",
+      data: { confirm: "Are you sure (action is permanent)?" }

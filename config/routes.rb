@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :registrations => "private_registrations" }
-  devise_scope :user do
-    get    'users/new'      => 'private_registrations#new'
-    # get    'users/edit/:id' => 'private_registrations#edit', as: "edit_user"
-    # patch  'users/edit/:id' => 'private_registrations#update'
-    # delete 'users/:id'      => 'private_registrations#destroy'
-  end
+  devise_for :users, controllers: { :registrations => "private_registrations" }
 
   root              'static_pages#home'
   get 'about'    => 'static_pages#about'
@@ -16,5 +10,5 @@ Rails.application.routes.draw do
   get 'videos'   => 'static_pages#videos'
 
   # full set: index, new, create, show, edit, update, destroy
-  resources :users, except: [ :new ]
+  resources :users
 end

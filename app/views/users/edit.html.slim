@@ -5,16 +5,6 @@ section.main-content.container
       article
         h2
           | Modify Pirate Profile for #{@user.name} (#{@user.tone_name})
-        = simple_form_for @user, html: { method: :put } do |f|
-          = f.error_notification
-          .form-inputs
-            = f.input :name, required: true, autofocus: true, placeholder: "<real name>", hint: "Your actual name"
-            = f.input :tone_name, required: true, placeholder: "<stage name>", hint: "What you want to be called"
-            = f.input :email, required: true
-            = f.input :password, required: false, autocomplete: "off", hint: "leave it blank if you don't want to change it"
-            = f.input :password_confirmation, required: false
-            = f.input :current_password, required: true, hint: "we need your current password to confirm your changes"
-            = f.input :admin
-          .form-actions
-            = f.button :submit, "Update"
-            = link_to "Cancel", :back
+        = provide :button_name, 'Update'
+        = render "shared/user_fields"
+        = render "users/shared/links"

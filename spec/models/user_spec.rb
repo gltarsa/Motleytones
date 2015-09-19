@@ -3,12 +3,7 @@ require 'devise'
 
 describe User, type: :model do
   before(:each) do
-    @user = FactoryGirl.create :user do |u|
-      u.name = "Test Man1"
-      u.email = "good@email.com"
-      u.password = "secret"
-      u.password_confirmation = "secret"
-    end
+    @user = FactoryGirl.create :user
   end
 
   describe "validation tests" do
