@@ -294,7 +294,7 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   private
 
   def change(item)
-    item + "changed"
+    item[0] + "changed" + item[1..-1]
   end
 
   def expect_mutable_fields_to_be_changed(user)
