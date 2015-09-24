@@ -1,8 +1,9 @@
-class UsersController < ApplicationController
-  before_action :authenticate_user!
+class UsersController < Devise::RegistrationsController
+  skip_before_action :require_no_authentication
+  before_action :authenticate_scope!
 
   def show
-    @user = User.find(params[:id]) unless params[:id] == "sign_out"
+    @user = User.find(params[:id])
   end
 
   def index
@@ -10,12 +11,12 @@ class UsersController < ApplicationController
   end
 
   def new
-      if current_user.admin?
-        @user = User.new
-      else
-        flash[:alert] = "You must be an admin user to access that page"
-        redirect_to current_user
-      end
+    if current_user.admin?
+      @user = User.new
+    else
+      set_flash_message :alert, :must_be_admin
+      redirect_to current_user
+    end
   end
 
   def create
@@ -30,12 +31,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-        if current_user.id.to_s == params[:id] || current_user.admin?
-        @user = User.find(params[:id])
-      else
-        flash[:alert] = "You must be an admin user to access that page"
-        redirect_to current_user
-      end
+    if current_user.id.to_s == params[:id] || current_user.admin?
+      @user = User.find(params[:id])
+    else
+      set_flash_message :alert, :must_be_admin
+      redirect_to current_user
+    end
   end
 
   def update
@@ -50,17 +51,16 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
-
   end
 
   def destroy
     if current_user.id.to_s == params[:id]
-      flash[:alert] = "You cannot delete your own account"
+      set_flash_message :alert, :cannot_delete_own_account
       redirect_to user_path
     else
       User.find(params[:id]).destroy
       total = User.all.count
-      flash[:success] = "Pirate has been killed off, #{total} remain#{(total == 1)? "s" : ""}"
+      flash[:notice] = "Pirate has been killed off, #{total} remain#{(total == 1)? "s" : ""}"
       redirect_to users_url
     end
   end

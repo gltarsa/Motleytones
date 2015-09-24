@@ -3,6 +3,7 @@ require 'rails_helper'
 describe UsersController, type: :controller do
   before (:each) do
     @user = FactoryGirl.create(:user)
+    @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
   describe "GET #index" do

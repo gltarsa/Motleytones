@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { :registrations => "private_registrations" }
+  devise_for :users
+  devise_scope :user do
+    resources :users
+  end
 
   root              'static_pages#home'
   get 'about'    => 'static_pages#about'
@@ -10,5 +13,5 @@ Rails.application.routes.draw do
   get 'videos'   => 'static_pages#videos'
 
   # full set: index, new, create, show, edit, update, destroy
-  resources :users
+  #resources :users
 end
