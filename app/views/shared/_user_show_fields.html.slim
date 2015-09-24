@@ -1,0 +1,12 @@
+article.user-information class="user-id-#{locals[:user].id}"
+  h2 Pirate Info
+  p.user_id User ID: #{locals[:user].id}
+  p.user_name User Name: #{locals[:user].name}
+  p.user_tone_name Tone Name: #{(locals[:user].tone_name) ? locals[:user].tone_name : "(none)"}
+  p.user_email Email Address: #{locals[:user].email}
+  p.user_start_date Motley Tone since: #{locals[:user].band_start_date.strftime("%d-%b-%Y")}
+  - if locals[:user].admin?
+    p.user_admin User is an administrator
+  p.user_created Added: #{locals[:user].created_at.strftime("%d-%b-%Y %H:%M")}
+  p.user_updated Updated: #{locals[:user].updated_at.strftime("%d-%b-%Y %H:%M")}
+  = render 'shared/user_mgt_buttons', locals: { user: locals[:user] }

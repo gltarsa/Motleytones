@@ -69,9 +69,9 @@ class UsersController < Devise::RegistrationsController
 
   def user_params
     if current_user.admin?
-      params.require(:user).permit(:name, :email, :tone_name, :password, :password_confirmation, :admin)
+      params.require(:user).permit(:name, :email, :tone_name, :password, :password_confirmation, :band_start_date, :admin)
     else
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :tone_name)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :tone_name, :band_start_date)
     end
   end
 end

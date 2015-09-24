@@ -136,11 +136,6 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'there is at least one other user' do
     @another_user = FactoryGirl.create(:user)
-
-    # i_navigate_to_the_add_pirate_page
-    # i_fill_in_the_fields
-    # i_click_sign_up
-    # expect(page.text).to have_content(@another_user.name)
   end
 
   step 'I see information for another user' do
@@ -148,9 +143,11 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I fill in the fields' do
+    @start_date = "9-Jul-2010"
     @another_user = FactoryGirl.build(:user)
     fill_in "user_name", with: @another_user.name
     fill_in "user_tone_name", with: @another_user.tone_name
+    select_date(@start_date)
     fill_in "user_email", with: @another_user.email
     fill_in "user_password", with: PASSWORD
     fill_in "user_password_confirmation", with: PASSWORD
@@ -168,15 +165,11 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I change the mutable fields' do
-    fill_in "user_name", with: change(@user.name)
-    fill_in "user_tone_name", with: change(@user.tone_name)
-    fill_in "user_email", with: change(@user.email)
+    change_mutable_fields(@user)
   end
 
   step 'I change the mutable fields for that other user' do
-    fill_in "user_name", with: change(@another_user.name)
-    fill_in "user_tone_name", with: change(@another_user.tone_name)
-    fill_in "user_email", with: change(@another_user.email)
+    change_mutable_fields(@another_user)
   end
 
   step 'I change the admin checkbox' do
@@ -198,6 +191,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(find(".user_name")).to have_content(@user.name)
     expect(find(".user_tone_name")).to have_content(@user.tone_name)
     expect(find(".user_email")).to have_content(@user.email)
+    expect(find(".user_start_date")).to have_content(@start_date)
   end
 
   step 'the mutable fields are changed' do
@@ -263,10 +257,25 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     item[0] + "changed" + item[1..-1]
   end
 
+  def select_date(date)
+    find("#user_band_start_date_1i").select(Date.parse(date).year)
+    find("#user_band_start_date_2i").select(Date::MONTHNAMES[Date.parse(date).month])
+    find("#user_band_start_date_3i").select(Date.parse(date).day)
+  end
+
+  def change_mutable_fields(user)
+    @changed_date = "1-Apr-#{Date.today.year + 1}" # app always allows one year more than today
+    fill_in "user_name",       with: change(user.name)
+    fill_in "user_tone_name",  with: change(user.tone_name)
+    fill_in "user_email",      with: change(user.email)
+    select_date(@changed_date)
+  end
+
   def expect_mutable_fields_to_be_changed(user)
     id_class = ".user-id-#{user.id}"
-    expect(find("#{id_class} .user_name").text).to match("#{change(user.name)}")
-    expect(find("#{id_class} .user_tone_name").text).to match("#{change(user.tone_name)}")
-    expect(find("#{id_class} .user_email").text).to match("#{change(user.email)}")
+    expect(find("#{id_class} .user_name").text).to       match("#{change(user.name)}")
+    expect(find("#{id_class} .user_tone_name").text).to  match("#{change(user.tone_name)}")
+    expect(find("#{id_class} .user_email").text).to      match("#{change(user.email)}")
+    expect(find("#{id_class} .user_start_date").text).to match(@changed_date)
   end
 end

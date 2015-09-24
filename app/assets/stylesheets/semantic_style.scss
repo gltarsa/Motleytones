@@ -591,6 +591,15 @@ $schedule-box-margin: 0.3rem;
   ul { margin-bottom: 0; }
 }
 
+.user-information {
+  p { margin-bottom: 0; }
+}
+
+p.user_admin {
+  margin: .2rem .2rem;
+  font-weight: 600;
+}
+
 .video-list {
   tr {
     vertical-align: "middle";
@@ -605,9 +614,9 @@ $schedule-box-margin: 0.3rem;
 }
 
 //  Simple_form styling
-  form {
-    margin-bottom: 0;
-  }
+form {
+  margin-bottom: 0;
+}
 .simple_form {
   .btn {
     margin-left: 1.5em;

@@ -1,13 +1,5 @@
 = provide :title, 'Motley User'
 section.main-content.container
-  .row
-    .eight.columns.offset-by-two.columns
-      article.user-information
-        h2 Pirate Info
-        p.user_id User ID: #{@user.id}
-        p.user_name User Name: #{@user.name}
-        p.user_tone_name Tone Name: #{(@user.tone_name) ? @user.tone_name : "(none)"}
-        p.user_email Email Address: #{@user.email}
-        - if @user.admin?
-          p.user_admin User is an administrator
-        = render 'shared/user_mgt_buttons', locals: { user: @user }
+.row
+  .eight.columns.offset-by-two.columns
+    = render 'shared/user_show_fields', locals: { user: @user }
