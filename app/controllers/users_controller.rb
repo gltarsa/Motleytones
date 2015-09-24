@@ -10,17 +10,12 @@ class UsersController < ApplicationController
   end
 
   def new
-    if user_signed_in?
       if current_user.admin?
         @user = User.new
       else
         flash[:alert] = "You must be an admin user to access that page"
         redirect_to current_user
       end
-    else
-      flash[:alert] = "You must be signed in to access that page"
-      redirect_to root_path
-    end
   end
 
   def create
@@ -35,17 +30,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if user_signed_in?
         if current_user.id.to_s == params[:id] || current_user.admin?
         @user = User.find(params[:id])
       else
         flash[:alert] = "You must be an admin user to access that page"
         redirect_to current_user
       end
-    else
-      flash[:alert] = "You must be signed in to access that page"
-      redirect_to root_path
-    end
   end
 
   def update
