@@ -278,7 +278,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     fill_in "user_name",       with: change(user.name)
     fill_in "user_tone_name",  with: change(user.tone_name)
     fill_in "user_email",      with: change(user.email)
-    select_date(@changed_date)
+    set_date("user_band_start_date", @changed_date)
   end
 
   def expect_mutable_fields_to_be_changed(user)

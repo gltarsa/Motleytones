@@ -36,6 +36,18 @@ module Helpers
     end
   end
 
+  # standard "change" for tests
+  def change(item)
+    item[0] + "changed" + item[1..-1]
+  end
+
+  # parse the text date into the three date fields used by simpleform_for
+  def set_date(field_name, date)
+    find("##{field_name}_1i").select(Date.parse(date).year)
+    find("##{field_name}_2i").select(Date::MONTHNAMES[Date.parse(date).month])
+    find("##{field_name}_3i").select(Date.parse(date).day)
+  end
+
   private
 
   def do_login(user, password)
