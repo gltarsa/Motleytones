@@ -585,12 +585,17 @@ $schedule-box-margin: 0.3rem;
 }
 
 .user-information {
-  p { margin-bottom: 0; }
-}
+  p {
+    margin-bottom: 0;
+  }
+  .heading {
+    font-weight: 600;
+  }
 
-p.user_admin {
-  margin: .2rem .2rem;
-  font-weight: 600;
+  .user_admin {
+    margin: .2rem .2rem;
+    font-weight: 600;
+  }
 }
 
 .video-list {

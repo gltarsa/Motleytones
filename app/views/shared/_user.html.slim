@@ -1,12 +1,25 @@
 article.user-information class="user-id-#{user.id}"
-  h2 Pirate Info
-  p.user_id User ID: #{user.id}
-  p.user_name User Name: #{user.name}
-  p.user_tone_name Tone Name: #{(user.tone_name) ? user.tone_name : "(none)"}
-  p.user_email Email Address: #{user.email}
-  p.user_start_date Motley Tone since: #{user.band_start_date.strftime("%d-%b-%Y")}
+  p.user_tone_name.heading
+    span Tone Name:
+    |  #{(user.tone_name) ? user.tone_name : "(none)"}
+  p.user_name
+    span.heading User Name:
+    |  #{user.name}
+  p.user_email
+    span.heading Email Address:
+    |  #{user.email}
+  p.user_start_date
+    span.heading Member since:
+    |  #{user.band_start_date.strftime("%d-%b-%Y")}
   - if user.admin?
-    p.user_admin User is an administrator
-  p.user_created Added: #{user.created_at.strftime("%d-%b-%Y %H:%M")}
-  p.user_updated Updated: #{user.updated_at.strftime("%d-%b-%Y %H:%M")}
+    p.user_admin is an admin
+  p.user_created
+    span.heading Added:
+    |  #{user.created_at.strftime("%d-%b-%Y %H:%M")}
+  p.user_updated
+    span.heading Updated:
+    |  #{user.updated_at.strftime("%d-%b-%Y %H:%M")}
+  p.user_id.heading
+    | ID: #{user.id}
+
   = render 'shared/user_mgt_buttons', user: user

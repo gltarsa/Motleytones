@@ -115,7 +115,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I click Edit' do
     # need test to see that the page is for the right user
-    click_on "Edit Info"
+    click_on "Edit Pirate"
     sync_page
   end
 
