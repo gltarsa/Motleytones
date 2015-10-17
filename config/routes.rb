@@ -11,7 +11,4 @@ Rails.application.routes.draw do
   get 'schedule' => 'static_pages#schedule'
   get 'photos'   => 'static_pages#photos'
   get 'videos'   => 'static_pages#videos'
-
-  # full set: index, new, create, show, edit, update, destroy
-  #resources :users
 end

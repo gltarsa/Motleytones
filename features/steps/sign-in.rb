@@ -46,11 +46,6 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
     has_flash_msg(severity: :alert, containing: "Invalid email or password")
   end
 
-  step 'I see the password is invalid' do
-    binding.pry
-    expect(find(".error").text).to match("is invalid")
-  end
-
   step 'I see the new user name' do
     expect(page).to have_content(@user.name)
   end

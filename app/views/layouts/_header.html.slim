@@ -34,7 +34,7 @@ header
                   li
                     = link_to "List Pirates", users_path
                   li
-                    = link_to "Sign out", destroy_user_session_path, method: :delete
+                    = link_to "Sign out", destroy_user_session_path, method: :get
                   - if current_user.admin?
                     li
                       = link_to "Add Pirate", new_user_path

@@ -34,6 +34,12 @@ en:
       updated_not_active: "Your password has been changed successfully."
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+      new_pirate_added:
+        one:   "New pirate added.  There is now %{count} on the roster"
+        other: "New pirate added.  There are now %{count} on the roster"
+      pirate_deleted:
+        one:   "Pirate has been killed off, %{count} remains"
+        other: "Pirate has been killed off, %{count} remain"
       signed_up: "Welcome! You have signed up successfully."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."

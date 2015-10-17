@@ -17,7 +17,6 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     find("li.navigation").hover
   end
 
-  # admin
   step 'I navigate to the Add Pirate page' do
     find("li.navigation").hover
     click_link "Add Pirate"
@@ -45,7 +44,6 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(page.title).to eq("Motley User")
   end
 
-  # admin
   step 'I visit the Add Pirate page directly' do
     visit new_user_path
   end
@@ -87,6 +85,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(page.text).to match(Regexp.new(".*#{@user.name}.*"))
   end
 
+  step 'I am sent to the Root page' do
+    expect(page.title).to eq("The Motley Tones")
+  end
+
   step 'I am sent to the Sign In page' do
     expect(page.title).to eq("Sign In")
   end
@@ -118,13 +120,13 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I click Edit for that other user' do
-    find(".user-id-#{@another_user.id} form.button_to .edit").click
+    user_article(@another_user).click_on "Edit"
     sync_page
   end
 
   step 'I click Delete and confirm deletion for that other user' do
     my_accept_alert do
-      find(".user-id-#{@another_user.id} form.button_to .delete").click
+      user_article(@another_user).find("form.button_to .delete").click
     end
     sync_page
   end
@@ -143,19 +145,19 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I fill in the fields' do
-    @start_date = "9-Jul-2010"
+    @band_start_date = "9-Jul-2010"
     @another_user = FactoryGirl.build(:user)
     fill_in "user_name", with: @another_user.name
     fill_in "user_tone_name", with: @another_user.tone_name
-    select_date(@start_date)
+    select_date(@band_start_date)
     fill_in "user_email", with: @another_user.email
     fill_in "user_password", with: PASSWORD
     fill_in "user_password_confirmation", with: PASSWORD
     check "user_admin"
   end
 
-  step 'I click Sign Up' do
-    click_link_or_button "Sign up"
+  step 'I click Add pirate' do
+    click_link_or_button "Add pirate"
     sync_page
   end
 
@@ -188,10 +190,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'the mutable fields are not changed' do
-    expect(find(".user_name")).to have_content(@user.name)
-    expect(find(".user_tone_name")).to have_content(@user.tone_name)
-    expect(find(".user_email")).to have_content(@user.email)
-    expect(find(".user_start_date")).to have_content(@start_date)
+    expect_mutable_fields_not_to_be_changed(@user)
   end
 
   step 'the mutable fields are changed' do
@@ -211,11 +210,12 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'the admin field is changed' do
-    id_class = ".user-id-#{@another_user.id}"
-    if @old_admin_value
-      expect(page).not_to have_css("p#{id_class}.user_admin")
-    else
-      expect(page).to have_css("p#{id_class}.user_admin")
+    within user_article(@another_user) do
+      if @old_admin_value
+        expect(page).not_to have_css("p.user_admin")
+      else
+        expect(page).to have_css("p.user_admin")
+      end
     end
   end
 
@@ -253,6 +253,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   private
 
+  def user_article(user)
+    find("article.user-id-#{user.id}")
+  end
+
   def change(item)
     item[0] + "changed" + item[1..-1]
   end
@@ -263,8 +267,14 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     find("#user_band_start_date_3i").select(Date.parse(date).day)
   end
 
+  # support for unit testy way to check for attribute changes
+  def raw_mutable_attributes(user)
+    user.attributes.slice("name", "tone_name", "email", "user_start_date")
+  end
+
   def change_mutable_fields(user)
     @changed_date = "1-Apr-#{Date.today.year + 1}" # app always allows one year more than today
+    @original_raw_mutable_attributes = raw_mutable_attributes(user)
     fill_in "user_name",       with: change(user.name)
     fill_in "user_tone_name",  with: change(user.tone_name)
     fill_in "user_email",      with: change(user.email)
@@ -272,10 +282,24 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   def expect_mutable_fields_to_be_changed(user)
-    id_class = ".user-id-#{user.id}"
-    expect(find("#{id_class} .user_name").text).to       match("#{change(user.name)}")
-    expect(find("#{id_class} .user_tone_name").text).to  match("#{change(user.tone_name)}")
-    expect(find("#{id_class} .user_email").text).to      match("#{change(user.email)}")
-    expect(find("#{id_class} .user_start_date").text).to match(@changed_date)
+    within user_article(user) do
+      expect(find(".user_name").text).to       match("#{change(user.name)}")
+      expect(find(".user_tone_name").text).to  match("#{change(user.tone_name)}")
+      expect(find(".user_email").text).to      match("#{change(user.email)}")
+      expect(find(".user_start_date").text).to match(@changed_date)
+    end
+    # unit testy way to check attribute changes
+    expect(raw_mutable_attributes(User.find(user.id))).not_to eql(@original_raw_mutable_attributes)
+  end
+
+  def expect_mutable_fields_not_to_be_changed(user)
+    within user_article(user) do
+      expect(find(".user_name").text).to       match("#{user.name}")
+      expect(find(".user_tone_name").text).to  match("#{user.tone_name}")
+      expect(find(".user_email").text).to      match("#{user.email}")
+      expect(find(".user_start_date").text).to match(user.band_start_date.strftime("%d-%b-%Y"))
+    end
+    # unit testy way to check attribute constancy
+    expect(raw_mutable_attributes(User.find(user.id))).to eql(@original_raw_mutable_attributes)
   end
 end

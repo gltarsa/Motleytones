@@ -3,4 +3,4 @@ section.main-content
   - @users.each do |user|
     .row
       .eight.columns.offset-by-two.columns
-        = render 'shared/user_show_fields', locals: { user: user }
+        = render 'shared/user', user: user

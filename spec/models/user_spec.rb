@@ -6,91 +6,113 @@ describe User, type: :model do
     @user = FactoryGirl.create :user
   end
 
-  describe "validation tests" do
+  describe "basic validation" do
     it "checks user and email validity" do
-      expect(@user.valid?).to be true
+      expect(@user).to be_valid
     end
+  end
 
-    it "fails if the user name is not present" do
+  describe "user name validation" do
+    it "user name is required" do
       @user.name = " " * 10
-      expect(@user.valid?).to be false
+      expect(@user).not_to be_valid
     end
 
-    it "fails if the email is not present" do
-      @user.email = " " * 10
-      expect(@user.valid?).to be false
-    end
-
-    it "fails if the user name is < 5 characters" do
+    it "user name must be at least 5 characters long" do
       @user.name = "a" * 4
-      expect(@user.valid?).to be false
+      expect(@user).not_to be_valid
+      @user.name = @user.name + "a"
+      expect(@user).to be_valid
     end
 
-    it "fails if the user name is > 50 characters" do
+    it "user name must be less than 50 characters long" do
       @user.name = "Long"
-      @user.name += "g" * (51 - @user.name.length)
-      expect(@user.valid?).to be false
+      @user.name += "g" * (50 - @user.name.length)
+      expect(@user).to be_valid
+      @user.name = @user.name + "g"
+      expect(@user).not_to be_valid
+    end
+  end
+
+  describe "tone name validation" do
+    it "tone name is required" do
+      @user.tone_name = " "
+      expect(@user).not_to be_valid
     end
 
-    it "fails if the email is < 6 characters" do
-      @user.email = "a@b.c"  # min internet email "a@b.cn"
-      expect(@user.valid?).to be false
+    it "tone name must be at least 7 characters long" do
+      @user.tone_name = "123456"
+      expect(@user).not_to be_valid
+      @user.tone_name = @user.tone_name + "7"
+      expect(@user).to be_valid
     end
 
-    it "fails if the email is > 254 characters" do
-      suffix = ".com"
-      @user.email = "a@long"
-      @user.email += "g" * (255 - @user.email.length - suffix.length)
-      @user.email += suffix
-      expect(@user.valid?).to be false
+    it "tone name must be less than 50 characters long" do
+      @user.tone_name = "Long Tone"
+      @user.tone_name += "e" * (50 - @user.tone_name.length)
+      expect(@user).to be_valid
+      @user.tone_name = @user.tone_name + "e"
+      expect(@user).not_to be_valid
+    end
+  end
+
+  describe "email validation" do
+    # other email validations are done by devise and not tested here.
+    # Devise ignores the max length requirement of RFC 3696, errata ID 1690
+    # so there is an explicit length validation we added and are testing
+    describe "basic validation" do
+      it "fails if the email is > 254 characters" do
+        suffix = ".com"
+        @user.email = "a@long"
+        @user.email += "g" * (255 - @user.email.length - suffix.length)
+        @user.email += suffix
+        expect(@user).not_to be_valid
+      end
+
+      it "fails if an email is not unique" do
+        user2 = User.new(name: @user.name, email: @user.email)
+        @user.save
+        expect(user2).not_to be_valid
+      end
+
+      it "email uniqueness is case-insensitive" do
+        user2 = User.new(name: @user.name, email: @user.email.upcase)
+        @user.save
+        expect(user2).not_to be_valid
+      end
     end
 
-    it "fails with an invalid email" do
-      @user.email = "myemail#is.incorrect"
-      expect(@user.valid?).to be false
-    end
-
-    it "fails if an email is not unique" do
-      user2 = User.new(name: @user.name, email: @user.email)
-      @user.save
-      expect(user2.valid?).to be false
-    end
-
-    it "email uniqueness is case-insensitive" do
-      user2 = User.new(name: @user.name, email: @user.email.upcase)
-      @user.save
-      expect(user2.valid?).to be false
-    end
-
-    describe "email format validation tests" do
+    describe "format validation" do
       it "accepts email addresses with proper format" do
-        valid_addresses = %w{ user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn }
+        valid_addresses = %w[ user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn ]
         valid_addresses.each do |addr|
           @user.email = addr
-          expect(@user.valid?).to be true
+          expect(@user).to be_valid
         end
       end
 
-      it "rejects email addresses with proper format" do
-        invalid_addresses = %w[ user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com ]
+      it "rejects email addresses with improper format" do
+        invalid_addresses = %w[ user@example,com user_at_foo.org user.name@example. ]
 
         invalid_addresses.each do |addr|
           @user.email = addr
-          expect(@user.valid?).to be false
+          expect(@user).not_to be_valid
         end
       end
     end
+  end
 
-    describe "password validation tests" do
-      it "password must be present" do
-        @user.password  = @user.password_confirmation = " " * 6
-        expect(@user.valid?).to be false
-      end
+  describe "password validation" do
+    it "password must be present" do
+      @user.password  = @user.password_confirmation = " " * 6
+      expect(@user).not_to be_valid
+    end
 
-      it "password must be at least 6 characters long" do
-        @user.password = @user.password_confirmation = "12345"
-        expect(@user.valid?).to be false
-      end
+    it "password must be at least 8 characters long" do
+      @user.password = @user.password_confirmation = "1234567"
+      expect(@user).not_to be_valid
+      @user.password = @user.password_confirmation = @user.password + "8"
+      expect(@user).to be_valid
     end
   end
 end

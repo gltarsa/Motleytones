@@ -63,7 +63,7 @@ Feature: User Management
     Then I do not see an Add Pirate link
 
     When I visit the Add Pirate page directly
-    Then I am sent to the Profile page
+    Then I am sent to the Root page
     And I see an alert containing "You must be an admin user to access that page"
 
   @javascript
@@ -71,8 +71,6 @@ Feature: User Management
     Given I am signed in as a non-admin user
     When I navigate to the Profile page
     And I do not see a Delete button
-    # Note: it does not seem possible to visit the "/users/:id" page with a :delete
-    # from here, so not testing for this case
 
   @javascript
   Scenario: A non-admin user can edit his own profile
@@ -109,7 +107,7 @@ Feature: User Management
     Given I am signed in as an admin user
     When I navigate to the Add Pirate page
     And I fill in the fields
-    And I click Sign up
+    And I click Add pirate
     Then the account is created
     And I am still in the admin account
 

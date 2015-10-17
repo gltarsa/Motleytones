@@ -29,12 +29,10 @@ module Helpers
   # Currently, poltergeist does not have the support for Capybara's accept_alert{}
   # this helper provides a workaround
   def my_accept_alert(&block)
-    if ::Capybara.current_driver == :poltergeist
-      find(".user-id-#{@another_user.id} form.button_to .delete").click
-    else
-      accept_alert do
-        block.call
-      end
+    begin
+      accept_alert { block.call }
+    rescue Capybara::NotSupportedByDriverError
+      block.call
     end
   end
 

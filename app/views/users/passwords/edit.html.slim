@@ -1,10 +1,9 @@
 = provide :title, 'Password Change'
 section.main-content.container
   .row
-    .eight.columns.ofset-by-two-columns
+    .eight.columns.offset-by-two.columns
       article
-        h2
-          | Change your password
+        h2 Change your password
         = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
           = f.error_notification
           = f.input :reset_password_token, as: :hidden
