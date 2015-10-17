@@ -1,15 +1,8 @@
-= provide :title, 'Add New Motley Tone'
+= provide :title, 'Add New Pirate'
 section.main-content.container
   .row
     .eight.columns.offset-by-two.columns
       article
-        h2 Add User
-        = render 'shared/error_messages'
-        = simple_form_for @user do |f|
-          = f.input :name, placeholder: "<real name>", hint: "Your actual name"
-          = f.input :tone_name, placeholder: "<stage name>", hint: "What you want to be called"
-          = f.input :email, hint: "contact e-mail (must be unique)"
-          = f.input :password
-          = f.input :password_confirmation
-          = f.input :admin
-          = f.button :submit
+        h2 (tentative) Add Pirate
+        = provide :button_name, 'Add pirate'
+        = render "shared/user_fields"

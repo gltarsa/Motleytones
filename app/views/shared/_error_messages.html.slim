@@ -1,7 +1,0 @@
-- if @user.errors.any?
-  div#error_explanation
-    div.alert.alert-error
-      p The form contains #{pluralize(@user.errors.count, "error")}
-      ul.errors
-        - @user.errors.full_messages.each do |msg|
-          li #{msg}

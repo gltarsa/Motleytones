@@ -19,8 +19,8 @@ body {
 
 body,input,select,textarea {
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.8rem;
-  color: $def-font-color;
+  font-size: $basic-font-size;
+  color: $basic-font-color;
   font-weight: 300;
 }
 
@@ -53,10 +53,10 @@ header {
     font-family: 'Oleo Script', serif;
     letter-spacing: .1rem;
 
-    font-size: 2rem;
+    font-size: $logo-font-size;
     padding-bottom: .5rem;
     @media (#{$bp-larger-than-mobile}) { // 400px
-      font-size: 3.5rem;
+      font-size: $logo-font-size * 1.75;
       padding-bottom: 0;
     }
 
@@ -77,10 +77,7 @@ header {
 /* Nav
 /********/
 nav {
-  // position: absolute;
-  // right: 0;
-  // top: 0;
-  font-size: 1rem;
+  font-size: 1.0rem;
 
   ul {
     margin-bottom: 0;
@@ -224,7 +221,7 @@ article {
 .dropotron {
   background: $text-color;
   letter-spacing: 0.025em;
-  color: $def-font-color;
+  color: $basic-font-color;
   text-decoration: none;
   border-radius: 6px;
   padding: 0.25em 0;
@@ -245,6 +242,11 @@ article {
       line-height: 3rem;
       font-size: 1.6rem;
     }
+  }
+
+  .informational {
+    font-weight: 800;
+    &::after { content: ":"; }
   }
 
   li:first-child {
@@ -331,7 +333,6 @@ footer {
 /*********/
 /* Image
 /*********/
-
 .image {
   display: inline-block;
   outline: 0;
@@ -383,7 +384,6 @@ img.image.adjustable {
 /**********/
 /* Widgets
 /**********/
-
 .widget.friend-list {
   color: $text-color;
   font-size: 1.1rem;
@@ -443,7 +443,6 @@ img.image.adjustable {
 /***********/
 /* Wrappers    ??? Are these being used ???
 /***********/
-
 .banner-wrapper {
 }
 
@@ -467,19 +466,22 @@ img.image.adjustable {
   }
 }
 
-article.alert {
-  padding: 0;
-  ul {
-    padding: 0;
-    margin: 1rem 0 1rem 1rem;
+.simple_form {
+  .error_notification {
+    color: red;
+  }
+  .error{
+    color: red;
+    font-weight: 600;
   }
 }
 
-.alert {
+.flash {
   font-weight: 600;
   background-color: $section-bkg-color;
   color: $main-text-color;
   border-radius: $border-radius;
+  float: none;
 
   ul, li {
     margin-bottom: 0;
@@ -490,9 +492,9 @@ article.alert {
     margin-left: .5rem;
   }
 
-  .alert-error   { color: red; }
-  .alert-notice  { color: $main-text-color; }
-  .alert-success { color: green; }
+  .alert   { color: red; }
+  .notice  { color: limegreen; }
+  .success { color: green; }
 }
 
 .content {
@@ -515,9 +517,8 @@ article.alert {
 }
 
 /*
- Current status: hints are hidden, but have not got the incantations
- to make them show.
- 8/20/2015
+  TODO 8/20/2015: Current status: hints are hidden, but have
+  not got the incantations to make them show.
  */
 $hint-bkg-color: Cornsilk;
 .hint {
@@ -583,6 +584,15 @@ $schedule-box-margin: 0.3rem;
   ul { margin-bottom: 0; }
 }
 
+.user-information {
+  p { margin-bottom: 0; }
+}
+
+p.user_admin {
+  margin: .2rem .2rem;
+  font-weight: 600;
+}
+
 .video-list {
   tr {
     vertical-align: "middle";
@@ -593,5 +603,45 @@ $schedule-box-margin: 0.3rem;
     padding: 0;
     vertical-align: middle;
     text-align: center;
+  }
+}
+
+//  Simple_form styling
+form {
+  margin-bottom: 0;
+}
+.simple_form {
+  .btn {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    margin-top: 1em;
+  }
+
+  abbr {
+    text-decoration: none !important;
+    border-bottom: none;
+    color: Maroon;
+  }
+  input {
+    margin-bottom: 0;
+  }
+  input[type='checkbox'] {
+    margin-right: .5rem;
+  }
+}
+
+// Rails button_to styling
+.button_to {
+  display: inline;
+  input {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    margin-left: 1.5em;
+  }
+  .edit {
+  }
+  .delete {
+    color: red;
+    float: right;
   }
 }

@@ -1,13 +1,6 @@
-= provide :title, 'Motley User'
+= provide :title, 'Motley Users'
 section.main-content
   - @users.each do |user|
     .row
       .eight.columns.offset-by-two.columns
-        article
-          h2 #{user.name}
-          p User id: #{user.id}
-          p Tone Name: #{(user.tone_name) ? user.tone_name : "(none)"}
-          p Email Address: #{user.email}
-          -if user.admin?
-            p User is an administrator
-
+        = render 'shared/user', user: user

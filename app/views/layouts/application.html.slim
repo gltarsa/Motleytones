@@ -16,15 +16,18 @@ html
       = stylesheet_link_tag "ie/v8"
 
   body
-    = render "shared/header"
+    = render "layouts/header"
 
     - unless flash.empty?
-      article.alert.row.ten.columns.offset-by-one
+      article.flash.row.ten.columns.offset-by-one
         ul
           - flash.each do |msg_type, msg|
-            .alert class="alert-#{msg_type}"
-              li #{msg_type}: #{msg}
+            li
+              = content_tag :span, ((Rails.env.test? || Rails.env.development?) ? "#{msg_type}: " + msg : msg), class: "flash #{msg_type}"
 
     = yield
 
-    = render "shared/footer"
+    = render "layouts/footer"
+    - if Rails.env.development?
+      section.flash
+        = debug(params)
