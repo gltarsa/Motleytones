@@ -1,0 +1,12 @@
+- if current_user.admin?
+  = button_to "Edit Gig",
+    edit_gig_path(gig),
+    method: :get,
+    class: "edit"
+- if current_user.admin?
+  = button_to "Delete Gig",
+    gig_path(gig),
+    method: :delete,
+    class: "delete",
+    data: { confirm: "Are you sure (action is permanent)?" }
+

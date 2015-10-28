@@ -24,7 +24,7 @@ Feature: Gig Management
   Scenario: An admin user can delete gig entries
     Given I am signed in as an admin user
     And there is at least one published gig
-    When I navigate to the List Gigs page
+    When I navigate to the Performance Schedule page
     Then I see information for a gig
     When I click Delete and confirm deletion for that gig
     Then that gig is deleted

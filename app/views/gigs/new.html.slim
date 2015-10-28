@@ -1,0 +1,18 @@
+= provide :title, 'Add New Gig'
+section.main-content.container
+  .row
+    .eight.columns.offset-by-two.columns
+      article
+        h2 Add Gig
+
+        = simple_form_for @gig do |f|
+          .form-inputs
+            = f.input :date, required: true
+            = f.input :name
+            = f.input :link
+            = f.input :note
+            = f.input :location
+            = f.input :published
+
+          .form-actions
+            = f.button :submit, "Add gig"

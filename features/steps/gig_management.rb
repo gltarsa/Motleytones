@@ -25,8 +25,8 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I fill in the gig fields' do
-    @gige = FactoryGirl.build(:gig)
-    select_date("gig_date",       @gig.date)
+    @gig = FactoryGirl.build(:gig)
+    set_date("gig_date",       @gig.date.to_s)
     fill_in "gig_name",     with: @gig.name
     fill_in "gig_link",     with: @gig.link
     fill_in "gig_note",     with: @gig.note
@@ -39,17 +39,13 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     sync_page
   end
 
-  step 'the gig is created' do
-    gig = Gig.find_by(name: @gig.name)
-    expect(gig).not_to be_nil
-  end
-
   step 'I see information for a gig' do
-    @id_class = ".gig-id-#{@gig.id}"
+    gig = Gig.where(name: @gig.name).where(location: @gig.location).first
+    @id_class = ".gig-id-#{gig.id}"
     visit "/"
-    expect(find("#{@id_class} .gig_name")).to have_content(@gig.name)
-    expect(find("#{@id_class} .gig_note")).to have_content(@gig.note)
-    expect(find("#{@id_class} .gig_location")).to have_content(@gig.location)
+    expect(find("#{@id_class} .gig_name")).to have_content(gig.name)
+    expect(find("#{@id_class} .gig_note")).to have_content(gig.note)
+    expect(find("#{@id_class} .gig_location")).to have_content(gig.location)
   end
 
   step 'I see the gig on both schedule pages' do
@@ -61,13 +57,13 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'there is at least one published gig' do
-    @gig = FactoryGirl(:gig, published: true)
+    @gig = FactoryGirl.create(:gig, published: true)
   end
 
-  step 'I navigate to the List Gigs page' do
+  step 'I navigate to the Performance Schedule page' do
     find("li.navigation").hover
-    click_link "List Gigs"
-    expect(page.title).to eq("Gig List")
+    click_link "Performance Schedule"
+    expect(page.title).to eq("Motley Performance Schedule")
   end
 
   step 'I click Delete and confirm deletion for that gig' do
@@ -79,7 +75,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'the gig is created' do
     gig = Gig.find_by(name: @gig.name)
-    expect(gig).to be_nil
+    expect(gig).not_to be_nil
   end
 
   step 'I click Edit for the first gig' do

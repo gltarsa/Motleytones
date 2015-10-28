@@ -1,0 +1,17 @@
+article.user-information class="gig-id-#{gig.id}"
+  span.gig_id
+    |  #{gig.id})
+    span.gig_date
+    |  #{gig.date.strftime("%d-%b-%Y")}:
+    span.gig_name
+    |  #{gig.name}
+    span.gig_link
+    |  (link: #{gig.link}),
+    span.gig_note
+    |  #{gig.note},
+    span.gig_location
+    |  #{gig.location}
+    span.gig_published
+    |  #{(gig.published) ? "published" : ""}
+
+  = render 'shared/gig_mgt_buttons', gig: gig
