@@ -3,7 +3,6 @@ class CreateGigs < ActiveRecord::Migration
     create_table :gigs do |t|
       t.date :date
       t.text :name
-      t.text :link
       t.text :note
       t.text :location
       t.boolean :published

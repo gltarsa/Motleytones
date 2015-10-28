@@ -2,8 +2,7 @@ FactoryGirl.define do
   factory :gig do
     date      { Faker::Date.between(Date.new(2010,7,10), 1.year.from_now) }
     name      { Faker::Name.name }
-    link      { Faker::Internet.url }
-    note      { Faker::Lorem.words(3) }
+    note      { "#{Faker::Lorem.words(3)} [this link](#{Faker::Internet.url} #{Faker::Lorem.words(2)})" }
     location  { "#{Faker::Address.city}, #{Faker::Address.state_abbr}" }
     published false
   end
@@ -11,7 +10,7 @@ FactoryGirl.define do
   factory :picture do
     date      { Faker::Date.between(Date.new(2010,7,10), 1.year.from_now) }
     name      { "[picture]" }
-    link      { Faker::Internet.url }
+    note      { "#{Faker::Internet.url}/image.png" }
     published false
   end
 end

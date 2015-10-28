@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20151027001728) do
   create_table "gigs", force: :cascade do |t|
     t.date     "date"
     t.text     "name"
-    t.text     "link"
     t.text     "note"
     t.text     "location"
     t.boolean  "published"

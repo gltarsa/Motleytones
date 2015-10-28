@@ -28,7 +28,6 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     @gig = FactoryGirl.build(:gig)
     set_date("gig_date",       @gig.date.to_s)
     fill_in "gig_name",     with: @gig.name
-    fill_in "gig_link",     with: @gig.link
     fill_in "gig_note",     with: @gig.note
     fill_in "gig_location", with: @gig.location
     check "gig_published"
