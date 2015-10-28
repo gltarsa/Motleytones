@@ -149,7 +149,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     @another_user = FactoryGirl.build(:user)
     fill_in "user_name", with: @another_user.name
     fill_in "user_tone_name", with: @another_user.tone_name
-    select_date(@band_start_date)
+    set_date("user_band_start_date", @band_start_date)
     fill_in "user_email", with: @another_user.email
     fill_in "user_password", with: PASSWORD
     fill_in "user_password_confirmation", with: PASSWORD
@@ -255,16 +255,6 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   def user_article(user)
     find("article.user-id-#{user.id}")
-  end
-
-  def change(item)
-    item[0] + "changed" + item[1..-1]
-  end
-
-  def select_date(date)
-    find("#user_band_start_date_1i").select(Date.parse(date).year)
-    find("#user_band_start_date_2i").select(Date::MONTHNAMES[Date.parse(date).month])
-    find("#user_band_start_date_3i").select(Date.parse(date).day)
   end
 
   # support for unit testy way to check for attribute changes
