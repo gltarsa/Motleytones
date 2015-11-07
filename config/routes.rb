@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   get 'photos'   => 'static_pages#photos'
   get 'videos'   => 'static_pages#videos'
 
-  resources :gigs
+  resources :gigs, except: :index
+  get 'gigs'     => 'static_pages#schedule'
 end

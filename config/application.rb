@@ -22,5 +22,8 @@ module Motleytones
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Add custom directories with modules (and classes) here
+    # config.autoload_paths += %W(#{config.root}/app/modules)
   end
 end

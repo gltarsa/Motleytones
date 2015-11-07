@@ -6,10 +6,14 @@ Feature: Gig Management
   * An admin user can create gig entries
   * An admin user can delete gig entries
   * An admin user can edit gig entries
-  * An admin user can see a list of all gig entries displayed in field format.
-  * A non-admin user cannot access any gig management features
-  * Only gig entries with with a true published flag are put into the schedule.
-  * All users can see the published schedule dates on the website
+  * A user who is not signed in cannot access any gig management features (add, edit)
+  * A non-admin user cannot access any gig management features (add, edit)
+  - A non-admin user sees only published gigs
+  - A user who is not signed in sees only published gigs
+  - An admin user sees published and unpublished gigs
+  - An admin user can change the publish state of a gig
+  c Only gig entries with with a true published flag are put into the schedule.
+  c An admin user can see a list of all gig entries displayed in field format.
 
   @javascript
   Scenario: An admin user can create gig entries
@@ -33,7 +37,7 @@ Feature: Gig Management
   Scenario: An admin user can edit gig entries
     Given I am signed in as an admin user
     And there is at least one published gig
-    When I navigate to the List Gigs page
+    When I navigate to the Performance Schedule page
     When I click Edit for the first gig
     Then I am sent to the Change Gig page
     When I change the gig fields
@@ -41,31 +45,14 @@ Feature: Gig Management
     Then the gig fields are changed
 
   @javascript
-  Scenario: An admin user can see a list of all gig entries displayed in field format.
-    Given I am signed in as an admin user
-    And there is at least one published gig
-    When I navigate to the List Gigs page
-    Then I see the information for the gig
-
-  @javascript
-  Scenario: Only gig entries with with a true published flag are put into the schedule.
-    Given I am signed in as an admin user
-    And there is at least one published gig
-    And there is at least one unpublished gig
-    When I go to the Schedule Page
-    Then I see the published gig
-    And I do not see the unpublished gig
-
-  @javascript
-  Scenario: A user who is not signed in cannot access any of the gig management features
+  Scenario: A user who is not signed in cannot access any of the gig management feature (add, edit)s
     Given I am not signed in
     When I look at the Navigation Menu
-    Then I do not see a List Gigs link
     And I do not see an Add Gig link
 
-    When I visit the List Gigs page directly
-    Then I am sent to the Sign In page
-    And I see an alert containing "You must be signed in to access that page"
+    When I navigate to the Performance Schedule page
+    Then I do not see an edit button
+    And I do nto see a delete button
 
     When I visit the Add Gig page directly
     Then I am sent to the Sign In page
@@ -76,29 +63,40 @@ Feature: Gig Management
     And I see an alert containing "You must be signed in to access that page"
 
   @javascript
-  Scenario: A non-admin user cannot access any gig management features
+  Scenario: A non-admin user cannot access any gig management features (add, edit)
     Given I am signed in as a non-admin user
     When I look at the Navigation Menu
-    Then I do not see a List Gigs link
     And I do not see an Add Gig link
 
-    When I visit the List Gigs page directly
-    Then I am sent to the Sign In page
-    And I see an alert containing "You must be signed in to access that page"
+    When I navigate to the Performance Schedule page
+    Then I do not see an edit button
+    And I do nto see a delete button
 
     When I visit the Add Gig page directly
-    Then I am sent to the Sign In page
-    And I see an alert containing "You must be signed in to access that page"
+    Then I am sent to the Home page
+    And I see an alert containing "You must be an admin user to access that page"
 
     When I visit the Edit Gig page directly
-    Then I am sent to the Sign In page
-    And I see an alert containing "You must be signed in to access that page"
-
-  Scenario: A non-admin user cannot add a new gig
-    Given I am signed in as a non-admin user
-    When I look at the Navigation Menu
-    Then I do not see an Add Gig link
-
-    When I visit the Add Gig page directly
-    Then I am sent to the Profile page
+    Then I am sent to the Home page
     And I see an alert containing "You must be an admin user to access that page"
+
+  # TODO:  non-display/display of unpublished gigs is a future feature
+  # but the tests are defined here since I have thought them out already.
+  # @javascript
+  # Scenario: An admin user can see a list of all gig entries displayed in field format.
+  #   Given I am signed in as an admin user
+  #   And there is at least one published gig
+  #   When I navigate to the Performance Schedule page
+  #   Then I see information for a gig
+
+  # @javascript
+  # Scenario: Only gig entries with with a true published flag are put into the schedule.
+  #   Given I am signed in as an admin user
+  #   And there is at least one published gig
+  #   And there is at least one unpublished gig
+  #   When I go to the Schedule Page
+  #   Then I see the published gig
+  #   And I do not see the unpublished gig
+
+  @javascript
+  Scenario: A

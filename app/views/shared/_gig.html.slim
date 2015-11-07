@@ -1,15 +1,11 @@
-article.user-information class="gig-id-#{gig.id}"
-  span.gig_id
-    |  #{gig.id})
-    span.gig_date
-    |  #{gig.date.strftime("%d-%b-%Y")}:
-    span.gig_name
-    |  #{gig.name}
-    span.gig_note
-    |  #{gig.note},
-    span.gig_location
-    |  #{gig.location}
-    span.gig_published
-    |  #{(gig.published) ? "published" : ""}
+li class="gig-id-#{gig.id} #{"strike" if gig.date < Date.today}"
+  -if current_user && current_user.admin?
+    span.gig_published> #{(gig.published)? "Y" : "N"}
+    span.gig_id>      #{gig.id})
+  span.gig_date.date #{gig.date.strftime("%b %d")}:
+  span.gig_name>      #{gig.name}
+  span.gig_note      #{gig.note},
+  span.gig_location  #{gig.location}
 
-  = render 'shared/gig_mgt_buttons', gig: gig
+  -if current_user && current_user.admin? && action_name != "home"
+    = render 'shared/gig_mgt_buttons', gig: gig

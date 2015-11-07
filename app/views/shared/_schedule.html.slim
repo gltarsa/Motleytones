@@ -1,11 +1,6 @@
 h3 2015 Performance Schedule
 section.main-content
-  .row
-    .ten.columns.offset-by-one.column
-      ul.gig-information
-        - Gig.find_each do |gig|
-            li class="gig-id-#{gig.id} #{"strike" if gig.date < Date.today}"
-              span.gig_date.date #{gig.date.strftime("%b %d")}:
-              span.gig_name>      #{gig.name}
-              span.gig_note      #{gig.note},
-              span.gig_location  #{gig.location}
+  .row.schedule
+    ul
+      - Gig.find_each do |gig|
+        =render 'shared/gig', gig: gig

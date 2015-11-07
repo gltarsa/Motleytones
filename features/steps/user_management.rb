@@ -21,7 +21,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     find("li.navigation").hover
     click_link "Add Pirate"
     sync_page
-    expect(page.title).to eq("Add New Pirate")
+    expect(page.title).to eq("Add Pirate")
   end
 
   step 'I navigate to the Users page' do

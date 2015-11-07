@@ -89,6 +89,40 @@ nav {
       margin-bottom: 0;
     }
 
+    // TODO: either user this .active class or delete it
+    li.active a,
+    li.active span {
+      background: $nav-button-bkg;
+    }
+
+    li.link_button a {
+      background: $nav-button-bkg;
+      color: $text-color;
+      padding: .2rem .4rem;
+    }
+
+    @media (#{$bp-larger-than-mobile}) { // 400px
+      li { margin: 0 0 1rem 0; }
+    }
+
+    @media (#{$bp-larger-than-phablet}) { // 550px
+      font-size: 1.6rem;
+
+      li {
+        padding-left: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      li.link_button a {
+        padding: .8rem 1.5rem;
+      }
+    }
+
+    @media (#{$bp-larger-than-tablet}) { // 750px
+      li { line-height: $nav-row-height; }
+      li { margin-left: -10px; }
+    }
+
     li,
     li a,
     li span {
@@ -112,39 +146,6 @@ nav {
     li:hover a,
     li:hover span {
       background: $nav-button-bkg;
-    }
-
-    li.active a,
-    li.active span {
-      background: $nav-button-bkg;
-    }
-
-    li.current a {
-      background: $nav-button-bkg;
-      color: $text-color;
-      padding: .2rem .4rem;
-    }
-
-    @media (#{$bp-larger-than-mobile}) { // 400px
-      li { margin: 0 0 1rem 0; }
-    }
-
-    @media (#{$bp-larger-than-phablet}) { // 550px
-      font-size: 1.6rem;
-
-      li {
-        padding-left: 3rem;
-        margin-bottom: 1rem;
-      }
-
-      li.current a {
-        padding: .8rem 1.5rem;
-      }
-    }
-
-    @media (#{$bp-larger-than-tablet}) { // 750px
-      li { line-height: $nav-row-height; }
-      li { margin-left: -10px; }
     }
   }
 }

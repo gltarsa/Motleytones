@@ -1,5 +1,5 @@
 = provide :title, 'Latest Gig'
 section.main-content.container
-.row
-  .ten.columns.offset-by-one.columns
-    = render 'shared/gig', gig: @gig
+  article.schedule
+    ul.schedule
+      = render 'shared/gig', gig: @gig
