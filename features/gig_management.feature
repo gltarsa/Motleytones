@@ -51,8 +51,8 @@ Feature: Gig Management
     And I do not see an Add Gig link
 
     When I navigate to the Performance Schedule page
-    Then I do not see an edit button
-    And I do nto see a delete button
+    Then I do not see an Edit button
+    And I do not see a Delete button
 
     When I visit the Add Gig page directly
     Then I am sent to the Sign In page
@@ -69,8 +69,8 @@ Feature: Gig Management
     And I do not see an Add Gig link
 
     When I navigate to the Performance Schedule page
-    Then I do not see an edit button
-    And I do nto see a delete button
+    Then I do not see an Edit button
+    And I do not see a Delete button
 
     When I visit the Add Gig page directly
     Then I am sent to the Home page
@@ -97,6 +97,3 @@ Feature: Gig Management
   #   When I go to the Schedule Page
   #   Then I see the published gig
   #   And I do not see the unpublished gig
-
-  @javascript
-  Scenario: A

@@ -146,6 +146,14 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(page).to have_no_link("Add Gig")
   end
 
+  step 'I do not see an Edit button' do
+    expect(page).not_to have_button("Edit Gig")
+  end
+
+  step 'I do not see a Delete button' do
+    expect(page).not_to have_button("Delete Gig")
+  end
+
   step 'I navigate to the Sign In page' do
     find("li.navigation").hover
     i_click_sign_in

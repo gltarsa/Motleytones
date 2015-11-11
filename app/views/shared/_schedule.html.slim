@@ -3,4 +3,8 @@ section.main-content
   .row.schedule
     ul
       - Gig.find_each do |gig|
-        =render 'shared/gig', gig: gig
+        -if gig.date >= Date.today
+          =render 'shared/gig', gig: gig
+      - Gig.find_each do |gig|
+        -if gig.date < Date.today
+          =render 'shared/gig', gig: gig

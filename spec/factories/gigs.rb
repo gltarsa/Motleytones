@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :gig do
     date      { Faker::Date.between(Date.new(2010,7,10), 1.year.from_now) }
-    name      { Faker::Name.name }
+    name      { proper_length_name }
     note      { "#{Faker::Lorem.words(3)} [this link](#{Faker::Internet.url} #{Faker::Lorem.words(2)})" }
     location  { "#{Faker::Address.city}, #{Faker::Address.state_abbr}" }
     published false
@@ -18,4 +18,10 @@ end
 def between(range)
   # should return a integer between range.max and range.min
   (range.min + range.max) / 2
+end
+
+def proper_length_name
+  name = ""
+  name = Faker::Name.name until name.length > 13
+  name
 end
