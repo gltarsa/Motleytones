@@ -6,7 +6,6 @@ Feature: Gig Management
   * An admin user can create gig entries
   * An admin user can delete gig entries
   * An admin user can edit gig entries
-  - An admin user can change the publish state of a gig (add to "can edit gig entries"
   * A user who is not signed in cannot access any gig management features
   * A non-admin user cannot access any gig management features
   - Only published gigs appear on the schedule pages
@@ -49,9 +48,6 @@ Feature: Gig Management
     When I click Manage Gigs
     Then I am on the Manage Gigs page
 
-  # @javascript
-  # Scenario: An admin user can change the publish state of a gig
-
   @javascript
   Scenario: A user who is not signed in cannot access any of the gig management features
     Given I am not signed in
@@ -92,14 +88,20 @@ Feature: Gig Management
     Then I am sent to the Home page
     And I see an alert containing "You must be an admin user to access that page"
 
-  # @javascript
-  # Scenario: Only published gigs appear on the schedule pages
+  @javascript
+  Scenario: Only published gigs appear on the schedule pages
+    Given I am signed in as an admin user
+    And there is at least one published gig
+    And there is at least one unpublished gig
+    When I navigate to the Performance Schedule page
+    Then I see information for the published gig
+    And I do not see information for the unpublished gig
 
-  # @javascript
-  # Scenario: Both published and unpublished gigs appear on the Gig Management page
-
-  # @javascript
-  # Scenario: Tokens are properly interpolated into schedule lists
-    #     verify that @info gets interpolated
-    #     verify that [text](link) gets interpolated
-    #     verify that when [name] == [Picture] and Note is a url, then the picture is inserted into the schedule.
+  @javascript
+  Scenario: Both published and unpublished gigs appear on the Gig Management page
+    Given I am signed in as an admin user
+    And there is at least one published gig
+    And there is at least one unpublished gig
+    When I navigate to the Manage Gigs page
+    Then I see information for the published gig
+    And  I see information for the unpublished gig

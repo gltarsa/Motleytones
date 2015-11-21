@@ -1,4 +1,5 @@
 span.gig_date.date #{gig.date.strftime("%b %d")}:
-span.gig_name>     #{gig.name}
-span.gig_note      #{gig.note},
-span.gig_location  #{gig.location}
+span.gig_name>     #{process_markup(gig.name)}
+span.gig_note      #{process_markup(gig.note)}
+| ,
+span.gig_location  #{process_markup(gig.location)}

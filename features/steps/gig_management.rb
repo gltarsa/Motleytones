@@ -1,3 +1,5 @@
+include MarkupHelper
+
 class Spinach::Features::GigManagement < Spinach::FeatureSteps
   include Helpers
 
@@ -61,22 +63,28 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     verify_gig_schedule(@gig)
   end
 
-  step 'I see information for the gig on the home page' do
+  step 'I see information for the unpublished gig' do
+    gig = Gig.where(name: @unpublished_gig.name).where(location: @unpublished_gig.location).first
+    verify_gig_schedule(gig)
+  end
+
+  step 'I do not see information for the unpublished gig' do
+    gig = Gig.where(name: @unpublished_gig.name).where(location: @unpublished_gig.location).first
+    expect(page).not_to have_css(".gig-id-#{gig.id}")
+  end
+
+  step 'I see information for the published gig' do
     i_see_information_for_a_gig
-    verify_gig_published(@gig)
+  end
+
+  step 'I see information for the gig on the home page' do
+    visit root_path
+    i_see_information_for_a_gig
   end
 
   step 'I see information for the gig on the schedule page' do
     visit "/schedule"
     verify_gig_schedule(@gig)
-  end
-
-  step 'there is at least one published gig' do
-    begin
-      @gig = FactoryGirl.create(:gig, published: true)
-    rescue
-      @gig = FactoryGirl.create(:gig, published: true)
-    end
   end
 
   step 'I navigate to the Performance Schedule page' do
@@ -128,10 +136,14 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   step 'the gig fields are changed' do
     within find("li.gig-id-#{@gig.id}") do
       expect(find(".gig_name").text).to     match("#{change(@gig.name)}")
-      expect(find(".gig_note").text).to     match("#{change(@gig.note)},") # added "," text in page
+      expect(find(".gig_note").text).to     match("#{change(@gig.note)}")
       expect(find(".gig_date").text).to     match(Date.parse(@changed_date).strftime('%b %d:'))
       expect(find(".gig_location").text).to match("#{change(@gig.location)}")
     end
+  end
+
+  step 'there is at least one published gig' do
+    @gig = FactoryGirl.create(:gig, published: true)
   end
 
   step 'there is at least one unpublished gig' do
@@ -220,12 +232,8 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   def verify_gig_schedule(gig)
     id_class = ".gig-id-#{gig.id}"
-    expect(find("#{id_class} .gig_name")).to have_content(@gig.name)
-    expect(find("#{id_class} .gig_note")).to have_content(@gig.note)
-    expect(find("#{id_class} .gig_location")).to have_content(@gig.location)
-  end
-
-  def verify_gig_published(gig)
-    expect(find(".gig-id-#{gig.id}.gig_published").text).to have_content(@gig.published)
+    expect(find("#{id_class} .gig_name")).to have_content(gig.name)
+    expect(find("#{id_class} .gig_note")).to have_content(gig.note)
+    expect(find("#{id_class} .gig_location")).to have_content(gig.location)
   end
 end

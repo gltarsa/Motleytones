@@ -9,12 +9,13 @@ section.main-content.container
           .row
             table.schedule
               tbody
-                th p?
-                th date
-                th name
-                th note
-                th location
-                th operations
+                tr
+                  th p?
+                  th date
+                  th name
+                  th note
+                  th location
+                  th operations
                 - Gig.find_each do |gig|
                   -if gig.date >= Date.today
                     tr class="gig-id-#{gig.id}"

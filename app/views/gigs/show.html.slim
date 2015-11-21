@@ -5,7 +5,19 @@ section.main-content.container
       = link_to "Manage gigs", manage_gigs_path
       .row
         ul.schedule
-          H3.gig_published class="gig-id-#{@gig.id}"
-            | ID: #{@gig.id}) Published = #{@gig.published}
+          H3.gig_published class="gig-id-#{@gig.id}" As displayed:
           li class="gig-id-#{@gig.id}"
             = render 'shared/gig_line', gig: @gig
+        .row
+        H3 Raw fields:
+        table.schedule
+          tbody.editable
+            tr
+              th p?
+              th date
+              th name
+              th note
+              th location
+              th operations
+            tr class="gig-id-#{@gig.id}"
+              = render 'shared/gig_mgt_table', gig: @gig
