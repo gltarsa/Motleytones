@@ -546,6 +546,9 @@ form input:required:valid + .hint {background: #28921f;} /* change form hint col
 $schedule-box-margin: 0.3rem;
 .schedule {
   h3 { margin-left: $schedule-box-margin; }
+  .strike {
+    text-decoration: line-through;
+  }
   ul {
     color: $main-text-color;
     font-weight: normal;
@@ -562,10 +565,6 @@ $schedule-box-margin: 0.3rem;
       font-size: 1.6rem;
     }
 
-    .strike {
-      text-decoration: line-through;
-    }
-
     li {
       margin-bottom: 0.75rem;
       margin-right: 0;
@@ -573,6 +572,11 @@ $schedule-box-margin: 0.3rem;
         font-weight: 600;
       }
     }
+  }
+  td, th {
+    border-width: 1px;
+    border-style: solid;
+    padding: .5rem;
   }
 }
 

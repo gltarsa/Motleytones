@@ -1,0 +1,28 @@
+td.gig_published #{(gig.published)? "Y" : "N"}
+td.gig_date.date #{gig.date.strftime("%d-%b-%y")}
+td.gig_name      #{gig.name}
+td.gig_note      #{gig.note}
+td.gig_location  #{gig.location}
+td.gig_operations
+  = link_to "Edit",
+    edit_gig_path(gig),
+    class: "edit management"
+  = " ".html_safe
+  = link_to "Delete",
+    gig_path(gig),
+    method: :delete,
+    class: "delete management",
+    data: { confirm: "Are you sure (action is permanent)?" }
+
+  /* = button_to "Edit", */
+  /*   edit_gig_path(gig), */
+  /*   method: :get, */
+  /*   class: "edit management" */
+
+  /* = button_to "Delete", */
+  /*   gig_path(gig), */
+  /*   method: :delete, */
+  /*   class: "delete management", */
+  /*   data: { confirm: "Are you sure (action is permanent)?" } */
+
+

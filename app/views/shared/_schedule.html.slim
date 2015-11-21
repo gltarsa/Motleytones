@@ -4,7 +4,9 @@ section.main-content
     ul
       - Gig.find_each do |gig|
         -if gig.date >= Date.today
-          =render 'shared/gig', gig: gig
+          li class="gig-id-#{gig.id}"
+            =render 'shared/gig_line', gig: gig
       - Gig.find_each do |gig|
         -if gig.date < Date.today
-          =render 'shared/gig', gig: gig
+          li.strike class="gig-id-#{gig.id}"
+            =render 'shared/gig_line', gig: gig

@@ -7,7 +7,7 @@ class Spinach::Features::SignOut < Spinach::FeatureSteps
 
   step 'I navigate to the Sign Out link' do
     find("li.navigation").hover
-    click_link "Sign out"
+    click_link "Sign Out"
     sync_page
     expect(page.title).to eq("The Motley Tones")
   end

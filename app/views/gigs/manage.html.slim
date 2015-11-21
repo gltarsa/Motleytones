@@ -1,0 +1,26 @@
+= provide :title, "Manage Gigs"
+section.main-content.container
+  article
+    .row
+      = link_to "Add gig", new_gig_path
+    .row
+      .twelve.columns.schedule
+        section.main-content
+          .row
+            table.schedule
+              tbody
+                th p?
+                th date
+                th name
+                th note
+                th location
+                th operations
+                - Gig.find_each do |gig|
+                  -if gig.date >= Date.today
+                    tr class="gig-id-#{gig.id}"
+                      = render 'shared/gig_mgt_table', gig: gig
+
+                - Gig.find_each do |gig|
+                  -if gig.date < Date.today
+                    tr.strike class="gig-id-#{gig.id}"
+                      = render 'shared/gig_mgt_table', gig: gig

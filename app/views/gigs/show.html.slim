@@ -1,5 +1,11 @@
 = provide :title, 'Latest Gig'
 section.main-content.container
   article.schedule
-    ul.schedule
-      = render 'shared/gig', gig: @gig
+    .row
+      = link_to "Manage gigs", manage_gigs_path
+      .row
+        ul.schedule
+          H3.gig_published class="gig-id-#{@gig.id}"
+            | ID: #{@gig.id}) Published = #{@gig.published}
+          li class="gig-id-#{@gig.id}"
+            = render 'shared/gig_line', gig: @gig

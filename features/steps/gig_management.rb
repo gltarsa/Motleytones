@@ -17,9 +17,18 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     find("li.navigation").hover
   end
 
-  step 'I navigate to the Add Gig page' do
+  step 'I navigate to the Manage Gigs page' do
     find("li.navigation").hover
-    click_link "Add Gig"
+    click_link "Manage Gigs"
+    i_am_on_the_manage_gigs_page
+  end
+
+  step 'I am on the Manage Gigs page' do
+    sync_page
+    expect(page.title).to eq("Manage Gigs")
+  end
+
+  step 'I see the Add Gig page' do
     sync_page
     expect(page.title).to eq("Add Gig")
   end
@@ -34,18 +43,30 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I click Add Gig' do
-    click_button "Add gig"
+    click_link_or_button "Add gig"
     sync_page
   end
 
-  step 'I see information for a gig' do
-    gig = Gig.where(name: @gig.name).where(location: @gig.location).first
-    @id_class = ".gig-id-#{gig.id}"
-    verify_gig_schedule(gig)
+  step 'I click Manage Gigs' do
+    click_link "Manage gigs"
   end
 
-  step 'I see the gig on both schedule pages' do
+  step 'the gig is created' do
+    @gig = Gig.find_by(name: @gig.name)
+    expect(@gig).not_to be_nil
+  end
+
+  step 'I see information for a gig' do
+    @gig = Gig.where(name: @gig.name).where(location: @gig.location).first
+    verify_gig_schedule(@gig)
+  end
+
+  step 'I see information for the gig on the home page' do
     i_see_information_for_a_gig
+    verify_gig_published(@gig)
+  end
+
+  step 'I see information for the gig on the schedule page' do
     visit "/schedule"
     verify_gig_schedule(@gig)
   end
@@ -66,7 +87,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I click Delete and confirm deletion for that gig' do
       my_accept_alert do
-        find("li.gig-id-#{@gig.id}").click_button("Delete Gig")
+        find(".gig-id-#{@gig.id}").click_link("Delete")
       end
     sync_page
   end
@@ -75,12 +96,8 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(Gig.find_by(id: @gig.id)).to be_nil
   end
 
-  step 'the gig is created' do
-    expect(Gig.find_by(name: @gig.name)).not_to be_nil
-  end
-
   step 'I click Edit for the first gig' do
-    find("li.gig-id-#{@gig.id}").click_button("Edit Gig")
+    find(".gig-id-#{@gig.id}").click_link("Edit")
   end
 
   step 'I am sent to the Change Gig page' do
@@ -109,10 +126,9 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'the gig fields are changed' do
-    within find(".gig-id-#{@gig.id}") do
+    within find("li.gig-id-#{@gig.id}") do
       expect(find(".gig_name").text).to     match("#{change(@gig.name)}")
-      # added "," to @gig.note to match text added by the page
-      expect(find(".gig_note").text).to     match("#{change(@gig.note)},")
+      expect(find(".gig_note").text).to     match("#{change(@gig.note)},") # added "," text in page
       expect(find(".gig_date").text).to     match(Date.parse(@changed_date).strftime('%b %d:'))
       expect(find(".gig_location").text).to match("#{change(@gig.location)}")
     end
@@ -134,8 +150,8 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     visit schedule_path
   end
 
-  step 'I see the published gig' do
-    i_see_information_for_a_gig
+  step 'I do not see a Manage Gigs link' do
+    expect(page).to have_no_link("Manage Gigs")
   end
 
   step 'I do not see the unpublished gig' do
@@ -147,11 +163,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I do not see an Edit button' do
-    expect(page).not_to have_button("Edit Gig")
+    expect(page).not_to have_button("Edit")
   end
 
   step 'I do not see a Delete button' do
-    expect(page).not_to have_button("Delete Gig")
+    expect(page).not_to have_button("Delete")
   end
 
   step 'I navigate to the Sign In page' do
@@ -168,6 +184,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     has_flash_msg(severity: :alert, containing: "You must be an admin user to access that page")
   end
 
+  step 'I visit the Gig Management page directly' do
+    visit manage_gigs_path
+  end
+
   step 'I visit the Add Gig page directly' do
     visit new_gig_path
   end
@@ -176,11 +196,44 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     visit edit_gig_path(1) # any user id will work for this test
   end
 
+  step 'I change the published checkbox' do
+    if @gig.published?
+      @orig_published_value = true
+      uncheck "gig_published"
+    else
+      @orig_admin_value = false
+      check "gig_published"
+    end
+  end
+
+  step 'the published field is not changed' do
+    if @orig_published_value
+      expect(page).to have_css("p.user_published")
+    else
+      expect(page).not_to have_css("p.user_published")
+    end
+  end
+
+  step 'the published field is changed' do
+    within user_article(@another_user) do
+      if @orig_published_value
+        expect(page).not_to have_css("p.user_published")
+      else
+        expect(page).to have_css("p.user_published")
+      end
+    end
+  end
+
   private
 
   def verify_gig_schedule(gig)
-    expect(find("#{@id_class} .gig_name")).to have_content(@gig.name)
-    expect(find("#{@id_class} .gig_note")).to have_content(@gig.note)
-    expect(find("#{@id_class} .gig_location")).to have_content(@gig.location)
+    id_class = ".gig-id-#{gig.id}"
+    expect(find("#{id_class} .gig_name")).to have_content(@gig.name)
+    expect(find("#{id_class} .gig_note")).to have_content(@gig.note)
+    expect(find("#{id_class} .gig_location")).to have_content(@gig.location)
+  end
+
+  def verify_gig_published(gig)
+    expect(find(".gig-id-#{gig.id}.gig_published").text).to have_content(@gig.published)
   end
 end

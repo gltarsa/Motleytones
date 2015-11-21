@@ -15,8 +15,9 @@ require 'rails_helper'
 #         "@info" is replaced with with a URL to mailto:info@motleytones.com
 #         "[text](url)" is replaced with '<a href="url">text</a>'
 #     * if [name] == "[Picture]" then
-#          [note] is required and is the URL of the picture to display and
-#          "<h2> YYYY Performance Schedule" should be displayed, where YYYY is the 4-digit year in [date]
+#          [note] is required
+#          AND [note] is the URL of the picture to display
+#          AND "<h2> YYYY Performance Schedule" is displayed, where YYYY is the 4-digit year in [date]
 #
 # Key Examples for test:
 #   - date, name, location (no note)
