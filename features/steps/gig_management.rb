@@ -206,16 +206,8 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     end
   end
 
-  step 'the published field is not changed' do
-    if @orig_published_value
-      expect(page).to have_css("p.user_published")
-    else
-      expect(page).not_to have_css("p.user_published")
-    end
-  end
-
   step 'the published field is changed' do
-    within user_article(@another_user) do
+    within find("h3.gig-id-#{@gig.id}") do
       if @orig_published_value
         expect(page).not_to have_css("p.user_published")
       else

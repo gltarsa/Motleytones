@@ -42,8 +42,10 @@ Feature: Gig Management
     And I click Edit for the first gig
     Then I am sent to the Change Gig page
     When I change the gig fields
+    And I change the published checkbox
     And I click Update
     Then the gig fields are changed
+    And the published field is changed
     When I click Manage Gigs
     Then I am on the Manage Gigs page
 
