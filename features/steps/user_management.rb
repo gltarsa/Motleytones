@@ -126,7 +126,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I click Delete and confirm deletion for that other user' do
     my_accept_alert do
-      user_article(@another_user).find("form.button_to .delete").click
+      user_article(@another_user).find(".delete").click
     end
     sync_page
   end

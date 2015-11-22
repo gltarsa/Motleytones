@@ -1,5 +1,3 @@
-include MarkupHelper
-
 class Spinach::Features::GigManagement < Spinach::FeatureSteps
   include Helpers
 
@@ -137,7 +135,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     within find("li.gig-id-#{@gig.id}") do
       expect(find(".gig_name").text).to     match("#{change(@gig.name)}")
       expect(find(".gig_note").text).to     match("#{change(@gig.note)}")
-      expect(find(".gig_date").text).to     match(Date.parse(@changed_date).strftime('%b %d:'))
+      expect(find(".gig_date").text).to     match(Date.parse(@changed_date).strftime('%b %-d:'))
       expect(find(".gig_location").text).to match("#{change(@gig.location)}")
     end
   end

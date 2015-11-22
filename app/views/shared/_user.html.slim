@@ -2,17 +2,17 @@ article.user-information class="user-id-#{user.id}"
   p.user_tone_name.heading
     span Tone Name:
     |  #{(user.tone_name) ? user.tone_name : "(none)"}
-  p.user_name
-    span.heading User Name:
-    |  #{user.name}
   p.user_email
-    span.heading Email Address:
+    span.heading Email:
     |  #{user.email}
   p.user_start_date
     span.heading Member since:
     |  #{user.band_start_date.strftime("%d-%b-%Y")}
   - if user.admin?
     p.user_admin is an admin
+  p.user_name
+    span.heading User Name:
+    |  #{user.name}
   p.user_created
     span.heading Added:
     |  #{user.created_at.strftime("%d-%b-%Y %H:%M")}

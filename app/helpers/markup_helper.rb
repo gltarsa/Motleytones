@@ -14,7 +14,7 @@ module MarkupHelper
     processed = process_anchors(raw)
     info_re = /@info /
     mail_url = mail_to("info@motleytones.com")
-    processed.gsub(info_re, mail_url)
+    processed.gsub(info_re, mail_url + " ")
   end
 
   # Convert Markdown-like link format, "[link](addr)", into HTML

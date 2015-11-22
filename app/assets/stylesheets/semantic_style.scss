@@ -573,9 +573,6 @@ $schedule-box-margin: 0.3rem;
       }
     }
   }
-  td, th {
-    padding: .5rem;
-  }
 }
 
 .schedule.scroll {
@@ -588,6 +585,14 @@ $schedule-box-margin: 0.3rem;
 }
 
 .user-information {
+    column-count: 1;
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+  @media (#{$bp-larger-than-phablet}) { // 550px
+    column-count: 2;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+  }
   p {
     margin-bottom: 0;
   }
@@ -598,6 +603,26 @@ $schedule-box-margin: 0.3rem;
   .user_admin {
     margin: .2rem .2rem;
     font-weight: 600;
+  }
+}
+
+.schedule-information {
+  table {
+    table-layout: fixed;
+    font-size: 85%;
+  }
+  td, th {
+    padding: .2rem;
+  }
+  td.gig_published, td.gig_days {
+    text-align: center;
+  }
+  td.gig_date {
+    width: 15%;
+  }
+  td.gig_name {
+    width: 35%;
+    color: green;
   }
 }
 

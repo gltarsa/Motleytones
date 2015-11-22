@@ -1,4 +1,4 @@
-span.gig_date.date #{gig.date.strftime("%b %d")}:
+span.gig_date.date #{date_range(gig.date, gig.days)}:
 span.gig_name>     #{process_markup(gig.name)}
 span.gig_note      #{process_markup(gig.note)}
 | ,

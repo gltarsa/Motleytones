@@ -46,7 +46,7 @@ class GigsController < ApplicationController
   private
 
   def allowed_gig_params
-    params.require(:gig).permit(:date, :name, :link, :note, :location, :published)
+    params.require(:gig).permit(:date, :days, :name, :note, :location, :published)
   end
 
   def total_msg

@@ -1,6 +1,6 @@
 = provide :title, 'Latest Gig'
 section.main-content.container
-  article.schedule
+  article.schedule.schedule-information
     .row
       = link_to "Manage gigs", manage_gigs_path
       .row
@@ -9,15 +9,15 @@ section.main-content.container
           li class="gig-id-#{@gig.id}"
             = render 'shared/gig_line', gig: @gig
         .row
+
         H3 Raw fields:
-        table.schedule
-          tbody.editable
-            tr
-              th p?
-              th date
-              th name
-              th note
-              th location
-              th operations
-            tr class="gig-id-#{@gig.id}"
-              = render 'shared/gig_mgt_table', gig: @gig
+        table.schedule.editable
+          =render "shared/gig_table_headings"
+          tr class="gig-id-#{@gig.id}"
+            = render 'shared/gig_mgt_table', gig: @gig
+
+        /* H3 Raw fields: */
+        /* table.schedule.editable */
+        /*   =render "shared/gig_table_headings" */
+        /*   tr class="gig-id-#{@gig.id}" */
+        /*     = render 'shared/gig_mgt_table', gig: @gig */
