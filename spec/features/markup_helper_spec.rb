@@ -20,12 +20,12 @@ describe MarkupHelper do
 
     it "converts the @info token to a mailto:info@motleytones.com link" do
       raw_input = "prefix @info suffix"
-      expect(process_markup(raw_input)).to eql "prefix <a href=\"mailto:info@motleytones.com\">info@motleytones.com</a>suffix"
+      expect(process_markup(raw_input)).to eql "prefix <a href=\"mailto:info@motleytones.com\">info@motleytones.com</a> suffix"
     end
 
     it "performs all conversions" do
       raw_input = "prefix [HTML link](http://html.link.com) suffix" + "prefix @info suffix"
-      expect(process_markup(raw_input)).to eql "prefix <a href=\"http://html.link.com\">HTML link</a> suffix"+"prefix <a href=\"mailto:info@motleytones.com\">info@motleytones.com</a>suffix"
+      expect(process_markup(raw_input)).to eql "prefix <a href=\"http://html.link.com\">HTML link</a> suffix"+"prefix <a href=\"mailto:info@motleytones.com\">info@motleytones.com</a> suffix"
     end
   end
 end
