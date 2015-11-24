@@ -7,15 +7,14 @@ module Helpers
   #
   # @user is available in the Spinach steps
   #
-  # PASSWORD = "secretpw"
   def sign_in_non_admin_user
-    @user = FactoryGirl.create(:user, password: PASSWORD)
-    do_login(@user, PASSWORD)
+    @user = FactoryGirl.create(:user, password: SOME_PASSWORD)
+    do_login(@user, SOME_PASSWORD)
   end
 
   def sign_in_admin_user
-    @user = FactoryGirl.create(:admin, password: PASSWORD)
-    do_login(@user, PASSWORD)
+    @user = FactoryGirl.create(:admin, password: SOME_PASSWORD)
+    do_login(@user, SOME_PASSWORD)
   end
 
   def sync_page

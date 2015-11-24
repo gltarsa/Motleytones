@@ -17,12 +17,12 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   end
 
   step 'I enter a registered email' do
-    @user = FactoryGirl.create(:user, password: PASSWORD)
+    @user = FactoryGirl.create(:user, password: SOME_PASSWORD)
     fill_in("user_email", with: @user.email)
   end
 
   step 'I enter the associated password' do
-    fill_in("user_password", with: PASSWORD)
+    fill_in("user_password", with: SOME_PASSWORD)
   end
 
   step 'I enter an unregistered email' do

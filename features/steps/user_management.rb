@@ -151,8 +151,8 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     fill_in "user_tone_name", with: @another_user.tone_name
     set_date("user_band_start_date", @band_start_date)
     fill_in "user_email", with: @another_user.email
-    fill_in "user_password", with: PASSWORD
-    fill_in "user_password_confirmation", with: PASSWORD
+    fill_in "user_password", with: SOME_PASSWORD
+    fill_in "user_password_confirmation", with: SOME_PASSWORD
     check "user_admin"
   end
 
@@ -235,12 +235,12 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I enter a registered email' do
-    @user = FactoryGirl.create(:user, password: PASSWORD)
+    @user = FactoryGirl.create(:user, password: SOME_PASSWORD)
     fill_in("user_email", with: @user.email)
   end
 
   step 'I enter the associated password' do
-    fill_in("user_password", with: PASSWORD)
+    fill_in("user_password", with: SOME_PASSWORD)
   end
 
   step 'I enter an unregistered email' do
