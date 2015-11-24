@@ -3,11 +3,11 @@ section.main-content
   .row.schedule
     ul
       - Gig.published_ascending.each do |gig|
-        -if gig.date >= Date.today
+        -if gig.date + gig.days >= Date.today
           li class="gig-id-#{gig.id}"
             =render 'shared/gig_line', gig: gig
       hr
       - Gig.published_descending.each do |gig|
-        -if gig.date < Date.today
+        -if gig.date + gig.days < Date.today
           li.strike class="gig-id-#{gig.id}"
             =render 'shared/gig_line', gig: gig
