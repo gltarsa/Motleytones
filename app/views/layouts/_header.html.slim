@@ -32,7 +32,7 @@ header
                   li
                     = link_to "Profile", current_user
                   li
-                    = link_to "List Pirates", users_path
+                    = link_to "Manage Pirates", users_path
                   li
                     = link_to "Sign Out", destroy_user_session_path, method: :get
                   - if current_user.admin?

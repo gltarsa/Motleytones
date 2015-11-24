@@ -7,7 +7,7 @@ Feature: User Management
   delete any account but his own.
 
   * A user who is not signed up cannot access any of the
-    user management buttons on the Users page.
+    user management buttons on the Manage Pirates page.
   * A  non-admin user cannot add a new user
   * A non-admin user can manage his own profile information,
     but cannot delete his account.
@@ -40,11 +40,11 @@ Feature: User Management
   Scenario: A user who is not signed in cannot access any of the user management features
     Given I am not signed in
     When I look at the Navigation Menu
-    Then I do not see a List Users link
+    Then I do not see a Manage Pirates link
     And I do not see a Profile link
     And I do not see a Sign Out link
 
-    When I visit the Users page directly
+    When I visit the Manage Pirates page directly
     Then I am sent to the Sign In page
     And I see an alert containing "You must be signed in to access that page"
 
@@ -77,7 +77,7 @@ Feature: User Management
     Given I am signed in as a non-admin user
     When I navigate to the Profile page
     When I click Edit
-    Then I am sent to the Change User Information page
+    Then I am sent to the Change Pirate Information page
     When I change the mutable fields
     And I click Update
     Then the mutable fields are changed
@@ -87,7 +87,7 @@ Feature: User Management
     Given I am signed in as a non-admin user
     When I navigate to the Profile page
     When I click Edit
-    Then I am sent to the Change User Information page
+    Then I am sent to the Change Pirate Information page
     When I change the admin checkbox
     And I click Update
     And the admin field is not changed
@@ -97,7 +97,7 @@ Feature: User Management
     Given I am signed in as a non-admin user
     When I navigate to the Profile page
     When I click Edit
-    Then I am sent to the Change User Information page
+    Then I am sent to the Change Pirate Information page
     When I change the mutable fields
     And I click Cancel
     Then the mutable fields are not changed
@@ -115,7 +115,7 @@ Feature: User Management
   Scenario:  Admin users can delete a user account
     Given I am signed in as an admin user
     And there is at least one other user
-    When I navigate to the Users page
+    When I navigate to the Manage Pirates page
     Then I see information for another user
     When I click Delete and confirm deletion for that other user
     Then that other user is deleted
@@ -127,12 +127,12 @@ Feature: User Management
     And I do not see a Delete button
 
   @javascript @admin
-  Scenario:  Admin users can edit a user account from the Users Page
+  Scenario:  Admin users can edit a user account from the Manage Pirates Page
     Given I am signed in as an admin user
     And there is at least one other user
-    When I navigate to the Users page
+    When I navigate to the Manage Pirates page
     And I click Edit for that other user
-    Then I am sent to the Change User Information page
+    Then I am sent to the Change Pirate Information page
     When I change the mutable fields for that other user
     And I change the admin checkbox
     And I click Update

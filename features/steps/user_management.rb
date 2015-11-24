@@ -24,9 +24,9 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(page.title).to eq("Add Pirate")
   end
 
-  step 'I navigate to the Users page' do
+  step 'I navigate to the Manage Pirates page' do
     find("li.navigation").hover
-    click_link "List Pirates"
+    click_link "Manage Pirates"
     sync_page
     expect(page.title).to eq("Motley Users")
   end
@@ -48,7 +48,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     visit new_user_path
   end
 
-  step 'I visit the Users page directly' do
+  step 'I visit the Manage Pirates page directly' do
     visit users_path
   end
 
@@ -56,8 +56,8 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     visit edit_user_path(1)  # any user id will work for this test
   end
 
-  step 'I do not see a List Users link' do
-    expect(page).to have_no_link("List Users")
+  step 'I do not see a Manage Pirates link' do
+    expect(page).to have_no_link("Manage Pirates")
   end
 
   step 'I do not see an Add Pirate link' do
@@ -76,7 +76,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(page).to have_no_button("Delete")
   end
 
-  step 'I am sent to the Change User Information page' do
+  step 'I am sent to the Change Pirate Information page' do
     expect(page.title).to eq("Modify Pirate Profile")
   end
 
