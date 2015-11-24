@@ -1,8 +1,8 @@
 # README
 
-This app serves up the current static Motley Tones website.
+This app serves up the Motley Tones website.
 
-Currently
+Features:
 
 * Delivers static pages with DRY (Don't Repeat Yourself) layout
  * About Motley Tones
@@ -11,14 +11,21 @@ Currently
  * Photos
  * Videos
 
+* Generates schedule pages dynamically from the database
+ * Future and current gigs are displayed
+ * Past gigs are displayed as struck-out text
+ * Full Add/Modify/Delete capabilities for Admin users
+
+* User logins and management
+ * Admin users can create new users
+ * Full Add/Modify/Delete capabilities for Admin users
+
 Future features:
 
-* Generate schedule from independent data source
-* Strike out gigs on schedule that are past
-* Optional: create user logins for administrative use
-* Optional: Allow gig information to be added/updated/deleted via web
-* Optional: generate video page from database
+* Generate video page from database
 
 Trello Board for this project can be [found here](https://trello.com/b/VwHfdHD4/motley-tones-web-app).
 
-The original static page was created using the [HTML5 Verti design](http://html5up.net/verti).  This app is generally based on that styling, but no longer uses any of the original code or packages.
+The styling of this app is generally based on an original static page created by Rebecca Tarsa using the [HTML5 Verti design](http://html6up.net/verti).  It no longer uses any of the original code or packages.
+
+If you are reading this, [Like the Motley Tones on Facebook](http://facebook.com./motleytones.com).
