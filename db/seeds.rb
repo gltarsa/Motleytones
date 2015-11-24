@@ -20,7 +20,7 @@ User.create!({
   band_start_date: "01 Apr 2011"})
 User.create!({
   name: "Non-Admin",
-  email: "gltarsa@gmail.com",
+  email: "nonadmin@motley.com",
   admin: false,
   password: STARTER_PASSWORD,
   password_confirmation: STARTER_PASSWORD,
