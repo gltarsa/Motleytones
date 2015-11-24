@@ -9,5 +9,5 @@ section.main-content
       hr
       - Gig.published_descending.each do |gig|
         -if gig.date + gig.days < Date.today
-          li.strike class="gig-id-#{gig.id}"
+          li.expired class="gig-id-#{gig.id}"
             =render 'shared/gig_line', gig: gig

@@ -44,7 +44,9 @@ header {
     }
   }
 
-  .row { min-height: $nav-row-height; }
+  .row {
+    min-height: $nav-row-height;
+  }
 
   .logo {
     color: $text-color;
@@ -102,7 +104,9 @@ nav {
     }
 
     @media (#{$bp-larger-than-mobile}) { // 400px
-      li { margin: 0 0 1rem 0; }
+      li {
+        margin: 0 0 1rem 0;
+      }
     }
 
     @media (#{$bp-larger-than-phablet}) { // 550px
@@ -119,15 +123,16 @@ nav {
     }
 
     @media (#{$bp-larger-than-tablet}) { // 750px
-      li { line-height: $nav-row-height; }
-      li { margin-left: -10px; }
+      li {
+        line-height: $nav-row-height;
+        margin-left: -10px;
+      }
     }
 
     li,
     li a,
     li span {
       font-weight: 800;
-      //letter-spacing: 0.025em;
       color: $text-color;
       text-decoration: none;
       border-radius: 6px;
@@ -517,6 +522,10 @@ img.image.adjustable {
   margin: 0 0 2em 0;
 }
 
+.expired {
+    text-decoration: line-through;
+  }
+
 /*
   TODO 8/20/2015: Current status: hints are hidden, but have
   not got the incantations to make them show.
@@ -546,12 +555,13 @@ form input:required:valid + .hint {background: #28921f;} /* change form hint col
 $schedule-box-margin: 0.3rem;
 .schedule {
   hr {
-    width: 50%;
     margin: .5rem 0;
   }
-  h3 { margin-left: $schedule-box-margin; }
-  .strike {
-    text-decoration: line-through;
+  h3 {
+    margin-left: $schedule-box-margin;
+  }
+  li {
+    margin: 0
   }
   ul {
     color: $main-text-color;
@@ -588,10 +598,10 @@ $schedule-box-margin: 0.3rem;
   ul { margin-bottom: 0; }
 }
 
-.user-information {
-    column-count: 1;
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
+.user-information, .schedule-information {
+  column-count: 1;
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
   @media (#{$bp-larger-than-phablet}) { // 550px
     column-count: 2;
     -webkit-column-count: 2;
@@ -603,30 +613,9 @@ $schedule-box-margin: 0.3rem;
   .heading {
     font-weight: 600;
   }
-
   .user_admin {
     margin: .2rem .2rem;
     font-weight: 600;
-  }
-}
-
-.schedule-information {
-  table {
-    table-layout: fixed;
-    font-size: 85%;
-  }
-  td, th {
-    padding: .2rem;
-  }
-  td.gig_published, td.gig_days {
-    text-align: center;
-  }
-  td.gig_date {
-    width: 15%;
-  }
-  td.gig_name {
-    width: 35%;
-    color: green;
   }
 }
 

@@ -1,23 +1,11 @@
 = provide :title, 'Latest Gig'
-section.main-content.container
-  article.schedule.schedule-information
-    .row
-      = link_to "Manage gigs", manage_gigs_path
-      .row
-        ul.schedule
-          H3.gig_published class="gig-id-#{@gig.id}" As displayed:
-          li class="gig-id-#{@gig.id}"
-            = render 'shared/gig_line', gig: @gig
-        .row
+section.main-content
+  .row
+    .two.columns.offset-by-one.schedule
+      article.schedule
+        = link_to "Manage gigs", manage_gigs_path
 
-        H3 Raw fields:
-        table.schedule.editable
-          =render "shared/gig_table_headings"
-          tr class="gig-id-#{@gig.id}"
-            = render 'shared/gig_mgt_table', gig: @gig
-
-        /* H3 Raw fields: */
-        /* table.schedule.editable */
-        /*   =render "shared/gig_table_headings" */
-        /*   tr class="gig-id-#{@gig.id}" */
-        /*     = render 'shared/gig_mgt_table', gig: @gig */
+  .row class="gig-id-#{@gig.id}"
+    .ten.columns.offset-by-one.columns
+      article.schedule
+        = render 'shared/gig_show', gig: @gig

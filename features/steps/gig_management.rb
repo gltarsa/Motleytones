@@ -92,9 +92,9 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I click Delete and confirm deletion for that gig' do
-      my_accept_alert do
-        find(".gig-id-#{@gig.id}").click_link("Delete")
-      end
+    my_accept_alert do
+      find(".gig-id-#{@gig.id}").click_link("Delete")
+    end
     sync_page
   end
 
@@ -132,11 +132,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'the gig fields are changed' do
-    within find("li.gig-id-#{@gig.id}") do
-      expect(find(".gig_name").text).to     match("#{change(@gig.name)}")
-      expect(find(".gig_note").text).to     match("#{change(@gig.note)}")
-      expect(find(".gig_date").text).to     match(Date.parse(@changed_date).strftime('%b %-d:'))
-      expect(find(".gig_location").text).to match("#{change(@gig.location)}")
+    within find(".gig-id-#{@gig.id}") do
+      expect(find("span.gig_name").text).to     match("#{change(@gig.name)}")
+      expect(find("span.gig_note").text).to     match("#{change(@gig.note)}")
+      expect(find("span.gig_date").text).to     match(Date.parse(@changed_date).strftime('%b %-d:'))
+      expect(find("span.gig_location").text).to match("#{change(@gig.location)}")
     end
   end
 
@@ -217,11 +217,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'the published field is changed' do
-    within find("h3.gig-id-#{@gig.id}") do
+    within find(".gig-id-#{@gig.id}") do
       if @orig_published_value
-        expect(page).not_to have_css("p.user_published")
+        expect(page).not_to have_css("span.user_published")
       else
-        expect(page).to have_css("p.user_published")
+        expect(page).to have_css("span.user_published")
       end
     end
   end
@@ -230,8 +230,8 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   def verify_gig_schedule(gig)
     id_class = ".gig-id-#{gig.id}"
-    expect(find("#{id_class} .gig_name")).to have_content(gig.name)
-    expect(find("#{id_class} .gig_note")).to have_content(gig.note)
-    expect(find("#{id_class} .gig_location")).to have_content(gig.location)
+    expect(find(".schedule #{id_class} span.gig_name")).to have_content(gig.name)
+    expect(find(".schedule #{id_class} span.gig_note")).to have_content(gig.note)
+    expect(find(".schedule #{id_class} span.gig_location")).to have_content(gig.location)
   end
 end

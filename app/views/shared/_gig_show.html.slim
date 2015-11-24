@@ -1,0 +1,34 @@
+li
+  = render 'shared/gig_line', gig: gig
+hr
+
+.schedule-information
+  p.gig_date.date
+    span.heading> Date:
+    | #{gig.date.strftime("%d-%b-%y")}
+    - if gig.days > 1
+      span.heading>  thru
+      span.gig_days<
+        |  #{(gig.date + gig.days).strftime("%d-%b-%y")}
+        |  (#{gig.days} days)
+  p.gig_name
+    span.heading> Name:
+    | #{gig.name}
+  p.gig_note
+    span.heading> Note:
+    | #{gig.note}
+  p.gig_location
+    span.heading> Location:
+    | #{gig.location}
+  p.gig_published.heading
+    span> Published? #{(gig.published)? "Y" : "N"}
+  p.gig_operations
+    => link_to "Edit",
+      edit_gig_path(gig),
+      class: "edit management"
+
+    = link_to "Delete",
+      gig_path(gig),
+      method: :delete,
+      class: "delete management",
+      data: { confirm: "Are you sure (action is permanent)?" }
