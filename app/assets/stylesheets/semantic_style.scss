@@ -545,6 +545,10 @@ form input:required:valid + .hint {background: #28921f;} /* change form hint col
 // Schedule box (main page)
 $schedule-box-margin: 0.3rem;
 .schedule {
+  hr {
+    width: 50%;
+    margin: .5rem 0;
+  }
   h3 { margin-left: $schedule-box-margin; }
   .strike {
     text-decoration: line-through;

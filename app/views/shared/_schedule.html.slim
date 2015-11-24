@@ -2,11 +2,12 @@ h3 2015 Performance Schedule
 section.main-content
   .row.schedule
     ul
-      - Gig.published.find_each do |gig|
+      - Gig.published_ascending.each do |gig|
         -if gig.date >= Date.today
           li class="gig-id-#{gig.id}"
             =render 'shared/gig_line', gig: gig
-      - Gig.published.find_each do |gig|
+      hr
+      - Gig.published_descending.each do |gig|
         -if gig.date < Date.today
           li.strike class="gig-id-#{gig.id}"
             =render 'shared/gig_line', gig: gig
