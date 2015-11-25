@@ -7,7 +7,7 @@ section.main-content.container
           |  Motley Tones: Video Gallery
         p
           | Here are some videos provided by friends and fans. If you have any to share, please send the URL to us at
-          a<>[href="mailto:info@motleytones.com"]
+          = mail_to "info@motleytones.com", nil, subject: "Video to share!"
             | info@motleytones.com.
           |  Thank you!
         center
@@ -20,101 +20,91 @@ section.main-content.container
                 table[border="1" cellspacing="0"]
                   tbody
                     tr
-                      td.thumbnail
-                        a[href="http://vimeo.com/105455785"]
-                          = image_tag "video-icons/ceilidh-cary.2014.png", alt: "Ceilidh @ The Cary", width: 120
-                      td
-                        a[href="http://vimeo.com/105455785"] Being a Pirate & Cadgwith Anthem
-                        | ; Intermission performance at the Ceilidh in Cary, March 2014
-                        span[style="font-size: 12pt; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;;"]
-
+                      - [ "http://vimeo.com/105455785" ].each do |url|
+                        td.thumbnail
+                          = link_to(image_tag("video-icons/ceilidh-cary.2014.png", alt: "Ceilidh @ The Cary", width: 120), url)
+                        td
+                          = link_to "Being a Pirate & Cadgwith Anthem", url
+                          | ; Intermission performance at the Ceilidh in Cary, March 2014
                     tr
                       td.thumbnail
-                        a[href="https://www.youtube.com/watch?v=MlImDGFzbWw&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI"]
-                          = image_tag "video-icons/shanty-mart.2013.png", alt: "Shanty Mart@Ocracoke", width: 120
+                        = link_to(image_tag("video-icons/shanty-mart.2013.png", alt: "Shanty Mart@Ocracoke", width: 120), \
+                          "https://www.youtube.com/watch?v=MlImDGFzbWw&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI")
                       td
-                        a>[title="Shanty Mart videos" href="https://www.youtube.com/watch?v=MlImDGFzbWw&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI"]
-                          | Shanty Mart videos:
-                        a>[title="Being a Pirate" href="https://www.youtube.com/watch?v=MlImDGFzbWw&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=1"]
-                          | Being a Pirate
+                        => link_to "Shanty Mart", "https://www.youtube.com/watch?v=MlImDGFzbWw&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI"
+                        | videos:
+                        em
+                          =< link_to "Being a Pirate", "https://www.youtube.com/watch?v=MlImDGFzbWw&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=1"
                         | ,
-                        a>[title="The Mermaid" href="https://www.youtube.com/watch?v=uEwNz5cdgl8&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=2"]
-                          | The Mermaid
+                        em
+                          =< link_to "The Mermaid", "https://www.youtube.com/watch?v=uEwNz5cdgl8&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=2"
                         | ,
-                        a>[title="Tie Me Kangaroo Down" href="https://www.youtube.com/watch?v=JrR17ygqBnc&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=3"]
-                          | Tie Me Kangaroo Down
+                        em
+                          =< link_to "Tie Me Kangaroo Down", "https://www.youtube.com/watch?v=JrR17ygqBnc&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=3"
                         | ,
-                        a>[title="Hole in the Bottom of the Sea" href="https://www.youtube.com/watch?v=5zewT8gaOIE&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=4"]
-                          | Hole at the Bottom of the Sea
+                        em
+                          =< link_to "Hole in the Bottom of the Sea", "https://www.youtube.com/watch?v=5zewT8gaOIE&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=4"
                         | ,
-                        a>[title="Bell Bottom Trousers" href="https://www.youtube.com/watch?v=1C-C1MYtpyg&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=5"]
-                          | Bell Bottom Trousers
+                        em
+                          =< link_to "Bell Bottom Trousers", "https://www.youtube.com/watch?v=1C-C1MYtpyg&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=5"
                         | . With
-                        a<[title="Hysterically Correct Productions" href="http://hystericallycorrect.com/"]
-                          | Willoghby Caught
+                        =<> link_to "Hysterically Correct Production's", "http://hystericallycorrect.com/"
+                        | Willoghby Caught
                         | .
                     tr
-                      td.thumbnail
-                        a href="http://www.youtube.com/watch?v=54o7FXbqCX8"
-                          = image_tag "video-icons/he-that-drinks.jpg", alt: "He That Drinks", width: 120
-                      td
-                        |  Purcell's
-                        em
-                          a<[href="http://www.youtube.com/watch?v=54o7FXbqCX8"]
-                            | He That Drinks is Immortal
-                        | . Blackbeard's Festival, 2011.
-                    tr
-                      td.thumbnail
-                        a>[href="http://www.youtube.com/watch?v=62RbLkq6G-4"]
-                          = image_tag "video-icons/cadgwith-anthem.jpg", alt: "Cadgwith Anthem", width: 120
-                      td
-                        a[href="http://www.youtube.com/watch?v=62RbLkq6G-4"]
+                      - [ "http://www.youtube.com/watch?v=54o7FXbqCX8" ].each do |url|
+                        td.thumbnail
+                          = link_to(image_tag("video-icons/he-that-drinks.jpg", alt: "He That Drinks", width: 120), url)
+                        td
+                          | Purcell's
                           em
-                            | Cadgwith Anthem
-                        |  (aka
-                        em
-                          |  Robbers Retreat
-                        | ) at the Hampton Blackbeard Festival, 2010.
+                            =< link_to "He That Drinks is Immortal", "http://www.youtube.com/watch?v=54o7FXbqCX8"
+                          | . Blackbeard's Festival, 2011.
                     tr
-                      td.thumbnail
-                        a[href="http://www.youtube.com/watch?v=BdW2dhZoFgE"]
-                          = image_tag "video-icons/bbf-bonnie-ship.jpg", alt: "Bonnie Ship Diamond", width: 120
-                      td
-                        a>[href="http://www.youtube.com/watch?v=BdW2dhZoFgE"]
+                      - [ "http://www.youtube.com/watch?v=62RbLkq6G-4" ].each do |url|
+                        td.thumbnail
+                          = link_to(image_tag("video-icons/cadgwith-anthem.jpg", alt: "Cadgwith Anthem", width: 120), url)
+                        td
                           em
-                            | Bonnie Ship the Diamond
-                        | at the Hampton Blackbeard Festival, 2012.
+                            = link_to "Cadgwith Anthem", url
+                          |  (aka
+                          em
+                            |  Robbers Retreat
+                          | ) at the Hampton Blackbeard Festival, 2010.
                     tr
-                      td.thumbnail
-                        a[href="http://www.youtube.com/watch?v=eZH2g4UPcGE"]
-                          = image_tag "video-icons/three-songs.jpg", alt: "Three Songs@Ocracoke", width: 120
-                      td
-                        a>[href="http://www.youtube.com/watch?v=eZH2g4UPcGE"]
-                          | Three songs:
-                        em>
-                          | Bonnie Ship the Diamond, Mingulay Boat Song
-                        | and,
-                        em<>
-                          | Titanic.
-                        |  Blackbeard's Festival, 2011.
-                        br
+                      - [ "http://www.youtube.com/watch?v=BdW2dhZoFgE" ].each do |url|
+                        td.thumbnail
+                          = link_to(image_tag("video-icons/bbf-bonnie-ship.jpg", alt: "Bonnie Ship", width: 120), url)
+                        td
+                          em
+                            => link_to "Bonnie Ship the Diamond", url
+                          | at the Hampton Blackbeard Festival, 2012.
                     tr
-                      td.thumbnail
-                        a[href="http://www.youtube.com/watch?v=YaVTFjeQK98"]
-                          = image_tag "video-icons/bbf-mingulay.jpg", alt: "Mingulay Boat Song", width: 120
-                      td
-                        em
-                          a>[href="http://www.youtube.com/watch?v=YaVTFjeQK98"]
-                            | Mingulay Boat Song
-                        | with Willoughby Caught. Blackbeard's Festival, 2010.
-                        br
+                      - [ "http://www.youtube.com/watch?v=eZH2g4UPcGE" ].each do |url|
+                        td.thumbnail
+                          = link_to(image_tag("video-icons/three-songs.jpg", alt: "Three Songs@Ocracoke", width: 120), url)
+                        td
+                          => link_to "Three songs:", url
+                          em>
+                            | Bonnie Ship the Diamond, Mingulay Boat Song
+                          | and,
+                          em<>
+                            | Titanic.
+                          |  Blackbeard's Festival, 2011.
                     tr
-                      td.thumbnail
-                        a[href="http://www.youtube.com/watch?v=SMLX3ADla94"]
-                          = image_tag "video-icons/bbf-hard-by-a-fountain.png", alt: "Hard by Fountain", width: 120
-                      td
-                        | Excerpt from
-                        em
-                          a<[href="http://www.youtube.com/watch?v=SMLX3ADla94"]
-                            | Hard by a Fountain
-                        | . Blackbeard's Festival, 2010.
+                      - [ "http://www.youtube.com/watch?v=YaVTFjeQK98" ].each do |url|
+                        td.thumbnail
+                          = link_to(image_tag("video-icons/bbf-mingulay.jpg", alt: "Mingulay Boat Song", width: 120), url)
+                        td
+                          em
+                            => link_to "Mingulay Boat Song", "http://www.youtube.com/watch?v=YaVTFjeQK98"
+                          | with Willoughby Caught. Blackbeard's Festival, 2010.
+                    tr
+                      - [ "http://www.youtube.com/watch?v=SMLX3ADla94" ].each do |url|
+                        td.thumbnail
+                          = link_to(image_tag("video-icons/bbf-hard-by-a-fountain.png", alt: "Hard by Fountain", width: 120), url)
+                        td
+                          | Excerpt from
+                          em<
+                            = link_to "Hard by a Fountain", "http://www.youtube.com/watch?v=SMLX3ADla94"
+                          | . Blackbeard's Festival, 2010.
