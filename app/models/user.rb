@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   }
 
   validates :name, presence: true,
+    uniqueness: true,
     length: { minimum: 5, maximum: 50 }
   validates :tone_name, presence: true,
     length: { minimum: 7, maximum: 50 }

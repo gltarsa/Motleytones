@@ -4,12 +4,14 @@ Feature: Gig Management
   A gig entry is not displayed unless its published field is true.
 
   * An admin user can create gig entries
+  * It is not possible to create a gig with the same name and date as a previous gig
   * An admin user can delete gig entries
   * An admin user can edit gig entries
+  * It is not possible to edit a gig to have the same name and date as a previous gig
   * A user who is not signed in cannot access any gig management features
   * A non-admin user cannot access any gig management features
-  - Only published gigs appear on the schedule pages
-  - Both published and unpublished gigs appear on the Gig Management page
+  * Only published gigs appear on the schedule pages
+  * Both published and unpublished gigs appear on the Gig Management page
 
   @javascript
   Scenario: An admin user can create gig entries
@@ -22,6 +24,18 @@ Feature: Gig Management
     Then the gig is created
     And I see information for the gig on the home page
     And I see information for the gig on the schedule page
+
+  @javascript
+  Scenario: It is not possible to create a gig with the same name and date as a previous gig
+    Given I am signed in as an admin user
+    And there is at least one existing gig
+    When I navigate to the Manage Gigs page
+    And I click Add Gig
+    Then I see the Add Gig page
+    When I fill in the gig fields with the same name and date as the existing gig
+    And I click Add Gig
+    Then I see an error message
+    And the gig is not created
 
   @javascript
   Scenario: An admin user can delete gig entries
@@ -47,6 +61,18 @@ Feature: Gig Management
     And the published field is changed
     When I click Manage Gigs
     Then I am on the Manage Gigs page
+
+  @javascript
+  Scenario: It is not possible to edit a gig to have the same name and date as a previous gig
+    Given I am signed in as an admin user
+    And there is at least one existing gig
+    When I navigate to the Manage Gigs page
+    And I click Edit for the first gig
+    Then I am sent to the Change Gig page
+    When I change the gig fields to have the same name and date as the existing gig
+    And I click Update
+    Then I see an error message
+    And the gig is not changed
 
   @javascript
   Scenario: A user who is not signed in cannot access any of the gig management features

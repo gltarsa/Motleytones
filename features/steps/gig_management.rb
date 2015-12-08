@@ -144,6 +144,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     @gig = FactoryGirl.create(:gig, published: true)
   end
 
+  step 'there is at least one existing gig' do
+    @gig = FactoryGirl.create(:gig)
+  end
+
   step 'there is at least one unpublished gig' do
     @unpublished_gig = FactoryGirl.create(:gig, published: false)
   end

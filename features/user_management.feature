@@ -6,9 +6,10 @@ Feature: User Management
   Admin users have the ability to change any profiles and
   delete any account but his own.
 
-  * A user who is not signed up cannot access any of the
-    user management buttons on the Manage Pirates page.
-  * A  non-admin user cannot add a new user
+  * A user who is not signed up cannot access any of the user management buttons on the Manage Pirates page.
+  * A non-admin user cannot add a new user
+  * It is not possible to create a user with the same name as an existing user
+  * It is not possible to edit a user record to have the same name as an existing user
   * A non-admin user can manage his own profile information,
     but cannot delete his account.
 
@@ -112,6 +113,16 @@ Feature: User Management
     And I am still in the admin account
 
   @javascript @admin
+  Scenario: It is not possible to create a user with the same name as an existing user
+    Given I am signed in as an admin user
+    And there is at least one other user
+    When I navigate to the Add Pirate page
+    And I fill in the fields so that the name matches the exising user
+    And I click Add pirate
+    Then I see an error message
+    And the user is not created
+
+  @javascript @admin
   Scenario:  Admin users can delete a user account
     Given I am signed in as an admin user
     And there is at least one other user
@@ -138,3 +149,15 @@ Feature: User Management
     And I click Update
     Then the mutable fields for that other user are changed
     And the admin field is changed
+
+  @javascript @admin
+  Scenario:  It is not possible to edit a user record to have the same name as an existing user
+    Given I am signed in as an admin user
+    And there is at least one other user
+    When I navigate to the Manage Pirates page
+    And I click Edit for that other user
+    Then I am sent to the Change Pirate Information page
+    When I change the name of the user to be the same as the other user
+    And I click Update
+    Then I see an error message
+    And the user is not changed
