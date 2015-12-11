@@ -108,7 +108,7 @@ Feature: User Management
     Given I am signed in as an admin user
     When I navigate to the Add Pirate page
     And I fill in the fields
-    And I click Add pirate
+    And I click Add
     Then the account is created
     And I am still in the admin account
 
@@ -117,10 +117,9 @@ Feature: User Management
     Given I am signed in as an admin user
     And there is at least one other user
     When I navigate to the Add Pirate page
-    And I fill in the fields so that the name matches the exising user
-    And I click Add pirate
+    And I fill in the fields to have the same name as the other user
+    And I click Add
     Then I see an error message
-    And the user is not created
 
   @javascript @admin
   Scenario:  Admin users can delete a user account
@@ -157,7 +156,6 @@ Feature: User Management
     When I navigate to the Manage Pirates page
     And I click Edit for that other user
     Then I am sent to the Change Pirate Information page
-    When I change the name of the user to be the same as the other user
+    When I fill in the fields to have the same name as the other user
     And I click Update
     Then I see an error message
-    And the user is not changed

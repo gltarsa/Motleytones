@@ -32,10 +32,9 @@ Feature: Gig Management
     When I navigate to the Manage Gigs page
     And I click Add Gig
     Then I see the Add Gig page
-    When I fill in the gig fields with the same name and date as the existing gig
+    When I fill in the gig fields to have the same name and date as the existing gig
     And I click Add Gig
     Then I see an error message
-    And the gig is not created
 
   @javascript
   Scenario: An admin user can delete gig entries
@@ -66,13 +65,13 @@ Feature: Gig Management
   Scenario: It is not possible to edit a gig to have the same name and date as a previous gig
     Given I am signed in as an admin user
     And there is at least one existing gig
+    And I add a new gig
     When I navigate to the Manage Gigs page
-    And I click Edit for the first gig
+    And I click Edit for the new gig
     Then I am sent to the Change Gig page
-    When I change the gig fields to have the same name and date as the existing gig
+    When I fill in the gig fields to have the same name and date as the existing gig
     And I click Update
     Then I see an error message
-    And the gig is not changed
 
   @javascript
   Scenario: A user who is not signed in cannot access any of the gig management features
