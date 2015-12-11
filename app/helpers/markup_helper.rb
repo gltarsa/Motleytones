@@ -11,10 +11,9 @@ module MarkupHelper
   # replace "@info" token with motleytones info address
   #
   def process_info(raw)
-    processed = process_anchors(raw)
-    info_re = /@info /
+    info_re = /@info([^a-zA-Z])/
     mail_url = mail_to("info@motleytones.com")
-    processed.gsub(info_re, mail_url + " ")
+    raw.gsub(info_re, "#{mail_url}\\1")
   end
 
   # Convert Markdown-like link format, "[link](addr)", into HTML
@@ -28,10 +27,9 @@ module MarkupHelper
 
     if matches
       anchor = link_to(matches[2], matches[3])
-      processed = "#{matches[1]}#{anchor}#{matches[4]}"
+      process_anchors("#{matches[1]}#{anchor}#{matches[4]}")
     else
-      processed = raw
+      raw
     end
-    processed
   end
 end
