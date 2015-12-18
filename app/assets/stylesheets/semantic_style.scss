@@ -476,10 +476,17 @@ img.image.adjustable {
   .error_notification {
     color: red;
   }
+  // disable simple_form errors in favor of explicit "top of container" errors
   .error{
-    color: red;
-    font-weight: 600;
+    display: none;
   }
+
+  #gig_note, #gig_name { width: 100%; }
+  #gig_location { width: 50%; }
+  #gig_days { width: 10%; }
+
+  #user_name, #user_tone_name { width: 75%; }
+  #user_email { width: 50% }
 }
 
 .flash {
@@ -508,7 +515,7 @@ img.image.adjustable {
   padding: 1rem 1rem ;
 }
 
-.error_explanation {
+.form-error{
   color: red;
   ul {
     color: red;

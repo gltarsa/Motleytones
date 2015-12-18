@@ -24,13 +24,13 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I am on the Manage Gigs page' do
-    sync_page
-    expect(page.title).to eq("Manage Gigs")
+    sync_title("Manage Gigs")
+    expect(page.title).to have_content("Manage Gigs")
   end
 
   step 'I see the Add Gig page' do
-    sync_page
-    expect(page.title).to eq("Add Gig")
+    sync_title("Add Gig")
+    expect(page.title).to have_content("Add Gig")
   end
 
   step 'I fill in the gig fields' do
@@ -39,6 +39,14 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     fill_in "gig_name",     with: @gig.name
     fill_in "gig_note",     with: @gig.note
     fill_in "gig_location", with: @gig.location
+    check "gig_published"
+  end
+
+  step 'I fill in the gig fields to have the same name and date as the existing gig' do
+    set_date("gig_date",       @gig.date.to_s)
+    fill_in "gig_name",     with: @gig.name
+    fill_in "gig_note",     with: "does not matter"
+    fill_in "gig_location", with: "does not matter"
     check "gig_published"
   end
 
@@ -106,8 +114,13 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     find(".gig-id-#{@gig.id}").click_link("Edit")
   end
 
+  step 'I click Edit for the new gig' do
+    find(".gig-id-#{@new_gig.id}").click_link("Edit")
+  end
+
   step 'I am sent to the Change Gig page' do
-    expect(page.title).to eq("Modify Gig Info")
+    sync_title("Modify Gig Info")
+    expect(page.title).to have_content("Modify Gig Info")
   end
 
   step 'I am sent to the Sign In page' do
@@ -146,6 +159,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'there is at least one existing gig' do
     @gig = FactoryGirl.create(:gig)
+  end
+
+  step 'I add a new gig' do
+    @new_gig = FactoryGirl.create(:gig)
   end
 
   step 'there is at least one unpublished gig' do
@@ -198,6 +215,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     has_flash_msg(severity: :alert, containing: "You must be an admin user to access that page")
   end
 
+  step 'I see an error message' do
+    has_form_error
+  end
+
   step 'I visit the Gig Management page directly' do
     visit manage_gigs_path
   end
@@ -237,5 +258,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(find(".schedule #{id_class} span.gig_name")).to have_content(gig.name)
     expect(find(".schedule #{id_class} span.gig_note")).to have_content(gig.note)
     expect(find(".schedule #{id_class} span.gig_location")).to have_content(gig.location)
+  end
+
+  def sync_title(text)
+    while page.title != text
+      puts "title = #{page.title}. sleeping..."
+    end
   end
 end

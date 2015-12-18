@@ -25,6 +25,10 @@ module Helpers
     expect(page.find(".flash .#{severity.to_s}").text).to match(Regexp.new(".*#{containing}.*"))
   end
 
+  def has_form_error(containing: nil)
+    expect(page.find(".form-error").text).to match(Regexp.new(".*#{containing}.*"))
+  end
+
   # Currently, poltergeist does not have the support for Capybara's accept_alert{}
   # this helper provides a workaround
   def my_accept_alert(&block)

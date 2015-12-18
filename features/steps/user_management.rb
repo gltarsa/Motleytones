@@ -109,6 +109,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     has_flash_msg(severity: :alert, containing: "Invalid email or password")
   end
 
+  step 'I see an error message' do
+    has_form_error
+  end
+
   step 'I see the new user name' do
     expect(page).to have_content(@user.name)
   end
@@ -156,7 +160,12 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     check "user_admin"
   end
 
-  step 'I click Add pirate' do
+  step 'I fill in the fields to have the same name as the other user' do
+    i_fill_in_the_fields
+    fill_in "user_name", with: @user.name
+  end
+
+  step 'I click Add' do
     click_link_or_button "Add pirate"
     sync_page
   end
