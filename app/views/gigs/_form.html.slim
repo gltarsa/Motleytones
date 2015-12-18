@@ -3,9 +3,9 @@
   .form-inputs
     = f.input :date, required: true
     = f.input :days
-    = f.input :name
-    = f.input :note
-    = f.input :location
+    = f.input :name, placeholder: "[event name](and link), plus optional other info"
+    = f.input :note, placeholder: "optional additional information"
+    = f.input :location, placeholder: "optional City, ST"
     = f.input :published
 
   .form-actions

@@ -21,5 +21,15 @@ article.user-information class="user-id-#{user.id}"
     |  #{user.updated_at.strftime("%d-%b-%Y %H:%M")}
   p.user_id.heading
     | ID: #{user.id}
-
-  = render 'shared/user_mgt_buttons', user: user
+  p.user-operations
+    - if current_user.admin? || current_user.id == user.id
+      => link_to "Edit Pirate",
+        edit_user_path(user),
+        method: :get,
+        class: "edit"
+    - if current_user.admin? && current_user != user
+      = link_to "Delete Pirate",
+        user_path(user),
+        method: :delete,
+        class: "delete",
+        data: { confirm: "Are you sure (action is permanent)?" }

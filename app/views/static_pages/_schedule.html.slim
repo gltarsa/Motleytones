@@ -6,14 +6,14 @@ section.main-content
         - if gig.date + gig.days >= Date.today
           - if gig.date.year != current_year
             - current_year = gig.date.year
-            = render 'shared/separator_pic', current_year: current_year
+            = render 'separator_pic', current_year: current_year
           li class="gig-id-#{gig.id}"
-            =render 'shared/gig_line', gig: gig
+            = render 'gigs/line', gig: gig
       hr
       - Gig.published_descending.each do |gig|
         - if gig.date + gig.days < Date.today
           - if gig.date.year != current_year
             - current_year = gig.date.year
-            = render 'shared/separator_pic', current_year: current_year
+            = render 'separator_pic', current_year: current_year
           li.expired class="gig-id-#{gig.id}"
-            =render 'shared/gig_line', gig: gig
+            = render 'gigs/line', gig: gig
