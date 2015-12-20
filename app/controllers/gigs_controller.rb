@@ -1,6 +1,8 @@
 class GigsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin, only: [ :manage, :new, :create, :edit, :destroy ]
+  before_action :set_gig,       only: [ :show, :edit, :update ]
+
   def new
     @gig = Gig.new
   end
@@ -17,7 +19,6 @@ class GigsController < ApplicationController
   end
 
   def show
-    @gig = Gig.find(params[:id])
   end
 
   def manage
@@ -25,11 +26,9 @@ class GigsController < ApplicationController
   end
 
   def edit
-    @gig = Gig.find(params[:id])
   end
 
   def update
-    @gig = Gig.find(params[:id])
     if @gig.update(allowed_gig_params)
       redirect_to gig_path(params[:id])
     else
@@ -44,6 +43,10 @@ class GigsController < ApplicationController
   end
 
   private
+
+  def set_gig
+    @gig = Gig.find(params[:id])
+  end
 
   def allowed_gig_params
     params.require(:gig).permit(:date, :days, :name, :note, :location, :published)

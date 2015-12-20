@@ -2,9 +2,9 @@ class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   before_action :authenticate_scope!
   before_action :require_admin, only: [ :new, :create, :destroy ]
+  before_action :set_user,      only: [ :show, :update ]
 
   def show
-    @user = User.find(params[:id])
   end
 
   def index
@@ -27,7 +27,7 @@ class UsersController < Devise::RegistrationsController
 
   def edit
     if current_user.id.to_s == params[:id] || current_user.admin?
-      @user = User.find(params[:id])
+      set_user
     else
       set_flash_message :alert, :must_be_admin
       redirect_to current_user
@@ -35,8 +35,6 @@ class UsersController < Devise::RegistrationsController
   end
 
   def update
-    @user = User.find(params[:id])
-
     remove_unused_password_pair_from_params
 
     if @user.update(allowed_user_params)
@@ -58,6 +56,10 @@ class UsersController < Devise::RegistrationsController
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def allowed_user_params
     if current_user.admin?
