@@ -5,15 +5,15 @@ section.main-content
       - Gig.published_ascending.each do |gig|
         - if gig.date + gig.days >= Date.today
           - if gig.date.year != current_year
-            = render 'separator_pic', year: current_year if current_year
             - current_year = gig.date.year
+            = render 'separator_pic', year: current_year
           li class="gig-id-#{gig.id}"
             = render 'gigs/line', gig: gig
       hr
       - Gig.published_descending.each do |gig|
         - if gig.date + gig.days < Date.today
           - if gig.date.year != current_year
-            = render 'separator_pic', year: current_year if current_year
             - current_year = gig.date.year
+            = render 'separator_pic', year: current_year
           li.expired class="gig-id-#{gig.id}"
             = render 'gigs/line', gig: gig
