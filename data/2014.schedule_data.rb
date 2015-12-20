@@ -2,7 +2,7 @@
 # <h2>2014 Performance Schedule</h2>
 Gig.create!( { published: true, date: "Mar 1, 2014", name: "[Garner Talent Showcase](http://www.garnerperformingartscenter.com/EventInformation.asp)", location:  "Garner Performing Arts Center" } )
 Gig.create!( { published: true, date: "Mar 16, 2014", name: "Private Party (Contact @info for yours!)" })
-Gig.create!( { published: true, date: "Mar 22, 2014", name: "[Ceilidh Irish Festival](http://www.townofcary.org/Departments/townmanagersoffice/pio/Annual_Events_Calendar/A_Ceilidh_at_The_Cary_s0_p24954.htm", location: "Cary, NC: 7pm" })
+Gig.create!( { published: true, date: "Mar 22, 2014", name: "[Ceilidh Irish Festival](http://www.townofcary.org/Departments/townmanagersoffice/pio/Annual_Events_Calendar/A_Ceilidh_at_The_Cary_s0_p24954.htm)", location: "Cary, NC: 7pm" })
 Gig.create!( { published: true, date: "Apr 5, 2014", name: "[Downtown Cary Farmer's Market](http://caryfarmersmarket.com/)", location: " Opening Day, Cary NC" })
 Gig.create!( { published: true, date: "Apr 6, 2014", name: "[Night in Tortuga](http://www.beaufortpirateinvasion.com/) Pancakes & Pirates Breakfast", location: "Beaufort NC" })
 Gig.create!( { published: true, date: "Apr 11, 2014", days: 2, name: "[PirateFest](http://www.piratefestnc.com)", location: "Greenville, NC" })
