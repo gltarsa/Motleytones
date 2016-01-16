@@ -10,11 +10,11 @@ section.main-content
       .row.schedule
         .ten.columns.offset-by-one
           article class="gig-id-#{gig.id}"
-            = render 'show', gig: gig
+            = render 'gig', gig: gig
 
   - Gig.all_descending.each do |gig|
     -if gig.date + gig.days < Date.today
       .row.schedule
         .ten.columns.offset-by-one
           article.expired class="gig-id-#{gig.id}"
-            = render 'show', gig: gig
+            = render 'gig', gig: gig

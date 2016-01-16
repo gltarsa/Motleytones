@@ -15,11 +15,12 @@ FactoryGirl.define do
   end
 end
 
+# ensures that faked dates are in a specified range
 def between(range)
-  # should return a integer between range.max and range.min
   (range.min + range.max) / 2
 end
 
+# ensures that faked names are not invalid due to length
 def proper_length_name
   name = ""
   name = Faker::Name.name until name.length > 13

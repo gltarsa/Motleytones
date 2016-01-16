@@ -1,7 +1,7 @@
 = render 'shared/display_errors', thing: @gig
 = simple_form_for @gig do |f|
   .form-inputs
-    = f.input :date, required: true
+    = f.input :date, required: true, start_year: 2010
     = f.input :days
     = f.input :name, placeholder: "[event name](and link), plus optional other info"
     = f.input :note, placeholder: "optional additional information"
@@ -9,5 +9,5 @@
     = f.input :published
 
   .form-actions
-    = f.button :submit, yield(:button_name)
+    = f.button :submit, button_name
     = link_to "Cancel", schedule_path

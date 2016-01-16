@@ -33,7 +33,7 @@ This app serves up the Motley Tones website.
 * Start PostgreSQL: ```pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start```
 * Stop PostgreSQL: ```pg_ctl -D /usr/local/var/postgres stop -s -m fast```
 
-Note: when upgrading Mac OS X you may find postgress does not start properly due to missing directories. These commands will create empty versions of those directories, which should remedy the problem:
+Note: when upgrading Mac OS X you may find postgres does not start properly due to missing directories. These commands will create empty versions of those directories, which should remedy the problem:
 
 ```mkdir /usr/local/var/postgres/{pg_tblspc,pg_twophase,pg_stat,pg_stat_tmp,pg_replslot,pg_snapshots}/```
 ```mkdir /usr/local/var/postgres/pg_logica{l,l/mappings,l/snapshots}```

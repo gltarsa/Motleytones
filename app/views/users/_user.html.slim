@@ -1,0 +1,37 @@
+.row
+  .ten.columns.offset-by-one.columns
+    article.user-information class="user-id-#{user.id}"
+      p.user_tone_name.heading
+        span Tone Name:
+        |  #{(user.tone_name) ? user.tone_name : "(none)"}
+      p.user_email
+        span.heading Email:
+        |  #{user.email}
+      p.user_start_date
+        span.heading Member since:
+        |  #{user.band_start_date.strftime("%d-%b-%Y")}
+      - if user.admin?
+        p.user_admin is an admin
+      p.user_name
+        span.heading User Name:
+        |  #{user.name}
+      p.user_created
+        span.heading Added:
+        |  #{user.created_at.strftime("%d-%b-%Y %H:%M")}
+      p.user_updated
+        span.heading Updated:
+        |  #{user.updated_at.strftime("%d-%b-%Y %H:%M")}
+      p.user_id.heading
+        | ID: #{user.id}
+      p.user-operations
+        - if current_user.admin? || current_user.id == user.id
+          => link_to "Edit Pirate",
+            edit_user_path(user),
+            method: :get,
+            class: "edit"
+        - if current_user.admin? && current_user != user
+          = link_to "Delete Pirate",
+            user_path(user),
+            method: :delete,
+            class: "delete",
+            data: { confirm: "Are you sure (action is permanent)?" }

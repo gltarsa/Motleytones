@@ -1,6 +1,4 @@
 = provide :title, 'Motley Users'
 section.main-content
   - @users.each do |user|
-    .row
-      .ten.columns.offset-by-one.columns
-        = render 'show', user: user
+    = render 'user', user: user

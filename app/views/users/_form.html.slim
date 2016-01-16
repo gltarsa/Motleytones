@@ -12,7 +12,7 @@
     = f.input :admin
 
   .form-actions
-    = f.button :submit, yield(:button_name)
+    = f.button :submit, button_name
     - if @user.persisted?
       = link_to "Cancel", users_path
     -else

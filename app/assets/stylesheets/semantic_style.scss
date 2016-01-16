@@ -34,11 +34,11 @@ header {
     margin-top:   1rem;
     padding-left: 1rem;
 
-    @media (#{$bp-larger-than-mobile}) { // 400px
+    @media ($bp-larger-than-mobile) { // 400px
       margin-top:   1rem;
       padding-left: 1rem;
     }
-    @media (#{$bp-larger-than-phablet}) { // 550px
+    @media ($bp-larger-than-phablet) { // 550px
       margin-top:   2rem;
       padding-left: 2rem;
     }
@@ -57,7 +57,7 @@ header {
 
     font-size: $logo-font-size;
     padding-bottom: .5rem;
-    @media (#{$bp-larger-than-mobile}) { // 400px
+    @media ($bp-larger-than-mobile) { // 400px
       font-size: $logo-font-size * 1.75;
       padding-bottom: 0;
     }
@@ -68,7 +68,7 @@ header {
       vertical-align: middle;
 
       width: $logo-size-mobile;
-      @media (#{$bp-larger-than-mobile}) { // 400px
+      @media ($bp-larger-than-mobile) { // 400px
         width: $logo-size-other;
       }
     }
@@ -103,13 +103,13 @@ nav {
       padding: .2rem .4rem;
     }
 
-    @media (#{$bp-larger-than-mobile}) { // 400px
+    @media ($bp-larger-than-mobile) { // 400px
       li {
         margin: 0 0 1rem 0;
       }
     }
 
-    @media (#{$bp-larger-than-phablet}) { // 550px
+    @media ($bp-larger-than-phablet) { // 550px
       font-size: 1.6rem;
 
       li {
@@ -122,7 +122,7 @@ nav {
       }
     }
 
-    @media (#{$bp-larger-than-tablet}) { // 750px
+    @media ($bp-larger-than-tablet) { // 750px
       li {
         line-height: $nav-row-height;
         margin-left: -10px;
@@ -136,7 +136,6 @@ nav {
       color: $text-color;
       text-decoration: none;
       border-radius: 6px;
-      // padding: 0.5em 1em 0.5em 1em;
       -moz-transition: background-color .25s ease-in-out;
       -webkit-transition: background-color .25s ease-in-out;
       -o-transition: background-color .25s ease-in-out;
@@ -194,7 +193,7 @@ article {
 
   padding: .5rem;
   font-size: 2rem;
-  @media (#{$bp-larger-than-phablet}) { // 550px
+  @media ($bp-larger-than-phablet) { // 550px
     padding: 2rem;
     font-size: 1.8rem;
   }
@@ -244,7 +243,7 @@ article {
 
     line-height: 2rem;
     font-size: 1rem;
-    @media (#{$bp-larger-than-phablet}) {
+    @media ($bp-larger-than-phablet) {
       line-height: 3rem;
       font-size: 1.6rem;
     }
@@ -390,6 +389,13 @@ img.image.adjustable {
   max-height: 13rem;
 }
 
+.image.home-banner {
+  width: 90%;
+}
+
+.image.thumbnail {
+  width: 120px;
+}
 
 /**********/
 /* Widgets
@@ -450,27 +456,13 @@ img.image.adjustable {
   background: #666666;
 }
 
-/***********/
-/* Wrappers    ??? Are these being used ???
-/***********/
-.banner-wrapper {
-}
-
-.main-wrapper {
-  background: #fff;
-  box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
-}
-
-.footer-wrapper {
-}
-
 /**********/
 /* General utility classes
 /**********/
 .container {
   margin-bottom: 1rem;
   width: 100%;
-  @media (#{$bp-larger-than-phablet}) { // 550px
+  @media ($bp-larger-than-phablet) { // 550px
     margin-bottom: 2rem;
     width: 95%;
   }
@@ -583,10 +575,10 @@ $schedule-box-margin: 0.3rem;
     line-height: 115%;
 
     font-size: 1.3rem;
-    @media (#{$bp-larger-than-phablet}) { // 550px
+    @media ($bp-larger-than-phablet) { // 550px
       font-size: 1.4rem;
     }
-    @media (#{$bp-larger-than-tablet}) { // 550px
+    @media ($bp-larger-than-tablet) { // 550px
       font-size: 1.6rem;
     }
 
@@ -613,7 +605,7 @@ $schedule-box-margin: 0.3rem;
   column-count: 1;
   -webkit-column-count: 1;
   -moz-column-count: 1;
-  @media (#{$bp-larger-than-phablet}) { // 550px
+  @media ($bp-larger-than-phablet) { // 550px
     column-count: 2;
     -webkit-column-count: 2;
     -moz-column-count: 2;

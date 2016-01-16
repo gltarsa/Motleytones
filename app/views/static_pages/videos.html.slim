@@ -7,7 +7,7 @@ section.main-content.container
           |  Motley Tones: Video Gallery
         p
           | Here are some videos provided by friends and fans. If you have any to share, please send the URL to us at
-          = mail_to "info@motleytones.com", nil, subject: "Video to share!"
+          =< mail_to "info@motleytones.com", nil, subject: "Video to share!"
             | info@motleytones.com.
           |  Thank you!
         center
@@ -22,13 +22,13 @@ section.main-content.container
                     tr
                       - [ "http://vimeo.com/105455785" ].each do |url|
                         td.thumbnail
-                          = link_to(image_tag("video-icons/ceilidh-cary.2014.png", alt: "Ceilidh @ The Cary", width: 120), url)
+                          = link_to(image_tag("video-icons/ceilidh-cary.2014.png", alt: "Ceilidh @ The Cary", class: "image thumbnail"), url)
                         td
                           = link_to "Being a Pirate & Cadgwith Anthem", url
                           | ; Intermission performance at the Ceilidh in Cary, March 2014
                     tr
                       td.thumbnail
-                        = link_to(image_tag("video-icons/shanty-mart.2013.png", alt: "Shanty Mart@Ocracoke", width: 120), \
+                        = link_to(image_tag("video-icons/shanty-mart.2013.png", alt: "Shanty Mart@Ocracoke", class: "image thumbnail"), \
                           "https://www.youtube.com/watch?v=MlImDGFzbWw&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI")
                       td
                         => link_to "Shanty Mart", "https://www.youtube.com/watch?v=MlImDGFzbWw&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI"
@@ -54,7 +54,7 @@ section.main-content.container
                     tr
                       - [ "http://www.youtube.com/watch?v=54o7FXbqCX8" ].each do |url|
                         td.thumbnail
-                          = link_to(image_tag("video-icons/he-that-drinks.jpg", alt: "He That Drinks", width: 120), url)
+                          = link_to(image_tag("video-icons/he-that-drinks.jpg", alt: "He That Drinks", class: "image thumbnail"), url)
                         td
                           | Purcell's
                           em
@@ -63,7 +63,7 @@ section.main-content.container
                     tr
                       - [ "http://www.youtube.com/watch?v=62RbLkq6G-4" ].each do |url|
                         td.thumbnail
-                          = link_to(image_tag("video-icons/cadgwith-anthem.jpg", alt: "Cadgwith Anthem", width: 120), url)
+                          = link_to(image_tag("video-icons/cadgwith-anthem.jpg", alt: "Cadgwith Anthem", class: "image thumbnail"), url)
                         td
                           em
                             = link_to "Cadgwith Anthem", url
@@ -74,7 +74,7 @@ section.main-content.container
                     tr
                       - [ "http://www.youtube.com/watch?v=BdW2dhZoFgE" ].each do |url|
                         td.thumbnail
-                          = link_to(image_tag("video-icons/bbf-bonnie-ship.jpg", alt: "Bonnie Ship", width: 120), url)
+                          = link_to(image_tag("video-icons/bbf-bonnie-ship.jpg", alt: "Bonnie Ship", class: "image thumbnail"), url)
                         td
                           em
                             => link_to "Bonnie Ship the Diamond", url
@@ -82,7 +82,7 @@ section.main-content.container
                     tr
                       - [ "http://www.youtube.com/watch?v=eZH2g4UPcGE" ].each do |url|
                         td.thumbnail
-                          = link_to(image_tag("video-icons/three-songs.jpg", alt: "Three Songs@Ocracoke", width: 120), url)
+                          = link_to(image_tag("video-icons/three-songs.jpg", alt: "Three Songs@Ocracoke", class: "image thumbnail"), url)
                         td
                           => link_to "Three songs:", url
                           em>
@@ -94,7 +94,7 @@ section.main-content.container
                     tr
                       - [ "http://www.youtube.com/watch?v=YaVTFjeQK98" ].each do |url|
                         td.thumbnail
-                          = link_to(image_tag("video-icons/bbf-mingulay.jpg", alt: "Mingulay Boat Song", width: 120), url)
+                          = link_to(image_tag("video-icons/bbf-mingulay.jpg", alt: "Mingulay Boat Song", class: "image thumbnail"), url)
                         td
                           em
                             => link_to "Mingulay Boat Song", "http://www.youtube.com/watch?v=YaVTFjeQK98"
@@ -102,7 +102,7 @@ section.main-content.container
                     tr
                       - [ "http://www.youtube.com/watch?v=SMLX3ADla94" ].each do |url|
                         td.thumbnail
-                          = link_to(image_tag("video-icons/bbf-hard-by-a-fountain.png", alt: "Hard by Fountain", width: 120), url)
+                          = link_to(image_tag("video-icons/bbf-hard-by-a-fountain.png", alt: "Hard by Fountain", class: "image thumbnail"), url)
                         td
                           | Excerpt from
                           em<

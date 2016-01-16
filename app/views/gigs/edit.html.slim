@@ -4,6 +4,4 @@ section.main-content.container
     .eight.columns.offset-by-two.columns
       article
         h2 Modify Gig Info
-
-        = provide :button_name, 'Update gig'
-        = render 'form'
+        = render 'form', button_name: 'Update gig'

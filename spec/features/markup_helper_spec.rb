@@ -20,11 +20,6 @@ describe MarkupHelper do
       expect(process_markup(raw_input)).to eql expanded
     end
 
-    # it "specially interpolates [Picture](<url-text>) as an image url" do
-    #   raw_input = "[Divider](http://picture.link.com)"
-    #   expect(process_markup(raw_input)).to eql "prefix <a href='http://html.link.com'>HTML link</a> suffix"
-    # end
-
     it "converts the @info token to a mailto link when not part of a word" do
       examples = [
         [ "just @info as a word", "just <a href=\"mailto:info@motleytones.com\">info@motleytones.com</a> as a word" ],

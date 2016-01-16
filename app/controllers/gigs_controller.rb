@@ -1,7 +1,7 @@
 class GigsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin, only: [ :manage, :new, :create, :edit, :destroy ]
-  before_action :set_gig,       only: [ :show, :edit, :update ]
+  before_action :set_gig,       only: [ :show, :edit, :update, :destroy ]
 
   def new
     @gig = Gig.new
@@ -11,7 +11,6 @@ class GigsController < ApplicationController
     @gig = Gig.new(allowed_gig_params)
     if @gig.save
       flash[:notice] = "New gig added. #{total_msg}"
-      #set_flash_message :notice, :new_gig_added, count: Gig.count
       redirect_to @gig
     else
       render :new
@@ -37,7 +36,7 @@ class GigsController < ApplicationController
   end
 
   def destroy
-    Gig.find(params[:id]).destroy
+    @gig.destroy
     flash[:notice] = "gig deleted.  #{total_msg}"
     redirect_to manage_gigs_path()
   end

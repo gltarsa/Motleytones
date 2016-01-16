@@ -2,7 +2,7 @@ class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   before_action :authenticate_scope!
   before_action :require_admin, only: [ :new, :create, :destroy ]
-  before_action :set_user,      only: [ :show, :update ]
+  before_action :set_user,      only: [ :show, :update, :destroy ]
 
   def show
   end
@@ -48,7 +48,7 @@ class UsersController < Devise::RegistrationsController
     if current_user.id.to_s == params[:id]
       set_flash_message :alert, :cannot_delete_own_account
     else
-      User.find(params[:id]).destroy
+      @user.destroy
       set_flash_message :notice, :pirate_deleted, count: User.count
     end
 
