@@ -1,15 +1,17 @@
 default: &default
   adapter:  <%= ENV["DATABASE_ADAPTER"] %>
-  database: <%= ENV["DATABASE_NAME"] %>
   encoding: <%= ENV["DATABASE_ENCODING"] %>
   pool:     <%= ENV["DATABASE_POOL"] %>
   timeout:  <%= ENV["DATABASE_TIMEOUT"] %>
 
 development:
   <<: *default
+  database: <%= motley_development
 
 test:
   <<: *default
+  database: motley_test
 
 production:
   <<: *default
+  database: motley_production
