@@ -21,11 +21,14 @@ group :development, :test do
   gem 'spinach-rails', '~> 0.2'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'pry-byebug'
-  gem 'web-console', '~> 2.0'  # console when execption or <%= console %> in views
   gem 'spring'
   gem 'pry-rescue'
   gem 'database_cleaner', '~> 1.4'
   gem 'faker'
+end
+
+group :development do
+  gem 'web-console', '~> 2.0'  # console when execption or <%= console %> in views
 end
 
 group :production do
