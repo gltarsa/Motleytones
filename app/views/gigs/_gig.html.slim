@@ -1,5 +1,5 @@
 li
-  = render 'line', gig: gig
+  = render 'gig_oneline', gig: gig
 hr
 
 .schedule-information
@@ -9,7 +9,7 @@ hr
     - if gig.days > 1
       span.heading>  thru
       span.gig_days<
-        |  #{(gig.date + gig.days).strftime("%d-%b-%y")}
+        |  #{(gig.date + gig.days - 1).strftime("%d-%b-%y")}
         |  (#{gig.days} days)
   p.gig_name
     span.heading> Name:
