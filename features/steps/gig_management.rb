@@ -157,6 +157,26 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     @gig = FactoryGirl.create(:gig, published: true)
   end
 
+  step 'there is at least one published one-day gig dated yesterday' do
+    @gig = FactoryGirl.create(:gig, published: true, days: 1, date: Date.yesterday)
+  end
+
+  step 'there is at least one published two-day gig dated yesterday' do
+    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Date.yesterday)
+  end
+
+  step 'there is at least one published two-day gig dated two days ago' do
+    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Date.today - 2)
+  end
+
+  step 'there is at least one published two-day gig dated three days ago' do
+    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Date.today - 3)
+  end
+
+  step 'there is at least one published one-day gig dated two days ago' do
+    @gig = FactoryGirl.create(:gig, published: true, days: 1, date: Date.today - 2)
+  end
+
   step 'there is at least one existing gig' do
     @gig = FactoryGirl.create(:gig)
   end
@@ -169,12 +189,38 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     @unpublished_gig = FactoryGirl.create(:gig, published: false)
   end
 
+  step 'there is at least one unpublished one-day gig dated two days ago' do
+    @unpublished_gig = FactoryGirl.create(:gig, published: false, days: 1, date: Date.today - 2)
+  end
+
   step 'I go to the Schedule Page' do
     visit schedule_path
   end
 
   step 'I see the published gig' do
     i_see_information_for_a_gig
+  end
+
+  step 'I see the published gig is expired' do
+    i_see_information_for_a_gig
+    verify_gig_expired(@gig)
+  end
+
+  step 'I see the published gig is active' do
+    i_see_information_for_a_gig
+    verify_gig_active(@gig)
+  end
+
+  step 'I see the unpublished gig is expired' do
+    gig = Gig.where(name: @unpublished_gig.name).where(location: @unpublished_gig.location).first
+    verify_gig_schedule(gig)
+    verify_gig_expired(gig)
+  end
+
+  step 'I see the unpublished gig is active' do
+    gig = Gig.where(name: @unpublished_gig.name).where(location: @unpublished_gig.location).first
+    verify_gig_schedule(gig)
+    verify_gig_active(gig)
   end
 
   step 'I go to the Schedule Page' do
@@ -258,6 +304,14 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(find(".schedule #{id_class} span.gig_name")).to have_content(gig.name)
     expect(find(".schedule #{id_class} span.gig_note")).to have_content(gig.note)
     expect(find(".schedule #{id_class} span.gig_location")).to have_content(gig.location)
+  end
+
+  def verify_gig_expired(gig)
+    expect(page).to have_css(".gig-id-#{gig.id}.expired")
+  end
+
+  def verify_gig_active(gig)
+    expect(page).not_to have_css(".gig-id-#{gig.id}.expired")
   end
 
   def sync_title(text)

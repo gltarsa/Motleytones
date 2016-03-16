@@ -130,3 +130,47 @@ Feature: Gig Management
     When I navigate to the Manage Gigs page
     Then I see information for the published gig
     And  I see information for the unpublished gig
+
+  @javascript
+  Scenario: A one day gig that is one day past is active
+    Given I am signed in as an admin user
+    And there is at least one published one-day gig dated yesterday
+    When I navigate to the Performance Schedule page
+    Then I see the published gig is active
+
+  @javascript
+  Scenario: A one day gig that is two days past is marked expired on the schedule page
+    Given I am signed in as an admin user
+    And there is at least one published one-day gig dated two days ago
+    When I navigate to the Performance Schedule page
+    Then I see the published gig is expired
+
+  @javascript
+  Scenario: A one day gig that is two days past is marked expired on the Gig Management page
+    Given I am signed in as an admin user
+    And there is at least one published one-day gig dated two days ago
+    And there is at least one unpublished one-day gig dated two days ago
+    When I navigate to the Manage Gigs page
+    Then I see the published gig is expired
+    And  I see the unpublished gig is expired
+
+  @javascript
+  Scenario: A two day gig that is two days past is active
+    Given I am signed in as an admin user
+    And there is at least one published two-day gig dated two days ago
+    When I navigate to the Performance Schedule page
+    Then I see the published gig is active
+
+  @javascript
+  Scenario: A two day gig that is three days past is marked expired
+    Given I am signed in as an admin user
+    And there is at least one published two-day gig dated three days ago
+    When I navigate to the Performance Schedule page
+    Then I see the published gig is expired
+
+  @javascript
+  Scenario: A two day gig that is one day past is active
+    Given I am signed in as an admin user
+    And there is at least one published two-day gig dated yesterday
+    When I navigate to the Performance Schedule page
+    Then I see the published gig is active
