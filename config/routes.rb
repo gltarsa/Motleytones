@@ -13,5 +13,4 @@ Rails.application.routes.draw do
   get 'videos'   => 'static_pages#videos'
 
   resources :gigs
-  get 'manage_gigs'   => 'gigs#manage'
 end

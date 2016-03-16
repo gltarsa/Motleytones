@@ -1,6 +1,6 @@
 class GigsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin, only: [ :manage, :new, :create, :edit, :destroy ]
+  before_action :require_admin, only: [ :index, :new, :create, :edit, :destroy ]
   before_action :set_gig,       only: [ :show, :edit, :update, :destroy ]
 
   def new
@@ -20,7 +20,7 @@ class GigsController < ApplicationController
   def show
   end
 
-  def manage
+  def index
     @gigs = Gig.all
   end
 
@@ -38,7 +38,7 @@ class GigsController < ApplicationController
   def destroy
     @gig.destroy
     flash[:notice] = "gig deleted.  #{total_msg}"
-    redirect_to manage_gigs_path()
+    redirect_to gigs_path()
   end
 
   private

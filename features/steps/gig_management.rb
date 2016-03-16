@@ -266,7 +266,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I visit the Gig Management page directly' do
-    visit manage_gigs_path
+    visit gigs_path
   end
 
   step 'I visit the Add Gig page directly' do
