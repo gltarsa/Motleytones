@@ -42,7 +42,7 @@ header
                     li
                       = link_to "Manage Pirates", users_path
                   li
-                    = link_to "Sign Out", destroy_user_session_path, method: :delete
+                    = button_to "Sign Out", destroy_user_session_path, method: :delete
                 - else
                   li
                     = link_to "Sign in", new_user_session_path
