@@ -24,7 +24,8 @@ describe MarkupHelper do
       examples = [
         [ "just @info as a word", "just <a href=\"mailto:info@motleytones.com\">info@motleytones.com</a> as a word" ],
         [ "using (@info) in parentheses", "using (<a href=\"mailto:info@motleytones.com\">info@motleytones.com</a>) in parentheses" ],
-        [ "at the end of a sentence: @info.", "at the end of a sentence: <a href=\"mailto:info@motleytones.com\">info@motleytones.com</a>." ]
+        [ "at the end of a sentence: @info.", "at the end of a sentence: <a href=\"mailto:info@motleytones.com\">info@motleytones.com</a>." ],
+        [ "at the end of a line/section: @info", "at the end of a line/section: <a href=\"mailto:info@motleytones.com\">info@motleytones.com</a>" ]
       ]
 
       examples.each do |example|
