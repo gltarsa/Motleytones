@@ -11,7 +11,7 @@ module MarkupHelper
   # replace "@info" token with motleytones info address
   #
   def process_info(raw)
-    info_re = /@info([^a-zA-Z])/
+    info_re = /@info([^a-zA-Z]|$)/
     mail_url = mail_to("info@motleytones.com")
     raw.gsub(info_re, "#{mail_url}\\1")
   end
