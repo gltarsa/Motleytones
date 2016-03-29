@@ -1,5 +1,5 @@
-= render 'shared/display_errors', thing: @gig
-= simple_form_for @gig do |f|
+= render 'shared/display_errors', thing: gig
+= simple_form_for gig do |f|
   .form-inputs
     = f.input :date, required: true, start_year: 2010
     = f.input :days

@@ -1,7 +1,6 @@
 class GigsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin, only: [ :index, :new, :create, :edit, :destroy ]
-  before_action :set_gig,       only: [ :show, :edit, :update, :destroy ]
 
   def new
     @gig = Gig.new
@@ -9,9 +8,9 @@ class GigsController < ApplicationController
 
   def create
     @gig = Gig.new(allowed_gig_params)
-    if @gig.save
+    if gig.save
       flash[:notice] = "New gig added. #{total_msg}"
-      redirect_to @gig
+      redirect_to gig
     else
       render :new
     end
@@ -28,7 +27,7 @@ class GigsController < ApplicationController
   end
 
   def update
-    if @gig.update(allowed_gig_params)
+    if gig.update(allowed_gig_params)
       redirect_to gig_path(params[:id])
     else
       render :edit
@@ -36,16 +35,17 @@ class GigsController < ApplicationController
   end
 
   def destroy
-    @gig.destroy
+    gig.destroy
     flash[:notice] = "gig deleted.  #{total_msg}"
     redirect_to gigs_path()
   end
 
   private
 
-  def set_gig
-    @gig = Gig.find(params[:id])
+  def gig
+    @gig ||= Gig.find(params[:id])
   end
+  helper_method :gig
 
   def allowed_gig_params
     params.require(:gig).permit(:date, :days, :name, :note, :location, :published)
