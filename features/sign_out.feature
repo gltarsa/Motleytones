@@ -4,5 +4,5 @@ Feature: Sign-Out
   @javascript
   Scenario: A user who is signed into the app can sign out
     Given I am signed in as a non-admin user
-    When I navigate to the Sign Out link
+    When I navigate to Sign Out
     Then I see a success message containing "Signed out successfully"

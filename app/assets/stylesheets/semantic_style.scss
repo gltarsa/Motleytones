@@ -34,17 +34,19 @@ header {
     margin-top:   1rem;
     padding-left: 1rem;
 
-    @media (#{$bp-larger-than-mobile}) { // 400px
+    @media ($bp-larger-than-mobile) { // 400px
       margin-top:   1rem;
       padding-left: 1rem;
     }
-    @media (#{$bp-larger-than-phablet}) { // 550px
+    @media ($bp-larger-than-phablet) { // 550px
       margin-top:   2rem;
       padding-left: 2rem;
     }
   }
 
-  .row { min-height: $nav-row-height; }
+  .row {
+    min-height: $nav-row-height;
+  }
 
   .logo {
     color: $text-color;
@@ -55,7 +57,7 @@ header {
 
     font-size: $logo-font-size;
     padding-bottom: .5rem;
-    @media (#{$bp-larger-than-mobile}) { // 400px
+    @media ($bp-larger-than-mobile) { // 400px
       font-size: $logo-font-size * 1.75;
       padding-bottom: 0;
     }
@@ -66,7 +68,7 @@ header {
       vertical-align: middle;
 
       width: $logo-size-mobile;
-      @media (#{$bp-larger-than-mobile}) { // 400px
+      @media ($bp-larger-than-mobile) { // 400px
         width: $logo-size-other;
       }
     }
@@ -89,15 +91,51 @@ nav {
       margin-bottom: 0;
     }
 
+    // TODO: either user this .active class or delete it
+    li.active a,
+    li.active span {
+      background: $nav-button-bkg;
+    }
+
+    li.link_button a {
+      background: $nav-button-bkg;
+      color: $text-color;
+      padding: .2rem .4rem;
+    }
+
+    @media ($bp-larger-than-mobile) { // 400px
+      li {
+        margin: 0 0 1rem 0;
+      }
+    }
+
+    @media ($bp-larger-than-phablet) { // 550px
+      font-size: 1.6rem;
+
+      li {
+        padding-left: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      li.link_button a {
+        padding: .8rem 1.5rem;
+      }
+    }
+
+    @media ($bp-larger-than-tablet) { // 750px
+      li {
+        line-height: $nav-row-height;
+        margin-left: -10px;
+      }
+    }
+
     li,
     li a,
     li span {
       font-weight: 800;
-      //letter-spacing: 0.025em;
       color: $text-color;
       text-decoration: none;
       border-radius: 6px;
-      // padding: 0.5em 1em 0.5em 1em;
       -moz-transition: background-color .25s ease-in-out;
       -webkit-transition: background-color .25s ease-in-out;
       -o-transition: background-color .25s ease-in-out;
@@ -112,39 +150,6 @@ nav {
     li:hover a,
     li:hover span {
       background: $nav-button-bkg;
-    }
-
-    li.active a,
-    li.active span {
-      background: $nav-button-bkg;
-    }
-
-    li.current a {
-      background: $nav-button-bkg;
-      color: $text-color;
-      padding: .2rem .4rem;
-    }
-
-    @media (#{$bp-larger-than-mobile}) { // 400px
-      li { margin: 0 0 1rem 0; }
-    }
-
-    @media (#{$bp-larger-than-phablet}) { // 550px
-      font-size: 1.6rem;
-
-      li {
-        padding-left: 3rem;
-        margin-bottom: 1rem;
-      }
-
-      li.current a {
-        padding: .8rem 1.5rem;
-      }
-    }
-
-    @media (#{$bp-larger-than-tablet}) { // 750px
-      li { line-height: $nav-row-height; }
-      li { margin-left: -10px; }
     }
   }
 }
@@ -188,7 +193,7 @@ article {
 
   padding: .5rem;
   font-size: 2rem;
-  @media (#{$bp-larger-than-phablet}) { // 550px
+  @media ($bp-larger-than-phablet) { // 550px
     padding: 2rem;
     font-size: 1.8rem;
   }
@@ -238,7 +243,7 @@ article {
 
     line-height: 2rem;
     font-size: 1rem;
-    @media (#{$bp-larger-than-phablet}) {
+    @media ($bp-larger-than-phablet) {
       line-height: 3rem;
       font-size: 1.6rem;
     }
@@ -380,6 +385,17 @@ img.image.adjustable {
   width: auto;
 }
 
+.image.separator {
+  max-height: 13rem;
+}
+
+.image.home-banner {
+  width: 90%;
+}
+
+.image.thumbnail {
+  width: 120px;
+}
 
 /**********/
 /* Widgets
@@ -440,27 +456,13 @@ img.image.adjustable {
   background: #666666;
 }
 
-/***********/
-/* Wrappers    ??? Are these being used ???
-/***********/
-.banner-wrapper {
-}
-
-.main-wrapper {
-  background: #fff;
-  box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.05);
-}
-
-.footer-wrapper {
-}
-
 /**********/
 /* General utility classes
 /**********/
 .container {
   margin-bottom: 1rem;
   width: 100%;
-  @media (#{$bp-larger-than-phablet}) { // 550px
+  @media ($bp-larger-than-phablet) { // 550px
     margin-bottom: 2rem;
     width: 95%;
   }
@@ -470,10 +472,17 @@ img.image.adjustable {
   .error_notification {
     color: red;
   }
+  // disable simple_form errors in favor of explicit "top of container" errors
   .error{
-    color: red;
-    font-weight: 600;
+    display: none;
   }
+
+  #gig_note, #gig_name { width: 100%; }
+  #gig_location { width: 50%; }
+  #gig_days { width: 10%; }
+
+  #user_name, #user_tone_name { width: 75%; }
+  #user_email { width: 50% }
 }
 
 .flash {
@@ -502,7 +511,7 @@ img.image.adjustable {
   padding: 1rem 1rem ;
 }
 
-.error_explanation {
+.form-error{
   color: red;
   ul {
     color: red;
@@ -515,6 +524,10 @@ img.image.adjustable {
   color: red;
   margin: 0 0 2em 0;
 }
+
+.expired {
+    text-decoration: line-through;
+  }
 
 /*
   TODO 8/20/2015: Current status: hints are hidden, but have
@@ -544,7 +557,15 @@ form input:required:valid + .hint {background: #28921f;} /* change form hint col
 // Schedule box (main page)
 $schedule-box-margin: 0.3rem;
 .schedule {
-  h3 { margin-left: $schedule-box-margin; }
+  hr {
+    margin: .5rem 0;
+  }
+  h3 {
+    margin-left: $schedule-box-margin;
+  }
+  li {
+    margin: 0
+  }
   ul {
     color: $main-text-color;
     font-weight: normal;
@@ -554,15 +575,11 @@ $schedule-box-margin: 0.3rem;
     line-height: 115%;
 
     font-size: 1.3rem;
-    @media (#{$bp-larger-than-phablet}) { // 550px
+    @media ($bp-larger-than-phablet) { // 550px
       font-size: 1.4rem;
     }
-    @media (#{$bp-larger-than-tablet}) { // 550px
+    @media ($bp-larger-than-tablet) { // 550px
       font-size: 1.6rem;
-    }
-
-    .strike {
-      text-decoration: line-through;
     }
 
     li {
@@ -584,13 +601,25 @@ $schedule-box-margin: 0.3rem;
   ul { margin-bottom: 0; }
 }
 
-.user-information {
-  p { margin-bottom: 0; }
-}
-
-p.user_admin {
-  margin: .2rem .2rem;
-  font-weight: 600;
+.user-information, .schedule-information {
+  column-count: 1;
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+  @media ($bp-larger-than-phablet) { // 550px
+    column-count: 2;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  .heading {
+    font-weight: 600;
+  }
+  .user_admin {
+    margin: .2rem .2rem;
+    font-weight: 600;
+  }
 }
 
 .video-list {

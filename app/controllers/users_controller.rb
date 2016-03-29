@@ -2,9 +2,9 @@ class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   before_action :authenticate_scope!
   before_action :require_admin, only: [ :new, :create, :destroy ]
+  before_action :set_user,      only: [ :show, :update, :destroy ]
 
   def show
-    @user = User.find(params[:id])
   end
 
   def index
@@ -16,7 +16,7 @@ class UsersController < Devise::RegistrationsController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(allowed_user_params)
     if @user.save
       set_flash_message :notice, :new_pirate_added, count: User.count
       redirect_to @user
@@ -27,7 +27,7 @@ class UsersController < Devise::RegistrationsController
 
   def edit
     if current_user.id.to_s == params[:id] || current_user.admin?
-      @user = User.find(params[:id])
+      set_user
     else
       set_flash_message :alert, :must_be_admin
       redirect_to current_user
@@ -35,11 +35,9 @@ class UsersController < Devise::RegistrationsController
   end
 
   def update
-    @user = User.find(params[:id])
-
     remove_unused_password_pair_from_params
 
-    if @user.update(user_params)
+    if @user.update(allowed_user_params)
       redirect_to users_path
     else
       render :edit
@@ -50,7 +48,7 @@ class UsersController < Devise::RegistrationsController
     if current_user.id.to_s == params[:id]
       set_flash_message :alert, :cannot_delete_own_account
     else
-      User.find(params[:id]).destroy
+      @user.destroy
       set_flash_message :notice, :pirate_deleted, count: User.count
     end
 
@@ -59,11 +57,20 @@ class UsersController < Devise::RegistrationsController
 
   private
 
-  def user_params
-    if current_user.admin?
-      params.require(:user).permit(:name, :email, :tone_name, :password, :password_confirmation, :band_start_date, :admin)
-    else
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :tone_name, :band_start_date)
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def allowed_user_params
+    allowed = %i( name email password password_confirmation tone_name band_start_date )
+    allowed << :admin if current_user.admin?
+    params.require(:user).permit(*allowed)
+  end
+
+  def remove_unused_password_pair_from_params
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
     end
   end
 
@@ -71,13 +78,6 @@ class UsersController < Devise::RegistrationsController
     unless current_user.admin?
       set_flash_message :alert, :must_be_admin
       redirect_to root_path
-    end
-  end
-
-  def remove_unused_password_pair_from_params
-    if params[:user][:password].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
     end
   end
 end

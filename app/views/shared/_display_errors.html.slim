@@ -1,0 +1,7 @@
+-if thing.errors.any?
+  .form-error
+    p #{pluralize(thing.errors.count, "error")} prevented this #{thing.class.to_s.downcase} from being saved
+    ul
+      - thing.errors.full_messages.each do |msg|
+        li = msg
+

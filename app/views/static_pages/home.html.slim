@@ -5,16 +5,16 @@ section.main-content.container.simple-print
       .one-half.column
         h1 We are the Motley Tones!
         h3 The Mid-Atlantic's Premiere Purveyors of Music+Mayhem
-        = image_tag "banner_home.jpg", alt: "home banner", width: "90%"
+        = image_tag "banner_home.jpg", alt: "home banner", class: "image home-banner"
         p
           | We have pub shows, stage shows, and can perform as strolling minstrels to entertain adults and children alike. So
-          a<[href="booking.html"] book a performance
-          |  and add some pirate songs and pirate swagger to your next event! Or check out our
-          a<[href="https://www.facebook.com/MotleyTones"] Facebook page
-          |  for the latest news+chatter.
+          =<> link_to "book a performance", "booking.html"
+          | and add some pirate songs and pirate swagger to your next event! Or check out our
+          =<> link_to "Facebook page", "https://www.facebook.com/MotleyTones"
+          | for the latest news+chatter.
       .one-half.column
         .schedule.scroll
-          = render "shared/schedule"
+          = render "schedule"
 
 section.details.container.simple-print
   .row

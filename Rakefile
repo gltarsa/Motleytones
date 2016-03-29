@@ -4,3 +4,10 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+# propagate RAILS_ENV value set in env and .env_overrides
+task :test_environment do
+  ENV["RAILS_ENV"] = "test"
+end
+
+task spec: [ :test_environment ]

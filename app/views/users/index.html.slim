@@ -1,6 +1,3 @@
 = provide :title, 'Motley Users'
 section.main-content
-  - @users.each do |user|
-    .row
-      .eight.columns.offset-by-two.columns
-        = render 'shared/user', user: user
+  = render partial: "user", collection: @users

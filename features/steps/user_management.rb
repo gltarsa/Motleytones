@@ -21,12 +21,12 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     find("li.navigation").hover
     click_link "Add Pirate"
     sync_page
-    expect(page.title).to eq("Add New Pirate")
+    expect(page.title).to eq("Add Pirate")
   end
 
-  step 'I navigate to the Users page' do
+  step 'I navigate to the Manage Pirates page' do
     find("li.navigation").hover
-    click_link "List Pirates"
+    click_link "Manage Pirates"
     sync_page
     expect(page.title).to eq("Motley Users")
   end
@@ -48,7 +48,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     visit new_user_path
   end
 
-  step 'I visit the Users page directly' do
+  step 'I visit the Manage Pirates page directly' do
     visit users_path
   end
 
@@ -56,8 +56,8 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     visit edit_user_path(1)  # any user id will work for this test
   end
 
-  step 'I do not see a List Users link' do
-    expect(page).to have_no_link("List Users")
+  step 'I do not see a Manage Pirates link' do
+    expect(page).to have_no_link("Manage Pirates")
   end
 
   step 'I do not see an Add Pirate link' do
@@ -76,7 +76,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(page).to have_no_button("Delete")
   end
 
-  step 'I am sent to the Change User Information page' do
+  step 'I am sent to the Change Pirate Information page' do
     expect(page.title).to eq("Modify Pirate Profile")
   end
 
@@ -109,13 +109,17 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     has_flash_msg(severity: :alert, containing: "Invalid email or password")
   end
 
+  step 'I see an error message' do
+    has_form_error
+  end
+
   step 'I see the new user name' do
     expect(page).to have_content(@user.name)
   end
 
   step 'I click Edit' do
     # need test to see that the page is for the right user
-    click_on "Edit Info"
+    click_on "Edit Pirate"
     sync_page
   end
 
@@ -126,7 +130,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I click Delete and confirm deletion for that other user' do
     my_accept_alert do
-      user_article(@another_user).find("form.button_to .delete").click
+      user_article(@another_user).find(".delete").click
     end
     sync_page
   end
@@ -149,14 +153,19 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     @another_user = FactoryGirl.build(:user)
     fill_in "user_name", with: @another_user.name
     fill_in "user_tone_name", with: @another_user.tone_name
-    select_date(@band_start_date)
+    set_date("user_band_start_date", @band_start_date)
     fill_in "user_email", with: @another_user.email
-    fill_in "user_password", with: PASSWORD
-    fill_in "user_password_confirmation", with: PASSWORD
+    fill_in "user_password", with: SOME_PASSWORD
+    fill_in "user_password_confirmation", with: SOME_PASSWORD
     check "user_admin"
   end
 
-  step 'I click Add pirate' do
+  step 'I fill in the fields to have the same name as the other user' do
+    i_fill_in_the_fields
+    fill_in "user_name", with: @user.name
+  end
+
+  step 'I click Add' do
     click_link_or_button "Add pirate"
     sync_page
   end
@@ -235,12 +244,12 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I enter a registered email' do
-    @user = FactoryGirl.create(:user, password: PASSWORD)
+    @user = FactoryGirl.create(:user, password: SOME_PASSWORD)
     fill_in("user_email", with: @user.email)
   end
 
   step 'I enter the associated password' do
-    fill_in("user_password", with: PASSWORD)
+    fill_in("user_password", with: SOME_PASSWORD)
   end
 
   step 'I enter an unregistered email' do
@@ -257,16 +266,6 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     find("article.user-id-#{user.id}")
   end
 
-  def change(item)
-    item[0] + "changed" + item[1..-1]
-  end
-
-  def select_date(date)
-    find("#user_band_start_date_1i").select(Date.parse(date).year)
-    find("#user_band_start_date_2i").select(Date::MONTHNAMES[Date.parse(date).month])
-    find("#user_band_start_date_3i").select(Date.parse(date).day)
-  end
-
   # support for unit testy way to check for attribute changes
   def raw_mutable_attributes(user)
     user.attributes.slice("name", "tone_name", "email", "user_start_date")
@@ -278,7 +277,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     fill_in "user_name",       with: change(user.name)
     fill_in "user_tone_name",  with: change(user.tone_name)
     fill_in "user_email",      with: change(user.email)
-    select_date(@changed_date)
+    set_date("user_band_start_date", @changed_date)
   end
 
   def expect_mutable_fields_to_be_changed(user)

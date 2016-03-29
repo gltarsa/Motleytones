@@ -5,5 +5,4 @@ section.main-content.container
       article
         h2
           | Modify Pirate Profile for #{@user.name} (#{@user.tone_name})
-        = provide :button_name, 'Update'
-        = render "shared/user_fields"
+        = render "form", button_name: 'Update'

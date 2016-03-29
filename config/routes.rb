@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get 'schedule' => 'static_pages#schedule'
   get 'photos'   => 'static_pages#photos'
   get 'videos'   => 'static_pages#videos'
+
+  resources :gigs
 end

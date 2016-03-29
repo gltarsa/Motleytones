@@ -3,11 +3,11 @@ section.main-content.container
   article
     .row
       h2 Photo Gallery
+      p Thanks for your interest in The Motley Tones. These pages contain some pictures of us in action. They come from various sources: some we take ourselves, many come from friends and fans. Be patient.  It may take a minute or more to load this page.
       p
-        | Thanks for your interest in The Motley Tones. These pages contain some pictures of us in action. They come from various sources: some we take ourselves, many come from friends and fans. If you have a picture of us, please send it to us at
-        a<[href="mailto:info@motleytones.com"]
-          | info@motleytones.com
-        |  and give us permission to put it on our web pages.
+        | If you have a picture of us, please send it to us at
+        =<> mail_to "info@motleytones.com", nil, subject: "Here's a picture!"
+        | and give us permission to put it on our web pages.
       p
         / albums excluded: Profile Pics, Cover Photos Bos'n Gibbs, MerFest 2014, Photos Previously Lost at Sea
         / setting width to 100% makes the resulting iframe responsive

@@ -1,0 +1,6 @@
+- separator_file =  "schedule_separator.#{year}.jpg"
+- if year != Date.today.year && Rails.application.assets.find_asset(separator_file)
+  hr
+  = image_tag separator_file, alt: "${year} separator", class: "image separator"
+h3 #{year} Performance Schedule
+

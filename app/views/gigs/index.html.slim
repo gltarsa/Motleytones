@@ -1,0 +1,18 @@
+= provide :title, "Manage Gigs"
+section.main-content
+  .row
+    .two.columns.offset-by-one.schedule
+      article
+        = link_to "Add gig", new_gig_path
+
+    - Gig.active.ascending.each do |gig|
+      .row.schedule
+        .ten.columns.offset-by-one
+          article class="gig-id-#{gig.id}"
+            = render "gig", gig: gig
+
+    - Gig.expired.descending.each do |gig|
+      .row.schedule
+        .ten.columns.offset-by-one
+          article class="gig-id-#{gig.id} expired"
+            = render "gig", gig: gig

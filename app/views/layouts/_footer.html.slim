@@ -7,15 +7,15 @@ footer
             | Our Friends
           ul.widget.friend-list
             li
-              a[href="http://collegenannies.com/carync"] College Nannies+Tutors | Cary
+              = link_to "College Nannies + Tutors | Cary", "http://collegenannies.com/carync"
             li
-              a[href="http://www.shadowcombat.com/"] Shadow Players Stage Combat
+              = link_to "Shadow Players Stage Combat", "http://www.shadowcombat.com/"
             li
-              a[href="http://www.hystericallycorrect.com/"] Hysterically Correct Pirate Crew
+              = link_to "Hysterically Correct Pirate Crew", "http://www.hystericallycorrect.com/"
             li
-              a[href="http://www.yourdoorandmore.com/"] Your Door & More Illustrations
+              = link_to "Your Door & More Illustrations", "http://www.yourdoorandmore.com/"
             li
-              a[href="mailto:YCovington@gmail.com&subject=Inquiry from Motley Tones Website"] Bagpiping by Yance Covington
+              = mail_to "YCovington@gmail.com", "Bagpiping by Yance Covington", subject: "Inquiry from Motley Tones Website"
 
       .one-third.column
         section.widget.contact
@@ -23,11 +23,11 @@ footer
             | Contact Us
           ul
             li
-              =link_to "http://www.facebook.com/motleytones", class: "icon fa fa-facebook" do
+              = link_to "http://www.facebook.com/motleytones", class: "icon fa fa-facebook" do
                 span.label
                   | Facebook
           p.simple-print
-            =mail_to "info@motleytones.com",
+            = mail_to "info@motleytones.com",
               "info@motleytones.com",
               subject: "Motley Tones information needed"
 

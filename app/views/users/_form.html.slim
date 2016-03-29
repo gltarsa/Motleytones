@@ -1,6 +1,6 @@
+= render 'shared/display_errors', thing: @user
 = simple_form_for @user do |f|
   - if_new = (@user.new_record?)
-  = f.error_notification
   .form-inputs
     = f.input :name, required: if_new, autofocus: true, placeholder: "<real name>", hint: "Your actual name"
     = f.input :tone_name, required: if_new, placeholder: "<stage name>", hint: "What you want to be called"
@@ -10,8 +10,9 @@
     = f.input :password, required: if_new, autocomplete: "off", label: "New Password", hint: "leave it blank if you don't want to change it"
     = f.input :password_confirmation, required: if_new, label: "Confirm New Password"
     = f.input :admin
+
   .form-actions
-    = f.button :submit, yield(:button_name)
+    = f.button :submit, button_name
     - if @user.persisted?
       = link_to "Cancel", users_path
     -else

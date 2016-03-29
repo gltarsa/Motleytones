@@ -1,0 +1,19 @@
+section.main-content
+  .row.schedule
+    - current_year = nil
+    ul
+      - Gig.published.active.ascending.each do |gig|
+        - if gig.date.year != current_year
+          - current_year = gig.date.year
+          = render 'separator_pic', year: current_year
+        li class="gig-id-#{gig.id}"
+          = render 'gigs/gig_oneline', gig: gig
+
+      hr
+
+      - Gig.published.expired.descending.each do |gig|
+        - if gig.date.year != current_year
+          - current_year = gig.date.year
+          = render 'separator_pic', year: current_year
+        li.expired class="gig-id-#{gig.id}"
+          = render 'gigs/gig_oneline', gig: gig, gig_type: "expired"
