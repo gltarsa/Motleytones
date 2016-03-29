@@ -62,11 +62,9 @@ class UsersController < Devise::RegistrationsController
   end
 
   def allowed_user_params
-    if current_user.admin?
-      params.require(:user).permit(:name, :email, :tone_name, :password, :password_confirmation, :band_start_date, :admin)
-    else
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :tone_name, :band_start_date)
-    end
+    allowed = %i( name email password password_confirmation tone_name band_start_date )
+    allowed << :admin if current_user.admin?
+    params.require(:user).permit(*allowed)
   end
 
   def remove_unused_password_pair_from_params
