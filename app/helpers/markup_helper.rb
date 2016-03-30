@@ -26,7 +26,7 @@ module MarkupHelper
     matches = anchor_re.match(raw)
 
     if matches
-      anchor = link_to(matches[2], matches[3])
+      anchor = link_to matches[2], matches[3], target: "_blank"
       process_anchors("#{matches[1]}#{anchor}#{matches[4]}")
     else
       raw

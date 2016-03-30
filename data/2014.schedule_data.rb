@@ -26,6 +26,6 @@ Gig.create!(published: true, date: "Sep 19, 2014", days: 2, name: "[Southport Pi
 Gig.create!(published: true, date: "Sep 27, 2014", name: "[Grand Opening College Nannies and Tutors](https://collegenanniesandtutors.com/carync)", location: "Cary, NC")
 Gig.create!(published: true, date: "Oct 26, 2014", name: "Private Party", location: "Raleigh, NC")
 Gig.create!(published: true, date: "Oct 27, 2014", name: "Garner Food Truck Rodeo", location: "Garner, NC")
-Gig.create!(published: true, date: "Oct 31, 2014", days: 2, name: "[Blackbeard Pirate Jamboree](https://www.facebook.com/pages/Ocracoke-Hattaras-Blackbeards-Pirate-Jamboree/186552064811019", location: "Ocracoke, NC")
+Gig.create!(published: true, date: "Oct 31, 2014", days: 2, name: "[Blackbeard Pirate Jamboree](https://www.facebook.com/pages/Ocracoke-Hattaras-Blackbeards-Pirate-Jamboree/186552064811019)", location: "Ocracoke, NC")
 Gig.create!(published: true, date: "Dec 6, 2014", name: "[](http://www.heartofcary.org/ole-time-winter-festival)", location: "Cary, NC ")
 Gig.create!(published: true, date: "Dec 19, 2014", name: "NC Museum of Art Pirate Christmas Event", location: "Raleigh, NC")
