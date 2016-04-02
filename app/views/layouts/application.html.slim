@@ -24,6 +24,9 @@ html
     ga('create', 'UA-18811242-2', 'auto');
     ga('send', 'pageview');
 
+    ahoy.trackView();
+    ahoy.track("Viewed page", { title: "#{yield :title}"});
+
 
   body
     = render "layouts/header"
