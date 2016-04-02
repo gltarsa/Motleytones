@@ -19,5 +19,13 @@ namespace :db do
         puts "Gig.create!(#{hash_to_pairs(hash)})"
       end
     end
+
+    desc "Prints Visit.all in a format suitable for inclusion in a rails script"
+    task visit: :environment do
+      Visit.order(:id).all.each do |visit|
+        hash = visit.serializable_hash(except: [ :id, :created_at, :updated_at ])
+        puts "Visit.create!(#{hash_to_pairs(hash)})"
+      end
+    end
   end
 end
