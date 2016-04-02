@@ -32,9 +32,12 @@ footer
               subject: "Motley Tones information needed"
 
     .row
-      .twelve.columns
+      .ten.columns
         ul.copyright
           li
             | ©
             => Time.now.strftime("%Y")
             | The Motley Tones. All rights reserved.
+      .two.columns
+        ul
+          li #{Visit.count + 300} visitors

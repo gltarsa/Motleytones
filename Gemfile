@@ -15,6 +15,7 @@ gem 'font-awesome-rails', '~> 4.4'
 gem 'pg', '~> 0.18.0'
 gem 'simple_form', '~> 3.1'
 gem 'devise', '~> 3.5'
+gem 'ahoy_matey'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.3'
