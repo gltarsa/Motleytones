@@ -4,7 +4,7 @@ namespace :db do
   end
 
   namespace :export do
-    desc "Prints User.all in a format suitable for inclusion in seeds.db."
+    desc "Prints User.all in a format suitable for inclusion in seeds.db"
     task user: :environment do
       User.order(:id).all.each do |user|
         hash = user.serializable_hash(except: [ :id, :password_digest, :created_at, :updated_at ])
@@ -12,11 +12,19 @@ namespace :db do
       end
     end
 
-    desc "Prints Gig.all in a format suitable for inclusion in seeds.db."
+    desc "Prints Gig.all in a format suitable for inclusion in seeds.db"
     task gig: :environment do
       Gig.order(:id).all.each do |gig|
         hash = gig.serializable_hash(except: [ :id, :created_at, :updated_at ])
         puts "Gig.create!(#{hash_to_pairs(hash)})"
+      end
+    end
+
+    desc "Prints Ahoy::Event.all in a format suitable for inclusion in a rails script"
+    task events: :environment do
+      Ahoy::Event.order(:id).all.each do |event|
+        hash = event.serializable_hash(except: [ :id, :created_at, :updated_at ])
+        puts "Ahoy::Event.create!(#{hash_to_pairs(hash)})"
       end
     end
 
@@ -27,5 +35,6 @@ namespace :db do
         puts "Visit.create!(#{hash_to_pairs(hash)})"
       end
     end
+
   end
 end
