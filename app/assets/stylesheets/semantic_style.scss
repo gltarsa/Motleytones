@@ -303,14 +303,14 @@ footer {
   li {
     list-style: none;
   }
-}
 
-.copyright {
-  color: $copyright-color;
-  font-size: 1.4rem;
+  .copyright, .page-count {
+    color: $copyright-color;
+    font-size: 1.4rem;
 
-  a {
-    color: inherit;
+    a {
+      color: inherit;
+    }
   }
 }
 
@@ -526,12 +526,12 @@ img.image.adjustable {
 }
 
 .expired {
-    text-decoration: line-through;
-  }
+  text-decoration: line-through;
+}
 
 /*
-  TODO 8/20/2015: Current status: hints are hidden, but have
-  not got the incantations to make them show.
+TODO 8/20/2015: Current status: hints are hidden, but have
+not got the incantations to make them show.
  */
 $hint-bkg-color: Cornsilk;
 .hint {
