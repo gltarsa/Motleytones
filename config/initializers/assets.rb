@@ -12,4 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( ie/v8.css )
 
 # add these to precompile list so that skel's init.js can trigger them at its breakpoints
-Rails.application.config.assets.precompile += %w( style.css style-1000px.css style-desktop.css style-mobile.css)
+Rails.application.config.assets.precompile += %w( )
