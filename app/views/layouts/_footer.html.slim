@@ -3,8 +3,7 @@ footer
     .row
       .two-thirds.column
         section
-          h2
-            | Our Friends
+          h2 Our Friends
           ul.widget.friend-list
             li
               = link_to "College Nannies + Tutors | Cary", "http://collegenannies.com/carync"
@@ -19,8 +18,7 @@ footer
 
       .one-third.column
         section.widget.contact
-          h2
-            | Contact Us
+          h2 Contact Us
           ul
             li
               = link_to "http://www.facebook.com/motleytones", class: "icon fa fa-facebook" do
@@ -29,7 +27,8 @@ footer
           p.simple-print
             = mail_to "info@motleytones.com",
               "info@motleytones.com",
-              subject: "Motley Tones information needed"
+              subject: "Motley Tones information needed",
+              class: "contact-email"
 
     .row
       .eight.columns
