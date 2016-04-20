@@ -315,8 +315,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   def sync_title(text)
+    sync_page
     while page.title != text
       puts "title = #{page.title}. sleeping..."
+      sync_page
     end
   end
 end

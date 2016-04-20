@@ -29,8 +29,8 @@ class Spinach::Features::Decorations < Spinach::FeatureSteps
     expect(page).to have_css("footer .copyright li")
   end
 
-  step 'I see a page counter' do
-    expect(page).to have_css("footer li.page-count")
+  step 'I see a visit counter' do
+    expect(page).to have_css("footer li.visit-count")
   end
 
   step 'I see a contact widget' do
