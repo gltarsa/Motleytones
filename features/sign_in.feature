@@ -1,5 +1,8 @@
 Feature: Sign-In
-  Most users of the site do not need an account in order to make use of the site/app.  Band members and select others will need access to private features.
+
+  Most users of the site do not need an account in order to make use of the
+  site/app.  Band members and select others will need access to private
+  features.
 
   * A user can sign into the app with registered email and password
 
