@@ -179,6 +179,12 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     change_mutable_fields(@user)
   end
 
+  step 'I change my password' do
+    new_password = "newpasssword"
+    fill_in "user_password", with: new_password
+    fill_in "user_password_confirmation", with: new_password
+  end
+
   step 'I change the mutable fields for that other user' do
     change_mutable_fields(@another_user)
   end
@@ -204,6 +210,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'the mutable fields are changed' do
     expect_mutable_fields_to_be_changed(@user)
+  end
+
+  step 'I see my name on the users page' do
+    expect(find(".user_name").text).to match("#{@user.name}")
   end
 
   step 'the mutable fields for that other user are changed' do
