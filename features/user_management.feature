@@ -12,6 +12,7 @@ Feature: User Management
   * It is not possible to edit a user record to have the same name as an existing user
   * A non-admin user can manage his own profile information,
     but cannot delete his account.
+  * When a user changes his password he remains logged in
 
   @javascript
   Scenario: A user can sign into the system with registered email and password
@@ -82,6 +83,16 @@ Feature: User Management
     When I change the mutable fields
     And I click Update
     Then the mutable fields are changed
+
+  @javascript
+  Scenario: A user changes remains logged in when he changes his password
+    Given I am signed in as a non-admin user
+    When I navigate to the Profile page
+    When I click Edit
+    Then I am sent to the Change Pirate Information page
+    When I change my password
+    And I click Update
+    Then I see my name on the users page
 
   @javascript
   Scenario: A non-admin user cannot change his admin status
