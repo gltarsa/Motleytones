@@ -470,7 +470,7 @@ img.image.adjustable {
 
 .simple_form {
   .error_notification {
-    color: red;
+    color: $alert-color;
   }
   // disable simple_form errors in favor of explicit "top of container" errors
   .error{
@@ -501,9 +501,9 @@ img.image.adjustable {
     margin-left: .5rem;
   }
 
-  .alert   { color: red; }
-  .notice  { color: limegreen; }
-  .success { color: green; }
+  .alert   { color: $alert-color; }
+  .notice  { color: $notice-color; }
+  .success { color: $success-color; }
 }
 
 .content {
@@ -512,16 +512,16 @@ img.image.adjustable {
 }
 
 .form-error{
-  color: red;
+  color: $alert-color;
   ul {
-    color: red;
+    color: $alert-color;
     margin-left: 2em;
     font-weight: normal;
   }
 }
 
 .errors {
-  color: red;
+  color: $alert-color;
   margin: 0 0 2em 0;
 }
 
@@ -670,7 +670,7 @@ form {
   .edit {
   }
   .delete {
-    color: red;
+    color: $alert-color;
     float: right;
   }
   .add {
@@ -683,5 +683,6 @@ form {
   .sign-out {
     @extend .add;
     margin-left: 1.5em;
+    color: $alert-color;
   }
 }

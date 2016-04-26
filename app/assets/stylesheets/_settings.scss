@@ -8,15 +8,18 @@ $container-width: 1040px;
  */
 $bkg-green        : #A7BF8F;
 $text-color       : White;
-$section-bkg-color  : White;
-$article-bkg-color  : White;
-$section-font-color : DimGray;
-$main-text-color : #444444;
+$section-bkg-color: White;
+$article-bkg-color: White;
+$section-font-color: DimGray;
+$main-text-color  : #444444;
+$alert-color      : red;
+$notice-color     : limegreen;
+$success-color    : green;
 $page-bkg         : asset-url('theme/Ocean.jpg');
 $gradient-specs   : top, rgba(0,0,0,0.05), rgba(0,0,0,0);
 $border-radius    : 6px;
 $nav-button-bkg   : #444444;
-$basic-font-color   : DimGray;
+$basic-font-color : DimGray;
 $basic-font-size  : 1.8rem;
 $logo-font-size   : 2rem;
 $menu-bkg-color   : Gainsboro; // could be lighter, say #eeeeee
