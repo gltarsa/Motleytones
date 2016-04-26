@@ -673,4 +673,15 @@ form {
     color: red;
     float: right;
   }
+  .add {
+    background: $article-bkg-color;
+    color: $link-color;
+    padding: 0 1.5rem;
+    margin: .2rem;
+    margin-left: 0;
+  }
+  .sign-out {
+    @extend .add;
+    margin-left: 1.5em;
+  }
 }

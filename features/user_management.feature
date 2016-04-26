@@ -61,7 +61,7 @@ Feature: User Management
   @javascript
   Scenario: A non-admin user cannot add a new user
     Given I am signed in as a non-admin user
-    When I look at the Navigation Menu
+    When I navigate to the Manage Pirates page
     Then I do not see an Add Pirate link
 
     When I visit the Add Pirate page directly
@@ -117,7 +117,8 @@ Feature: User Management
   @javascript @admin
   Scenario: Admin users can create a new user account
     Given I am signed in as an admin user
-    When I navigate to the Add Pirate page
+    When I navigate to the Manage Pirates page
+    And I click Add Pirate
     And I fill in the fields
     And I click Add
     Then the account is created
@@ -127,7 +128,8 @@ Feature: User Management
   Scenario: It is not possible to create a user with the same name as an existing user
     Given I am signed in as an admin user
     And there is at least one other user
-    When I navigate to the Add Pirate page
+    When I navigate to the Manage Pirates page
+    And I click Add Pirate
     And I fill in the fields to have the same name as the other user
     And I click Add
     Then I see an error message

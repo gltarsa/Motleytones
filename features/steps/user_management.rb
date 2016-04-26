@@ -61,7 +61,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I do not see an Add Pirate link' do
-    expect(page).to have_no_link("Add Pirate")
+    expect(page).to have_no_link("Add pirate")
   end
 
   step 'I do not see a Profile link' do
@@ -165,8 +165,13 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     fill_in "user_name", with: @user.name
   end
 
-  step 'I click Add' do
+  step 'I click Add Pirate' do
     click_link_or_button "Add pirate"
+    sync_page
+  end
+
+  step 'I click Add' do
+    click_link_or_button "Add"
     sync_page
   end
 

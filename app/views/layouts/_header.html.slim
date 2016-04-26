@@ -34,15 +34,10 @@ header
                   - if current_user.admin?
                     li
                       = link_to "Manage Gigs", gigs_path
-                    li
-                      = link_to "Manage Pirates", users_path
-                    li
-                      = link_to "Add Pirate", new_user_path
-                  -else
-                    li
-                      = link_to "Manage Pirates", users_path
                   li
-                    = button_to "Sign Out", destroy_user_session_path, method: :delete
+                    = link_to "Manage Pirates", users_path
+                  li
+                    = button_to "Sign Out", destroy_user_session_path, method: :delete, class: "sign-out"
                 - else
                   li
                     = link_to "Sign in", new_user_session_path
