@@ -2,8 +2,7 @@
 section.main-content
   .row
     .two.columns.offset-by-one.schedule
-      article
-        = link_to "Add gig", new_gig_path
+      = button_to "Add gig", new_gig_path, method: :get, class: "add"
 
     - Gig.active.ascending.each do |gig|
       .row.schedule
