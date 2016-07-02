@@ -6,7 +6,7 @@ include DateDisplayHelper
 #  * multi day dates should display as MM DD1-DD2 if in the same month  (i.e., Jun 1-3)
 #  * multi day dates should display as MM DD1-MM DD2 if in diferent months (i.e., May 31-Jun 2)
 
-describe DateDisplayHelper do
+RSpec.describe DateDisplayHelper do
   let(:date1) { Date.parse("12 Apr 1984") }
 
   describe "#date_range" do
