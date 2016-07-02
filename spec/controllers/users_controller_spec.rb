@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UsersController, type: :controller do
+RSpec.describe UsersController, type: :controller do
   before (:each) do
     @user = FactoryGirl.create(:user)
     @admin_user = FactoryGirl.create(:admin)
@@ -18,7 +18,7 @@ describe UsersController, type: :controller do
   describe "GET #show" do
     it "responds with http success" do
       sign_in @user
-      get :show, id: @user.id
+      get :show, params: { id: @user.id }
       expect(response).to have_http_status(:success)
     end
   end
@@ -58,7 +58,7 @@ describe UsersController, type: :controller do
         new_user = FactoryGirl.attributes_for(:user)
         starting_user_count = User.count
         sign_in @admin_user
-        get :create, user: new_user
+        get :create, params: { user: new_user }
         ending_user_count = User.count
         expect(response).to have_http_status(:redirect)
         expect(ending_user_count).to eql(starting_user_count + 1)
@@ -71,7 +71,7 @@ describe UsersController, type: :controller do
       it "responds with http redirect and does not delete anything" do
         starting_user_count = User.count
         sign_in @user
-        delete :destroy, id: @user.id
+        delete :destroy, params: { id: @user.id }
         ending_user_count = User.count
         expect(response).to have_http_status(:redirect)
         expect(ending_user_count).to eql(starting_user_count)
@@ -82,7 +82,7 @@ describe UsersController, type: :controller do
       it "responds with http redirect and deletes the specified user" do
         starting_user_count = User.count
         sign_in @admin_user
-        delete :destroy, id: @user.id
+        delete :destroy, params: { id: @user.id }
         ending_user_count = User.count
         expect(response).to have_http_status(:redirect)
         expect(ending_user_count).to eql(starting_user_count - 1)
@@ -91,7 +91,7 @@ describe UsersController, type: :controller do
       it "responds with http redirect and does not delete itself" do
         starting_user_count = User.count
         sign_in @admin_user
-        delete :destroy, id: @admin_user.id
+        delete :destroy, params: { id: @admin_user.id }
         ending_user_count = User.count
         expect(ending_user_count).to eql(starting_user_count)
 
