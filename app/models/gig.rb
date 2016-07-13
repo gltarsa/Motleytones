@@ -1,4 +1,4 @@
-class Gig < ActiveRecord::Base
+class Gig < ApplicationRecord
   validates :name, presence: true, length: { minimum: 10 }
   validates :date, presence: true
   validates :name, uniqueness: { scope: :date, message: "record with same date and name already exists" }
