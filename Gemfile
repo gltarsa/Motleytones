@@ -22,8 +22,9 @@ group :development, :test do
   gem 'spinach-rails', '~> 0.2'
   gem 'factory_girl_rails'
   gem 'pry-byebug'
-  gem 'spring'
   gem 'pry-rescue'
+  gem 'awesome_print'
+  gem 'spring'
   gem 'database_cleaner', '~> 1.4'
   gem 'faker'
 end
@@ -38,10 +39,10 @@ end
 
 group :test do
   gem 'selenium-webdriver'
-  gem "chromedriver-helper"
+  gem 'chromedriver-helper'
   gem 'capybara'
   gem 'poltergeist'
   gem 'launchy'
 end
 
-ruby "2.3.0"
+ruby '2.3.0'
