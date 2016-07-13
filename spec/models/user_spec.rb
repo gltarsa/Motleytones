@@ -78,7 +78,7 @@ RSpec.describe User, type: :model do
     end
 
     it "accepts addresses with proper format" do
-      valid_addresses = %w[ user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn ]
+      valid_addresses = %w[ user@example.com USER@foo.COM User+tag_string@foo.bar.net A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn ]
       valid_addresses.each do |addr|
         user.email = addr
         expect(user).to be_valid
