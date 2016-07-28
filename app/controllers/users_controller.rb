@@ -38,7 +38,7 @@ class UsersController < Devise::RegistrationsController
     remove_unused_password_pair_from_params
 
     if @user.update(allowed_user_params)
-      sign_in(@user, bypass: true)
+      bypass_sign_in(@user)
       redirect_to users_path
     else
       render :edit

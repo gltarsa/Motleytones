@@ -9,7 +9,3 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( ie/v8.css )
-
-# add these to precompile list so that skel's init.js can trigger them at its breakpoints
-Rails.application.config.assets.precompile += %w( )

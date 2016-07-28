@@ -6,7 +6,7 @@ include MarkupHelper
 #   verify that [text](link) gets interpolated
 #   verify that when the link markup is  == [Divider](url), then an image url interpolated.
 
-describe MarkupHelper do
+RSpec.describe MarkupHelper do
   describe "#process_markup" do
     let(:new_win)   { 'target="_blank"' }
     let(:mail_link) { '"mailto:info@motleytones.com">info@motleytones.com' }

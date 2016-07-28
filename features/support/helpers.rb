@@ -22,11 +22,11 @@ module Helpers
   end
 
   def has_flash_msg(severity: , containing: )
-    expect(page.find(".flash .#{severity.to_s}").text).to match(Regexp.new(".*#{containing}.*"))
+    expect(page.find(".flash .#{severity.to_s}").text).to match(/.*#{containing}.*/i)
   end
 
   def has_form_error(containing: nil)
-    expect(page.find(".form-error").text).to match(Regexp.new(".*#{containing}.*"))
+    expect(page.find(".form-error").text).to match(/.*#{containing}.*/i)
   end
 
   # Currently, poltergeist does not have the support for Capybara's accept_alert{}

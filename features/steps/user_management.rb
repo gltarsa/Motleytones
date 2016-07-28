@@ -82,7 +82,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I am sent to the Profile page' do
     expect(page.title).to eq("Motley User")
-    expect(page.text).to match(Regexp.new(".*#{@user.name}.*"))
+    expect(page.text).to match(/.*#{@user.name}.*/i)
   end
 
   step 'I am sent to the Root page' do

@@ -5,4 +5,4 @@ section.main-content
       .two.columns.offset-by-one
         = button_to "Add pirate", new_user_path, method: :get, class: "add"
 
-    = render partial: "user", collection: @users
+    = render partial: "user", collection: @users.sort
