@@ -52,7 +52,7 @@ GEM
       uuidtools
     archive-zip (0.7.0)
       io-like (~> 0.3.0)
-    arel (7.0.0)
+    arel (7.1.0)
     awesome_print (1.7.0)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
@@ -112,7 +112,7 @@ GEM
     i18n (0.7.0)
     interception (0.5)
     io-like (0.3.0)
-    jbuilder (2.5.0)
+    jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jquery-rails (4.1.1)
@@ -239,7 +239,7 @@ GEM
       railties (>= 3.1)
       slim (~> 3.0)
     slop (3.6.0)
-    spinach (0.8.10)
+    spinach (0.9.0)
       colorize
       gherkin-ruby (>= 0.3.2)
       json
@@ -315,7 +315,7 @@ DEPENDENCIES
   spinach-rails (~> 0.2)
   spring
   sprockets
-  turbolinks
+  turbolinks (~> 5.0.0)
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 

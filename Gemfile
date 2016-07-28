@@ -8,7 +8,7 @@ gem 'sprockets'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails', '~> 4.0'
-gem 'turbolinks' # Read more: https://github.com/rails/turbolinks
+gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'font-awesome-rails', '~> 4.4'
