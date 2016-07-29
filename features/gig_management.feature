@@ -12,6 +12,7 @@ Feature: Gig Management
   * A non-admin user cannot access any gig management features
   * Only published gigs appear on the schedule pages
   * Both published and unpublished gigs appear on the Gig Management page
+  * Edit and Create screens have token description notes
 
   @javascript
   Scenario: An admin user can create gig entries
@@ -19,6 +20,7 @@ Feature: Gig Management
     When I navigate to the Manage Gigs page
     And I click Add Gig
     Then I see the Add Gig page
+    And I see a note describing tokens
     When I fill in the gig fields
     And I click Add Gig
     Then the gig is created
@@ -53,6 +55,7 @@ Feature: Gig Management
     When I navigate to the Manage Gigs page
     And I click Edit for the first gig
     Then I am sent to the Change Gig page
+    And I see a note describing tokens
     When I change the gig fields
     And I change the published checkbox
     And I click Update
