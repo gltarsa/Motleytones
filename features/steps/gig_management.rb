@@ -33,6 +33,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(page.title).to have_content("Add Gig")
   end
 
+  step 'I see a note describing tokens' do
+    expect(find("p.note")).to have_content("tokens")
+  end
+
   step 'I fill in the gig fields' do
     @gig = FactoryGirl.build(:gig)
     set_date("gig_date",       @gig.date.to_s)

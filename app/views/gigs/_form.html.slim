@@ -2,6 +2,13 @@
 = simple_form_for gig do |f|
   .form-inputs
     = f.input :date, required: true, start_year: 2010
+    p.note
+      | These tokens can go in any section:
+      br
+      | &nbsp;&nbsp; add a link: <tt>[link text](http://url)</tt>
+      br
+      | &nbsp;&nbsp; add info email link: <tt>@info</tt>
+
     = f.input :days
     = f.input :name, placeholder: "[event name](and link), plus optional other info"
     = f.input :note, placeholder: "optional additional information"
