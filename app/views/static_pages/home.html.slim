@@ -47,8 +47,9 @@ section.details.container.simple-print
             | Information
           p
             | Don't miss out on the action - follow our schedule and come see a show!
-            br
-            | (2015 dates coming soon)
+            -if Date.today > Date.parse("#{Date.today.year}-11-01")
+              br
+              | (#{Date.today.year} dates coming soon)
 
   .row
     .one-third.column
@@ -71,4 +72,4 @@ section.details.container.simple-print
           = image_tag "videos.jpg", alt: "Videos picture"
         header.content
           h2 Video Gallery
-          p Get a little taste of the musical pirate life from videos of our past shows - the perfect thing to tide you over til Pirate Season 2015.
+          p Get a little taste of the musical pirate life from videos of our past shows - the perfect thing to tide you over til Pirate Season #{Date.today.year + 1}.
