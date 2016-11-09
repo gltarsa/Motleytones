@@ -15,30 +15,6 @@ Feature: User Management
   * When a user changes his password he remains logged in
 
   @javascript
-  Scenario: A user can sign into the system with registered email and password
-    Given I am not signed in
-    When I navigate to the Sign In page
-    And I enter a registered email
-    And I enter the associated password
-    And I click Sign In
-    Then I am sent to the Profile page
-    And I see the new user name
-    And I see a success message containing "Signed in successfully"
-
-  @javascript
-  Scenario: A user cannot sign into the system with an unregistered email or password
-    Given I am not signed in
-    When I navigate to the Sign In page
-    And I enter an unregistered email
-    And I enter an invalid password
-    And I click Sign In
-    Then I see an alert containing "Invalid email or password"
-    When I enter a registered email
-    And I enter an invalid password
-    And I click Sign In
-    Then I see an alert containing "Invalid email or password"
-
-  @javascript
   Scenario: A user who is not signed in cannot access any of the user management features
     Given I am not signed in
     When I look at the Navigation Menu
