@@ -23,6 +23,7 @@ This app serves up the Motley Tones website.
 ### Future features
 
 * Generate video page from database
+* Generate photo albums w/o having to be logged into Facebook
 
 ### Project Management
 
@@ -30,7 +31,14 @@ This app serves up the Motley Tones website.
 
 ### Development Notes (Mac OS X)
 
+Building this app from scratch requires the following:
+
+* `brew install postgres`
+* `brew install phantomjs`
 * Start PostgreSQL: ```pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start```
+
+For completeness, there is also:
+
 * Stop PostgreSQL: ```pg_ctl -D /usr/local/var/postgres stop -s -m fast```
 
 Note: when upgrading Mac OS X you may find postgres does not start properly due
