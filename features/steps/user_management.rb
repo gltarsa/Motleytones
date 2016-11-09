@@ -31,12 +31,6 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(page.title).to eq("Motley Users")
   end
 
-  step 'I navigate to the Sign In page' do
-    find("li.navigation").hover
-    i_click_sign_in
-    expect(page.title).to eq("Sign In")
-  end
-
   step 'I navigate to the Profile page' do
     find("li.navigation").hover
     click_link "Profile"
@@ -256,23 +250,6 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   step 'I am still in the admin account' do
     find("li.navigation").hover
     expect(find("li.informational")).to have_content(@user.tone_name)
-  end
-
-  step 'I enter a registered email' do
-    @user = FactoryGirl.create(:user, password: SOME_PASSWORD)
-    fill_in("user_email", with: @user.email)
-  end
-
-  step 'I enter the associated password' do
-    fill_in("user_password", with: SOME_PASSWORD)
-  end
-
-  step 'I enter an unregistered email' do
-    fill_in("user_email", with: "not_registered@user.com")
-  end
-
-  step 'I enter an invalid password' do
-    fill_in("user_password", with: "incorrect-password")
   end
 
   private
