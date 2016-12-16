@@ -1,4 +1,4 @@
-require File.expand_path('../../env', __FILE__)
+require_relative '../env' # define general default values
 require_relative 'boot'
 
 require 'rails/all'
