@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # <img src="images/Greenville.jpeg" alt="Greenville PirateFest 2014">
 # <h2>2014 Performance Schedule</h2>
 Gig.create!(published: true, date: "Mar 1, 2014", name: "[Garner Talent Showcase](http://www.garnerperformingartscenter.com/EventInformation.asp)", location:  "Garner Performing Arts Center")

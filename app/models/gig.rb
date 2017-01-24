@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Gig < ApplicationRecord
   validates :name, presence: true, length: { minimum: 10 }
   validates :date, presence: true

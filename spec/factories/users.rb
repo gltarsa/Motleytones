@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 SOME_PASSWORD ||= "secretpw"
 FactoryGirl.define do
   factory :user do

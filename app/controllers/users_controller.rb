@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   before_action :authenticate_scope!

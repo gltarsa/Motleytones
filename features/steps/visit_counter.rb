@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Spinach::Features::VisitCounter < Spinach::FeatureSteps
   step 'I am not signed in' do
     # @ahoy = Ahoy::Tracker.new

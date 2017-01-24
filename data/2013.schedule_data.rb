@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Data for 2013 schedule
 Gig.create!(published: true, date: "Apr 6, 2013", name: "[Downtown Cary Farmer's Market](http://caryfarmersmarket.com/)", location:  "Cary, NC")
 Gig.create!(published: true, date: "Apr 11, 2013", name: "[Park West Plaza](http://parkwestvillage.net/?url=events-sales) Spring Fling", location: "Morrisville, NC")
