@@ -37,7 +37,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   # config.use_transactional_fixtures = true
-  config.use_transactional_fixtures = false  # (using database_cleaner)
+  config.use_transactional_fixtures = false # (using database_cleaner)
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -71,11 +71,7 @@ RSpec.configure do |config|
   end
 
   # Use more verbose output when running an individual spec file.
-  if config.files_to_run.one?
-    config.default_formatter = 'doc'
-  else
-    config.default_formatter = 'progress'
-  end
+  config.default_formatter = config.files_to_run.one? ? 'doc' : 'progress'
 
   # Limits the available syntax to the non-monkey patched syntax that is
   # recommended. For more details, see:

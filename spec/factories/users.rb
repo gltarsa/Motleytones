@@ -7,7 +7,7 @@ FactoryGirl.define do
     email     { Faker::Internet.email }
     password              SOME_PASSWORD
     password_confirmation SOME_PASSWORD
-    admin      false
+    admin     { false }
   end
 
   factory :admin, class: User do
@@ -16,6 +16,6 @@ FactoryGirl.define do
     email     { Faker::Internet.email }
     password              SOME_PASSWORD
     password_confirmation SOME_PASSWORD
-    admin      true
+    admin     { true }
   end
 end

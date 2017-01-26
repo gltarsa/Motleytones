@@ -14,6 +14,6 @@ class Spinach::Features::SignOut < Spinach::FeatureSteps
   end
 
   step 'I see a success message containing "Signed out successfully"' do
-    has_flash_msg(severity: :notice, containing: "Signed out successfully")
+    expect_flash(severity: :notice, containing: "Signed out successfully")
   end
 end

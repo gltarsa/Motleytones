@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class GigsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin, only: [ :index, :new, :create, :edit, :destroy ]
+  before_action :require_admin, only: [:index, :new, :create, :edit, :destroy]
 
   def new
     @gig = Gig.new
@@ -38,7 +38,7 @@ class GigsController < ApplicationController
   def destroy
     gig.destroy
     flash[:notice] = "gig deleted.  #{total_msg}"
-    redirect_to gigs_path()
+    redirect_to gigs_path
   end
 
   private
@@ -49,7 +49,8 @@ class GigsController < ApplicationController
   helper_method :gig
 
   def allowed_gig_params
-    params.require(:gig).permit(:date, :days, :name, :note, :location, :published)
+    params.require(:gig).permit(:date, :days, :name,
+                                :note, :location, :published)
   end
 
   def total_msg
@@ -57,9 +58,8 @@ class GigsController < ApplicationController
   end
 
   def require_admin
-    unless current_user.admin?
-      flash.alert = "You must be an admin user to access that page"
-      redirect_to root_path
-    end
+    return if current_user.admin?
+    flash.alert = "You must be an admin user to access that page"
+    redirect_to root_path
   end
 end

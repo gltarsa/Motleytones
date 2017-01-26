@@ -40,11 +40,11 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   end
 
   step 'I see a success message containing "Signed in successfully"' do
-    has_flash_msg(severity: :notice, containing: "Signed in successfully")
+    expect_flash(severity: :notice, containing: "Signed in successfully")
   end
 
   step 'I see an alert containing "Invalid email or password"' do
-    has_flash_msg(severity: :alert, containing: "Invalid email or password")
+    expect_flash(severity: :alert, containing: "Invalid email or password")
   end
 
   step 'I see the new user name' do

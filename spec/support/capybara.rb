@@ -18,7 +18,7 @@ Capybara.register_driver :poltergeist do |app|
 end
 
 Capybara.register_driver :selenium_firefox do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :firefox)
+  Capybara::Selenium::Driver.new(app, browser: :firefox)
 end
 
 Capybara.default_driver = :poltergeist
@@ -39,4 +39,4 @@ Capybara.server_port = 7787
 #       { :host => "127.0.0.1", :port => Capybara.server_port }.merge(options)
 #     end
 #   end
-#end
+# end

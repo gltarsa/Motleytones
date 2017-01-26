@@ -40,15 +40,15 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I fill in the gig fields' do
     @gig = FactoryGirl.build(:gig)
-    set_date("gig_date",       @gig.date.to_s)
+    set_date("gig_date",    @gig.date.to_s)
     fill_in "gig_name",     with: @gig.name
     fill_in "gig_note",     with: @gig.note
     fill_in "gig_location", with: @gig.location
     check "gig_published"
   end
 
-  step 'I fill in the gig fields to have the same name and date as the existing gig' do
-    set_date("gig_date",       @gig.date.to_s)
+  step 'I fill in the gig fields to have the same name and date' do
+    set_date "gig_date",    @gig.date.to_s
     fill_in "gig_name",     with: @gig.name
     fill_in "gig_note",     with: "does not matter"
     fill_in "gig_location", with: "does not matter"
@@ -151,10 +151,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'the gig fields are changed' do
     within find(".gig-id-#{@gig.id}") do
-      expect(find("span.gig_name").text).to     match("#{change(@gig.name)}")
-      expect(find("span.gig_note").text).to     match("#{change(@gig.note)}")
+      expect(find("span.gig_name").text).to     match(change(@gig.name))
+      expect(find("span.gig_note").text).to     match(change(@gig.note))
       expect(find("span.gig_date").text).to     match(Date.parse(@changed_date).strftime('%b %-d:'))
-      expect(find("span.gig_location").text).to match("#{change(@gig.location)}")
+      expect(find("span.gig_location").text).to match(change(@gig.location))
     end
   end
 
@@ -259,15 +259,15 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see an alert containing "You must be signed in to access that page"' do
-    has_flash_msg(severity: :alert, containing: "You must be signed in to access that page")
+    expect_flash(severity: :alert, containing: "You must be signed in to access that page")
   end
 
   step 'I see an alert containing "You must be an admin user to access that page"' do
-    has_flash_msg(severity: :alert, containing: "You must be an admin user to access that page")
+    expect_flash(severity: :alert, containing: "You must be an admin user to access that page")
   end
 
   step 'I see an error message' do
-    has_form_error
+    expect_form_error
   end
 
   step 'I visit the Gig Management page directly' do
@@ -304,12 +304,14 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   private
 
+  # rubocop: disable AbcSize
   def verify_gig_schedule(gig)
     id_class = ".gig-id-#{gig.id}"
     expect(find(".schedule #{id_class} span.gig_name")).to have_content(gig.name)
     expect(find(".schedule #{id_class} span.gig_note")).to have_content(gig.note)
     expect(find(".schedule #{id_class} span.gig_location")).to have_content(gig.location)
   end
+  # rubocop: enable AbcSize
 
   def verify_gig_expired(gig)
     expect(page).to have_css(".gig-id-#{gig.id}.expired")

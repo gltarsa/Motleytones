@@ -39,5 +39,4 @@ RSpec.describe "static_pages" do
     expect(page.title).to eq("Motley Videos")
     expect(page).to have_content(@copyright)
   end
-
 end
