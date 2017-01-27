@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   before_action :authenticate_scope!
-  before_action :require_admin, only: [ :new, :create, :destroy ]
-  before_action :set_user,      only: [ :show, :update, :destroy ]
+  before_action :require_admin, only: [:new, :create, :destroy]
+  before_action :set_user,      only: [:show, :update, :destroy]
 
   def show
   end
@@ -63,22 +64,21 @@ class UsersController < Devise::RegistrationsController
   end
 
   def allowed_user_params
-    allowed = %i( name email password password_confirmation tone_name band_start_date )
+    allowed = %i(name email password password_confirmation
+                 tone_name band_start_date)
     allowed << :admin if current_user.admin?
     params.require(:user).permit(*allowed)
   end
 
   def remove_unused_password_pair_from_params
-    if params[:user][:password].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
-    end
+    return if params[:user][:password].present?
+    params[:user].delete(:password)
+    params[:user].delete(:password_confirmation)
   end
 
   def require_admin
-    unless current_user.admin?
-      set_flash_message :alert, :must_be_admin
-      redirect_to root_path
-    end
+    return if current_user.admin?
+    set_flash_message :alert, :must_be_admin
+    redirect_to root_path
   end
 end

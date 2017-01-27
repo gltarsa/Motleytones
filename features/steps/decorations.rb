@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Spinach::Features::Decorations < Spinach::FeatureSteps
   step 'I am not signed in' do
     visit root_path

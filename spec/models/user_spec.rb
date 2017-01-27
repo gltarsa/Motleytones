@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require 'rails_helper'
 require 'devise'
 
 RSpec.describe User, type: :model do
-  let (:user) { FactoryGirl.create :user }
+  let(:user) { FactoryGirl.create :user }
 
   describe "name" do
     it "is required" do
@@ -78,7 +79,8 @@ RSpec.describe User, type: :model do
     end
 
     it "accepts addresses with proper format" do
-      valid_addresses = %w[ user@example.com USER@foo.COM User+tag_string@foo.bar.net A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn ]
+      valid_addresses = %w(user@example.com USER@foo.COM User+tag_string@foo.bar.net
+                           A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn)
       valid_addresses.each do |addr|
         user.email = addr
         expect(user).to be_valid
@@ -86,7 +88,7 @@ RSpec.describe User, type: :model do
     end
 
     it "rejects email addresses with improper format" do
-      invalid_addresses = %w[ user@example,com user_at_foo.org user.name@example. ]
+      invalid_addresses = %w(user@example,com user_at_foo.org user.name@example.)
 
       invalid_addresses.each do |addr|
         user.email = addr
@@ -97,7 +99,7 @@ RSpec.describe User, type: :model do
 
   describe "password" do
     it "must be present" do
-      user.password  = user.password_confirmation = " " * 6
+      user.password = user.password_confirmation = " " * 6
       expect(user).not_to be_valid
     end
 

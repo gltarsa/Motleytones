@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe "static_pages" do
@@ -38,5 +39,4 @@ RSpec.describe "static_pages" do
     expect(page.title).to eq("Motley Videos")
     expect(page).to have_content(@copyright)
   end
-
 end

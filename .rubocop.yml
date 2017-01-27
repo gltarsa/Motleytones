@@ -1,0 +1,50 @@
+###########################
+# Configuration for rubocop
+#
+# Most of these are disabling existing cops, primarily
+# due to a smattering of different styles and loose
+# guidlines for contributions.
+#
+# Any of these may be changed.
+
+# inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'data/**/*'
+    - 'bin/**/*'
+    - '*tmp'
+    - 'tmp*'
+
+StringLiterals:
+  Enabled: false
+
+# We want to put empty methods on three lines
+Style/EmptyMethod:
+  Enabled: false
+
+# Comments before every class and module are not required
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'features/steps/**/*'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'features/steps/**/*'
+
+Metrics/LineLength:
+  Max: 100

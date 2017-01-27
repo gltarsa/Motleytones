@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module MarkupHelper
   include ActionView::Helpers::UrlHelper
 

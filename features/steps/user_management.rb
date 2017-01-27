@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Spinach::Features::UserManagement < Spinach::FeatureSteps
   include Helpers
 
@@ -47,7 +48,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I visit the Edit Profile page directly' do
-    visit edit_user_path(1)  # any user id will work for this test
+    visit edit_user_path(1) # any user id will work for this test
   end
 
   step 'I do not see a Manage Pirates link' do
@@ -88,23 +89,23 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I see a success message containing "Signed in successfully"' do
-    has_flash_msg(severity: :notice, containing: "Signed in successfully")
+    expect_flash(severity: :notice, containing: "Signed in successfully")
   end
 
   step 'I see an alert containing "You must be signed in to access that page"' do
-    has_flash_msg(severity: :alert, containing: "You must be signed in to access that page")
+    expect_flash(severity: :alert, containing: "You must be signed in to access that page")
   end
 
   step 'I see an alert containing "You must be an admin user to access that page"' do
-    has_flash_msg(severity: :alert, containing: "You must be an admin user to access that page")
+    expect_flash(severity: :alert, containing: "You must be an admin user to access that page")
   end
 
   step 'I see an alert containing "Invalid email or password"' do
-    has_flash_msg(severity: :alert, containing: "Invalid email or password")
+    expect_flash(severity: :alert, containing: "Invalid email or password")
   end
 
   step 'I see an error message' do
-    has_form_error
+    expect_form_error
   end
 
   step 'I see the new user name' do
@@ -212,7 +213,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I see my name on the users page' do
-    expect(find(".user_name").text).to match("#{@user.name}")
+    expect(find(".user_name").text).to match(@user.name)
   end
 
   step 'the mutable fields for that other user are changed' do
@@ -272,22 +273,22 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     set_date("user_band_start_date", @changed_date)
   end
 
-  def expect_mutable_fields_to_be_changed(user)
+  def expect_mutable_fields_to_be_changed(user) # rubocop: disable AbcSize
     within user_article(user) do
-      expect(find(".user_name").text).to       match("#{change(user.name)}")
-      expect(find(".user_tone_name").text).to  match("#{change(user.tone_name)}")
-      expect(find(".user_email").text).to      match("#{change(user.email)}")
+      expect(find(".user_name").text).to       match(change(user.name))
+      expect(find(".user_tone_name").text).to  match(change(user.tone_name))
+      expect(find(".user_email").text).to      match(change(user.email))
       expect(find(".user_start_date").text).to match(@changed_date)
     end
     # unit testy way to check attribute changes
     expect(raw_mutable_attributes(User.find(user.id))).not_to eql(@original_raw_mutable_attributes)
   end
 
-  def expect_mutable_fields_not_to_be_changed(user)
+  def expect_mutable_fields_not_to_be_changed(user) # rubocop: disable AbcSize
     within user_article(user) do
-      expect(find(".user_name").text).to       match("#{user.name}")
-      expect(find(".user_tone_name").text).to  match("#{user.tone_name}")
-      expect(find(".user_email").text).to      match("#{user.email}")
+      expect(find(".user_name").text).to       match(user.name)
+      expect(find(".user_tone_name").text).to  match(user.tone_name)
+      expect(find(".user_email").text).to      match(user.email)
       expect(find(".user_start_date").text).to match(user.band_start_date.strftime("%d-%b-%Y"))
     end
     # unit testy way to check attribute constancy

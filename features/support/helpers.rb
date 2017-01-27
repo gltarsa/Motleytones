@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Helpers
   include Spinach::DSL
   #
@@ -13,7 +14,7 @@ module Helpers
   end
 
   def sign_in_admin_user
-    @user = FactoryGirl.create(:admin, password: SOME_PASSWORD)
+    @user = FactoryGirl.create(:user, :admin, password: SOME_PASSWORD)
     do_login(@user, SOME_PASSWORD)
   end
 
@@ -21,22 +22,20 @@ module Helpers
     page.has_css?("nav")
   end
 
-  def has_flash_msg(severity: , containing: )
-    expect(page.find(".flash .#{severity.to_s}").text).to match(/.*#{containing}.*/i)
+  def expect_flash(severity:, containing:)
+    expect(page.find(".flash .#{severity}").text).to match(/.*#{containing}.*/i)
   end
 
-  def has_form_error(containing: nil)
+  def expect_form_error(containing: nil)
     expect(page.find(".form-error").text).to match(/.*#{containing}.*/i)
   end
 
   # Currently, poltergeist does not have the support for Capybara's accept_alert{}
   # this helper provides a workaround
-  def my_accept_alert(&block)
-    begin
-      accept_alert { block.call }
-    rescue Capybara::NotSupportedByDriverError
-      block.call
-    end
+  def my_accept_alert
+    accept_alert { yield }
+  rescue Capybara::NotSupportedByDriverError
+    yield
   end
 
   # standard "change" for tests

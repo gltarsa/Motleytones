@@ -1,4 +1,5 @@
-ENV['RAILS_ENV']='test'
+# frozen_string_literal: true
+ENV['RAILS_ENV'] = 'test'
 require 'spinach-rails'
 require 'rspec/expectations'
 require 'capybara/poltergeist'
@@ -8,9 +9,8 @@ require_relative '../../config/environment'
 Capybara.javascript_driver = :poltergeist
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, {js_errors: false})
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
-
 
 Capybara.register_driver :selenium_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)

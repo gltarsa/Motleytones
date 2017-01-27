@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # complete 2015 schedule as of 11/23/2015
 Gig.create!(
   published: true,
