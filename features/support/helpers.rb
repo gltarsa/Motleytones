@@ -14,7 +14,7 @@ module Helpers
   end
 
   def sign_in_admin_user
-    @user = FactoryGirl.create(:admin, password: SOME_PASSWORD)
+    @user = FactoryGirl.create(:user, :admin, password: SOME_PASSWORD)
     do_login(@user, SOME_PASSWORD)
   end
 

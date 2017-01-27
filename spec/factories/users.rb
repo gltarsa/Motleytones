@@ -7,15 +7,10 @@ FactoryGirl.define do
     email     { Faker::Internet.email }
     password              SOME_PASSWORD
     password_confirmation SOME_PASSWORD
-    admin     { false }
-  end
+    admin { false }
 
-  factory :admin, class: User do
-    name      { Faker::Name.name }
-    tone_name { "#{Faker::Company.name} Tone" }
-    email     { Faker::Internet.email }
-    password              SOME_PASSWORD
-    password_confirmation SOME_PASSWORD
-    admin     { true }
+    trait :admin do
+      admin { true }
+    end
   end
 end

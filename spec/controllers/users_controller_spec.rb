@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   before(:each) do
     @user = FactoryGirl.create(:user)
-    @admin_user = FactoryGirl.create(:admin)
+    @admin_user = FactoryGirl.create(:user, :admin)
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
