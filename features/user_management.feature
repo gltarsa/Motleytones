@@ -6,7 +6,8 @@ Feature: User Management
   Admin users have the ability to change any profiles and
   delete any account but his own.
 
-  * A user who is not signed up cannot access any of the user management buttons on the Manage Pirates page.
+  * A user who is not signed up cannot access any of the user management
+    buttons on the Manage Pirates page.
   * A non-admin user cannot add a new user
   * It is not possible to create a user with the same name as an existing user
   * It is not possible to edit a user record to have the same name as an existing user
@@ -126,12 +127,15 @@ Feature: User Management
     And I do not see a Delete button
 
   @javascript @admin
+  # Trello 115: Added a check to ensure that the bug that caused a user's
+  # band_start_date to be changed to the first of the year has been fixed.
   Scenario:  Admin users can edit a user account from the Manage Pirates Page
     Given I am signed in as an admin user
     And there is at least one other user
     When I navigate to the Manage Pirates page
     And I click Edit for that other user
     Then I am sent to the Change Pirate Information page
+    And I see that the Band Start Date is not the first of this year
     When I change the mutable fields for that other user
     And I change the admin checkbox
     And I click Update
