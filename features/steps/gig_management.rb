@@ -198,14 +198,6 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     @unpublished_gig = FactoryGirl.create(:gig, published: false, days: 1, date: Date.today - 2)
   end
 
-  step 'I go to the Schedule Page' do
-    visit schedule_path
-  end
-
-  step 'I see the published gig' do
-    i_see_information_for_a_gig
-  end
-
   step 'I see the published gig is expired' do
     i_see_information_for_a_gig
     verify_gig_expired(@gig)
@@ -222,26 +214,8 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     verify_gig_expired(gig)
   end
 
-  step 'I see the unpublished gig is active' do
-    gig = Gig.where(name: @unpublished_gig.name).where(location: @unpublished_gig.location).first
-    verify_gig_schedule(gig)
-    verify_gig_active(gig)
-  end
-
-  step 'I go to the Schedule Page' do
-    visit schedule_path
-  end
-
   step 'I do not see a Manage Gigs link' do
     expect(page).to have_no_link("Manage Gigs")
-  end
-
-  step 'I do not see the unpublished gig' do
-    expect(find(".gig-id-#{@unpublished_gig.id}")).not_to have_content(@unpublished_gig.name)
-  end
-
-  step 'I do not see an Add Gig link' do
-    expect(page).to have_no_link("Add Gig")
   end
 
   step 'I do not see an Edit button' do
@@ -250,12 +224,6 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I do not see a Delete button' do
     expect(page).not_to have_button("Delete")
-  end
-
-  step 'I navigate to the Sign In page' do
-    find("li.navigation").hover
-    i_click_sign_in
-    expect(page.title).to eq("Sign In")
   end
 
   step 'I see an alert containing "You must be signed in to access that page"' do

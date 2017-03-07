@@ -7,5 +7,5 @@ Feature: Visit Counter
   @javascript
   Scenario: A new user visiting the page increases the visit count
     Given I am not signed in
-    When a new visitor visits the page
+    When I visit the page
     Then the visit counter increases by 1

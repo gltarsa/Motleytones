@@ -18,13 +18,6 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     find('li.navigation').hover
   end
 
-  step 'I navigate to the Add Pirate page' do
-    find('li.navigation').hover
-    click_link 'Add Pirate'
-    sync_page
-    expect(page.title).to eq('Add Pirate')
-  end
-
   step 'I navigate to the Manage Pirates page' do
     find('li.navigation').hover
     click_link 'Manage Pirates'
@@ -75,21 +68,12 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(page.title).to eq('Modify Pirate Profile')
   end
 
-  step 'I am sent to the Profile page' do
-    expect(page.title).to eq('Motley User')
-    expect(page.text).to match(/.*#{@user.name}.*/i)
-  end
-
   step 'I am sent to the Root page' do
     expect(page.title).to eq('The Motley Tones')
   end
 
   step 'I am sent to the Sign In page' do
     expect(page.title).to eq('Sign In')
-  end
-
-  step 'I see a success message containing "Signed in successfully"' do
-    expect_flash(severity: :notice, containing: 'Signed in successfully')
   end
 
   step 'I see an alert containing "You must be signed in to access that page"' do
@@ -100,16 +84,8 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect_flash(severity: :alert, containing: 'You must be an admin user to access that page')
   end
 
-  step 'I see an alert containing "Invalid email or password"' do
-    expect_flash(severity: :alert, containing: 'Invalid email or password')
-  end
-
   step 'I see an error message' do
     expect_form_error
-  end
-
-  step 'I see the new user name' do
-    expect(page).to have_content(@user.name)
   end
 
   step 'I click Edit' do
