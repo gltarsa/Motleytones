@@ -9,12 +9,12 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   step 'I navigate to the Sign In page' do
     find("li.navigation").hover
     i_click_sign_in
-    expect(page.title).to eq("Sign In")
+    expect(page).to have_title("Sign In")
   end
 
   step 'I am sent to the Profile page' do
-    expect(page.title).to eq("Motley User")
-    expect(page.text).to match(/.*#{@user.name}.*/i)
+    expect(page).to have_title("Motley User")
+    expect(page).to have_content(@user.name)
   end
 
   step 'I enter a registered email' do
@@ -36,15 +36,14 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
 
   step 'I click Sign In' do
     click_on "Sign in"
-    sync_page
   end
 
   step 'I see a success message containing "Signed in successfully"' do
     expect_flash(severity: :notice, containing: "Signed in successfully")
   end
 
-  step 'I see an alert containing "Invalid email or password"' do
-    expect_flash(severity: :alert, containing: "Invalid email or password")
+  step 'I see an alert containing "Invalid Email or password"' do
+    expect_flash(severity: :alert, containing: "Invalid Email or password")
   end
 
   step 'I see the new user name' do

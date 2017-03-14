@@ -25,13 +25,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I am on the Manage Gigs page' do
-    sync_title("Manage Gigs")
-    expect(page.title).to have_content("Manage Gigs")
+    expect(page).to have_title("Manage Gigs")
   end
 
   step 'I see the Add Gig page' do
-    sync_title("Add Gig")
-    expect(page.title).to have_content("Add Gig")
+    expect(page).to have_title("Add Gig")
   end
 
   step 'I see a note describing tokens' do
@@ -57,7 +55,6 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I click Add Gig' do
     click_link_or_button "Add gig"
-    sync_page
   end
 
   step 'I click Manage Gigs' do
@@ -108,7 +105,6 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     my_accept_alert do
       find(".gig-id-#{@gig.id}").click_link("Delete")
     end
-    sync_page
   end
 
   step 'that gig is deleted' do
@@ -124,8 +120,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I am sent to the Change Gig page' do
-    sync_title("Modify Gig Info")
-    expect(page.title).to have_content("Modify Gig Info")
+    expect(page).to have_title("Modify Gig Info")
   end
 
   step 'I am sent to the Sign In page' do
@@ -146,15 +141,14 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I click Update' do
     click_on "Update"
-    sync_page
   end
 
   step 'the gig fields are changed' do
     within find(".gig-id-#{@gig.id}") do
-      expect(find("span.gig_name").text).to     match(change(@gig.name))
-      expect(find("span.gig_note").text).to     match(change(@gig.note))
-      expect(find("span.gig_date").text).to     match(Date.parse(@changed_date).strftime('%b %-d:'))
-      expect(find("span.gig_location").text).to match(change(@gig.location))
+      expect(find("span.gig_name")).to     have_content(change(@gig.name))
+      expect(find("span.gig_note")).to     have_content(change(@gig.note))
+      expect(find("span.gig_date")).to     have_content(Date.parse(@changed_date).strftime('%b %-d:'))
+      expect(find("span.gig_location")).to have_content(change(@gig.location))
     end
   end
 
@@ -287,13 +281,5 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   def verify_gig_active(gig)
     expect(page).not_to have_css(".gig-id-#{gig.id}.expired")
-  end
-
-  def sync_title(text)
-    sync_page
-    while page.title != text
-      puts "title = #{page.title}. sleeping..."
-      sync_page
-    end
   end
 end

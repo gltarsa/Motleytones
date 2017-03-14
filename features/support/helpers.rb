@@ -18,16 +18,12 @@ module Helpers
     do_login(@user, SOME_PASSWORD)
   end
 
-  def sync_page
-    page.has_css?("nav")
-  end
-
   def expect_flash(severity:, containing:)
-    expect(page.find(".flash .#{severity}").text).to match(/.*#{containing}.*/i)
+    expect(page.find(".flash .#{severity}")).to have_content(containing)
   end
 
   def expect_form_error(containing: nil)
-    expect(page.find(".form-error").text).to match(/.*#{containing}.*/i)
+    expect(page.find(".form-error")).to have_content(containing)
   end
 
   # Currently, poltergeist does not have the support for Capybara's accept_alert{}
@@ -57,6 +53,5 @@ module Helpers
     fill_in "user_email", with: user.email
     fill_in "user_password", with: password
     click_button 'Sign in'
-    sync_page
   end
 end
