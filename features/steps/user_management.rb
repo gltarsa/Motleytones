@@ -21,15 +21,13 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   step 'I navigate to the Manage Pirates page' do
     find('li.navigation').hover
     click_link 'Manage Pirates'
-    sync_page
-    expect(page.title).to eq('Motley Users')
+    expect(page).to have_title('Motley Users')
   end
 
   step 'I navigate to the Profile page' do
     find('li.navigation').hover
     click_link 'Profile'
-    sync_page
-    expect(page.title).to eq('Motley User')
+    expect(page).to have_title('Motley User')
   end
 
   step 'I visit the Add Pirate page directly' do
@@ -91,19 +89,16 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   step 'I click Edit' do
     # need test to see that the page is for the right user
     click_on 'Edit Pirate'
-    sync_page
   end
 
   step 'I click Edit for that other user' do
     user_article(@another_user).click_on 'Edit'
-    sync_page
   end
 
   step 'I click Delete and confirm deletion for that other user' do
     my_accept_alert do
       user_article(@another_user).find('.delete').click
     end
-    sync_page
   end
 
   step 'that other user is deleted' do
@@ -116,7 +111,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I see information for another user' do
-    expect(page.text).to have_content(@another_user.name)
+    expect(page).to have_content(@another_user.name)
   end
 
   step 'I see that the Band Start Date is not the first of this year' do
@@ -149,12 +144,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I click Add Pirate' do
     click_link_or_button 'Add pirate'
-    sync_page
   end
 
   step 'I click Add' do
     click_link_or_button 'Add'
-    sync_page
   end
 
   step 'the account is created' do
@@ -188,7 +181,6 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I click Update' do
     click_on 'Update'
-    sync_page
   end
 
   step 'the mutable fields are not changed' do
@@ -200,7 +192,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I see my name on the users page' do
-    expect(find('.user_name').text).to match(@user.name)
+    expect(find('.user_name')).to have_content(@user.name)
   end
 
   step 'the mutable fields for that other user are changed' do
@@ -227,12 +219,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I click Cancel' do
     click_on 'Cancel'
-    sync_page
   end
 
   step 'I click Sign In' do
     click_on 'Sign in'
-    sync_page
   end
 
   step 'I am still in the admin account' do
@@ -262,10 +252,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   def expect_mutable_fields_to_be_changed(user) # rubocop: disable AbcSize
     within user_article(user) do
-      expect(find('.user_name').text).to       match(change(user.name))
-      expect(find('.user_tone_name').text).to  match(change(user.tone_name))
-      expect(find('.user_email').text).to      match(change(user.email))
-      expect(find('.user_start_date').text).to match(@changed_date)
+      expect(find('.user_name')).to       have_content(change(user.name))
+      expect(find('.user_tone_name')).to  have_content(change(user.tone_name))
+      expect(find('.user_email')).to      have_content(change(user.email))
+      expect(find('.user_start_date')).to have_content(@changed_date)
     end
     # unit testy way to check attribute changes
     expect(raw_mutable_attributes(User.find(user.id))).not_to eql(@original_raw_mutable_attributes)
@@ -273,10 +263,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   def expect_mutable_fields_not_to_be_changed(user) # rubocop: disable AbcSize
     within user_article(user) do
-      expect(find('.user_name').text).to       match(user.name)
-      expect(find('.user_tone_name').text).to  match(user.tone_name)
-      expect(find('.user_email').text).to      match(user.email)
-      expect(find('.user_start_date').text).to match(user.band_start_date.strftime('%d-%b-%Y'))
+      expect(find('.user_name')).to       have_content(user.name)
+      expect(find('.user_tone_name')).to  have_content(user.tone_name)
+      expect(find('.user_email')).to      have_content(user.email)
+      expect(find('.user_start_date')).to have_content(user.band_start_date.strftime('%d-%b-%Y'))
     end
     # unit testy way to check attribute constancy
     expect(raw_mutable_attributes(User.find(user.id))).to eql(@original_raw_mutable_attributes)

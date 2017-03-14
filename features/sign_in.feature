@@ -24,8 +24,8 @@ Feature: Sign-In
     And I enter an unregistered email
     And I enter an invalid password
     And I click Sign In
-    Then I see an alert containing "Invalid email or password"
+    Then I see an alert containing "Invalid Email or password"
     When I enter a registered email
     And I enter an invalid password
     And I click Sign In
-    Then I see an alert containing "Invalid email or password"
+    Then I see an alert containing "Invalid Email or password"
