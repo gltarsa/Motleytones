@@ -42,6 +42,7 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'launchy'
+  gem 'rails-controller-testing'
 end
 
 ruby '2.3.0'
