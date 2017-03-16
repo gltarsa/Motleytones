@@ -217,12 +217,15 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     end
   end
 
-  step 'I click Cancel' do
-    click_on 'Cancel'
+  step 'I am still logged into the original admin account' do
+    find('li.navigation').hover
+    current_tone_name = find('li.informational').text
+    original_tone_name = User.find(@user.id).tone_name
+    expect(current_tone_name).to match(original_tone_name)
   end
 
-  step 'I click Sign In' do
-    click_on 'Sign in'
+  step 'I click Cancel' do
+    click_on 'Cancel'
   end
 
   step 'I am still in the admin account' do

@@ -129,6 +129,8 @@ Feature: User Management
   @javascript @admin
   # Trello 115: Added a check to ensure that the bug that caused a user's
   # band_start_date to be changed to the first of the year has been fixed.
+  # Trello 104: Added a check to ensure that the logged in user does not change
+  # when editing attributes of another user.
   Scenario:  Admin users can edit a user account from the Manage Pirates Page
     Given I am signed in as an admin user
     And there is at least one other user
@@ -141,6 +143,7 @@ Feature: User Management
     And I click Update
     Then the mutable fields for that other user are changed
     And the admin field is changed
+    And I am still logged into the original admin account
 
   @javascript @admin
   Scenario:  It is not possible to edit a user record to have the same name as an existing user
