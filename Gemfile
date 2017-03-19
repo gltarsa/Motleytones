@@ -16,6 +16,7 @@ gem 'pg', '~> 0.18.0'
 gem 'simple_form', '~> 3.1'
 gem 'devise'
 gem 'ahoy_matey'
+gem 'rubocop', require: false
 
 group :development, :test do
   gem 'rspec-rails'

@@ -145,9 +145,9 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'the gig fields are changed' do
     within find(".gig-id-#{@gig.id}") do
-      expect(find("span.gig_name")).to     have_content(change(@gig.name))
-      expect(find("span.gig_note")).to     have_content(change(@gig.note))
-      expect(find("span.gig_date")).to     have_content(Date.parse(@changed_date).strftime('%b %-d:'))
+      expect(find("span.gig_name")).to have_content(change(@gig.name))
+      expect(find("span.gig_note")).to have_content(change(@gig.note))
+      expect(find("span.gig_date")).to have_content(Date.parse(@changed_date).strftime('%b %-d:'))
       expect(find("span.gig_location")).to have_content(change(@gig.location))
     end
   end
