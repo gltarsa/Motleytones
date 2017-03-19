@@ -5,6 +5,8 @@ class UsersController < Devise::RegistrationsController
   before_action :require_admin, only: [:new, :create, :destroy]
   before_action :set_user,      only: [:show, :update, :destroy]
 
+  before_action { puts "==== Calling #{request.method} ##{action_name} as a#{current_user.admin? ? 'n ' : ' NON-'}admin" }
+
   def show
   end
 

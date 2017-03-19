@@ -89,7 +89,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  RSpec.shared_examples_for "#create tests" do |http_action|
+  RSpec.shared_examples_for "users#create tests" do |http_action|
     context 'when called as a non-admin user' do
       before do
         sign_in user
@@ -137,14 +137,14 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'POST #create' do
-    include_examples "#create tests", :post
+    include_examples "users#create tests", :post
   end
 
   describe 'GET #create' do
     before do
       puts "------------ Why do any GET #create calls succeed? ---"
     end
-    include_examples "#create tests", :get
+    include_examples "users#create tests", :get
   end
 
   describe 'GET #edit' do
@@ -192,11 +192,13 @@ RSpec.describe UsersController, type: :controller do
       it 'when I edit other users I remain in logged in as myself' do
         get :edit, params: { id: other_user.id }
         expect(subject.current_user).to eq admin_user
+        pending "This is not working correctly"
+        fail
       end
     end
   end
 
-  RSpec.shared_examples_for "#update tests" do |http_action|
+  RSpec.shared_examples_for "users#update tests" do |http_action|
     let(:http_action) { http_action }
     let(:other_user) { FactoryGirl.create(:user) }
 
@@ -254,11 +256,11 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    include_examples "#update tests", :patch
+    include_examples "users#update tests", :patch
   end
 
   describe 'PUT #update' do
-    include_examples "#update tests", :put
+    include_examples "users#update tests", :put
   end
 
   describe 'DELETE #destroy' do
@@ -269,41 +271,33 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(root_path)
       end
-
-      it 'does not delete anyone' do
-        sign_in user
-        starting_user_count = User.count
-        delete :destroy, params: { id: user.id }
-        ending_user_count = User.count
-        expect(ending_user_count).to eql(starting_user_count)
-      end
     end
 
     context 'when called as an admin user' do
-      it 'deletes the specified user' do
+      before do
         sign_in admin_user
+      end
+
+      it 'deletes the specified user' do
         starting_user_count = User.count
         delete :destroy, params: { id: user.id }
         ending_user_count = User.count
         expect(ending_user_count).to eql(starting_user_count - 1)
       end
 
-      it 'displays a flash notice upon deleting the user containing "Pirate has been killed off"' do
-        sign_in admin_user
+      it 'displays a flash notice upon deleting the user containing "Pirate has been killed"' do
         delete :destroy, params: { id: user.id }
         expect(flash[:notice]).to match(I18n.t('devise.registrations.pirate_deleted',
                                                count: User.count))
       end
 
       it 'redirects to users_path' do
-        sign_in admin_user
         delete :destroy, params: { id: user.id }
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(users_path)
       end
 
       it 'will not delete itself' do
-        sign_in admin_user
         starting_user_count = User.count
         delete :destroy, params: { id: admin_user.id }
         ending_user_count = User.count
