@@ -2,8 +2,8 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let! (:user)       { FactoryGirl.create(:user) }
-  let  (:admin_user) { FactoryGirl.create(:user, :admin) }
+  let!(:user)      { FactoryGirl.create(:user, name: "Ordinary User") }
+  let(:admin_user) { FactoryGirl.create(:user, :admin, name: "Admin User") }
 
   before(:each) do
     @request.env['devise.mapping'] = Devise.mappings[:user]
@@ -89,21 +89,21 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
+  RSpec.shared_examples_for "#create tests" do |http_action|
     context 'when called as a non-admin user' do
       before do
         sign_in user
       end
 
       it 'redirects to the root_path' do
-        post :create
+        send http_action, :create
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(root_path)
       end
 
       it 'does not create any user' do
         starting_user_count = User.count
-        post :create
+        send http_action, :create
         ending_user_count = User.count
         expect(ending_user_count).to eql(starting_user_count)
       end
@@ -117,55 +117,38 @@ RSpec.describe UsersController, type: :controller do
 
       it 'creates a new user' do
         starting_user_count = User.count
-        post :create, params: { user: @new_user }
+        send http_action, :create, params: { user: @new_user }
         ending_user_count = User.count
         expect(ending_user_count).to eql(starting_user_count + 1)
       end
 
       it 'displays a flash message containing "New Pirate Added"' do
-        post :create, params: { user: @new_user }
-        expect(flash[:notice]).to match(I18n.t('devise.registrations.new_pirate_added', count: User.count))
+        send http_action, :create, params: { user: @new_user }
+        expect(flash[:notice]).to match(I18n.t('devise.registrations.new_pirate_added',
+                                               count: User.count))
       end
 
       it 'redirects to the new user\'s profile page' do
-        post :create, params: { user: @new_user }
+        send http_action, :create, params: { user: @new_user }
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(user_url(User.last.id))
       end
     end
   end
 
+  describe 'POST #create' do
+    include_examples "#create tests", :post
+  end
+
   describe 'GET #create' do
     before do
       puts "------------ Why do any GET #create calls succeed? ---"
     end
-
-    context 'when called as a non-admin user' do
-      it 'responds with http redirect and creates no user' do
-        sign_in user
-        starting_user_count = User.count
-        get :create
-        ending_user_count = User.count
-        expect(response).to have_http_status(:redirect)
-        expect(ending_user_count).to eql(starting_user_count)
-      end
-    end
-
-    context 'when called as an admin user' do
-      it 'creates a user and responds with http redirect' do
-        new_user = FactoryGirl.attributes_for(:user)
-        sign_in admin_user
-        starting_user_count = User.count
-        get :create, params: { user: new_user }
-        ending_user_count = User.count
-        expect(response).to have_http_status(:redirect)
-        expect(ending_user_count).to eql(starting_user_count + 1)
-      end
-    end
+    include_examples "#create tests", :get
   end
 
   describe 'GET #edit' do
-    let (:other_user) { FactoryGirl.create(:user) }
+    let(:other_user) { FactoryGirl.create(:user) }
 
     context 'when called as a non-admin user' do
       before do
@@ -185,9 +168,8 @@ RSpec.describe UsersController, type: :controller do
       it 'redirects me to the my profile page with an alert' do
         get :edit, params: { id: other_user.id }
         expect(response).to redirect_to(user_path(user.id))
-        expect(flash[:alert]).to match(I18n.t('devise.registrations.user.must_be_admin', count: User.count))
+        expect(flash[:alert]).to match(I18n.t('devise.registrations.user.must_be_admin'))
       end
-
     end
 
     context 'when called as an admin user' do
@@ -214,7 +196,7 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  RSpec.shared_examples_for "update tests" do |http_action|
+  RSpec.shared_examples_for "#update tests" do |http_action|
     let(:http_action) { http_action }
     let(:other_user) { FactoryGirl.create(:user) }
 
@@ -225,9 +207,8 @@ RSpec.describe UsersController, type: :controller do
 
     context 'when called as a non-admin user' do
       it 'allows me to update myself' do
-        old_email = user.email
         send http_action, :update,
-          params: { id: user.id, user: { email: @new_email } }
+             params: { id: user.id, user: { email: @new_email } }
         user.reload
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(users_url)
@@ -237,7 +218,7 @@ RSpec.describe UsersController, type: :controller do
       it 'does not allow me to edit other users' do
         old_email = other_user.email
         send http_action, :update,
-          params: { id: other_user.id, user: { email: @new_email } }
+             params: { id: other_user.id, user: { email: @new_email } }
         user.reload
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(user_path(user.id))
@@ -252,9 +233,8 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'allows me to edit myself' do
-        old_email = user.email
         send http_action, :update,
-          params: { id: user.id, user: { email: @new_email } }
+             params: { id: user.id, user: { email: @new_email } }
         user.reload
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(users_url)
@@ -262,9 +242,8 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'allows me to edit other users' do
-        old_email = other_user.email
         send http_action, :update,
-          params: { id: other_user.id, user: { email: @new_email } }
+             params: { id: other_user.id, user: { email: @new_email } }
         other_user.reload
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(users_url)
@@ -275,11 +254,11 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    include_examples "update tests", :patch
+    include_examples "#update tests", :patch
   end
 
   describe 'PUT #update' do
-    include_examples "update tests", :put
+    include_examples "#update tests", :put
   end
 
   describe 'DELETE #destroy' do
@@ -312,7 +291,8 @@ RSpec.describe UsersController, type: :controller do
       it 'displays a flash notice upon deleting the user containing "Pirate has been killed off"' do
         sign_in admin_user
         delete :destroy, params: { id: user.id }
-        expect(flash[:notice]).to match(I18n.t('devise.registrations.pirate_deleted', count: User.count))
+        expect(flash[:notice]).to match(I18n.t('devise.registrations.pirate_deleted',
+                                               count: User.count))
       end
 
       it 'redirects to users_path' do
