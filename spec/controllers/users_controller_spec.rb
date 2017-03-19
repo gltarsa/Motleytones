@@ -2,8 +2,8 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let! (:user)      { FactoryGirl.create(:user) }
-  let (:admin_user) { FactoryGirl.create(:user, :admin) }
+  let! (:user)       { FactoryGirl.create(:user) }
+  let  (:admin_user) { FactoryGirl.create(:user, :admin) }
 
   before(:each) do
     @request.env['devise.mapping'] = Devise.mappings[:user]
@@ -112,19 +112,23 @@ RSpec.describe UsersController, type: :controller do
     context 'when called as an admin user' do
       before do
         sign_in admin_user
+        @new_user = FactoryGirl.attributes_for(:user)
       end
 
       it 'creates a new user' do
-        new_user = FactoryGirl.attributes_for(:user)
         starting_user_count = User.count
-        post :create, params: { user: new_user }
+        post :create, params: { user: @new_user }
         ending_user_count = User.count
         expect(ending_user_count).to eql(starting_user_count + 1)
       end
 
+      it 'displays a flash message containing "New Pirate Added"' do
+        post :create, params: { user: @new_user }
+        expect(flash[:notice]).to match(I18n.t('devise.registrations.new_pirate_added', count: User.count))
+      end
+
       it 'redirects to the new user\'s profile page' do
-        new_user = FactoryGirl.attributes_for(:user)
-        post :create, params: { user: new_user }
+        post :create, params: { user: @new_user }
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(user_url(User.last.id))
       end
@@ -132,7 +136,9 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #create' do
-    puts "--- Why do any get #create calls succeed? ---"
+    before do
+      puts "------------ Why do any GET #create calls succeed? ---"
+    end
 
     context 'when called as a non-admin user' do
       it 'responds with http redirect and creates no user' do
@@ -156,6 +162,124 @@ RSpec.describe UsersController, type: :controller do
         expect(ending_user_count).to eql(starting_user_count + 1)
       end
     end
+  end
+
+  describe 'GET #edit' do
+    let (:other_user) { FactoryGirl.create(:user) }
+
+    context 'when called as a non-admin user' do
+      before do
+        sign_in user
+      end
+
+      it 'allows me to edit myself' do
+        get :edit, params: { id: user.id }
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'does not allow me to edit other users' do
+        get :edit, params: { id: other_user.id }
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it 'redirects me to the my profile page with an alert' do
+        get :edit, params: { id: other_user.id }
+        expect(response).to redirect_to(user_path(user.id))
+        expect(flash[:alert]).to match(I18n.t('devise.registrations.user.must_be_admin', count: User.count))
+      end
+
+    end
+
+    context 'when called as an admin user' do
+      before do
+        sign_in admin_user
+      end
+
+      it 'allows me to edit myself' do
+        get :edit, params: { id: user.id }
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'allows me to edit other users' do
+        get :edit, params: { id: other_user.id }
+        expect(response).to have_http_status(:success)
+      end
+
+      # test for a reported bug
+      # This may need to be part of the #update tests
+      it 'when I edit other users I remain in logged in as myself' do
+        get :edit, params: { id: other_user.id }
+        expect(subject.current_user).to eq admin_user
+      end
+    end
+  end
+
+  RSpec.shared_examples_for "update tests" do |http_action|
+    let(:http_action) { http_action }
+    let(:other_user) { FactoryGirl.create(:user) }
+
+    before do
+      sign_in user
+      @new_email = Faker::Internet.email
+    end
+
+    context 'when called as a non-admin user' do
+      it 'allows me to update myself' do
+        old_email = user.email
+        send http_action, :update,
+          params: { id: user.id, user: { email: @new_email } }
+        user.reload
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(users_url)
+        expect(user.email).to eq(@new_email)
+      end
+
+      it 'does not allow me to edit other users' do
+        old_email = other_user.email
+        send http_action, :update,
+          params: { id: other_user.id, user: { email: @new_email } }
+        user.reload
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(user_path(user.id))
+        expect(other_user.email).to eq(old_email)
+      end
+    end
+
+    context 'when called as an admin user' do
+      before do
+        sign_in admin_user
+        @new_email = Faker::Internet.email
+      end
+
+      it 'allows me to edit myself' do
+        old_email = user.email
+        send http_action, :update,
+          params: { id: user.id, user: { email: @new_email } }
+        user.reload
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(users_url)
+        expect(user.email).to eq(@new_email)
+      end
+
+      it 'allows me to edit other users' do
+        old_email = other_user.email
+        send http_action, :update,
+          params: { id: other_user.id, user: { email: @new_email } }
+        other_user.reload
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(users_url)
+        expect(other_user.email).to eq(@new_email)
+        expect(subject.current_user).to eq admin_user
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    include_examples "update tests", :patch
+  end
+
+  describe 'PUT #update' do
+    include_examples "update tests", :put
   end
 
   describe 'DELETE #destroy' do
@@ -183,6 +307,12 @@ RSpec.describe UsersController, type: :controller do
         delete :destroy, params: { id: user.id }
         ending_user_count = User.count
         expect(ending_user_count).to eql(starting_user_count - 1)
+      end
+
+      it 'displays a flash notice upon deleting the user containing "Pirate has been killed off"' do
+        sign_in admin_user
+        delete :destroy, params: { id: user.id }
+        expect(flash[:notice]).to match(I18n.t('devise.registrations.pirate_deleted', count: User.count))
       end
 
       it 'redirects to users_path' do
