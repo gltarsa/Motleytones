@@ -5,8 +5,6 @@ class UsersController < Devise::RegistrationsController
   before_action :require_admin, only: [:new, :create, :destroy]
   before_action :set_user,      only: [:show, :update, :destroy]
 
-  before_action { puts "==== Calling #{request.method} ##{action_name} as a#{current_user.admin? ? 'n ' : ' NON-'}admin" }
-
   def show
   end
 
@@ -37,12 +35,9 @@ class UsersController < Devise::RegistrationsController
   end
 
   def update
-    if current_user.id.to_s == params[:id] || current_user.admin?
-      set_user
-    else
-      return require_admin(redirect_path: current_user)
-    end
+    return require_admin(redirect_path: current_user) unless myself_or_admin
 
+    set_user
     remove_unused_password_pair_from_params
 
     if @user.update(allowed_user_params)
@@ -67,6 +62,10 @@ class UsersController < Devise::RegistrationsController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def myself_or_admin
+    current_user.id.to_s == params[:id] || current_user.admin?
   end
 
   def allowed_user_params

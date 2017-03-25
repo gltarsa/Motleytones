@@ -3,8 +3,6 @@ class GigsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin, only: [:show, :index, :new, :create, :edit, :update, :destroy]
 
-  #before_action { puts "==== Calling #{request.method} ##{action_name} as a#{current_user.admin? ? 'n ' : ' NON-'}admin" }
-
   def show
     @gig = Gig.find(params[:id])
   end

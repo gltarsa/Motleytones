@@ -6,18 +6,15 @@ RSpec.describe GigsController, type: :controller do
   let(:admin_user) { FactoryGirl.create(:user, :admin, name: "Admin User") }
   let!(:gig)       { FactoryGirl.create(:gig) }
 
-  after do
-    # # NEXT: refactor tests to check for redirects and flash messages once.
-   #puts "------ flash: #{flash.to_a}" unless flash.keys.empty?
-  end
-
   def admin_required_redirect
+    yield
     expect(response).to have_http_status(:redirect)
     expect(response).to redirect_to(root_path)
     expect(flash[:alert]).to match(/^You must be an admin/)
   end
 
   def signed_in_redirect
+    yield
     expect(response).to have_http_status(:redirect)
     expect(response).to redirect_to(new_user_session_path)
     expect(flash[:alert]).to match(/^You must be signed in/)
@@ -26,16 +23,16 @@ RSpec.describe GigsController, type: :controller do
   describe 'GET #show' do
     context 'when not logged in' do
       it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
-        get :show, params: { id: gig.id }
-        signed_in_redirect
+        signed_in_redirect { get :show, params: { id: gig.id } }
       end
     end
 
     context 'when logged in as a non-admin' do
       it 'Sets flash message to "You must be an admin" message and redirects to root' do
-        sign_in user
-        get :show, params: { id: gig.id }
-        admin_required_redirect
+        admin_required_redirect do
+          sign_in user
+          get :show, params: { id: gig.id }
+        end
       end
     end
 
@@ -58,16 +55,16 @@ RSpec.describe GigsController, type: :controller do
   describe 'GET #index' do
     context 'when not logged in' do
       it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
-        get :index
-        signed_in_redirect
+        signed_in_redirect { get :index }
       end
     end
 
     context 'when logged in as non-admin' do
       it 'Sets flash message to "You must be an admin" message and redirects to root' do
-        sign_in user
-        get :index
-        admin_required_redirect
+        admin_required_redirect do
+          sign_in user
+          get :index
+        end
       end
     end
 
@@ -94,16 +91,16 @@ RSpec.describe GigsController, type: :controller do
   describe 'GET #new' do
     context 'when not logged in' do
       it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
-        get :new
-        signed_in_redirect
+        signed_in_redirect { get :new }
       end
     end
 
     context 'when logged in non-admin user' do
       it 'Sets flash message to "You must be an admin" message and redirects to root' do
-        sign_in user
-        get :new
-        admin_required_redirect
+        admin_required_redirect do
+          sign_in user
+          get :new
+        end
       end
     end
 
@@ -126,8 +123,7 @@ RSpec.describe GigsController, type: :controller do
   RSpec.shared_examples_for "gigs#create tests" do |http_action|
     context 'when not logged in' do
       it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
-        send http_action, :create
-        signed_in_redirect
+        signed_in_redirect { send http_action, :create }
       end
     end
 
@@ -137,16 +133,18 @@ RSpec.describe GigsController, type: :controller do
       end
 
       it 'Sets flash message to "You must be an admin" message and redirects to root' do
-        send http_action, :create
-        admin_required_redirect
+        admin_required_redirect do
+          send http_action, :create
+        end
       end
 
       it 'does not create any gig' do
-        starting_gig_count = Gig.count
-        send http_action, :create
-        ending_gig_count = Gig.count
-        expect(ending_gig_count).to eql(starting_gig_count)
-        admin_required_redirect
+        admin_required_redirect do
+          starting_gig_count = Gig.count
+          send http_action, :create
+          ending_gig_count = Gig.count
+          expect(ending_gig_count).to eql(starting_gig_count)
+        end
       end
     end
 
@@ -163,15 +161,15 @@ RSpec.describe GigsController, type: :controller do
         expect(ending_gig_count).to eql(starting_gig_count + 1)
       end
 
-      it 'displays a flash message containing "New gig added"' do
-        send http_action, :create, params: { gig: @new_gig }
-        expect(flash[:notice]).to match(/^New gig added/)
-      end
-
       it 'redirects to the new gig\'s show page' do
         send http_action, :create, params: { gig: @new_gig }
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(gig_url(Gig.last.id))
+      end
+
+      it 'displays a flash message containing "New gig added"' do
+        send http_action, :create, params: { gig: @new_gig }
+        expect(flash[:notice]).to match(/^New gig added/)
       end
     end
   end
@@ -190,16 +188,16 @@ RSpec.describe GigsController, type: :controller do
   describe 'GET #edit' do
     context 'when not logged in' do
       it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
-        get :edit, params: { id: gig.id }
-        signed_in_redirect
+        signed_in_redirect { get :edit, params: { id: gig.id } }
       end
     end
 
     context 'when called as a non-admin user' do
       it 'Sets flash message to "You must be an admin" message and redirects to root' do
-        sign_in user
-        get :edit, params: { id: gig.id }
-        admin_required_redirect
+        admin_required_redirect do
+          sign_in user
+          get :edit, params: { id: gig.id }
+        end
       end
     end
 
@@ -221,18 +219,20 @@ RSpec.describe GigsController, type: :controller do
 
     context 'when not logged in' do
       it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
-        send http_action, :update,
-          params: { id: gig.id, gig: { note: @new_note } }
-        signed_in_redirect
+        signed_in_redirect do
+          send http_action, :update,
+               params: { id: gig.id, gig: { note: @new_note } }
+        end
       end
     end
 
     context 'when called as a non-admin user' do
       it 'Sets flash message to "You must be an admin" message and redirects to root' do
-        sign_in user
-        send http_action, :update,
-          params: { id: gig.id, gig: { note: @new_note } }
-        admin_required_redirect
+        admin_required_redirect do
+          sign_in user
+          send http_action, :update,
+               params: { id: gig.id, gig: { note: @new_note } }
+        end
       end
     end
 
@@ -241,7 +241,7 @@ RSpec.describe GigsController, type: :controller do
         sign_in admin_user
         @new_email = Faker::Internet.email
         send http_action, :update,
-          params: { id: gig.id, gig: { note: @new_note } }
+             params: { id: gig.id, gig: { note: @new_note } }
         gig.reload
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(gig_url(gig.id))
@@ -261,16 +261,16 @@ RSpec.describe GigsController, type: :controller do
   describe 'DELETE #destroy' do
     context 'when not logged in' do
       it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
-        delete :destroy, params: { id: gig.id }
-        signed_in_redirect
+        signed_in_redirect { delete :destroy, params: { id: gig.id } }
       end
     end
 
     context 'when called as a non-admin user' do
       it 'Sets flash message to "You must be an admin" message and redirects to root' do
-        sign_in user
-        delete :destroy, params: { id: gig.id }
-        admin_required_redirect
+        admin_required_redirect do
+          sign_in user
+          delete :destroy, params: { id: gig.id }
+        end
       end
     end
 
