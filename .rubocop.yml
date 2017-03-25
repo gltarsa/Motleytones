@@ -20,8 +20,10 @@ AllCops:
     - 'script/**/*'
     - 'data/**/*'
     - 'bin/**/*'
+    - '*_seed.rb'
     - '*tmp'
     - 'tmp*'
+    - 'tmp/**/*'
 
 StringLiterals:
   Enabled: false

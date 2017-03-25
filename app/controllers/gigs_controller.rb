@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 class GigsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin, only: [:index, :new, :create, :edit, :destroy]
+  before_action :require_admin, only: [:show, :index, :new, :create, :edit, :update, :destroy]
+
+  def show
+    @gig = Gig.find(params[:id])
+  end
+
+  def index
+    @gigs = Gig.all
+  end
 
   def new
     @gig = Gig.new
@@ -15,13 +23,6 @@ class GigsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-  end
-
-  def index
-    @gigs = Gig.all
   end
 
   def edit

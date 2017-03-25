@@ -30,20 +30,21 @@ class UsersController < Devise::RegistrationsController
     if current_user.id.to_s == params[:id] || current_user.admin?
       set_user
     else
-      set_flash_message :alert, :must_be_admin
-      redirect_to current_user
+      require_admin(redirect_path: current_user)
     end
   end
 
   def update
+    return require_admin(redirect_path: current_user) unless myself_or_admin
+
+    set_user
     remove_unused_password_pair_from_params
 
     if @user.update(allowed_user_params)
       bypass_sign_in(@user)
-      redirect_to users_path
-    else
-      render :edit
+      return redirect_to users_path
     end
+    render :edit
   end
 
   def destroy
@@ -63,6 +64,10 @@ class UsersController < Devise::RegistrationsController
     @user = User.find(params[:id])
   end
 
+  def myself_or_admin
+    current_user.id.to_s == params[:id] || current_user.admin?
+  end
+
   def allowed_user_params
     allowed = %i(name email password password_confirmation
                  tone_name band_start_date)
@@ -76,9 +81,9 @@ class UsersController < Devise::RegistrationsController
     params[:user].delete(:password_confirmation)
   end
 
-  def require_admin
+  def require_admin(redirect_path: root_path)
     return if current_user.admin?
     set_flash_message :alert, :must_be_admin
-    redirect_to root_path
+    redirect_to redirect_path
   end
 end
