@@ -3,37 +3,33 @@ namespace :db do
     hash.each.collect { |h| "#{h.first}: \"#{h.last}\"" if h.last }.compact.join(",\n  ")
   end
 
+  def export_to_stdout(klass:, extra_exceptions: [ ])
+    exceptions = [ :id, :created_at, :updated_at ] + extra_exceptions
+    klass.order(:id).all.each do |item|
+      hash = item.serializable_hash(except: exceptions)
+      puts "#{klass.name}.create!(#{hash_to_pairs(hash)})"
+    end
+  end
+
   namespace :export do
     desc "Prints User.all in a format suitable for inclusion in seeds.db"
     task user: :environment do
-      User.order(:id).all.each do |user|
-        hash = user.serializable_hash(except: [ :id, :password_digest, :created_at, :updated_at ])
-        puts "User.create!(#{hash_to_pairs(hash)})"
-      end
+      export_to_stdout(klass: User, extra_exceptions: [ :password_digest ])
     end
 
     desc "Prints Gig.all in a format suitable for inclusion in seeds.db"
     task gig: :environment do
-      Gig.order(:id).all.each do |gig|
-        hash = gig.serializable_hash(except: [ :id, :created_at, :updated_at ])
-        puts "Gig.create!(#{hash_to_pairs(hash)})"
-      end
+      export_to_stdout(klass: Gig)
     end
 
     desc "Prints Ahoy::Event.all in a format suitable for inclusion in a rails script"
     task events: :environment do
-      Ahoy::Event.order(:id).all.each do |event|
-        hash = event.serializable_hash(except: [ :id, :created_at, :updated_at ])
-        puts "Ahoy::Event.create!(#{hash_to_pairs(hash)})"
-      end
+      export_to_stdout(klass: Ahoy::Event)
     end
 
     desc "Prints Visit.all in a format suitable for inclusion in a rails script"
     task visit: :environment do
-      Visit.order(:id).all.each do |visit|
-        hash = visit.serializable_hash(except: [ :id, :created_at, :updated_at ])
-        puts "Visit.create!(#{hash_to_pairs(hash)})"
-      end
+      export_to_stdout(klass: Visit)
     end
 
   end
