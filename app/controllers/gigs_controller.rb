@@ -18,7 +18,7 @@ class GigsController < ApplicationController
   def create
     @gig = Gig.new(allowed_gig_params)
     if gig.save
-      flash[:notice] = "New gig added. #{total_msg}"
+      flash[:notice] = I18n.t('gig.added', count: Gig.count)
       redirect_to gig
     else
       render :new
@@ -38,7 +38,7 @@ class GigsController < ApplicationController
 
   def destroy
     gig.destroy
-    flash[:notice] = "gig deleted.  #{total_msg}"
+    flash[:notice] = I18n.t('.gig.deleted', count: Gig.count)
     redirect_to gigs_path
   end
 
@@ -54,13 +54,9 @@ class GigsController < ApplicationController
                                 :note, :location, :published)
   end
 
-  def total_msg
-    "There are now #{Gig.count} in the schedule."
-  end
-
   def require_admin
     return if current_user.admin?
-    flash.alert = "You must be an admin user to access that page"
+    flash.alert = I18n.t('.must_be_admin')
     redirect_to root_path
   end
 end
