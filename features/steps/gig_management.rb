@@ -221,11 +221,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see an alert containing "You must be signed in to access that page"' do
-    expect_flash(severity: :alert, containing: "You must be signed in to access that page")
+    expect_flash(severity: :alert, containing: I18n.t('devise.failure.unauthenticated'))
   end
 
   step 'I see an alert containing "You must be an admin user to access that page"' do
-    expect_flash(severity: :alert, containing: "You must be an admin user to access that page")
+    expect_flash(severity: :alert, containing: I18n.t('.must_be_admin'))
   end
 
   step 'I see an error message' do
