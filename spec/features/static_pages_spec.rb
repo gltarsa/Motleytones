@@ -1,42 +1,81 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe "static_pages" do
-  @copyright = "© The Motley Tones. All rights reserved"
+RSpec.describe 'static_pages', type: :feature do
+  @copyright = '© The Motley Tones. All rights reserved'
 
-  it "has a Root page" do
-    visit "/"
-    expect(page.title).to eq("The Motley Tones")
-    expect(page).to have_content(@copyright)
+  shared_examples 'it has standard decorations' do |title|
+    it 'has a title' do
+      expect(page).to have_title(title)
+    end
+
+    it 'has a copyright' do
+      within 'ul.copyright' do
+        expect(page).to have_content(I18n.t('layouts.footer.copyright',
+                                            year: Time.now.strftime('%Y')))
+      end
+    end
   end
 
-  it "has an About page" do
-    visit "/about"
-    expect(page.title).to eq("Motley Tones: Past + Present")
-    expect(page).to have_content(@copyright)
+  context 'Root page' do
+    before { visit '/' }
+    it_behaves_like 'it has standard decorations', 'The Motley Tones'
+
+    it 'shows the performance schedule' do
+      3.times { FactoryGirl.create(:gig, published: true) }
+      visit '/'
+      within '.schedule' do
+        expect(page).to have_css('li', count: 3)
+      end
+    end
   end
 
-  it "has a Bios page" do
-    visit "/bios"
-    expect(page.title).to eq("Meet the Tones!")
-    expect(page).to have_content(@copyright)
+  context 'About page' do
+    before { visit '/about' }
+    it_behaves_like 'it has standard decorations', 'Motley Tones: Past + Present'
   end
 
-  it "has a Photos page" do
-    visit "/photos"
-    expect(page.title).to eq("Motley Pictures")
-    expect(page).to have_content(@copyright)
+  context 'Bios page' do
+    before { visit '/bios' }
+    it_behaves_like 'it has standard decorations', 'Meet the Tones!'
   end
 
-  it "has a Schedule page" do
-    visit "/schedule"
-    expect(page.title).to eq("Motley Performance Schedule")
-    expect(page).to have_content(@copyright)
+  context 'Photos page' do
+    before { visit '/photos' }
+    it_behaves_like 'it has standard decorations', 'Motley Pictures'
   end
 
-  it "has a Videos page" do
-    visit "/videos"
-    expect(page.title).to eq("Motley Videos")
-    expect(page).to have_content(@copyright)
+  context 'Schedule page' do
+    before do
+      2010.upto(2013).each do |year|
+        FactoryGirl.create(:gig, published: true, date: Date.new(year, 7, 10))
+      end
+      visit '/schedule'
+    end
+
+    it_behaves_like 'it has standard decorations', 'Motley Performance Schedule'
+
+    context 'has a gig list' do
+      it 'contains a list of gigs' do
+        Gig.all.each do |gig|
+          within '.main-content' do
+            expect(page).to have_css(".gig-id-#{gig.id}")
+          end
+        end
+      end
+
+      it 'a picture separates each year\'s gigs' do
+        within '.main-content' do
+          2010.upto(2013).each do |year|
+            expect(page).to have_css("img.separator-#{year}")
+          end
+        end
+      end
+    end
+  end
+
+  context 'Videos page' do
+    before { visit '/videos' }
+    it_behaves_like 'it has standard decorations', 'Motley Videos'
   end
 end

@@ -29,7 +29,7 @@ RSpec.shared_examples_for "gig#create tests" do
   end
 end
 
-RSpec.shared_examples_for "gig#update tests" do |http_action|
+RSpec.shared_examples_for "gig#update tests" do
   context 'when called as an admin user' do
     it 'updates the gig' do
       sign_in admin_user

@@ -23,7 +23,13 @@ end
 
 # ensures that faked names are not invalid due to length
 def proper_length_name
-  name = ""
-  name = Faker::Name.name until name.length > 13
+  name = ''
+  name = "#{Faker::Commerce.product_name} #{day_type}" until name.length > 13
   name
+end
+
+def day_type
+  events = %w(Festival Market Benefit Party Celebration)
+  kind = %w(Day Bash Meeting Gathering).push('')
+  "#{events[rand(events.count).round]} #{kind[rand(kind.count).round]}"
 end
