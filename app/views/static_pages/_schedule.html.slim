@@ -1,5 +1,5 @@
-section.main-content
-  .row.schedule
+section
+  .row
     - current_year = nil
     ul
       - Gig.published.active.ascending.each do |gig|

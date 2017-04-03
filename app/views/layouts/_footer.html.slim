@@ -34,9 +34,7 @@ footer
       .eight.columns
         ul.copyright
           li
-            | ©
-            => Time.now.strftime("%Y")
-            | The Motley Tones. All rights reserved.
+            = t('.copyright', year: Time.now.strftime("%Y"))
       .four.columns
         ul
           li.visit-count #{number_with_delimiter(Visit.count)} visitors
