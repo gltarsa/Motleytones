@@ -75,13 +75,13 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #new' do
     context 'when not logged in' do
-      it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
+      it 'sets flash message to "You must be signed in" and redirects to sign_in url' do
         signed_in_redirect { get :new }
       end
     end
 
     context 'when logged in non-admin user' do
-      it 'Sets flash message to "You must be an admin" message and redirects to root' do
+      it 'sets flash message to "You must be an admin" message and redirects to root' do
         admin_required_redirect do
           sign_in user
           get :new
@@ -107,7 +107,7 @@ RSpec.describe UsersController, type: :controller do
 
   RSpec.shared_examples_for 'users#create tests' do |http_action|
     context 'when not logged in' do
-      it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
+      it 'sets flash message to "You must be signed in" and redirects to sign_in url' do
         signed_in_redirect { send http_action, :create }
       end
     end
@@ -171,7 +171,7 @@ RSpec.describe UsersController, type: :controller do
     let(:other_user) { FactoryGirl.create(:user) }
 
     context 'when not logged in' do
-      it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
+      it 'sets flash message to "You must be signed in" and redirects to sign_in url' do
         signed_in_redirect { get :edit, params: { id: user.id } }
       end
     end
@@ -186,7 +186,7 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      it 'Sets flash mesage to "You must be an admin" and does not allow me to edit other users' do
+      it 'sets flash message to "You must be an admin" and does not allow me to edit other users' do
         admin_required_redirect(to: user_path(user.id)) { get :edit, params: { id: other_user.id } }
       end
 
@@ -209,15 +209,6 @@ RSpec.describe UsersController, type: :controller do
         get :edit, params: { id: other_user.id }
         expect(response).to have_http_status(:success)
       end
-
-      # test for a reported bug
-      # This may need to be part of the #update tests
-      it 'when I edit other users I remain in logged in as myself' do
-        get :edit, params: { id: other_user.id }
-        expect(subject.current_user).to eq admin_user
-        pending 'This is not working correctly'
-        raise 'Actual app appears to become the updated user'
-      end
     end
   end
 
@@ -230,7 +221,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'when not logged in' do
-      it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
+      it 'sets flash message to "You must be signed in" and redirects to sign_in url' do
         signed_in_redirect do
           send http_action, :update,
                params: { id: user.id, user: { email: @new_email } }
@@ -252,6 +243,11 @@ RSpec.describe UsersController, type: :controller do
         expect(user.email).to eq(@new_email)
       end
 
+      it 'sets flash message to "Pirate info updated"' do
+        send http_action, :update, params: { id: user.id, user: { email: @new_email } }
+        expect(flash[:notice]).to match(I18n.t('devise.registrations.pirate_updated'))
+      end
+
       it 'does not allow me to edit other users' do
         old_email = other_user.email
         send http_action, :update,
@@ -260,6 +256,7 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(user_path(user.id))
         expect(other_user.email).to eq(old_email)
+        expect(flash[:alert]).to match(I18n.t('devise.registrations.user.must_be_admin'))
       end
     end
 
@@ -299,7 +296,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'DELETE #destroy' do
     context 'when not logged in' do
-      it 'Sets flash message to "You must be signed in" and redirects to sign_in url' do
+      it 'sets flash message to "You must be signed in" and redirects to sign_in url' do
         signed_in_redirect { delete :destroy, params: { id: user.id } }
       end
     end
