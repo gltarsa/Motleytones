@@ -41,9 +41,11 @@ class UsersController < Devise::RegistrationsController
     remove_unused_password_pair_from_params
 
     if @user.update(allowed_user_params)
-      bypass_sign_in(@user)
+      bypass_sign_in(@user) if @user == current_user
+      set_flash_message :notice, :pirate_updated
       return redirect_to users_path
     end
+    set_flash_message :alert, :pirate_update_failed
     render :edit
   end
 

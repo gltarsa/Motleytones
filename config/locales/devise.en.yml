@@ -42,6 +42,8 @@ en:
       pirate_deleted:
         one:   "Pirate has been killed off, %{count} remains"
         other: "Pirate has been killed off, %{count} remain"
+      pirate_updated: "Pirate info updated"
+      pirate_update_failed: "Unable to update Pirate info"
       signed_up: "Welcome! You have signed up successfully."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
