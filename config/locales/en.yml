@@ -1,5 +1,5 @@
 en:
-  must_be_admin: "You must be an admin user to access that page."
+  must_be_admin: "You must be an admin user to access that page"
 
   gig:
     added: "New gig added. There are now %{count} in the schedule."
