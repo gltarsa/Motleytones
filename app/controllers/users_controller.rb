@@ -3,7 +3,10 @@ class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   before_action :authenticate_scope!
   before_action :require_admin, only: [:new, :create, :destroy]
-  before_action :set_user,      only: [:show, :update, :destroy]
+  before_action only: [:update], unless: -> { myself_or_admin } do
+    require_admin(redirect_path: users_path)
+  end
+  before_action :set_user, only: [:show, :update, :destroy]
 
   def show
   end
@@ -27,16 +30,11 @@ class UsersController < Devise::RegistrationsController
   end
 
   def edit
-    if current_user.id.to_s == params[:id] || current_user.admin?
-      set_user
-    else
-      require_admin(redirect_path: current_user)
-    end
+    set_user
+    require_admin(redirect_path: users_path) unless myself_or_admin
   end
 
   def update
-    return require_admin(redirect_path: current_user) unless myself_or_admin
-
     set_user
     remove_unused_password_pair_from_params
 
@@ -45,6 +43,7 @@ class UsersController < Devise::RegistrationsController
       set_flash_message :notice, :pirate_updated
       return redirect_to users_path
     end
+
     set_flash_message :alert, :pirate_update_failed
     render :edit
   end
@@ -71,8 +70,7 @@ class UsersController < Devise::RegistrationsController
   end
 
   def allowed_user_params
-    allowed = %i(name email password password_confirmation
-                 tone_name band_start_date)
+    allowed = %i(name email password password_confirmation tone_name band_start_date)
     allowed << :admin if current_user.admin?
     params.require(:user).permit(*allowed)
   end

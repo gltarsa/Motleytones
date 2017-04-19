@@ -129,7 +129,7 @@ RSpec.describe GigsController, type: :controller do
     before do
       puts "------------ Why do any GET #create calls succeed? ---"
     end
-    let(:response) { post :create, params: { gig: @new_gig } }
+    let(:response) { get :create, params: { gig: @new_gig } }
 
     it_behaves_like "login-required actions"
     it_behaves_like "admin-required actions"
