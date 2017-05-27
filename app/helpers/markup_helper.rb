@@ -23,7 +23,7 @@ module MarkupHelper
     # anchor_re#match breaks line up into MatchData elements as follows
     #      [1]            [2]           [3]            [4]
     # |leading text| |[link name]| |(link address)| |trailing text|
-    anchor_re = /(.*)\[(.*)\]\((.*)\)(.*)/
+    anchor_re = /(.*)\[(.*)\]\(([^)]*)\)(.*)/
     matches = anchor_re.match(raw)
 
     if matches
