@@ -6,7 +6,7 @@ class UsersController < Devise::RegistrationsController
   before_action only: [:update], unless: -> { myself_or_admin } do
     require_admin(redirect_path: users_path)
   end
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -30,12 +30,10 @@ class UsersController < Devise::RegistrationsController
   end
 
   def edit
-    set_user
     require_admin(redirect_path: users_path) unless myself_or_admin
   end
 
   def update
-    set_user
     remove_unused_password_pair_from_params
 
     if @user.update(allowed_user_params)
@@ -77,9 +75,14 @@ class UsersController < Devise::RegistrationsController
 
   def remove_unused_password_pair_from_params
     return if params[:user][:password].present?
+    delete_password_related_keys
+  end
+
+  def delete_password_related_keys
     params[:user].delete(:password)
     params[:user].delete(:password_confirmation)
   end
+
 
   def require_admin(redirect_path: root_path)
     return if current_user.admin?
