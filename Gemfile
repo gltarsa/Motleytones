@@ -44,6 +44,7 @@ group :test do
   gem 'poltergeist'
   gem 'launchy'
   gem 'rails-controller-testing'
+  gem 'simplecov', require: false
 end
 
 ruby '2.4.2'
