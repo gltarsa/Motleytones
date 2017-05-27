@@ -9,63 +9,92 @@ include MarkupHelper
 #          an image url interpolated.
 
 RSpec.describe MarkupHelper do
+  def do_compare(examples)
+    examples.each do |example|
+      expect(process_markup(example[:before])).to eql example[:after]
+    end
+  end
+
   describe "#process_markup" do
     let(:new_win)   { 'target="_blank"' }
     let(:mail_link) { '"mailto:info@motleytones.com">info@motleytones.com' }
-    let(:reg_link)  { '"http://html.link.com">HTML link' }
 
-    it "converts Markdown URL syntax to HTML" do
-      raw_input = "prefix [HTML link](http://html.link.com) suffix"
-      expanded =  "prefix <a #{new_win} href=#{reg_link}</a> suffix"
-      expect(process_markup(raw_input)).to eql expanded
-    end
+    context "with Markdown URL syntax" do
+      it "converts to HTML" do
+        raw_input = "prefix [link](url) suffix"
+        expanded =  "prefix <a #{new_win} href=\"url\">link</a> suffix"
+        expect(process_markup(raw_input)).to eql expanded
+      end
 
-    it "converts multiple instances of Markdown URLs to HTML" do
-      raw_input = "prefix [HTML link](http://html.link.com) suffix, " \
-        "[HTML link2](http://html.link2.com), " \
-        "and [link3](link3.com)"
-      expanded = "prefix <a #{new_win} href=#{reg_link}</a> suffix, " \
-        "<a #{new_win} href=\"http://html.link2.com\">HTML link2</a>, " \
-        "and <a #{new_win} href=\"link3.com\">link3</a>"
-      expect(process_markup(raw_input)).to eql expanded
-    end
+      it "converts multiple instances of Markdown URLs to HTML" do
+        examples = [
+          { before: "[link](url)",
+            after:  "<a #{new_win} href=\"url\">link</a>" },
+          { before: "([link](url))",
+            after:  "(<a #{new_win} href=\"url\">link</a>)" },
+          { before: "prefix [link](url) suffix, [link2](url2), and [link3](url3)",
+            after: "prefix <a #{new_win} href=\"url\">link</a> suffix, " \
+            "<a #{new_win} href=\"url2\">link2</a>, " \
+            "and <a #{new_win} href=\"url3\">link3</a>" }
+        ]
 
-    it "converts the @info token to a mailto link when not part of a word" do
-      examples = [
-        ["just @info as a word",
-         "just <a href=#{mail_link}</a> as a word"],
-        ["using (@info) in parentheses",
-         "using (<a href=#{mail_link}</a>) in parentheses"],
-        ["at the end of a sentence: @info.",
-         "at the end of a sentence: <a href=#{mail_link}</a>."],
-        ["at the end of a line/section: @info",
-         "at the end of a line/section: <a href=#{mail_link}</a>"]
-      ]
-
-      examples.each do |example|
-        expect(process_markup(example.first)).to eql example.last
+        do_compare(examples)
       end
     end
 
-    it "does not convert the @info token when it is part of a word" do
-      example = "just @information in a sentence"
-      expect(process_markup(example)).to eql example
+    context "with @info" do
+      it "converts the token to a mailto link when not part of a word" do
+        examples = [
+          { before: "just @info as a word",
+            after:  "just <a href=#{mail_link}</a> as a word" },
+          { before: "using (@info) in parentheses",
+            after:  "using (<a href=#{mail_link}</a>) in parentheses" },
+          { before: "at the end of a sentence: @info.",
+            after:  "at the end of a sentence: <a href=#{mail_link}</a>." },
+          { before: "at the end of a line/section: @info",
+            after:  "at the end of a line/section: <a href=#{mail_link}</a>" }
+        ]
+
+        do_compare(examples)
+      end
+
+      it "does not convert the @info token when it is part of a word" do
+        example = "just @information in a sentence"
+        expect(process_markup(example)).to eql example
+      end
+
+      it "converts multiple @info tokens in the same string" do
+        examples = [
+          { before: "@info as a word and (@info) in parens and at line end: @info",
+            after: "<a href=#{mail_link}</a> as a word and (<a href=#{mail_link}</a>)" \
+            " in parens and at line end: <a href=#{mail_link}</a>" }
+        ]
+
+        do_compare(examples)
+      end
     end
 
-    it "converts multiple tokens in the line" do
-      example = "@info as a word and (@info) in parens and at sentence end: @info."
-      expanded = "<a href=#{mail_link}</a> as a word and (<a href=#{mail_link}</a>)" \
-        " in parens and at sentence end: <a href=#{mail_link}</a>."
+    context "with multiple tokens in the line" do
+      it "performs all conversions in the same line" do
+        examples = [
+          { before: "prefix [link](url) suffix prefix @info suffix",
+            after: "prefix <a #{new_win} href=\"url\">link</a> suffix " \
+            "prefix <a href=#{mail_link}</a> suffix" }
+        ]
 
-      expect(process_markup(example)).to eql expanded
-    end
+        do_compare(examples)
+      end
 
-    it "performs all conversions in the same line" do
-      raw_input = "prefix [HTML link](http://html.link.com) suffix" \
-        "prefix @info suffix"
-      expanded = "prefix <a #{new_win} href=#{reg_link}</a> suffix" \
-        "prefix <a href=#{mail_link}</a> suffix"
-      expect(process_markup(raw_input)).to eql expanded
+      it "performs all of multiple conversions in the same line" do
+        examples = [
+          { before: "prefix [link](url) suffix prefix @info suffix ([link2](url2))@info",
+            after: "prefix <a #{new_win} href=\"url\">link</a> suffix prefix" \
+            " <a href=#{mail_link}</a> suffix " \
+            "(<a #{new_win} href=\"url2\">link2</a>)<a href=#{mail_link}</a>" }
+        ]
+
+        do_compare(examples)
+      end
     end
   end
 end
