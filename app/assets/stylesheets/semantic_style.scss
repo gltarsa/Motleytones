@@ -376,23 +376,17 @@ img.image.adjustable {
 
 .image.left {
   float: left;
-  margin: 0 2rem 2rem 0;
+  margin-right: 2rem;
 }
 
 .image.right {
   float: right;
-  margin: 0 2rem 2rem 0;
+  margin-left: 2rem;
 }
 
 .image.centered {
   display: block;
-  margin: 0 0 .5rem 0;
-  margin: auto auto;
-}
-
-.image.centered img {
-  margin: 0 auto;
-  width: auto;
+  margin-top: .5rem;
 }
 
 .image.separator {
