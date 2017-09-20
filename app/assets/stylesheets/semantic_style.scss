@@ -227,6 +227,14 @@ article {
   padding: 0;
   margin-bottom: 1rem;
   font-size: 1.4rem;
+
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 /***********/
@@ -391,6 +399,10 @@ img.image.adjustable {
 
 .image.bio {
   width: 300px;
+}
+
+.image.bio-small {
+  width: 200px;
 }
 
 .image.separator {

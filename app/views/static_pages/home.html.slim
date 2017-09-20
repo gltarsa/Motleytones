@@ -11,7 +11,7 @@ section.main-content.container.simple-print
           =<> link_to "book a performance", booking_path
           | and add some pirate songs and pirate swagger to your next event! Or check out our
           =<> link_to "Facebook page", "https://www.facebook.com/MotleyTones"
-          | for the latest news+chatter.
+          | for the latest news and chatter.
       .one-half.column
         .schedule.scroll
           = render "schedule"
@@ -22,54 +22,57 @@ section.details.container.simple-print
       article
         = link_to about_path, class: "image featured"
           = image_tag "about.jpg", alt: "About picture"
-        header.content
-          h2
-            | Motley Tones:
-            br
-            | Past and Present
-          p How a band of scalawags traded murder for music-making. Now all they slay is the crowds in the aisle.
+          header.content
+            h2
+              | Motley Tones:
+              br
+              | Past and Present
+            p How a band of scalawags traded murder for music-making. Now all they slay is the crowds in the aisle.
 
     .one-third.column
       article
         = link_to booking_path, class: "image featured"
           = image_tag "booking.jpg", alt: "Booking Picture"
-        header.content
-          h2 Book us for a Performance!
-          p Got an event that could use more swagger and/or song? Whether it's public or private, kiddies or corporate, the Motley Tones have you covered.
+          header.content
+            h2 Book us for a Performance!
+            p Got an event that could use more swagger and/or song? Whether it's public or private, kiddies or corporate, the Motley Tones have you covered.
+
     .one-third.column
       article
         = link_to schedule_path, class: "image featured"
           = image_tag "schedule.jpg", alt: "Schedule picture"
-        header.content
-          h2
-            | Performance Schedule+
-            br
-            | Information
-          p
-            | Don't miss out on the action - follow our schedule and come see a show!
-            -if Date.today > Date.parse("#{Date.today.year}-11-01")
+          header.content
+            h2
+              | Performance Schedule+
               br
-              | (#{Date.today.year} dates coming soon)
+              | Information
+            p
+              | Don't miss out on the action - follow our schedule and come see a show!
+              -if Date.today > Date.parse("#{Date.today.year}-11-01")
+                br
+                | (#{Date.today.year} dates coming soon)
 
   .row
     .one-third.column
       article
         = link_to bios_path, class: "image featured"
           = image_tag "bios.jpg", alt: "Bio picture"
-        header.content
-          h2 Meet the Tones: Bios+Pictures
-          p A Who’s Who on the eastern seaboard’s seven best and most musical pirates-for-hire.
+          header.content
+            h2 Meet the Tones: Bios+Pictures
+            p A Who’s Who on the eastern seaboard’s seven best and most musical pirates-for-hire.
+
     .one-third.column
       article
         = link_to photos_path, class: "image featured"
           = image_tag "photos.jpg", alt: "Photos picture"
-        header.content
-          h2 Photo Gallery
-          p Albums showcasing the Tones' performance history - and the many friends they've made (and occasionally corrupted) along the way.
+          header.content
+            h2 Photo Gallery
+            p Albums showcasing the Tones' performance history - and the many friends they've made (and occasionally corrupted) along the way.
+
     .one-third.column
       article
         = link_to videos_path, class: "image featured"
           = image_tag "videos.jpg", alt: "Videos picture"
-        header.content
-          h2 Video Gallery
-          p Get a little taste of the musical pirate life from videos of our past shows - the perfect thing to tide you over til Pirate Season #{Date.today.year + 1}.
+          header.content
+            h2 Video Gallery
+            p Get a little taste of the musical pirate life from videos of our past shows - the perfect thing to tide you over til Pirate Season #{Date.today.year + 1}.
