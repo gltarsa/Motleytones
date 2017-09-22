@@ -46,4 +46,4 @@ group :test do
   gem 'rails-controller-testing'
 end
 
-ruby '2.3.0'
+ruby '2.4.2'
