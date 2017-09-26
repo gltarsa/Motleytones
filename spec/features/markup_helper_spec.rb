@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 include MarkupHelper
+include InfoEmailHelper
 
 # Scenario: Tokens are properly interpolated into schedule lists
 #   verify that @info gets interpolated
