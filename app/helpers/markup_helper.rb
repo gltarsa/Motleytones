@@ -13,7 +13,7 @@ module MarkupHelper
   #
   def process_info(raw)
     info_re = /@info([^a-zA-Z]|$)/
-    mail_url = mail_to("info@motleytones.com")
+    mail_url = mail_to(info_email)
     raw.gsub(info_re, "#{mail_url}\\1")
   end
 

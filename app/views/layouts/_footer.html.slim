@@ -10,8 +10,6 @@ footer
             li
               = link_to "Shadow Players Stage Combat", "http://www.shadowcombat.com/"
             li
-              = link_to "Hysterically Correct Pirate Crew", "http://www.hystericallycorrect.com/"
-            li
               = link_to "Your Door & More Illustrations", "http://www.yourdoorandmore.com/"
             li
               = mail_to "YCovington@gmail.com", "Bagpiping by Yance Covington", subject: "Inquiry from Motley Tones Website"
@@ -25,8 +23,8 @@ footer
                 span.label
                   | Facebook
           p.simple-print
-            = mail_to "info@motleytones.com",
-              "info@motleytones.com",
+            = mail_to info_email,
+              info_email,
               subject: "Motley Tones information needed",
               class: "contact-email"
 

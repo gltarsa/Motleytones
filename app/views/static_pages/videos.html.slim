@@ -7,7 +7,7 @@ section.main-content.container
           |  Motley Tones: Video Gallery
         p
           | Here are some videos provided by friends and fans. If you have any to share, please send the URL to us at
-          =< mail_to "info@motleytones.com", nil, subject: "Video to share!"
+          =< mail_to info_email, nil, subject: "Video to share!"
             | info@motleytones.com.
           |  Thank you!
         center
@@ -47,10 +47,7 @@ section.main-content.container
                         | ,
                         em
                           =< link_to "Bell Bottom Trousers", "https://www.youtube.com/watch?v=1C-C1MYtpyg&amp;list=PLtPX1jAHI9_jnAZcTXVEE4y9z9nqtI8UI&amp;index=5"
-                        | . With
-                        =<> link_to "Hysterically Correct Production's", "http://hystericallycorrect.com/"
-                        | Willoghby Caught
-                        | .
+                        | . With Hysterically Correct Production's Willoghby Caught .
                     tr
                       - [ "http://www.youtube.com/watch?v=54o7FXbqCX8" ].each do |url|
                         td.thumbnail
