@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'static_pages', type: :feature do
@@ -12,7 +13,7 @@ RSpec.describe 'static_pages', type: :feature do
     it 'has a copyright' do
       within 'ul.copyright' do
         expect(page).to have_content(I18n.t('layouts.footer.copyright',
-                                            year: Time.now.strftime('%Y')))
+                                            year: Time.zone.now.strftime('%Y')))
       end
     end
   end

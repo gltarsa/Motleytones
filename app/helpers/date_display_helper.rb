@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module DateDisplayHelper
   def date_range(date, num)
     base = date.strftime("%b %-d")

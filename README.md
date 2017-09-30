@@ -2,6 +2,10 @@
 
 This app serves up the Motley Tones website.
 
+[![CircleCI](https://circleci.com/gh/gltarsa/Motleytones.svg?style=shield)](https://circleci.com/gh/gltarsa/Motleytones)
+[![codebeat badge](https://codebeat.co/badges/a5914128-2e2a-421a-8876-8b53dc349468)](https://codebeat.co/projects/github-com-gltarsa-motleytones-master)
+
+
 ### Features
 
 * Delivers static pages with DRY (Don't Repeat Yourself) layout

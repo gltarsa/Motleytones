@@ -11,6 +11,7 @@
 
 AllCops:
   Include:
+    - '**/Gemfile'
     - '**/Rakefile'
     - '**/config.ru'
 
@@ -24,6 +25,9 @@ AllCops:
     - '*tmp'
     - 'tmp*'
     - 'tmp/**/*'
+
+Rails:
+  Enabled: true
 
 StringLiterals:
   Enabled: false
@@ -50,3 +54,6 @@ Metrics/ClassLength:
 
 Metrics/LineLength:
   Max: 100
+
+Style/SymbolArray:
+  Enabled: false

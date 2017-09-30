@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Spinach::Features::SignIn < Spinach::FeatureSteps
   include Helpers
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Local override
 dotenv = File.expand_path("../.env_overrides.rb", __FILE__)
 require dotenv if File.exist?(dotenv)
@@ -10,5 +11,8 @@ ENV["DATABASE_ENCODING"] ||= "utf8"
 ENV["DATABASE_POOL"] ||= "5"
 ENV["DATABASE_TIMEOUT"] ||= "5000"
 
-ENV["SECRET_KEY_BASE"]  ||= "define in environment"
+ENV["SECRET_KEY_BASE"]  ||= "define in .env-overrides.rb"
 ENV["STARTER_PASSWORD"] ||= "secretpw"
+
+ENV["CODECLIMATE_API_HOST"] ||= "https://codebeat.co/webhooks/code_coverage"
+ENV["CODECLIMATE_REPO_TOKEN"] ||= "define in .env-overrides.rb"

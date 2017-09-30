@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 FactoryGirl.define do
   factory :gig do
     date      { Faker::Date.between(Date.new(2010, 7, 10), 1.year.from_now) }
@@ -29,7 +30,7 @@ def proper_length_name
 end
 
 def day_type
-  events = %w(Festival Market Benefit Party Celebration)
-  kind = %w(Day Bash Meeting Gathering).push('')
+  events = %w[Festival Market Benefit Party Celebration]
+  kind = %w[Day Bash Meeting Gathering].push('')
   "#{events[rand(events.count).round]} #{kind[rand(kind.count).round]}"
 end
