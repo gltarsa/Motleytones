@@ -1,5 +1,7 @@
 # frozen_string_literal: true
-SOME_PASSWORD ||= "secretpw"
+
+SOME_PASSWORD ||= 'secretpw'.freeze
+
 FactoryGirl.define do
   factory :user do
     name      { Faker::Name.name }

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.shared_examples "admin-required actions" do
   context 'when called as a non-admin user' do
     before do

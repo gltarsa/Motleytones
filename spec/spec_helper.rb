@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rspec/rails' # needed for zeus, also handy
 
 # save to CircleCI's artifacts directory if we are on CCI

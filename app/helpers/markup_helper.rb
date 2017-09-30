@@ -1,11 +1,14 @@
 # frozen_string_literal: true
+
 module MarkupHelper
   include ActionView::Helpers::UrlHelper
 
   # process "Motley Markup"
+  # rubocop:disable Rails/OutputSafety
   def process_markup(raw)
     process_info(process_anchors(raw)).html_safe if raw
   end
+  # rubocop:enable Rails/OutputSafety
 
   private
 

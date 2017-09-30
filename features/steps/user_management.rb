@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Spinach::Features::UserManagement < Spinach::FeatureSteps
   include Helpers
 
@@ -245,7 +246,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   def change_mutable_fields(user)
-    @changed_date = "1-Apr-#{Date.today.year + 1}" # app always allows one year more than today
+    @changed_date = "1-Apr-#{Time.zone.today.year + 1}" # app always allows one year more than today
     @original_raw_mutable_attributes = raw_mutable_attributes(user)
     fill_in 'user_name',       with: change(user.name)
     fill_in 'user_tone_name',  with: change(user.tone_name)

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Spinach::Features::GigManagement < Spinach::FeatureSteps
   include Helpers
 
@@ -157,23 +158,23 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'there is at least one published one-day gig dated yesterday' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 1, date: Date.yesterday)
+    @gig = FactoryGirl.create(:gig, published: true, days: 1, date: Time.zone.yesterday)
   end
 
   step 'there is at least one published two-day gig dated yesterday' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Date.yesterday)
+    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Time.zone.yesterday)
   end
 
   step 'there is at least one published two-day gig dated two days ago' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Date.today - 2)
+    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Time.zone.today - 2)
   end
 
   step 'there is at least one published two-day gig dated three days ago' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Date.today - 3)
+    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Time.zone.today - 3)
   end
 
   step 'there is at least one published one-day gig dated two days ago' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 1, date: Date.today - 2)
+    @gig = FactoryGirl.create(:gig, published: true, days: 1, date: Time.zone.today - 2)
   end
 
   step 'there is at least one existing gig' do
@@ -189,7 +190,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'there is at least one unpublished one-day gig dated two days ago' do
-    @unpublished_gig = FactoryGirl.create(:gig, published: false, days: 1, date: Date.today - 2)
+    @unpublished_gig = FactoryGirl.create(:gig,
+                                          published: false,
+                                          days: 1,
+                                          date: Time.zone.today - 2)
   end
 
   step 'I see the published gig is expired' do

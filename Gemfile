@@ -1,37 +1,37 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0'
+gem 'ahoy_matey'
 gem 'bcrypt', '~> 3.1.7'
+gem 'coffee-rails'
+gem 'devise'
+gem 'font-awesome-rails', '~> 4.4'
+gem 'jbuilder', '~> 2.0'
+gem 'jquery-rails', '~> 4.0'
+gem 'pg', '~> 0.18.0'
+gem 'rails', '~> 5.0'
+gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'simple_form', '~> 3.1'
 gem 'slim-rails'
 gem 'sprockets'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails'
-gem 'jquery-rails', '~> 4.0'
 gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'font-awesome-rails', '~> 4.4'
-gem 'pg', '~> 0.18.0'
-gem 'simple_form', '~> 3.1'
-gem 'devise'
-gem 'ahoy_matey'
-gem 'rubocop', require: false
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'spinach-rails', '~> 0.2'
+  gem 'awesome_print'
+  gem 'database_cleaner', '~> 1.4'
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rescue'
-  gem 'awesome_print'
+  gem 'rspec-rails'
+  gem 'spinach-rails', '~> 0.2'
   gem 'spring'
-  gem 'database_cleaner', '~> 1.4'
-  gem 'faker'
 end
 
 group :development do
-  gem 'web-console'  # console when execption or <%= console %> in views
+  gem 'web-console' # console when execption or <%= console %> in views
 end
 
 group :production do
@@ -39,11 +39,11 @@ group :production do
 end
 
 group :test do
-  gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'poltergeist'
   gem 'launchy'
+  gem 'poltergeist'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
 end
 

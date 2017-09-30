@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 require 'controllers/shared_examples/sign_in_required_examples.rb'
 require 'controllers/shared_examples/admin_required_examples.rb'

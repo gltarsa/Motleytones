@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 RSpec.shared_examples "login-required actions" do
   context 'when not logged in' do
     it 'sets flash message to "You must be signed in"' do

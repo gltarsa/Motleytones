@@ -1,20 +1,11 @@
+require 'support/export_helper'
 namespace :db do
-  def hash_to_pairs(hash)
-    hash.each.collect { |h| "#{h.first}: \"#{h.last}\"" if h.last }.compact.join(",\n  ")
-  end
-
-  def export_to_stdout(klass:, extra_exceptions: [ ])
-    exceptions = [ :id, :created_at, :updated_at ] + extra_exceptions
-    klass.order(:id).all.each do |item|
-      hash = item.serializable_hash(except: exceptions)
-      puts "#{klass.name}.create!(#{hash_to_pairs(hash)})"
-    end
-  end
+  include ExportHelper
 
   namespace :export do
     desc 'Prints User.all in a format suitable for inclusion in seeds.db'
     task user: :environment do
-      export_to_stdout(klass: User, extra_exceptions: [ :password_digest ])
+      export_to_stdout(klass: User, extra_exceptions: [:password_digest])
     end
 
     desc 'Prints Gig.all in a format suitable for inclusion in seeds.db'
@@ -31,6 +22,5 @@ namespace :db do
     task visit: :environment do
       export_to_stdout(klass: Visit)
     end
-
   end
 end

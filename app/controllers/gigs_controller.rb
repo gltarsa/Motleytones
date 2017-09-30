@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class GigsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin, only: [:show, :index, :new, :create, :edit, :update, :destroy]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Gig < ApplicationRecord
   validates :name, presence: true, length: { minimum: 10 }
   validates :date, presence: true
@@ -10,6 +11,6 @@ class Gig < ApplicationRecord
   scope :published,  -> { where(published: true) }
   scope :ascending,  -> { order(date: :asc) }
   scope :descending, -> { order(date: :desc) }
-  scope :expired,    -> { where("date + days < ?", Date.today) }
-  scope :active,     -> { where("date + days >= ?", Date.today) }
+  scope :expired,    -> { where("date + days < ?", Time.zone.today) }
+  scope :active,     -> { where("date + days >= ?", Time.zone.today) }
 end

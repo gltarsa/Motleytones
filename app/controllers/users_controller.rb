@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class UsersController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   before_action :authenticate_scope!
@@ -68,7 +69,7 @@ class UsersController < Devise::RegistrationsController
   end
 
   def allowed_user_params
-    allowed = %i(name email password password_confirmation tone_name band_start_date)
+    allowed = %i[name email password password_confirmation tone_name band_start_date]
     allowed << :admin if current_user.admin?
     params.require(:user).permit(*allowed)
   end
@@ -82,7 +83,6 @@ class UsersController < Devise::RegistrationsController
     params[:user].delete(:password)
     params[:user].delete(:password_confirmation)
   end
-
 
   def require_admin(redirect_path: root_path)
     return if current_user.admin?
