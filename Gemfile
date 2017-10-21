@@ -25,7 +25,7 @@ group :development, :test do
   gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rescue'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.6'
   gem 'spinach-rails', '~> 0.2'
   gem 'spring'
 end
@@ -45,6 +45,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
+  gem 'turnip'
 end
 
 ruby '2.4.2'
