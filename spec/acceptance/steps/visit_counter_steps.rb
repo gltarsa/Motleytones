@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Spinach::Features::VisitCounter < Spinach::FeatureSteps
+module VisitCounterSteps
   step 'I am not signed in' do
     Ahoy.track_visits_immediately = true
     @initial_count = Visit.count
@@ -14,3 +14,5 @@ class Spinach::Features::VisitCounter < Spinach::FeatureSteps
     expect(Visit.count).to eql(@initial_count + 1)
   end
 end
+
+RSpec.configure { |config| config.include VisitCounterSteps }

@@ -6,9 +6,11 @@ Feature: Sign-In
 
   * A user can sign into the app with registered email and password
 
+  Background:
+    Given I am not signed in
+
   @javascript
   Scenario: A user can sign into the system with registered email and password
-    Given I am not signed in
     When I navigate to the Sign In page
     And I enter a registered email
     And I enter the associated password
@@ -19,7 +21,6 @@ Feature: Sign-In
 
   @javascript
   Scenario: A user cannot sign into the system with an unregistered email or password
-    Given I am not signed in
     When I navigate to the Sign In page
     And I enter an unregistered email
     And I enter an invalid password

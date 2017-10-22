@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Spinach::Features::GigManagement < Spinach::FeatureSteps
-  include Helpers
+module GigManagementSteps
+  include Turnip::StepHelpers
 
   step 'I am not signed in' do
     visit root_path
@@ -287,3 +287,5 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(page).not_to have_css(".gig-id-#{gig.id}.expired")
   end
 end
+
+RSpec.configure { |config| config.include GigManagementSteps }

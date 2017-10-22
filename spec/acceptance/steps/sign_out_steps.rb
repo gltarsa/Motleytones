@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Spinach::Features::SignOut < Spinach::FeatureSteps
-  include Helpers
+module SignOutSteps
+  include Turnip::StepHelpers
 
   step "I am signed in as a non-admin user" do
     sign_in_non_admin_user
@@ -17,3 +17,5 @@ class Spinach::Features::SignOut < Spinach::FeatureSteps
     expect_flash(severity: :notice, containing: "Signed out successfully")
   end
 end
+
+RSpec.configure { |config| config.include SignOutSteps }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Spinach::Features::Decorations < Spinach::FeatureSteps
+module DecorationsSteps
   step 'I am not signed in' do
     visit root_path
   end
@@ -50,3 +50,5 @@ class Spinach::Features::Decorations < Spinach::FeatureSteps
     expect(page).to have_css("section.widget.contact a.contact-email")
   end
 end
+
+RSpec.configure { |config| config.include DecorationsSteps }

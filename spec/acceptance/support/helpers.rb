@@ -1,7 +1,5 @@
 # frozen_string_literal: true
-
-module Helpers
-  include Spinach::DSL
+module Turnip::StepHelpers
   #
   # Methods in this module provide shorthand, handy, or
   # semantic equivalents for operations performed

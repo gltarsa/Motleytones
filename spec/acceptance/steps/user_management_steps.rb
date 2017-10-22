@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Spinach::Features::UserManagement < Spinach::FeatureSteps
-  include Helpers
+module UserManagementSteps
+  include Turnip::StepHelpers
 
   step 'I am not signed in' do
     visit root_path
@@ -276,3 +276,5 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(raw_mutable_attributes(User.find(user.id))).to eql(@original_raw_mutable_attributes)
   end
 end
+
+RSpec.configure { |config| config.include UserManagementSteps }

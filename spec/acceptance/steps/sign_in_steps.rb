@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 module SignInSteps
-  include Helpers
+  include Turnip::StepHelpers
 
   step 'I am not signed in' do
     visit root_path

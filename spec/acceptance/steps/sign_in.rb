@@ -1,7 +1,10 @@
 # frozen_string_literal: true
+require 'spec_helper'
 
-class Spinach::Features::SignIn < Spinach::FeatureSteps
-  include Helpers
+mods(self.class)
+
+module SignInSteps
+  include Turnip::StepHelpers
 
   step 'I am not signed in' do
     visit root_path
@@ -51,3 +54,8 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
     expect(page).to have_css('.user-name', text: @user.name)
   end
 end
+
+RSpec.configure { |config| config.include SignInSteps }
+
+
+RSpec.configure { |config| config.include SignInSteps }
