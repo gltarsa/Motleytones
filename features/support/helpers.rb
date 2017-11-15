@@ -20,11 +20,11 @@ module Helpers
   end
 
   def expect_flash(severity:, containing:)
-    expect(page.find(".flash .#{severity}")).to have_content(containing)
+    expect(page).to have_css(".flash .#{severity}", text: containing)
   end
 
   def expect_form_error(containing: nil)
-    expect(page.find(".form-error")).to have_content(containing)
+    expect(page).to have_css('.form-error', text: containing)
   end
 
   # Currently, poltergeist does not have the support for Capybara's accept_alert{}
@@ -37,22 +37,22 @@ module Helpers
 
   # standard "change" for tests
   def change(item)
-    item[0] + "changed" + item[1..-1]
+    "#{item[0]}changed#{item[1..-1]}"
   end
 
   # parse the text date into the three date fields used by simpleform_for
   def set_date(field_name, date)
-    find("##{field_name}_1i").select(Date.parse(date).year)
-    find("##{field_name}_2i").select(Date::MONTHNAMES[Date.parse(date).month])
-    find("##{field_name}_3i").select(Date.parse(date).day)
+    select(Date.parse(date).year, from: "#{field_name}_1i")
+    select(Date::MONTHNAMES[Date.parse(date).month], from: "#{field_name}_2i")
+    select(Date.parse(date).day, from: "#{field_name}_3i")
   end
 
   private
 
   def do_login(user, password)
     visit new_user_session_path
-    fill_in "user_email", with: user.email
-    fill_in "user_password", with: password
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: password
     click_button 'Sign in'
   end
 end

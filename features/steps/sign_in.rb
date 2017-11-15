@@ -15,7 +15,7 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
 
   step 'I am sent to the Profile page' do
     expect(page).to have_title("Motley User")
-    expect(page).to have_content(@user.name)
+    expect(page).to have_css('.user-name', text: @user.name)
   end
 
   step 'I enter a registered email' do
@@ -48,6 +48,6 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   end
 
   step 'I see the new user name' do
-    expect(page).to have_content(@user.name)
+    expect(page).to have_css('.user-name', text: @user.name)
   end
 end

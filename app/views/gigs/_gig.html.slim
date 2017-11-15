@@ -3,22 +3,22 @@ li
 hr
 
 .schedule-information
-  p.gig_date.date
+  p.gig-date.date
     span.heading> Date:
     |
-    span.gig_days #{date_thru_range(gig.date, gig.days)}
+    span.gig-days #{date_thru_range(gig.date, gig.days)}
     - if gig.days > 1
       |  (#{gig.days} days)
-  p.gig_name
+  p.gig-name
     span.heading> Name:
     | #{gig.name}
-  p.gig_note
+  p.gig-note
     span.heading> Note:
     | #{gig.note}
-  p.gig_location
+  p.gig-location
     span.heading> Location:
     | #{gig.location}
-  p.gig_published.heading
+  p.gig-published.heading
     span> Published? #{(gig.published)? "Y" : "N"}
   p.gig_operations
     => link_to "Edit",

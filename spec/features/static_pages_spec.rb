@@ -11,10 +11,8 @@ RSpec.describe 'static_pages', type: :feature do
     end
 
     it 'has a copyright' do
-      within 'ul.copyright' do
-        expect(page).to have_content(I18n.t('layouts.footer.copyright',
-                                            year: Time.zone.now.strftime('%Y')))
-      end
+      expect(page).to have_css('ul.copyright',
+                               text: I18n.t('layouts.footer.copyright', year: Time.zone.now.strftime('%Y')))
     end
   end
 

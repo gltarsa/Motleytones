@@ -17,7 +17,7 @@ class Spinach::Features::Decorations < Spinach::FeatureSteps
   end
 
   step 'I see a home button' do
-    expect(page).to have_css("nav li.home_button")
+    expect(page).to have_css("nav li.home-button")
   end
 
   step 'I look at the footer of the home page' do

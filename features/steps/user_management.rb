@@ -112,7 +112,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I see information for another user' do
-    expect(page).to have_content(@another_user.name)
+    expect(page).to have_css('article .user-name', text: @another_user.name)
   end
 
   step 'I see that the Band Start Date is not the first of this year' do
@@ -193,7 +193,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I see my name on the users page' do
-    expect(find('.user_name')).to have_content(@user.name)
+    expect(page).to have_css('.user-name', text: @user.name)
   end
 
   step 'the mutable fields for that other user are changed' do
@@ -202,18 +202,18 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'the admin field is not changed' do
     if @old_admin_value
-      expect(page).to have_css('p.user_admin')
+      expect(page).to have_css('p.user-admin')
     else
-      expect(page).not_to have_css('p.user_admin')
+      expect(page).not_to have_css('p.user-admin')
     end
   end
 
   step 'the admin field is changed' do
     within user_article(@another_user) do
       if @old_admin_value
-        expect(page).not_to have_css('p.user_admin')
+        expect(page).not_to have_css('p.user-admin')
       else
-        expect(page).to have_css('p.user_admin')
+        expect(page).to have_css('p.user-admin')
       end
     end
   end
@@ -231,7 +231,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I am still in the admin account' do
     find('li.navigation').hover
-    expect(find('li.informational')).to have_content(@user.tone_name)
+    expect(page).to have_css('li.informational', text: @user.tone_name)
   end
 
   private
@@ -242,7 +242,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   # support for unit testy way to check for attribute changes
   def raw_mutable_attributes(user)
-    user.attributes.slice('name', 'tone_name', 'email', 'user_start_date')
+    user.attributes.slice('name', 'tone_name', 'email', 'user-start-date')
   end
 
   def change_mutable_fields(user)
@@ -256,10 +256,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   def expect_mutable_fields_to_be_changed(user) # rubocop: disable AbcSize
     within user_article(user) do
-      expect(find('.user_name')).to       have_content(change(user.name))
-      expect(find('.user_tone_name')).to  have_content(change(user.tone_name))
-      expect(find('.user_email')).to      have_content(change(user.email))
-      expect(find('.user_start_date')).to have_content(@changed_date)
+      expect(page).to have_css('.user-name', text: change(user.name))
+      expect(page).to have_css('.user-tone-name', text: change(user.tone_name))
+      expect(page).to have_css('.user-email', text: change(user.email))
+      expect(page).to have_css('.user-start-date', text: @changed_date)
     end
     # unit testy way to check attribute changes
     expect(raw_mutable_attributes(User.find(user.id))).not_to eql(@original_raw_mutable_attributes)
@@ -267,10 +267,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   def expect_mutable_fields_not_to_be_changed(user) # rubocop: disable AbcSize
     within user_article(user) do
-      expect(find('.user_name')).to       have_content(user.name)
-      expect(find('.user_tone_name')).to  have_content(user.tone_name)
-      expect(find('.user_email')).to      have_content(user.email)
-      expect(find('.user_start_date')).to have_content(user.band_start_date.strftime('%d-%b-%Y'))
+      expect(page).to have_css('.user-name', text: user.name)
+      expect(page).to have_css('.user-tone-name', text: user.tone_name)
+      expect(page).to have_css('.user-email', text: user.email)
+      expect(page).to have_css('.user-start-date', text: user.band_start_date.strftime('%d-%b-%Y'))
     end
     # unit testy way to check attribute constancy
     expect(raw_mutable_attributes(User.find(user.id))).to eql(@original_raw_mutable_attributes)

@@ -1,27 +1,27 @@
 .row
   .ten.columns.offset-by-one.columns
     article.user-information class="user-id-#{user.id}"
-      p.user_tone_name.heading
+      p.user-tone-name.heading
         span Tone Name:
         |  #{(user.tone_name) ? user.tone_name : "(none)"}
-      p.user_email
+      p.user-email
         span.heading Email:
         |  #{user.email}
-      p.user_start_date
+      p.user-start-date
         span.heading Member since:
         |  #{user.band_start_date.strftime("%d-%b-%Y")}
       - if user.admin?
-        p.user_admin is an admin
-      p.user_name
+        p.user-admin is an admin
+      p.user-name
         span.heading User Name:
         |  #{user.name}
-      p.user_created
+      p.user-created
         span.heading Added:
         |  #{user.created_at.strftime("%d-%b-%Y %H:%M")}
-      p.user_updated
+      p.user-updated
         span.heading Updated:
         |  #{user.updated_at.strftime("%d-%b-%Y %H:%M")}
-      p.user_id.heading
+      p.user-id.heading
         | ID: #{user.id}
       p.user-operations
         - if current_user.admin? || current_user.id == user.id
