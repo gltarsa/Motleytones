@@ -16,50 +16,50 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I look at the Navigation menu' do
-    find("li.navigation").hover
+    find('li.navigation').hover
   end
 
   step 'I navigate to the Manage Gigs page' do
-    find("li.navigation").hover
-    click_link "Manage Gigs"
+    find('li.navigation').hover
+    click_link 'Manage Gigs'
     i_am_on_the_manage_gigs_page
   end
 
   step 'I am on the Manage Gigs page' do
-    expect(page).to have_title("Manage Gigs")
+    expect(page).to have_title('Manage Gigs')
   end
 
   step 'I see the Add Gig page' do
-    expect(page).to have_title("Add Gig")
+    expect(page).to have_title('Add Gig')
   end
 
   step 'I see a note describing tokens' do
-    expect(find("p.note")).to have_content("tokens")
+    expect(page).to have_css('p.note', text: 'tokens')
   end
 
   step 'I fill in the gig fields' do
     @gig = FactoryGirl.build(:gig)
-    set_date("gig_date",    @gig.date.to_s)
-    fill_in "gig_name",     with: @gig.name
-    fill_in "gig_note",     with: @gig.note
-    fill_in "gig_location", with: @gig.location
-    check "gig_published"
+    set_date('gig_date',    @gig.date.to_s)
+    fill_in 'gig_name',     with: @gig.name
+    fill_in 'gig_note',     with: @gig.note
+    fill_in 'gig_location', with: @gig.location
+    check 'gig_published'
   end
 
   step 'I fill in the gig fields to have the same name and date' do
-    set_date "gig_date",    @gig.date.to_s
-    fill_in "gig_name",     with: @gig.name
-    fill_in "gig_note",     with: "does not matter"
-    fill_in "gig_location", with: "does not matter"
-    check "gig_published"
+    set_date 'gig_date',    @gig.date.to_s
+    fill_in 'gig_name',     with: @gig.name
+    fill_in 'gig_note',     with: 'does not matter'
+    fill_in 'gig_location', with: 'does not matter'
+    check 'gig_published'
   end
 
   step 'I click Add Gig' do
-    click_link_or_button "Add gig"
+    click_link_or_button 'Add gig'
   end
 
   step 'I click Manage Gigs' do
-    click_link "Manage gigs"
+    click_link 'Manage gigs'
   end
 
   step 'the gig is created' do
@@ -92,19 +92,19 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see information for the gig on the schedule page' do
-    visit "/schedule"
+    visit '/schedule'
     verify_gig_schedule(@gig)
   end
 
   step 'I navigate to the Performance Schedule page' do
-    find("li.navigation").hover
-    click_link "Performance Schedule"
-    expect(page.title).to eq("Motley Performance Schedule")
+    find('li.navigation').hover
+    click_link 'Performance Schedule'
+    expect(page.title).to eq('Motley Performance Schedule')
   end
 
   step 'I click Delete and confirm deletion for that gig' do
     my_accept_alert do
-      find(".gig-id-#{@gig.id}").click_link("Delete")
+      find(".gig-id-#{@gig.id}").click_link('Delete')
     end
   end
 
@@ -113,43 +113,43 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I click Edit for the first gig' do
-    find(".gig-id-#{@gig.id}").click_link("Edit")
+    find(".gig-id-#{@gig.id}").click_link('Edit')
   end
 
   step 'I click Edit for the new gig' do
-    find(".gig-id-#{@new_gig.id}").click_link("Edit")
+    find(".gig-id-#{@new_gig.id}").click_link('Edit')
   end
 
   step 'I am sent to the Change Gig page' do
-    expect(page).to have_title("Modify Gig Info")
+    expect(page).to have_title('Modify Gig Info')
   end
 
   step 'I am sent to the Sign In page' do
-    expect(page.title).to eq("Sign In")
+    expect(page.title).to eq('Sign In')
   end
 
   step 'I am sent to the Home page' do
-    expect(page.title).to eq("The Motley Tones")
+    expect(page.title).to eq('The Motley Tones')
   end
 
   step 'I change the gig fields' do
-    @changed_date = "9-Aug-2015"
-    fill_in  "gig_name",     with: change(@gig.name)
-    fill_in  "gig_note",     with: change(@gig.note)
-    set_date "gig_date",     @changed_date
-    fill_in  "gig_location", with: change(@gig.location)
+    @changed_date = '9-Aug-2015'
+    fill_in  'gig_name',     with: change(@gig.name)
+    fill_in  'gig_note',     with: change(@gig.note)
+    set_date 'gig_date',     @changed_date
+    fill_in  'gig_location', with: change(@gig.location)
   end
 
   step 'I click Update' do
-    click_on "Update"
+    click_on 'Update'
   end
 
   step 'the gig fields are changed' do
     within find(".gig-id-#{@gig.id}") do
-      expect(find("span.gig_name")).to have_content(change(@gig.name))
-      expect(find("span.gig_note")).to have_content(change(@gig.note))
-      expect(find("span.gig_date")).to have_content(Date.parse(@changed_date).strftime('%b %-d:'))
-      expect(find("span.gig_location")).to have_content(change(@gig.location))
+      expect(page).to have_css('span.gig-name', text: change(@gig.name))
+      expect(page).to have_css('span.gig-note', text: change(@gig.note))
+      expect(page).to have_css('span.gig-date', text: Date.parse(@changed_date).strftime('%b %-d:'))
+      expect(page).to have_css('span.gig-location', text: change(@gig.location))
     end
   end
 
@@ -213,15 +213,15 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I do not see a Manage Gigs link' do
-    expect(page).to have_no_link("Manage Gigs")
+    expect(page).to have_no_link('Manage Gigs')
   end
 
   step 'I do not see an Edit button' do
-    expect(page).not_to have_button("Edit")
+    expect(page).not_to have_button('Edit')
   end
 
   step 'I do not see a Delete button' do
-    expect(page).not_to have_button("Delete")
+    expect(page).not_to have_button('Delete')
   end
 
   step 'I see an alert containing "You must be signed in to access that page"' do
@@ -251,39 +251,42 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   step 'I change the published checkbox' do
     if @gig.published?
       @orig_published_value = true
-      uncheck "gig_published"
+      uncheck 'gig_published'
     else
       @orig_admin_value = false
-      check "gig_published"
+      check 'gig_published'
     end
   end
 
   step 'the published field is changed' do
     within find(".gig-id-#{@gig.id}") do
       if @orig_published_value
-        expect(page).not_to have_css("span.user_published")
+        expect(page).not_to have_css('span.user_published')
       else
-        expect(page).to have_css("span.user_published")
+        expect(page).to have_css('span.user_published')
       end
     end
   end
 
   private
 
-  def verify_gig_schedule(gig)
+  def id_css(gig)
     id_class = ".gig-id-#{gig.id}"
-    within ".schedule #{id_class}" do
-      expect(page).to have_css('span.gig_name', text: gig.name)
-      expect(page).to have_css('span.gig_note', text: gig.note)
-      expect(page).to have_css('span.gig_location', text: gig.location)
+  end
+
+  def verify_gig_schedule(gig)
+    within ".schedule #{id_css(gig)}" do
+      expect(page).to have_css('span.gig-name', text: gig.name)
+      expect(page).to have_css('span.gig-note', text: gig.note)
+      expect(page).to have_css('span.gig-location', text: gig.location)
     end
   end
 
   def verify_gig_expired(gig)
-    expect(page).to have_css(".gig-id-#{gig.id}.expired")
+    expect(page).to have_css("#{id_css(gig)}.expired")
   end
 
   def verify_gig_active(gig)
-    expect(page).not_to have_css(".gig-id-#{gig.id}.expired")
+    expect(page).not_to have_css("#{id_css(gig)}.expired")
   end
 end

@@ -97,7 +97,7 @@ nav {
       background: $nav-button-bkg;
     }
 
-    li.home_button a {
+    li.home-button a {
       background: $nav-button-bkg;
       color: $text-color;
       padding: .2rem .4rem;
@@ -117,7 +117,7 @@ nav {
         margin-bottom: 1rem;
       }
 
-      li.home_button a {
+      li.home-button a {
         padding: .8rem 1.5rem;
       }
     }
@@ -488,21 +488,21 @@ img.image.adjustable {
   }
 }
 
-.simple_form {
-  .error_notification {
+.simple-form {
+  .error-notification {
     color: $alert-color;
   }
-  // disable simple_form errors in favor of explicit "top of container" errors
+  // disable simple-form errors in favor of explicit "top of container" errors
   .error{
     display: none;
   }
 
-  #gig_note, #gig_name { width: 100%; }
-  #gig_location { width: 50%; }
-  #gig_days { width: 10%; }
+  #gig-note, #gig-name { width: 100%; }
+  #gig-location { width: 50%; }
+  #gig-days { width: 10%; }
 
-  #user_name, #user_tone_name { width: 75%; }
-  #user_email { width: 50% }
+  #user-name, #user-tone-name { width: 75%; }
+  #user-email { width: 50% }
 }
 
 .flash {
@@ -568,7 +568,7 @@ $hint-bkg-color: Cornsilk;
 form .hint:hover + .hint  { display: inline; }
 form .hint:focus + .hint  { display: inline; }
 form input:required:valid + .hint {background: #28921f;} /* change form hint color when valid */
-.contact_form input:required:valid + .hint::before {color:#28921f;} /* change form hint arrow color when valid */
+.contact-form input:required:valid + .hint::before {color:#28921f;} /* change form hint arrow color when valid */
 
 .main-content, .details {
   color: $main-text-color;
@@ -636,7 +636,7 @@ $schedule-box-margin: 0.3rem;
   .heading {
     font-weight: 600;
   }
-  .user_admin {
+  .user-admin {
     margin: .2rem .2rem;
     font-weight: 600;
   }
@@ -659,7 +659,7 @@ $schedule-box-margin: 0.3rem;
 form {
   margin-bottom: 0;
 }
-.simple_form {
+.simple-form {
   .btn {
     margin-left: 1.5em;
     margin-right: 1.5em;
@@ -679,8 +679,8 @@ form {
   }
 }
 
-// Rails button_to styling
-.button_to {
+// Rails button-to styling
+.button-to {
   display: inline;
   input {
     margin-top: 1rem;
