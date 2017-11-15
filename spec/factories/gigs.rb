@@ -31,6 +31,6 @@ end
 
 def day_type
   events = %w[Festival Market Benefit Party Celebration]
-  kind = %w[Day Bash Meeting Gathering].push('')
+  kind = %w[Day Bash Meeting Gathering Event]
   "#{events[rand(events.count).round]} #{kind[rand(kind.count).round]}"
 end

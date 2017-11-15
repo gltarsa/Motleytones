@@ -270,14 +270,14 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   private
 
-  # rubocop: disable AbcSize
   def verify_gig_schedule(gig)
     id_class = ".gig-id-#{gig.id}"
-    expect(find(".schedule #{id_class} span.gig_name")).to have_content(gig.name)
-    expect(find(".schedule #{id_class} span.gig_note")).to have_content(gig.note)
-    expect(find(".schedule #{id_class} span.gig_location")).to have_content(gig.location)
+    within ".schedule #{id_class}" do
+      expect(page).to have_css('span.gig_name', text: gig.name)
+      expect(page).to have_css('span.gig_note', text: gig.note)
+      expect(page).to have_css('span.gig_location', text: gig.location)
+    end
   end
-  # rubocop: enable AbcSize
 
   def verify_gig_expired(gig)
     expect(page).to have_css(".gig-id-#{gig.id}.expired")
