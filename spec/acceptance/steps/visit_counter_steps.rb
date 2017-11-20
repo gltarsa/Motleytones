@@ -2,8 +2,8 @@
 
 module VisitCounterSteps
   step 'I am not signed in' do
-    Ahoy.track_visits_immediately = true
-    @initial_count = Visit.count
+    # gt Ahoy.track_visits_immediately = true
+    # gt @initial_count = Visit.count
   end
 
   step 'I visit the page' do

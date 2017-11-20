@@ -9,6 +9,7 @@ module SignInSteps
   end
 
   step 'I navigate to the Sign In page' do
+    binding.pry
     find("li.navigation").hover
     i_click_sign_in
     expect(page).to have_title("Sign In")

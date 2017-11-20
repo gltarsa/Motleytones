@@ -3,10 +3,11 @@
 ENV['RAILS_ENV'] = 'test' # force this to be `test` for zeus
 
 # require 'rspec/rails' # needed for zeus, also handy
-require 'rails_helper'
+# require 'rails_helper'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'turnip/capybara'
+require './spec/support/capybara'
 
 # save to CircleCI's artifacts directory if we are on CCI
 if ENV['CIRCLE_ARTIFACTS']
