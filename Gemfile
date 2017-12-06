@@ -26,7 +26,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rescue'
   gem 'rspec-rails'
-  gem 'spinach-rails', '~> 0.2'
   gem 'spring'
 end
 
