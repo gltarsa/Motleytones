@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-# Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+
+# ensure that Rails is running in test mode before we clobber the database
+abort("The Rails environment is is running in #{Rails.env} mode!") unless Rails.env.test?
+
 require 'spec_helper'
 require 'rspec/rails'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'support/database_cleaner'
+require 'support/capybara.rb'
 require 'devise'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -37,7 +40,6 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  # config.use_transactional_fixtures = true
   config.use_transactional_fixtures = false # (using database_cleaner)
 
   # RSpec Rails can automatically mix in different behaviours to your tests
@@ -60,26 +62,6 @@ RSpec.configure do |config|
   # arbitrary gems may alse be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # rspec-expectations config goes here.
-  config.expect_with :rspec do |expectations|
-    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-  end
-
-  # rspec-mocks config goes here. You can use an alternate test double
-  # library (such as bogus or mocha) by changing the `mock_with` option here.
-  config.mock_with :rspec do |mocks|
-    mocks.verify_partial_doubles = true
-  end
-
-  # Use more verbose output when running an individual spec file.
-  config.default_formatter = config.files_to_run.one? ? 'doc' : 'progress'
-
-  # Limits the available syntax to the non-monkey patched syntax that is
-  # recommended. For more details, see:
-  #   - http://rspec.info/blog/2012/06/rspecs-new-expectation-syntax/
-  #   - http://www.teaisaweso.me/blog/2013/05/27/rspecs-new-message-expectation-syntax/
-  #   - http://rspec.info/blog/2014/05/notable-changes-in-rspec-3/#zero-monkey-patching-mode
-  config.disable_monkey_patching!
-
+  # Devise configuration
   config.include Devise::Test::ControllerHelpers, type: :controller
 end

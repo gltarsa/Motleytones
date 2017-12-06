@@ -7,8 +7,6 @@
 #
 # Any of these may be changed.
 
-# inherit_from: .rubocop_todo.yml
-
 AllCops:
   Include:
     - '**/Gemfile'
@@ -57,3 +55,6 @@ Metrics/LineLength:
 
 Style/SymbolArray:
   Enabled: false
+
+Rails/FilePath:
+  Enabled: False

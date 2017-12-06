@@ -34,7 +34,8 @@ Capybara.register_driver :selenium_firefox do |app|
   Capybara::Selenium::Driver.new(app, browser: :firefox)
 end
 
-# NOTE: disable-gpu is a temporary requirement as of Nov-2017, watch the web and remove it when un-needed.
+# NOTE: disable-gpu is a temporary requirement as of Nov-2017, watch the web
+#       and remove it when un-needed.
 Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Remote::Capabilities.chrome(
     'chromeOptions' => {
@@ -45,8 +46,8 @@ Capybara.register_driver :headless_chrome do |app|
 end
 
 Capybara.configure do |config|
-  config.default_driver = :headless_chrome
-  config.javascript_driver = :headless_chrome
+  config.default_driver = :poltergeist
+  config.javascript_driver = :poltergeist
 
   config.default_max_wait_time = 5
   # In our setup, browsers were opening the wrong port, force it here

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
 include DateDisplayHelper
 
 # Scenario: dates in a Motley Schedule should display in minimal space

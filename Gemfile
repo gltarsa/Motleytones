@@ -26,6 +26,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rescue'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'spring'
 end
 
@@ -41,9 +42,9 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
+  gem 'turnip'
 end
 
 ruby '2.4.2'

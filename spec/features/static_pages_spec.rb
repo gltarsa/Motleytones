@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'static_pages', type: :feature do
   @copyright = '© The Motley Tones. All rights reserved'
 
@@ -12,7 +10,8 @@ RSpec.describe 'static_pages', type: :feature do
 
     it 'has a copyright' do
       expect(page).to have_css('ul.copyright',
-                               text: I18n.t('layouts.footer.copyright', year: Time.zone.now.strftime('%Y')))
+                               text: I18n.t('layouts.footer.copyright',
+                                            year: Time.zone.now.strftime('%Y')))
     end
   end
 
