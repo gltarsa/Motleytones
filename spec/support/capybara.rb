@@ -5,7 +5,7 @@ require "capybara/rspec"
 require "capybara/poltergeist"
 
 # Setup capybara webkit as the driver for javascript-enabled tests.
-# Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :webkit
 
 Capybara.default_selector = :css
 
@@ -30,7 +30,7 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-Capybara.register_driver :selenium_firefox do |app|
+Capybara.register_driver :firefox do |app|
   Capybara::Selenium::Driver.new(app, browser: :firefox)
 end
 
@@ -51,6 +51,6 @@ Capybara.configure do |config|
 
   config.default_max_wait_time = 5
   # In our setup, browsers were opening the wrong port, force it here
-  config.server_port = 54_321
-  config.always_include_port = true
+  # config.server_port = 54_321
+  # config.always_include_port = true
 end

@@ -1,38 +1,37 @@
-footer
-  .container
-    .row
-      .two-thirds.column
-        section
-          h2 Our Friends
-          ul.widget.friend-list
-            li
-              = link_to "College Nannies + Tutors | Cary", "http://collegenannies.com/carync"
-            li
-              = link_to "Shadow Players Stage Combat", "http://www.shadowcombat.com/"
-            li
-              = link_to "Your Door & More Illustrations", "http://www.yourdoorandmore.com/"
-            li
-              = mail_to "YCovington@gmail.com", "Bagpiping by Yance Covington", subject: "Inquiry from Motley Tones Website"
-
-      .one-third.column
-        section.widget.contact
-          h2 Contact Us
-          ul
-            li
-              = link_to "http://www.facebook.com/motleytones", class: "icon fa fa-facebook" do
-                span.label
-                  | Facebook
-          p.simple-print
-            = mail_to info_email,
-              info_email,
-              subject: "Motley Tones information needed",
-              class: "contact-email"
-
-    .row
-      .eight.columns
-        ul.copyright
+.container
+  .row
+    .two-thirds.column
+      section
+        h2 Our Friends
+        ul.widget.friend-list
           li
-            = t('.copyright', year: Time.now.strftime("%Y"))
-      .four.columns
+            = link_to "College Nannies + Tutors | Cary", "http://collegenannies.com/carync"
+          li
+            = link_to "Shadow Players Stage Combat", "http://www.shadowcombat.com/"
+          li
+            = link_to "Your Door & More Illustrations", "http://www.yourdoorandmore.com/"
+          li
+            = mail_to "YCovington@gmail.com", "Bagpiping by Yance Covington", subject: "Inquiry from Motley Tones Website"
+
+    .one-third.column
+      section.widget.contact
+        h2 Contact Us
         ul
-          li.visit-count #{number_with_delimiter(Visit.count)} visitors
+          li
+            = link_to "http://www.facebook.com/motleytones", class: "icon fa fa-facebook" do
+              span.label
+                | Facebook
+        p.simple-print
+          = mail_to info_email,
+            info_email,
+            subject: "Motley Tones information needed",
+            class: "contact-email"
+
+  .row
+    .eight.columns
+      ul.copyright
+        li
+          = t('.copyright', year: Time.now.strftime("%Y"))
+    .four.columns
+      ul
+        li.visit-count #{number_with_delimiter(Visit.count)} visitors

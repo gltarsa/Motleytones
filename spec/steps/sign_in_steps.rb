@@ -12,7 +12,9 @@ module SignInSteps
 
   step 'I navigate to the Sign In page' do
     find("li.navigation").hover
-    step "I click Sign In"
+    find('a', text: 'Sign in').click
+    # click_on "Sign in"
+    # step "I click Sign In"
     expect(page).to have_title("Sign In")
   end
 

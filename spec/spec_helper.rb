@@ -5,6 +5,7 @@ require File.expand_path("../../config/environment", __FILE__)
 
 require 'rails_helper'
 require 'rspec/rails' # needed for zeus, also handy
+require 'rspec/expectations'
 require 'turnip/rspec'
 require 'turnip/capybara'
 require 'capybara/rails'
