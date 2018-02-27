@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    machine: true
+
+    steps:
+      - checkout
+      - run: echo "ruby-2.4.2" > ~/.ruby-version
+      - run: gem update --system
+      - run: gem install bundler
+      - run: bundle exec rake db:create db:migrate --trace
+
