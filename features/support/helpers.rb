@@ -10,12 +10,12 @@ module Helpers
   # @user is available in the Spinach steps
   #
   def sign_in_non_admin_user
-    @user = FactoryGirl.create(:user, password: SOME_PASSWORD)
+    @user = FactoryBot.create(:user, password: SOME_PASSWORD)
     do_login(@user, SOME_PASSWORD)
   end
 
   def sign_in_admin_user
-    @user = FactoryGirl.create(:user, :admin, password: SOME_PASSWORD)
+    @user = FactoryBot.create(:user, :admin, password: SOME_PASSWORD)
     do_login(@user, SOME_PASSWORD)
   end
 

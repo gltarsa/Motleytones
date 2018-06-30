@@ -38,7 +38,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I fill in the gig fields' do
-    @gig = FactoryGirl.build(:gig)
+    @gig = FactoryBot.build(:gig)
     set_date('gig_date',    @gig.date.to_s)
     fill_in 'gig_name',     with: @gig.name
     fill_in 'gig_note',     with: @gig.note
@@ -154,43 +154,43 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'there is at least one published gig' do
-    @gig = FactoryGirl.create(:gig, published: true)
+    @gig = FactoryBot.create(:gig, published: true)
   end
 
   step 'there is at least one published one-day gig dated yesterday' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 1, date: Time.zone.yesterday)
+    @gig = FactoryBot.create(:gig, published: true, days: 1, date: Time.zone.yesterday)
   end
 
   step 'there is at least one published two-day gig dated yesterday' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Time.zone.yesterday)
+    @gig = FactoryBot.create(:gig, published: true, days: 2, date: Time.zone.yesterday)
   end
 
   step 'there is at least one published two-day gig dated two days ago' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Time.zone.today - 2)
+    @gig = FactoryBot.create(:gig, published: true, days: 2, date: Time.zone.today - 2)
   end
 
   step 'there is at least one published two-day gig dated three days ago' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 2, date: Time.zone.today - 3)
+    @gig = FactoryBot.create(:gig, published: true, days: 2, date: Time.zone.today - 3)
   end
 
   step 'there is at least one published one-day gig dated two days ago' do
-    @gig = FactoryGirl.create(:gig, published: true, days: 1, date: Time.zone.today - 2)
+    @gig = FactoryBot.create(:gig, published: true, days: 1, date: Time.zone.today - 2)
   end
 
   step 'there is at least one existing gig' do
-    @gig = FactoryGirl.create(:gig)
+    @gig = FactoryBot.create(:gig)
   end
 
   step 'I add a new gig' do
-    @new_gig = FactoryGirl.create(:gig)
+    @new_gig = FactoryBot.create(:gig)
   end
 
   step 'there is at least one unpublished gig' do
-    @unpublished_gig = FactoryGirl.create(:gig, published: false)
+    @unpublished_gig = FactoryBot.create(:gig, published: false)
   end
 
   step 'there is at least one unpublished one-day gig dated two days ago' do
-    @unpublished_gig = FactoryGirl.create(:gig,
+    @unpublished_gig = FactoryBot.create(:gig,
                                           published: false,
                                           days: 1,
                                           date: Time.zone.today - 2)

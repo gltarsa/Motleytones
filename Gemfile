@@ -21,7 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'awesome_print'
   gem 'database_cleaner', '~> 1.4'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rescue'

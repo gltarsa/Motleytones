@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :gig do
     date      { Faker::Date.between(Date.new(2010, 7, 10), 1.year.from_now) }
     name      { proper_length_name }

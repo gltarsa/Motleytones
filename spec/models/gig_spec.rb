@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Gig, type: :model do
-  let(:gig) { FactoryGirl.build :gig }
+  let(:gig) { FactoryBot.build :gig }
 
   describe "date" do
     it "is required" do
@@ -50,7 +50,7 @@ RSpec.describe Gig, type: :model do
   describe "date + name"
   it "must be unique" do
     gig.save
-    gig2 = FactoryGirl.build(:gig, date: gig.date, name: gig.name)
+    gig2 = FactoryBot.build(:gig, date: gig.date, name: gig.name)
     expect(gig2).not_to be_valid
   end
 end
