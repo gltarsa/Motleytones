@@ -2,6 +2,7 @@
 
 class Spinach::Features::VisitCounter < Spinach::FeatureSteps
   step 'I am not signed in' do
+    Ahoy.server_side_visits = true # for testing purposes
     @initial_count = Visit.count
   end
 
