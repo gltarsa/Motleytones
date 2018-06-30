@@ -5,8 +5,8 @@ require 'controllers/shared_examples/sign_in_required_examples.rb'
 require 'controllers/shared_examples/admin_required_examples.rb'
 
 RSpec.describe UsersController, type: :controller do
-  let!(:user)      { FactoryGirl.create(:user, name: 'Ordinary User') }
-  let(:admin_user) { FactoryGirl.create(:user, :admin, name: 'Admin User') }
+  let!(:user)      { FactoryBot.create(:user, name: 'Ordinary User') }
+  let(:admin_user) { FactoryBot.create(:user, :admin, name: 'Admin User') }
 
   describe 'GET #show' do
     let(:response) { get :show, params: { id: user.id } }
@@ -84,7 +84,7 @@ RSpec.describe UsersController, type: :controller do
     context 'when called as an admin user' do
       before do
         sign_in admin_user
-        @new_user = FactoryGirl.attributes_for(:user)
+        @new_user = FactoryBot.attributes_for(:user)
       end
 
       it 'creates a new user' do
@@ -126,7 +126,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #edit' do
     let(:response) { get :edit, params: { id: user.id } }
-    let(:other_user) { FactoryGirl.create(:user) }
+    let(:other_user) { FactoryBot.create(:user) }
 
     it_behaves_like "login-required actions"
 
@@ -175,7 +175,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   RSpec.shared_examples_for 'users#update tests' do
-    let(:other_user) { FactoryGirl.create(:user) }
+    let(:other_user) { FactoryBot.create(:user) }
     let(:new_email_params) { { email: Faker::Internet.email } }
 
     it_behaves_like 'login-required actions'

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'ahoy_matey'
+gem 'ahoy_matey', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-rails'
 gem 'devise'
@@ -21,7 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'awesome_print'
   gem 'database_cleaner', '~> 1.4'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rescue'
@@ -47,4 +47,4 @@ group :test do
   gem 'simplecov', require: false
 end
 
-ruby '2.4.2'
+ruby '2.5.1'

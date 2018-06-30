@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'devise'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryGirl.create :user }
+  let(:user) { FactoryBot.create :user }
 
   describe "name" do
     it "is required" do
@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
     end
 
     it "must be unique" do
-      user2 = FactoryGirl.build(:user, name: user.name)
+      user2 = FactoryBot.build(:user, name: user.name)
       expect(user2).not_to be_valid
     end
   end

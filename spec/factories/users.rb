@@ -2,7 +2,7 @@
 
 SOME_PASSWORD ||= 'secretpw'.freeze
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     name      { Faker::Name.name }
     tone_name { "#{Faker::Company.name} Tone" }

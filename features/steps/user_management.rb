@@ -108,7 +108,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'there is at least one other user' do
-    @another_user = FactoryGirl.create(:user)
+    @another_user = FactoryBot.create(:user)
   end
 
   step 'I see information for another user' do
@@ -128,7 +128,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I fill in the fields' do
     @band_start_date = '9-Jul-2010'
-    @another_user = FactoryGirl.build(:user)
+    @another_user = FactoryBot.build(:user)
     fill_in 'user_name', with: @another_user.name
     fill_in 'user_tone_name', with: @another_user.tone_name
     set_date('user_band_start_date', @band_start_date)

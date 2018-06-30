@@ -21,7 +21,7 @@ RSpec.describe 'static_pages', type: :feature do
     it_behaves_like 'it has standard decorations', 'The Motley Tones'
 
     it 'shows the performance schedule' do
-      3.times { FactoryGirl.create(:gig, published: true) }
+      3.times { FactoryBot.create(:gig, published: true) }
       visit '/'
       within '.schedule' do
         expect(page).to have_css('li', count: 3)
@@ -47,7 +47,7 @@ RSpec.describe 'static_pages', type: :feature do
   context 'Schedule page' do
     before do
       2010.upto(2013).each do |year|
-        FactoryGirl.create(:gig, published: true, date: Date.new(year, 7, 10))
+        FactoryBot.create(:gig, published: true, date: Date.new(year, 7, 10))
       end
       visit '/schedule'
     end

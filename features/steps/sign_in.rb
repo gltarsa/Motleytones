@@ -19,7 +19,7 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   end
 
   step 'I enter a registered email' do
-    @user = FactoryGirl.create(:user, password: SOME_PASSWORD)
+    @user = FactoryBot.create(:user, password: SOME_PASSWORD)
     fill_in("user_email", with: @user.email)
   end
 

@@ -8,7 +8,7 @@ RSpec.shared_examples_for "gig#create tests" do
   context 'when called as an admin user' do
     before do
       sign_in admin_user
-      @new_gig = FactoryGirl.attributes_for(:gig)
+      @new_gig = FactoryBot.attributes_for(:gig)
     end
 
     it 'creates a new gig' do
@@ -44,9 +44,9 @@ RSpec.shared_examples_for "gig#update tests" do
 end
 
 RSpec.describe GigsController, type: :controller do
-  let!(:user)      { FactoryGirl.create(:user, name: "Ordinary User") }
-  let(:admin_user) { FactoryGirl.create(:user, :admin, name: "Admin User") }
-  let!(:gig)       { FactoryGirl.create(:gig) }
+  let!(:user)      { FactoryBot.create(:user, name: "Ordinary User") }
+  let(:admin_user) { FactoryBot.create(:user, :admin, name: "Admin User") }
+  let!(:gig)       { FactoryBot.create(:gig) }
 
   describe 'GET #show' do
     let(:response) { get :show, params: { id: gig.id } }
