@@ -2,7 +2,6 @@
 
 class Spinach::Features::VisitCounter < Spinach::FeatureSteps
   step 'I am not signed in' do
-    Ahoy.track_visits_immediately = true
     @initial_count = Visit.count
   end
 

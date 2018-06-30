@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'ahoy_matey'
+gem 'ahoy_matey', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-rails'
 gem 'devise'
@@ -47,4 +47,4 @@ group :test do
   gem 'simplecov', require: false
 end
 
-ruby '2.4.2'
+ruby '2.5.1'
