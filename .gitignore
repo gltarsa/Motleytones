@@ -16,6 +16,8 @@
 !/log/.keep
 /tmp
 tmp*
+.byebug_history
+.env_overrides.rb
 
 # Ignore all editor droppings
 *~
