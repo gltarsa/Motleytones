@@ -304,28 +304,33 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionview (>= 5.1.6.2)
   ahoy_matey (~> 2.0)
   awesome_print
   bcrypt (~> 3.1.7)
   capybara
   coffee-rails
   database_cleaner (~> 1.4)
-  devise
+  devise (>= 4.6.0)
   factory_bot_rails
   faker
   font-awesome-rails (~> 4.4)
   jbuilder (~> 2.0)
   jquery-rails (~> 4.0)
   launchy
+  loofah (>= 2.2.3)
+  nokogiri (>= 1.8.5)
   pg (~> 0.18.0)
   poltergeist
   pry-byebug
   pry-rescue
+  rack (>= 2.0.6)
   rails (~> 5.0)
   rails-controller-testing
   rails_12factor
   rspec-rails
   rubocop-rails
+  rubyzip (>= 1.2.2)
   sassc-rails
   sdoc (~> 0.4.0)
   selenium-webdriver
