@@ -6,14 +6,14 @@ FactoryBot.define do
     name      { proper_length_name }
     note      { "#{Faker::Lorem.words(3)} #{Faker::Internet.url} #{Faker::Lorem.words(2)}" }
     location  { "#{Faker::Address.city}, #{Faker::Address.state_abbr}" }
-    published false
+    published { false }
   end
 
   factory :picture do
     date      { Faker::Date.between(Date.new(2010, 7, 10), 1.year.from_now) }
     name      { "[picture]" }
     note      { "#{Faker::Internet.url}/image.png" }
-    published false
+    published { false }
   end
 end
 

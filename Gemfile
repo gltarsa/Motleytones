@@ -8,9 +8,9 @@ gem 'font-awesome-rails', '~> 4.4'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '~> 4.0'
 gem 'pg', '~> 0.18.0'
+gem 'sassc-rails'
 gem 'rails', '~> 5.0'
-gem 'rubocop', require: false
-gem 'sass-rails', '~> 5.0'
+gem 'rubocop-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'simple_form', '~> 3.1'
 gem 'slim-rails'
