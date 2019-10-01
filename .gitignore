@@ -16,6 +16,7 @@
 !/log/.keep
 /tmp
 tmp*
+/db-backups/*
 .byebug_history
 .env_overrides.rb
 
