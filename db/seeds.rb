@@ -49,7 +49,7 @@ unless Rails.env == "production"
       password: STARTER_PASSWORD,
       password_confirmation: STARTER_PASSWORD,
       tone_name: "#{Faker::Company.name.sub(' Llc', '').sub(' LLC', '').sub(' Inc', '')} Tone",
-      band_start_date: Faker::Date.backward(900))
+      band_start_date: Faker::Date.backward(days: 900))
   end
 
   def day_type
@@ -78,7 +78,8 @@ unless Rails.env == "production"
     6.times do
       Gig.create!(
         published: (rand(3).round > 0),
-        date: Faker::Date.between(Date.today.years_ago(n).beginning_of_year, Date.today.years_ago(n).end_of_year),
+        date: Faker::Date.between(from: Date.today.years_ago(n).beginning_of_year,
+                                  to: Date.today.years_ago(n).end_of_year),
         days: rand(6).round,
         name: "#{Faker::Commerce.product_name} #{day_type}",
         location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
