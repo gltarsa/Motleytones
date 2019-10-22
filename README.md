@@ -39,11 +39,13 @@ Building this app from scratch requires the following:
 
 * `brew install postgres`
 * `brew install phantomjs`
-* Start PostgreSQL: ```pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start```
+* Start PostgreSQL: `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`
+  or `brew services start postgresql`
 
 For completeness, there is also:
 
-* Stop PostgreSQL: ```pg_ctl -D /usr/local/var/postgres stop -s -m fast```
+* Stop PostgreSQL: `pg_ctl -D /usr/local/var/postgres stop -s -m fast`
+  or `brew services stop postgresql`
 
 Note: when upgrading Mac OS X you may find postgres does not start properly due
 to missing directories. These commands will create empty versions of those
