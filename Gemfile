@@ -13,7 +13,7 @@ gem 'sassc-rails'
 gem 'rails', '~> 5.0'
 gem 'rubocop-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'simple_form', '~> 3.1'
+gem "simple_form", ">= 5.0.0"
 gem 'slim-rails'
 gem 'sprockets'
 gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
