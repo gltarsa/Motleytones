@@ -22,6 +22,7 @@ tmp*
 # Ignore all editor droppings
 *~
 *.vim
+/.idea
 
 # ignore Motley tones raw files
 website-Motleytones.com

@@ -34,7 +34,7 @@ RSpec.shared_examples_for "gig#update tests" do
   context 'when called as an admin user' do
     it 'updates the gig' do
       sign_in admin_user
-      @new_note = Faker::Lorem.sentence(6)
+      @new_note = Faker::Lorem.sentence(word_count: 6)
       expect(response).to have_http_status(:redirect)
       expect(response).to redirect_to(gig_url(gig.id))
       gig.reload

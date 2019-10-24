@@ -2,15 +2,15 @@
 
 FactoryBot.define do
   factory :gig do
-    date      { Faker::Date.between(Date.new(2010, 7, 10), 1.year.from_now) }
+    date      { Faker::Date.between(from: Date.new(2010, 7, 10), to: 1.year.from_now) }
     name      { proper_length_name }
-    note      { "#{Faker::Lorem.words(3)} #{Faker::Internet.url} #{Faker::Lorem.words(2)}" }
+    note      { "#{Faker::Lorem.words(number: 3)} #{Faker::Internet.url} #{Faker::Lorem.words(number: 2)}" }
     location  { "#{Faker::Address.city}, #{Faker::Address.state_abbr}" }
     published { false }
   end
 
   factory :picture do
-    date      { Faker::Date.between(Date.new(2010, 7, 10), 1.year.from_now) }
+    date      { Faker::Date.between(from: Date.new(2010, 7, 10), to: 1.year.from_now) }
     name      { "[picture]" }
     note      { "#{Faker::Internet.url}/image.png" }
     published { false }
