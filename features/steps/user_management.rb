@@ -83,6 +83,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect_flash(severity: :alert, containing: 'You must be an admin user to access that page')
   end
 
+  step 'I see a notice indicating the other user has been deleted' do
+    expect_flash(severity: :notice, containing: I18n.t('devise.registrations.pirate_deleted', count: 1))
+  end
+
   step 'I see an error message' do
     expect_form_error
   end

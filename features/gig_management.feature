@@ -38,14 +38,15 @@ Feature: Gig Management
     And I click Add Gig
     Then I see an error message
 
-  @javascript
+  @javascript @delete
   Scenario: An admin user can delete gig entries
     Given I am signed in as an admin user
     And there is at least one published gig
     When I navigate to the Manage Gigs page
     Then I see information for a gig
     When I click Delete and confirm deletion for that gig
-    Then that gig is deleted
+    Then I see a notice indicating that the gig is deleted
+    And that gig is deleted
     And I am on the Manage Gigs page
 
   @javascript

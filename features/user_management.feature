@@ -111,14 +111,15 @@ Feature: User Management
     And I click Add
     Then I see an error message
 
-  @javascript @admin
+  @javascript @admin @delete
   Scenario:  Admin users can delete a user account
     Given I am signed in as an admin user
     And there is at least one other user
     When I navigate to the Manage Pirates page
     Then I see information for another user
     When I click Delete and confirm deletion for that other user
-    Then that other user is deleted
+    Then I see a notice indicating the other user has been deleted
+    And that other user is deleted
 
   @javascript @admin
   Scenario:  Admin users cannot delete their own account

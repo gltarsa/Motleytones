@@ -232,6 +232,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect_flash(severity: :alert, containing: I18n.t('.must_be_admin'))
   end
 
+  step 'I see a notice indicating that the gig is deleted' do
+    expect_flash(severity: :notice, containing: I18n.t('.gig.deleted', count: 0))
+  end
+
   step 'I see an error message' do
     expect_form_error
   end
