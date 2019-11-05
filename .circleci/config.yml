@@ -51,7 +51,6 @@ jobs:
     #   This would typically go in either a build or a build-and-test job when using workflows
 
     # Restore the dependency cache
-    - run: sudo chown -R circleci /usr/local/bundle
     - restore_cache:
         keys:
         # Latest version of branch if available (save_cache adds a timestamp)
