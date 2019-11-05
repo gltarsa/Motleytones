@@ -1,5 +1,5 @@
-# This config file will need to be updated whenever ruby, postgres, and/or phantomjs
-# versions change.  If the Gemfile.lock file changes, caches will automatically be
+# Update this file to keep ruby, postgres, and/or phantomjs versions up
+# to date.  If the Gemfile.lock file changes, caches will automatically be
 # updated.  Otherwise, you will need to also change the cache-key name by adding a .1 to
 # the current value.
 
@@ -15,20 +15,17 @@ jobs:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
 
-    # In CircleCI 2.0 you can now specify your own image, or use one of our pre-configured images.
-    # The following configuration line tells CircleCI to use the specified
-    # docker image as the runtime environment for you job.  We have selected a
-    # pre-built image that mirrors the build environment we use on the 1.0
-    # platform, but we recommend you choose an image more tailored to the needs
-    # of each job. For more information on choosing an image (or alternatively
-    # using a VM instead of a container) see
-    # https://circleci.com/docs/2.0/executor-types/ To see the list of
-    # pre-built images that CircleCI provides for most common languages see
-    # https://circleci.com/docs/2.0/circleci-images/
+    # In CircleCI 2.0 you can now specify your own image, or use one of
+    # our pre-configured images.  For more information on choosing an
+    # image (or alternatively using a VM instead of a container) see
+    #   https://circleci.com/docs/2.0/executor-types/
+    # To see the list of pre-built images that CircleCI provides for
+    # most common languages see
+    #   https://circleci.com/docs/2.0/circleci-images/
 
-    # This pre-built docker image works well for this app.  It will need to be updated
-    # when the Ruby version changes.
-    # see https://circleci.com/docs/2.0/docker-image-tags.json for the latest list
+    # These pre-built docker images works well for this app.  They will
+    # need updating when the Ruby version changes.  The latest list:
+    #   https://circleci.com/docs/2.0/docker-image-tags.json
     docker:
       - image: circleci/ruby:2.6.3-node-browsers-legacy
       - image: circleci/postgres:10.3-postgis
@@ -40,16 +37,14 @@ jobs:
     # Machine Setup
     steps:
     #   If you break your build into multiple jobs with workflows, you will
-    #   probably want to do the parts of this that are relevant in each The
+    #   probably want to do the parts of this that are relevant in each. The
     #   following `checkout` command checks out your code to your working
-    #   directory. In 1.0 we did this implicitly. In 2.0 you can choose where
-    #   in the course of a job your code should be checked out.
+    #   directory.
     - checkout
 
-    # Prepare for artifact and test results  collection equivalent to how it
-    # was done on 1.0.  In many cases you can simplify this from what is
-    # generated here.  'See docs on artifact collection here
-    # https://circleci.com/docs/2.0/artifacts/'
+    # Prepare for artifact and test results collection.
+    # See docs on artifact collection here
+    #   https://circleci.com/docs/2.0/artifacts/
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
 
     # Dependencies
@@ -67,10 +62,7 @@ jobs:
         # unnecessary if you have your default branch configured correctly
         - v1.1-dep-
 
-    # The following line was run implicitly in your 1.0 builds based on what
-    # CircleCI inferred about the structure of your project. In 2.0 you need to
-    # be explicit about which commands should be run. In some cases you can
-    # discard inferred commands if they are not relevant to your project.
+    # Commands to run to load libraries/gems.
     - run: echo -e "export RAILS_ENV=test\nexport RACK_ENV=test" >> $BASH_ENV
     - run: 'bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3'
 
@@ -80,10 +72,7 @@ jobs:
         paths:
           - vendor/bundle
 
-    # The following line was run implicitly in your 1.0 builds based on what
-    # CircleCI inferred about the structure of your project. In 2.0 you need to
-    # be explicit about which commands should be run. In some cases you can
-    # discard inferred commands if they are not relevant to your project.
+    # TODO: change this to use environment variables
     - run: |-
         mkdir -p config && echo 'test:
           database: circle_ruby_test
@@ -102,10 +91,6 @@ jobs:
     # Test
     #   This would typically be a build job when using workflows, possibly combined with build
 
-    # The following line was run implicitly in your 1.0 builds based on what
-    # CircleCI inferred about the structure of your project. In 2.0 you need to
-    # be explicit about which commands should be run. In some cases you can
-    # discard inferred commands if they are not relevant to your project.
     - run: |-
         export RAILS_ENV="test"
         export RACK_ENV="test"
@@ -117,10 +102,9 @@ jobs:
     #   probably want to do the parts of this that are relevant in each
 
     # Save test results
+    # TODO: can these path values be environment variables?
     - store_test_results:
         path: /tmp/circleci-test-results
-
-    # Save artifacts
     - store_artifacts:
         path: /tmp/circleci-artifacts
     - store_artifacts:
