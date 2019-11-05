@@ -10,7 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '~> 4.0'
 gem 'pg', '~> 0.18.0'
 gem 'sassc-rails'
-gem 'rails', '~> 5.0'
+gem 'rails', '~> 5.1'
 gem 'rubocop-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "simple_form", ">= 5.0.0"
@@ -51,6 +51,7 @@ group :test do
   gem 'launchy'
   gem 'poltergeist'
   gem 'rails-controller-testing'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
 end
