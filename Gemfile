@@ -22,7 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 # Updates for security issues
 gem "actionview", ">= 5.1.6.2"
 gem "nokogiri", ">= 1.8.5"
-gem "rack", ">= 2.0.6"
+gem "rack", ">= 2.1"
 gem "loofah", ">= 2.2.3"
 gem "rubyzip", ">= 1.2.2"
 
