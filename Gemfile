@@ -10,7 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '~> 4.0'
 gem 'pg', '~> 0.18.0'
 gem 'sassc-rails'
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.2'
 gem 'rubocop-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "simple_form", ">= 5.0.0"
@@ -56,4 +56,4 @@ group :test do
   gem 'simplecov', require: false
 end
 
-ruby '2.6.3'
+ruby '2.6.5'
