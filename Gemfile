@@ -10,7 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '~> 4.0'
 gem 'pg', '~> 0.18.0'
 gem 'sassc-rails'
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.2'
 gem 'rubocop-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "simple_form", ">= 5.0.0"
@@ -22,7 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 # Updates for security issues
 gem "actionview", ">= 5.1.6.2"
 gem "nokogiri", ">= 1.8.5"
-gem "rack", ">= 2.0.6"
+gem "rack", ">= 2.1"
 gem "loofah", ">= 2.2.3"
 gem "rubyzip", ">= 1.2.2"
 
@@ -56,4 +56,4 @@ group :test do
   gem 'simplecov', require: false
 end
 
-ruby '2.6.3'
+ruby '2.6.5'
