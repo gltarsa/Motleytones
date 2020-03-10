@@ -293,7 +293,7 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.6.1)
-    user_agent_parser (2.5.2)
+    user_agent_parser (2.6.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
