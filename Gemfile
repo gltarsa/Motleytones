@@ -12,7 +12,7 @@ gem 'pg', '~> 0.18.0'
 gem 'sassc-rails'
 gem 'rails', '~> 5.2'
 gem 'rubocop-rails'
-gem 'sdoc', '~> 0.4.0', group: :doc
+#gem 'sdoc', '~> 0.4.0', group: :doc
 gem "simple_form", ">= 5.0.0"
 gem 'slim-rails'
 gem 'sprockets'
@@ -25,6 +25,7 @@ gem "nokogiri", ">= 1.8.5"
 gem "rack", ">= 2.1"
 gem "loofah", ">= 2.2.3"
 gem "rubyzip", ">= 1.2.2"
+gem "json", ">= 2.3.0"
 
 group :development, :test do
   gem 'awesome_print'
@@ -56,4 +57,4 @@ group :test do
   gem 'simplecov', require: false
 end
 
-ruby '2.6.5'
+ruby '2.7.1'
