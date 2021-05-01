@@ -27,3 +27,9 @@ tmp*
 
 # ignore Motley tones raw files
 website-Motleytones.com
+
+# ignore Gutentags files
+GPATH
+GRTAGS
+GTAGS
+
