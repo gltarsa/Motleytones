@@ -8,7 +8,7 @@ gem "devise", ">= 4.6.0"
 gem 'font-awesome-rails', '~> 4.4'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '~> 4.0'
-gem 'pg', '~> 0.18.0'
+gem 'pg', '~> 1.1.0'
 gem 'sassc-rails'
 gem 'rails', '~> 6.0'
 gem 'rubocop-rails'
