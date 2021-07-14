@@ -20,6 +20,14 @@ section.details.container.simple-print
   .row
     .one-third.column
       article
+        = link_to booking_path, class: "image featured"
+          = image_tag "booking.jpg", alt: "Booking Picture"
+          header.content
+            h2 Book us for a Performance!
+            p Got an event that could use more swagger and/or song? Whether it's public or private, kiddies or corporate, the Motley Tones have you covered.
+
+    .one-third.column
+      article
         = link_to about_path, class: "image featured"
           = image_tag "about.jpg", alt: "About picture"
           header.content
@@ -28,14 +36,6 @@ section.details.container.simple-print
               br
               | Past and Present
             p How a band of scalawags traded murder for music-making. Now all they slay is the crowds in the aisle.
-
-    .one-third.column
-      article
-        = link_to booking_path, class: "image featured"
-          = image_tag "booking.jpg", alt: "Booking Picture"
-          header.content
-            h2 Book us for a Performance!
-            p Got an event that could use more swagger and/or song? Whether it's public or private, kiddies or corporate, the Motley Tones have you covered.
 
     .one-third.column
       article
@@ -59,7 +59,8 @@ section.details.container.simple-print
           = image_tag "bios.jpg", alt: "Bio picture"
           header.content
             h2 Meet the Tones: Bios+Pictures
-            p A Who’s Who on the eastern seaboard’s seven best and most musical pirates-for-hire.
+            p A Who’s Who on the eastern seaboard’s best and most musical pirates-for-hire.
+            p Learn more about your favorites!
 
     .one-third.column
       article
