@@ -42,6 +42,12 @@ module Helpers
 
   # parse the text date into the three date fields used by simpleform_for
   def set_date(field_name, date)
+    puts "diagnose intermittent failure: field_name = #{field_name}, date = #{date}"
+    puts "diagnose intermittent failure: select(#{Date.parse(date).year}, from: #{field_name}_1i)"
+    puts "diagnose intermittent failure: select(#{Date::MONTHNAMES[Date.parse(date).month]}, from: #{field_name}_2i)"
+    puts "diagnose intermittent failure: select(#{Date.parse(date).day}, from: #{field_name}_3i)"
+    puts "diagnose intermittent failure: page.html = #{page.html}"
+
     select(Date.parse(date).year, from: "#{field_name}_1i")
     select(Date::MONTHNAMES[Date.parse(date).month], from: "#{field_name}_2i")
     select(Date.parse(date).day, from: "#{field_name}_3i")
