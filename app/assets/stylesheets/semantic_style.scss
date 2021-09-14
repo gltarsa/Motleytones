@@ -497,12 +497,11 @@ img.image.adjustable {
     display: none;
   }
 
-  #gig-note, #gig-name { width: 100%; }
-  #gig-location { width: 50%; }
-  #gig-days { width: 10%; }
+  #gig_note, #gig_name, #gig_location { width: 100%; }
+  #gig_days { width: 6.5rem; }
 
-  #user-name, #user-tone-name { width: 75%; }
-  #user-email { width: 50% }
+  #user_name, #user_tone_name { width: 75%; }
+  #user_email { width: 50% }
 }
 
 .flash {
