@@ -27,7 +27,7 @@ jobs:
     # need updating when the Ruby version changes.  The latest list:
     #   https://circleci.com/docs/2.0/docker-image-tags.json
     docker:
-      - image: circleci/ruby:2.7.1-node-browsers-legacy
+      - image: circleci/ruby:2.7.4-node-browsers-legacy
       - image: circleci/postgres:10.3-postgis
         environment:
           POSTGRES_USER: ubuntu

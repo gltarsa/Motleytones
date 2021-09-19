@@ -12,20 +12,11 @@ gem 'pg', '~> 1.1.0'
 gem 'sassc-rails'
 gem 'rails', '~> 6.0'
 gem 'rubocop-rails'
-#gem 'sdoc', '~> 0.4.0', group: :doc
 gem "simple_form", ">= 5.0.0"
 gem 'slim-rails'
 gem 'sprockets'
 gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
 gem 'uglifier', '>= 1.3.0'
-
-# Updates for security issues
-#gem "actionview", ">= 5.1.6.2"
-#gem "nokogiri", ">= 1.8.5"
-#gem "rack", ">= 2.1"
-#gem "loofah", ">= 2.2.3"
-#gem "rubyzip", ">= 1.2.2"
-#gem "json", ">= 2.3.0"
 
 group :development, :test do
   gem 'awesome_print'
@@ -57,4 +48,4 @@ group :test do
   gem 'simplecov', require: false
 end
 
-ruby '2.7.1'
+ruby '2.7.4'
