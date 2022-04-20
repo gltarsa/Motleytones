@@ -7,11 +7,11 @@ section.main-content
     - Gig.active.ascending.each do |gig|
       .row.schedule
         .ten.columns.offset-by-one
-          article class="gig-id-#{gig.id}"
+          article class="gig-id-#{gig.id} #{gig.published ? nil : 'unpublished'}"
             = render "gig", gig: gig
 
     - Gig.expired.descending.each do |gig|
       .row.schedule
         .ten.columns.offset-by-one
-          article class="gig-id-#{gig.id} expired"
+          article.expired class="gig-id-#{gig.id} #{gig.published ? nil : 'unpublished'}"
             = render "gig", gig: gig
