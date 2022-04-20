@@ -2,6 +2,6 @@
 section.main-content.container
   .row
     .eight.columns.offset-by-two.columns
-      article
+      article class="#{gig.published ? nil : 'unpublished'}"
         h2 Modify Gig Info
         = render 'form', button_name: 'Update gig'
