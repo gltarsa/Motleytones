@@ -7,5 +7,5 @@ section.main-content
 
   .row class="gig-id-#{gig.id}"
     .ten.columns.offset-by-one.columns
-      article.schedule
+      article.schedule class="#{gig.published ? nil : 'unpublished'}"
         = render 'gig'
