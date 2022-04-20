@@ -58,7 +58,7 @@ unless Rails.env == "production"
     "#{events[rand(events.count).round]} #{kind[rand(kind.count).round]}"
   end
 
-  8.times do |n|
+  12.times do |n|
     # Always one New Years gig
     Gig.create!(
       published: true,
