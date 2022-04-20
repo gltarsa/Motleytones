@@ -219,6 +219,14 @@ article {
   }
 }
 
+article.unpublished {
+  background-color: $unpublished-color;
+}
+
+article.admin {
+  background-color: $admin-color;
+}
+
 .main-content article {
   font-size: 1.8rem;
 }
@@ -579,12 +587,15 @@ $schedule-box-margin: 0.3rem;
   hr {
     margin: .5rem 0;
   }
+
   h3 {
     margin-left: $schedule-box-margin;
   }
+
   li {
     margin: 0
   }
+
   ul {
     color: $main-text-color;
     font-weight: normal;
@@ -597,6 +608,7 @@ $schedule-box-margin: 0.3rem;
     @media ($bp-larger-than-phablet) { // 550px
       font-size: 1.4rem;
     }
+
     @media ($bp-larger-than-tablet) { // 550px
       font-size: 1.6rem;
     }
@@ -629,12 +641,15 @@ $schedule-box-margin: 0.3rem;
     -webkit-column-count: 2;
     -moz-column-count: 2;
   }
+
   p {
     margin-bottom: 0;
   }
+
   .heading {
     font-weight: 600;
   }
+
   .user-admin {
     margin: .2rem .2rem;
     font-weight: 600;
@@ -658,6 +673,7 @@ $schedule-box-margin: 0.3rem;
 form {
   margin-bottom: 0;
 }
+
 .simple-form {
   .btn {
     margin-left: 1.5em;
@@ -670,9 +686,11 @@ form {
     border-bottom: none;
     color: Maroon;
   }
+
   input {
     margin-bottom: 0;
   }
+
   input[type='checkbox'] {
     margin-right: .5rem;
   }
@@ -686,12 +704,15 @@ form {
     margin-bottom: 0;
     margin-left: 1.5em;
   }
+
   .edit {
   }
+
   .delete {
     color: $alert-color;
     float: right;
   }
+
   .add {
     background: $article-bkg-color;
     color: $link-color;
@@ -699,6 +720,7 @@ form {
     margin: .2rem;
     margin-left: 0;
   }
+
   .sign-out {
     @extend .add;
     margin-left: 1.5em;
