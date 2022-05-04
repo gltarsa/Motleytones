@@ -2,7 +2,6 @@
 
 require "capybara/rails"
 require "capybara/rspec"
-require "capybara/poltergeist"
 
 # Setup capybara webkit as the driver for javascript-enabled tests.
 # Capybara.javascript_driver = :webkit
@@ -12,10 +11,6 @@ Capybara.default_selector = :css
 Capybara.configure do |config|
   config.match = :prefer_exact
   config.ignore_hidden_elements = false
-end
-
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new app, window_size: [1600, 1200]
 end
 
 # for development: when you want to use a browser to experiment with real-time
@@ -45,10 +40,9 @@ Capybara.register_driver :headless_chrome do |app|
 end
 
 Capybara.configure do |config|
-  config.default_driver = :headless_chrome
+  config.default_driver = :rack_test
   config.javascript_driver = :headless_chrome
-
-  config.default_max_wait_time = 5
+  config.default_max_wait_time = 2
   # In our setup, browsers were opening the wrong port, force it here
   config.server_port = 54_321
   config.always_include_port = true

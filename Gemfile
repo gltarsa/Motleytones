@@ -41,10 +41,11 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
+  gem 'webdrivers', '~> 3.0', '>= 3.7.2'
+  gem 'capybara-selenium', '~> 0.0.6'
   gem 'poltergeist'
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
-  gem 'selenium-webdriver'
   gem 'simplecov', require: false
 end
 
