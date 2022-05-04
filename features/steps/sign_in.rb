@@ -8,7 +8,7 @@ class Spinach::Features::SignIn < Spinach::FeatureSteps
   end
 
   step 'I navigate to the Sign In page' do
-    find("li.navigation").hover
+    find("li.navigation").click
     i_click_sign_in
     expect(page).to have_title("Sign In")
   end

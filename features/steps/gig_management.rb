@@ -16,11 +16,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I look at the Navigation menu' do
-    find('li.navigation').hover
+    find('li.navigation').click
   end
 
   step 'I navigate to the Manage Gigs page' do
-    find('li.navigation').hover
+    find('li.navigation').click
     click_link 'Manage Gigs'
     i_am_on_the_manage_gigs_page
   end
@@ -97,7 +97,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I navigate to the Performance Schedule page' do
-    find('li.navigation').hover
+    find('li.navigation').click
     click_link 'Performance Schedule'
     puts "diagnose intermittent failure: page.title = #{page.title}"
     puts "diagnose intermittent failure: page.html = #{page.html}"
