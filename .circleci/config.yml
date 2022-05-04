@@ -26,9 +26,10 @@ jobs:
     # These pre-built docker images works well for this app.  They will
     # need updating when the Ruby version changes.  The latest list:
     #   https://circleci.com/docs/2.0/docker-image-tags.json
+    #   -legacy suffix causes phantomjs to be loaded
     docker:
-      - image: circleci/ruby:2.7.4-node-browsers-legacy
-      - image: circleci/postgres:10.3-postgis
+      - image: cimg/ruby:2.7.4-browsers-legacy
+      - image: cimg/postgres:14.2-postgis
         environment:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_motley_test
@@ -64,7 +65,8 @@ jobs:
     # Commands to run to load libraries/gems.
     - run: echo -e "export RAILS_ENV=test\nexport RACK_ENV=test" >> $BASH_ENV
     - run: gem update bundler
-    - run: 'bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3'
+    - run: bundle config set --local path 'vendor/bundle'
+    - run: 'bundle check || bundle install --jobs=4 --retry=3'
 
     # Save dependency cache
     - save_cache:
