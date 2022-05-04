@@ -16,17 +16,17 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I look at the Navigation menu' do
-    find('li.navigation').hover
+    find('li.navigation').click
   end
 
   step 'I navigate to the Manage Pirates page' do
-    find('li.navigation').hover
+    find('li.navigation').click
     click_link 'Manage Pirates'
     expect(page).to have_title('Motley Users')
   end
 
   step 'I navigate to the Profile page' do
-    find('li.navigation').hover
+    find('li.navigation').click
     click_link 'Profile'
     expect(page).to have_title('Motley User')
   end
@@ -223,7 +223,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I am still logged into the original admin account' do
-    find('li.navigation').hover
+    find('li.navigation').click
     current_tone_name = find('li.informational').text
     original_tone_name = User.find(@user.id).tone_name
     expect(current_tone_name).to match(original_tone_name)
@@ -234,7 +234,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I am still in the admin account' do
-    find('li.navigation').hover
+    find('li.navigation').click
     expect(page).to have_css('li.informational', text: @user.tone_name)
   end
 
