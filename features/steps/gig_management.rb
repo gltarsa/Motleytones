@@ -99,8 +99,6 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   step 'I navigate to the Performance Schedule page' do
     find('li.navigation').click
     click_link 'Performance Schedule'
-    puts "diagnose intermittent failure: page.title = #{page.title}"
-    puts "diagnose intermittent failure: page.html = #{page.html}"
     expect(page.title).to eq('Motley Performance Schedule')
   end
 
