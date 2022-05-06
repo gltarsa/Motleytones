@@ -61,3 +61,9 @@ by Rebecca Tarsa using the [HTML5 Verti design](http://html6up.net/verti).  It
 no longer uses any of the original code or packages.
 
 If you are reading this, [Like the Motley Tones on Facebook](http://facebook.com./motleytones.com).
+
+### License
+
+This source code is licensed under the MIT Open Source License.  See LICENSE.md for
+details.
+
