@@ -36,7 +36,7 @@ Capybara.register_driver :headless_chrome do |app|
       'args' => %w[headless disable-gpu window-size=1920x1080]
     }
   )
-  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: options)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, capabilities: options)
 end
 
 Capybara.configure do |config|

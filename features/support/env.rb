@@ -2,21 +2,30 @@
 
 ENV['RAILS_ENV'] = 'test'
 require 'spinach-rails'
-require 'rspec/expectations'
-require 'capybara/poltergeist'
 require 'database_cleaner'
+require 'webdrivers'
 require_relative '../../config/environment'
+require_relative '../../spec/spec_helper'
 
-Capybara.server = :webrick
-Capybara.javascript_driver = :poltergeist
+JS_DRIVER = :selenium_chrome_headless
 
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, js_errors: false)
+RSpec.configure do |config|
+  config.include Capybara::DSL
+
+  config.before(:each) do |example|
+    Capybara.current_driver = JS_DRIVER if example.metadata[:js]
+    Capybara.current_driver = :selenium if example.metadata[:selenium]
+    Capybara.current_driver = :selenium_chrome if example.metadata[:selenium_chrome]
+  end
+
+  config.after(:each) do
+    Capybara.use_default_driver
+  end
 end
 
-Capybara.register_driver :selenium_chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
+Capybara.default_driver = :rack_test
+Capybara.javascript_driver = JS_DRIVER
+Capybara.default_max_wait_time = 2
 
 DatabaseCleaner.strategy = :truncation
 

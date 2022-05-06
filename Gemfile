@@ -17,6 +17,7 @@ gem 'slim-rails'
 gem 'sprockets'
 gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
 gem 'uglifier', '>= 1.3.0'
+gem 'puma', '~> 5.0'
 
 group :development, :test do
   gem 'awesome_print'
@@ -41,9 +42,7 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
-  gem 'webdrivers', '~> 3.0', '>= 3.7.2'
-  gem 'capybara-selenium', '~> 0.0.6'
-  gem 'poltergeist'
+  gem 'webdrivers', '~> 5.0', require: false
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false

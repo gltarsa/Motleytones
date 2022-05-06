@@ -38,7 +38,6 @@ This app serves up the Motley Tones website.
 Building this app from scratch requires the following:
 
 * `brew install postgres`
-* `brew install phantomjs`
 * Start PostgreSQL: `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`
   or `brew services start postgresql`
 
