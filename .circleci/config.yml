@@ -3,7 +3,11 @@
 # updated.  Otherwise, you will need to also change the cache-key name by adding a .1 to
 # the current value.
 
-version: 2
+version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.3.0
+
 jobs:
   build:
     working_directory: ~/gltarsa/Motleytones
@@ -26,9 +30,10 @@ jobs:
     # These pre-built docker images works well for this app.  They will
     # need updating when the Ruby version changes.  The latest list:
     #   https://circleci.com/docs/2.0/docker-image-tags.json
+    #   -legacy suffix causes phantomjs to be loaded
     docker:
-      - image: circleci/ruby:2.7.4-node-browsers-legacy
-      - image: circleci/postgres:10.3-postgis
+      - image: cimg/ruby:2.7.4-browsers
+      - image: cimg/postgres:14.2-postgis
         environment:
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_motley_test
@@ -36,11 +41,14 @@ jobs:
 
     # Machine Setup
     steps:
-    #   If you break your build into multiple jobs with workflows, you will
-    #   probably want to do the parts of this that are relevant in each. The
-    #   following `checkout` command checks out your code to your working
-    #   directory.
+    # If you break your build into multiple jobs with workflows, you will
+    # probably want to do the parts of this that are relevant in each. The
+    # following `checkout` command checks out your code to your working
+    # directory.
     - checkout
+
+    # Installs chrome so that the chromedriver from the webdrivers gem will find it
+    - browser-tools/install-chrome
 
     # Prepare for artifact and test results collection.
     # See docs on artifact collection here
@@ -64,7 +72,8 @@ jobs:
     # Commands to run to load libraries/gems.
     - run: echo -e "export RAILS_ENV=test\nexport RACK_ENV=test" >> $BASH_ENV
     - run: gem update bundler
-    - run: 'bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3'
+    - run: bundle config set --local path 'vendor/bundle'
+    - run: 'bundle check || bundle install --jobs=4 --retry=3'
 
     # Save dependency cache
     - save_cache:
@@ -90,7 +99,6 @@ jobs:
 
     # Test
     #   This would typically be a build job when using workflows, possibly combined with build
-
     - run: |-
         export RAILS_ENV="test"
         export RACK_ENV="test"
