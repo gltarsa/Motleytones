@@ -1,6 +1,8 @@
 # README
 
-This app serves up the Motley Tones website.
+This app serves up the Motley Tones website. It has been designed so that it should be
+possible to customize it for other bands or applications.  Feel free to fork a copy and
+make it work for you.
 
 [![CircleCI](https://circleci.com/gh/gltarsa/Motleytones.svg?style=shield)](https://circleci.com/gh/gltarsa/Motleytones)
 [![codebeat badge](https://codebeat.co/badges/a5914128-2e2a-421a-8876-8b53dc349468)](https://codebeat.co/projects/github-com-gltarsa-motleytones-master)
