@@ -53,6 +53,7 @@ class GigsController < ApplicationController
 
   def require_admin
     return if current_user.admin?
+
     flash.alert = I18n.t('.must_be_admin')
     redirect_to root_path
   end
