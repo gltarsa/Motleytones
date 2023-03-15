@@ -10,18 +10,19 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '~> 4.0'
 gem 'pg', '~> 1.1.0'
 gem 'sassc-rails'
-gem 'rails', '~> 6.0'
+gem 'rails', '~> 6.1'
 gem 'rubocop-rails'
 gem "simple_form", ">= 5.0.0"
 gem 'slim-rails'
 gem 'sprockets'
 gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
 gem 'uglifier', '>= 1.3.0'
-gem 'puma', '~> 5.0'
+gem 'puma', '> 6.0'
+gem "net-http"  # needed until all the gems drop support for Ruby 2.5.5
 
 group :development, :test do
   gem 'awesome_print'
-  gem 'database_cleaner', '~> 1.4'
+  gem 'database_cleaner', '~> 2.0'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-byebug'
@@ -48,4 +49,4 @@ group :test do
   gem 'simplecov', require: false
 end
 
-ruby '2.7.4'
+ruby '2.7.7'
