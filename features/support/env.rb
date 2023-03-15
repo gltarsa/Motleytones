@@ -10,6 +10,7 @@ require_relative '../../spec/spec_helper'
 JS_DRIVER = :selenium_chrome_headless
 
 RSpec.configure do |config|
+
   config.include Capybara::DSL
 
   config.before(:each) do |example|
@@ -22,6 +23,10 @@ RSpec.configure do |config|
     Capybara.use_default_driver
   end
 end
+
+# inhibit these annoying log messages
+# (see https://www.selenium.dev/documentation/webdriver/troubleshooting/logging/#ruby)
+Selenium::WebDriver.logger.ignore(%i[capabilities logger_info])
 
 Capybara.default_driver = :rack_test
 Capybara.javascript_driver = JS_DRIVER
