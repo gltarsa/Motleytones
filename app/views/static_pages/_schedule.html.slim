@@ -2,7 +2,7 @@ section
   .row
     - current_year = nil
     ul
-      - Gig.published.active.ascending.each do |gig|
+      - @active_gigs.each do |gig|
         - if gig.date.year != current_year
           - current_year = gig.date.year
           = render 'separator_pic', year: current_year
@@ -11,7 +11,7 @@ section
 
       hr
 
-      - Gig.published.expired.descending.each do |gig|
+      - @expired_gigs.each do |gig|
         - if gig.date.year != current_year
           - current_year = gig.date.year
           = render 'separator_pic', year: current_year

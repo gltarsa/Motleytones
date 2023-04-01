@@ -9,7 +9,9 @@ class GigsController < ApplicationController
   end
 
   def index
-    @gigs = Gig.all
+    @unique_gigs = Gig.unique
+    @active_gigs = Gig.active.ascending
+    @expired_gigs = Gig.expired.descending
   end
 
   def new
