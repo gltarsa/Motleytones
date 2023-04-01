@@ -1,16 +1,22 @@
 = provide :title, "Manage Gigs"
-section.main-content
+section.main-content.gig-management
   .row
-    .two.columns.offset-by-one.schedule
-      = button_to "Add gig", new_gig_path, method: :get, class: "add"
+    .twelve.columns.offset-by-one.schedule
+      nav.menu.clone.no-print
+        = button_to "Add gig", new_gig_path, method: :get, class: "add"
 
-    - Gig.active.ascending.each do |gig|
+        - gigs = @unique_gig_names.unshift(Gig.new(name: "Clone from selection. . .", id: 0 ))
+        = select_tag "gigs", options_from_collection_for_select(gigs, "id", "name"),
+                class: "button_to",
+                onchange: "window.location.href = $(this).val() === '0' ? '#' : '/gigs/' + $(this).val() + '/copy';"
+
+    - @active_gigs.each do |gig|
       .row.schedule
         .ten.columns.offset-by-one
           article class="gig-id-#{gig.id} #{gig.published ? nil : 'unpublished'}"
             = render "gig", gig: gig
 
-    - Gig.expired.descending.each do |gig|
+    - @expired_gigs.each do |gig|
       .row.schedule
         .ten.columns.offset-by-one
           article.expired class="gig-id-#{gig.id} #{gig.published ? nil : 'unpublished'}"

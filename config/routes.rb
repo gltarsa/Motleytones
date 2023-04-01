@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   get 'photos'   => 'static_pages#photos'
   get 'videos'   => 'static_pages#videos'
 
-  resources :gigs
+  resources :gigs do
+    get 'copy', on: :member
+  end
 end

@@ -78,8 +78,12 @@ header {
 /********/
 /* Nav
 /********/
-nav {
+nav.menu {
   font-size: 1.0rem;
+
+  select {
+    font-size: $nav-select-font-size;
+  }
 
   ul {
     margin-bottom: 0;
@@ -275,6 +279,7 @@ article.admin {
   }
 
   .informational {
+    margin-left: .8rem;
     font-weight: 800;
     &::after { content: ":"; }
   }

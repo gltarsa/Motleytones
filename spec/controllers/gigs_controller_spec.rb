@@ -87,15 +87,15 @@ RSpec.describe GigsController, type: :controller do
       end
 
       it 'populates @unique_gigs with an array of gigs that all have different names' do
-        expect(assigns(:unique_gigs)).to eq(Gig.unique)
+        expect(assigns(:unique_gig_names)).to eq(Gig.unique)
       end
 
       it 'populates @active_gigs with an array of gigs that are all now or in the future' do
-        expect(assigns(:active_gigs)).to eq(Gig.active)
+        expect(assigns(:active_gigs)).to eq(Gig.active.ascending)
       end
 
       it 'populates @expired_gigs with an array of gigs that are all in the past' do
-        expect(assigns(:expired_gigs)).to eq(Gig.expired)
+        expect(assigns(:expired_gigs)).to eq(Gig.expired.descending)
       end
 
       it 'renders the :index view' do

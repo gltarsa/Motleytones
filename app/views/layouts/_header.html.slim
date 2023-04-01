@@ -4,10 +4,10 @@ header
       .two-thirds.column
         h1.logo.simple-print
           = link_to root_path
-              = image_tag "banner_logo", alt: "Motley Logo"
+            = image_tag "banner_logo", alt: "Motley Logo"
           |   Pirates for Hire
       .one-third.column
-        nav.no-print
+        nav.menu.home.no-print
           ul
             li.home-button
               = link_to "Home", root_path
@@ -43,6 +43,6 @@ header
                     = link_to "Sign in", new_user_session_path
 
         javascript:
-          $('nav > ul').dropotron({
+          $('nav.menu > ul').dropotron({
             hoverDelay: 5
           });

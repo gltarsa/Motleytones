@@ -7,27 +7,29 @@ $container-width: 1040px;
  Motley App variables
  */
 $admin-color      : #b3ffc6;
-$bkg-green        : #a7bf8f;
-$unpublished-color: pink;
-$note-color       : green;
-$text-color       : White;
-$section-bkg-color: White;
-$article-bkg-color: White;
-$section-font-color: DimGray;
-$main-text-color  : #444444;
 $alert-color      : red;
-$notice-color     : limegreen;
-$success-color    : green;
-$page-bkg         : asset-url('theme/Ocean.jpg');
-$gradient-specs   : top, rgba(0,0,0,0.05), rgba(0,0,0,0);
-$border-radius    : 6px;
-$nav-button-bkg   : #444444;
-$basic-font-color : DimGray;
+$article-bkg-color: white;
+$basic-font-color : dimgray;
 $basic-font-size  : 1.8rem;
-$logo-font-size   : 1.5rem;
-$menu-bkg-color   : Gainsboro; // could be lighter, say #eeeeee
+$bkg-green        : #a7bf8f;
+$border-radius    : 6px;
 $copyright-color  : Silver;
+$dropdown-bkg-color: white;
+$gradient-specs   : top, rgba(0,0,0,0.05), rgba(0,0,0,0);
+$logo-font-size   : 1.5rem;
+$main-text-color  : #444444;
+$menu-bkg-color   : Gainsboro; // could be lighter, say #eeeeee
+$nav-button-bkg   : $main-text-color;
 $nav-row-height   : 8.2rem;
+$nav-select-font-size : 1.4rem;
+$note-color       : green;
+$notice-color     : limegreen;
+$page-bkg         : asset-url('theme/Ocean.jpg');
+$section-bkg-color: white;
+$section-font-color: dimgray;
+$success-color    : green;
+$text-color       : white;
+$unpublished-color: pink;
 
 /* Lines to end of page were extracted from the front of the skeleton-sass.scss file */
 // Variables

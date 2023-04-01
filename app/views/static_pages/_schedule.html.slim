@@ -6,8 +6,9 @@ section
         - if gig.date.year != current_year
           - current_year = gig.date.year
           = render 'separator_pic', year: current_year
-        li class="gig-id-#{gig.id}"
-          = render 'gigs/gig_oneline', gig: gig
+        - if gig.published
+          li class="gig-id-#{gig.id}"
+            = render 'gigs/gig_oneline', gig: gig
 
       hr
 
@@ -15,5 +16,6 @@ section
         - if gig.date.year != current_year
           - current_year = gig.date.year
           = render 'separator_pic', year: current_year
-        li.expired class="gig-id-#{gig.id}"
-          = render 'gigs/gig_oneline', gig: gig, gig_type: "expired"
+        - if gig.published
+          li.expired class="gig-id-#{gig.id}"
+            = render 'gigs/gig_oneline', gig: gig, gig_type: "expired"
