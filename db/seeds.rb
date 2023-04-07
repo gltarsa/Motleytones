@@ -2,7 +2,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 STARTER_PASSWORD ||= ENV["STARTER_PASSWORD"]
 
-# Create two "starter" accounts
+# Create some "starter" accounts
 User.create!(
   name: "Greg Tarsa",
   email: "flintz@motleytones.com",
@@ -64,7 +64,9 @@ unless Rails.env == "production"
       published: true,
       date: Date.today.years_ago(n).beginning_of_year,
       days: rand(6).round,
-      name: "#{Faker::Commerce.product_name} #{day_type}",
+      # name: "#{Faker::Commerce.product_name} #{day_type}",
+
+      name: "[New Years Day Celebration](#{Faker::Internet.url})",
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
     # Always one New Years Eve gig
@@ -72,7 +74,7 @@ unless Rails.env == "production"
       published: true,
       date: Date.today.years_ago(n).end_of_year,
       days: rand(6).round,
-      name: "#{Faker::Commerce.product_name} #{day_type}",
+      name: "[New Years Eve Party](#{Faker::Internet.url})",
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
     6.times do

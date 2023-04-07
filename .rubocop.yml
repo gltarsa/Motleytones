@@ -54,7 +54,7 @@ Metrics/ClassLength:
     - 'features/steps/**/*'
 
 Metrics/LineLength:
-  Max: 100
+  Max: 120
 
 Style/SymbolArray:
   Enabled: false

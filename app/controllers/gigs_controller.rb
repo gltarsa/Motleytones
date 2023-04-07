@@ -2,14 +2,16 @@
 
 class GigsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin, only: [:show, :index, :new, :create, :edit, :update, :destroy]
+  before_action :require_admin, only: [:show, :index, :new, :create, :edit, :copy, :update, :destroy]
 
   def show
     @gig = Gig.find(params[:id])
   end
 
   def index
-    @gigs = Gig.all
+    @active_gigs = Gig.active.ascending
+    @expired_gigs = Gig.expired.descending
+    @unique_gig_names = regularize_names(Gig.all)
   end
 
   def new
@@ -25,6 +27,13 @@ class GigsController < ApplicationController
   end
 
   def edit
+  end
+
+  def copy
+    @source = Gig.find(params[:id])
+    @gig = @source.dup
+    @gig.published = false
+    render :new
   end
 
   def update
@@ -49,6 +58,16 @@ class GigsController < ApplicationController
   def allowed_gig_params
     params.require(:gig).permit(:date, :days, :name,
                                 :note, :location, :published)
+  end
+
+  def regularize_names(gigs)
+    split_up_md_link = /^(\[)(.*)(\])/
+
+    gigs.map do |g|
+      parts = g.name.scan(split_up_md_link)
+      g.name = parts[0][1] if parts.present? && parts[0][0] == '['
+      g
+    end.uniq(&:name).sort_by(&:name)
   end
 
   def require_admin
