@@ -60,12 +60,12 @@ class GigsController < ApplicationController
   end
 
   def regularize_names(gigs)
-    front_bracket = /^\[/
+    front_bracket = /\[/
     rest_of_bracket = /].*$/
     digit_words = /\d+ */
 
     gigs = gigs.filter { |g| !g.name.match?(/cancelled|canceled/i) }.each do |g|
-      g.name = g.name.gsub(front_bracket, "").gsub(rest_of_bracket, "").gsub(digit_words, "")
+      g.name = g.name.gsub(front_bracket, "").gsub(rest_of_bracket, "").gsub(digit_words, "").strip
     end
     gigs.sort_by(&:name).uniq { |g| g.name.downcase }.sort_by { |g| g.name.downcase }
   end
