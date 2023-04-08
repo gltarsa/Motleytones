@@ -30,8 +30,7 @@ class GigsController < ApplicationController
   end
 
   def copy
-    @source = Gig.find(params[:id])
-    @gig = @source.dup
+    @gig = Gig.find(params[:id])
     @gig.published = false
     render :new
   end
@@ -61,13 +60,10 @@ class GigsController < ApplicationController
   end
 
   def regularize_names(gigs)
-    split_up_md_link = /^(\[)(.*)(\])/
-
-    gigs.map do |g|
-      parts = g.name.scan(split_up_md_link)
-      g.name = parts[0][1] if parts.present? && parts[0][0] == '['
-      g
-    end.uniq(&:name).sort_by(&:name)
+    gigs = gigs.filter{ |g| !g.name.match?(/cancelled|canceled/i)}.each do |g|
+      g.name = g.name.gsub(/^\[/, "").gsub(/].*$/, "")
+    end
+    gigs.sort_by(&:name).uniq{ |g| g.name.downcase }
   end
 
   def require_admin
