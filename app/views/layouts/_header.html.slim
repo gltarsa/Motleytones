@@ -43,6 +43,7 @@ header
                     = link_to "Sign in", new_user_session_path
 
         javascript:
-          $('nav.menu > ul').dropotron({
-            hoverDelay: 5
+          $('nav.menu.home > ul').dropotron({
+            expandMode: 'click',
+            mode: 'instant'
           });
