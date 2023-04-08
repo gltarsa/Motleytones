@@ -25,7 +25,7 @@ body,input,select,textarea {
 }
 
 /**********/
-/* Header */
+/* Header
 /**********/
 header {
   .container {
@@ -79,8 +79,6 @@ header {
 /* Nav
 /********/
 nav.menu {
-  font-size: 1.0rem;
-
   select {
     font-size: $nav-select-font-size;
   }
@@ -253,6 +251,8 @@ article.admin {
 /* Dropotron
 /***********/
 .dropotron {
+  max-height: $menu-max-height;
+  overflow-y: scroll;
   background: $text-color;
   letter-spacing: 0.025em;
   color: $basic-font-color;
