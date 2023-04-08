@@ -191,9 +191,9 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'there is at least one unpublished one-day gig dated two days ago' do
     @unpublished_gig = FactoryBot.create(:gig,
-                                          published: false,
-                                          days: 1,
-                                          date: Time.zone.today - 2)
+                                         published: false,
+                                         days: 1,
+                                         date: Time.zone.today - 2)
   end
 
   step 'I see the published gig is expired' do

@@ -61,21 +61,22 @@ unless Rails.env == "production"
   12.times do |n|
     # Always one New Years gig; we vary the casing so that we can check for proper operation
     # of the clone menu reducing code (no case insensitive dups)
+    date = Date.today.years_ago(n)
     Gig.create!(
       published: true,
-      date: Date.today.years_ago(n).beginning_of_year,
+      date: date.beginning_of_year,
       days: rand(6).round,
       # name: "#{Faker::Commerce.product_name} #{day_type}",
 
-      name: "[#{%w[New new nEw neW nEW].sample} Years Day Celebration](#{Faker::Internet.url})",
+      name: "[#{date.year} #{%w[New new nEw neW nEW].sample} Years Day Celebration](#{Faker::Internet.url})",
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
     # Always one New Years Eve gig
     Gig.create!(
       published: true,
-      date: Date.today.years_ago(n).end_of_year,
+      date: date.end_of_year,
       days: rand(6).round,
-      name: "[#{%w[New new nEw neW nEW].sample} Years Eve Party](#{Faker::Internet.url})",
+      name: "[#{%w[New new nEw neW nEW].sample} Years Eve #{date.year} Party](#{Faker::Internet.url})",
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
     # Always one cancelled gig
