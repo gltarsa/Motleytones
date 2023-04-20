@@ -358,27 +358,6 @@ footer {
   }
 }
 
-/********/
-/* Icons
-/********/
-.icon {
-  position: relative;
-  text-decoration: none;
-}
-
-.icon:before {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-transform: none !important;
-}
-
-.icon > .label {
-  display: none;
-}
-
 /*********/
 /* Image
 /*********/
@@ -450,57 +429,33 @@ img.image.adjustable {
 .widget.friend-list {
   color: $text-color;
   font-size: 1.1rem;
+  font-weight: 600;
   li { margin: 0; }
 }
 
 .widget.contact {
-  color: $text-color;
-  font-weight: 800;
-}
+  font-size: $contact-font-size;
+  color: $contact-font-color;
+  font-weight: 600;
 
-.widget.contact ul {
-  //overflow: hidden;
-  position: relative;
-  left: -4px;
-  top: 4px;
-  margin-bottom: 0.5rem;
-}
+  h2 {
+    font-weight: 800;
+  }
 
-.widget.contact ul li {
-  display: inline-block;
-  margin-right: 0.25em;
-}
+  .facebook-tile {
+    width: 4rem;
+    display: inline;
+  }
 
-.widget.contact ul li a {
-  display: inline-block;
-  width: 4.5rem;
-  height: 4.5rem;
-  text-align: center;
-  line-height: 4.5rem;
-  border-radius: 0.6rem;
-  outline: 0;
-  opacity: 0.75;
-  text-decoration: none;
-  background: #222222;
-  -moz-transition: background-color .25s ease-in-out;
-  -webkit-transition: background-color .25s ease-in-out;
-  -o-transition: background-color .25s ease-in-out;
-  -ms-transition: background-color .25s ease-in-out;
-  transition: background-color .25s ease-in-out;
-}
+  .label, .facebook {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+  }
 
-.widget.contact ul li a:before {
-  color: #f3f3f3;
-  font-size: 1.75em;
-  line-height: 1.5em;
-}
-
-.widget.contact ul li a:hover {
-  background: #444444;
-}
-
-.widget.contact ul li a:active {
-  background: #666666;
+  .email {
+    margin-top: 1rem;
+  }
 }
 
 /**********/

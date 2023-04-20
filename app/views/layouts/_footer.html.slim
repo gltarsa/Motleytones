@@ -17,15 +17,16 @@ footer
       .one-third.column
         section.widget.contact
           h2 Contact Us
-          ul
-            li
-              = link_to "http://www.facebook.com/motleytones", class: "icon fa fa-facebook" do
-                span.label
-                  | Facebook
-          p.simple-print
+          = link_to "http://www.facebook.com/motleytones", class: "transparent" do
+            div.facebook
+              = image_tag "facebook-official", alt: "Facebook Logo", class: "facebook-tile"
+              span.label
+                | facebook.com/motleytones
+
+          p.email.simple-print
             = mail_to info_email,
               info_email,
-              subject: "Motley Tones information needed (rr)",
+              subject: "Motley Tones information needed",
               class: "contact-email"
 
     .row
