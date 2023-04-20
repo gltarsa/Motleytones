@@ -9,11 +9,13 @@ header
       .one-third.column
         nav.menu.home.no-print
           ul
-            li.home-button
-              = link_to "Home", root_path
             li.navigation
-              | Navigation &#9660
+              | Navigation
+              small<
+                | &#9660
               ul
+                li
+                  = link_to "Home", root_path
                 li
                   = link_to "About the Motley Tones", about_path
                 li

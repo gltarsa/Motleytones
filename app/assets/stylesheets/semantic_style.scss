@@ -58,7 +58,7 @@ header {
     font-size: $logo-font-size;
     padding-bottom: .5rem;
     @media ($bp-larger-than-mobile) { // 400px
-      font-size: $logo-font-size * 1.75;
+      font-size: $logo-font-size * 1.3;
       padding-bottom: 0;
     }
 
@@ -85,6 +85,7 @@ nav.menu {
 
   ul {
     margin-bottom: 0;
+    display: inline-flex;
 
     li {
       float: left;
@@ -107,12 +108,14 @@ nav.menu {
 
     @media ($bp-larger-than-mobile) { // 400px
       li {
-        margin: 0 0 1rem 0;
+        margin: 0 0.3rem 1rem 0.3rem;
       }
     }
 
     @media ($bp-larger-than-phablet) { // 550px
       font-size: 1.6rem;
+      margin: 0 0.3rem 1rem 0.3rem;
+
 
       li {
         padding-left: 3rem;
@@ -194,6 +197,12 @@ article, footer {
     border-width: thin;
     padding: .5rem;
   }
+
+  p.user-operations, p.gig-operations {
+    a {
+      margin-right: 1.7rem;
+    }
+  }
 }
 
 article {
@@ -259,7 +268,6 @@ article.admin {
   text-decoration: none;
   border-radius: 6px;
   padding: 0.25em 0;
-  // min-width: 27rem;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1), 0 0.25em 0.25em 0.1em rgba(0,0,0,0.025);
   margin-top: calc(-0.75em + 1px);
   margin-left: -1px;
@@ -276,6 +284,12 @@ article.admin {
       line-height: 3rem;
       font-size: 1.6rem;
     }
+  }
+
+  li.gigs {
+    border-top-style: none;
+    line-height: 2rem;
+    font-size: 1.5rem;
   }
 
   .informational {
@@ -493,10 +507,10 @@ img.image.adjustable {
 /* General utility classes
 /**********/
 .container {
-  margin-bottom: 1rem;
+  margin: 1rem;
   width: 100%;
   @media ($bp-larger-than-phablet) { // 550px
-    margin-bottom: 2rem;
+    margin: 2rem;
     width: 95%;
   }
 }
@@ -515,6 +529,12 @@ img.image.adjustable {
 
   #user_name, #user_tone_name { width: 75%; }
   #user_email { width: 50% }
+
+  .form-actions {
+    .btn, a  {
+      margin-right: 1.4rem;
+    }
+  }
 }
 
 .flash {
@@ -708,22 +728,26 @@ form {
     margin-top: 1rem;
     margin-bottom: 0;
     margin-left: 1.5em;
-  }
-
-  .edit {
-  }
-
-  .delete {
-    color: $alert-color;
-    float: right;
+    background-color: $article-bkg-color;
   }
 
   .add {
     background: $article-bkg-color;
     color: $link-color;
     padding: 0 1.5rem;
-    margin: .2rem;
-    margin-left: 0;
+    //margin: .2rem .2rem .2rem 0;
+  }
+
+  .copy {
+    background: $article-bkg-color;
+    color: $link-color;
+    padding: 0 1.5rem;
+    margin: .2rem .2rem .2rem 0;
+  }
+
+  .delete {
+    color: $alert-color;
+    float: right;
   }
 
   .sign-out {
