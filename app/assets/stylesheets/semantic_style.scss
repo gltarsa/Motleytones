@@ -114,7 +114,6 @@ nav.menu {
 
     @media ($bp-larger-than-phablet) { // 550px
       font-size: 1.6rem;
-      margin: 0 0.3rem 1rem 0.3rem;
 
 
       li {
@@ -690,7 +689,7 @@ form {
     background: $article-bkg-color;
     color: $link-color;
     padding: 0 1.5rem;
-    //margin: .2rem .2rem .2rem 0;
+    margin: .2rem .2rem .2rem 0;
   }
 
   .copy {
