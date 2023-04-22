@@ -48,6 +48,17 @@ header {
     min-height: $nav-row-height;
   }
 
+  .row.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .right {
+      margin-right: 2rem;
+      margin-left: auto;
+      }
+  }
+
   .logo {
     color: $text-color;
     margin-bottom: 0;
@@ -94,7 +105,6 @@ nav.menu {
       margin-bottom: 0;
     }
 
-    // TODO: either user this .active class or delete it
     li.active a,
     li.active span {
       background: $nav-button-bkg;
@@ -104,33 +114,6 @@ nav.menu {
       background: $nav-button-bkg;
       color: $text-color;
       padding: .2rem .4rem;
-    }
-
-    @media ($bp-larger-than-mobile) { // 400px
-      li {
-        margin: 0 0.3rem 1rem 0.3rem;
-      }
-    }
-
-    @media ($bp-larger-than-phablet) { // 550px
-      font-size: 1.6rem;
-
-
-      li {
-        padding-left: 3rem;
-        margin-bottom: 1rem;
-      }
-
-      li.home-button a {
-        padding: .8rem 1.5rem;
-      }
-    }
-
-    @media ($bp-larger-than-tablet) { // 750px
-      li {
-        line-height: $nav-row-height;
-        margin-left: -10px;
-      }
     }
 
     li,
