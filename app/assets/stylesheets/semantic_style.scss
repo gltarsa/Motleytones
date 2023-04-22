@@ -44,21 +44,6 @@ header {
     }
   }
 
-  .row {
-    min-height: $nav-row-height;
-  }
-
-  .row.flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .right {
-      margin-right: 2rem;
-      margin-left: auto;
-      }
-  }
-
   .logo {
     color: $text-color;
     margin-bottom: 0;
@@ -138,6 +123,24 @@ nav.menu {
     li:hover span {
       background: $nav-button-bkg;
     }
+  }
+}
+
+/**********/
+/* Row adjustments
+/**********/
+.row {
+  min-height: $nav-row-height;
+}
+
+.row.flex, .row .flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .right {
+    margin-right: 2rem;
+    margin-left: auto;
   }
 }
 

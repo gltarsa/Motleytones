@@ -1,7 +1,7 @@
 = provide :title, "Manage Gigs"
 
 section.main-content.gig-management
-  .row
+  .row.flex
     .eleven.columns.offset-by-one.schedule
       nav.menu.clone.no-print
         = button_to "Add gig", new_gig_path, method: :get, class: "add"
