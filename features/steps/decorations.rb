@@ -16,10 +16,6 @@ class Spinach::Features::Decorations < Spinach::FeatureSteps
     expect(page).to have_css("nav li.navigation")
   end
 
-  step 'I see a home button' do
-    expect(page).to have_css("nav li.home-button")
-  end
-
   step 'I look at the footer of the home page' do
   end
 
@@ -42,8 +38,8 @@ class Spinach::Features::Decorations < Spinach::FeatureSteps
   step 'I look at the contact widget on the home page' do
   end
 
-  step 'I see a Facebook Icon that links to the FB page' do
-    expect(page).to have_css("section.widget.contact a.icon.fa-facebook")
+  step 'I see a Facebook tile/image that links to the FB page' do
+    expect(page).to have_css("section.widget.contact img.facebook-tile")
   end
 
   step 'I see a contact email link' do
