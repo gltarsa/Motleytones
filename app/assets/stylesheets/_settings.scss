@@ -6,14 +6,19 @@ $container-width: 1040px;
 /*
  Motley App variables
  */
-$admin-color      : #b3ffc6;
+$admin-color      : hsla(135, 100%, 95%, 1);
 $alert-color      : red;
-$article-bkg-color: white;
+$article-bkg-color: hsla(0, 0%, 99%, 1); // very, very slight gray background
+$article-font-size: 1.8rem;
 $basic-font-color : dimgray;
 $basic-font-size  : 1.8rem;
+$button-height    : 3rem;
+$button-left-right-pad: 1rem;
 $bkg-green        : #a7bf8f;
 $border-radius    : 6px;
-$copyright-color  : black;
+$contact-font-size: $basic-font-size * .8;
+$contact-font-color  : white;
+$copyright-color  : white;
 $dropdown-bkg-color: white;
 $gradient-specs   : top, rgba(0,0,0,0.05), rgba(0,0,0,0);
 $logo-font-size   : 1.5rem;
@@ -30,7 +35,7 @@ $section-bkg-color: white;
 $section-font-color: dimgray;
 $success-color    : green;
 $text-color       : white;
-$unpublished-color: pink;
+$unpublished-color: hsla(350, 100%, 95%, 1); // pink wash
 
 /* Lines to end of page were extracted from the front of the skeleton-sass.scss file */
 // Variables

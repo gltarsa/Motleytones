@@ -25,7 +25,7 @@
         | ID: #{user.id}
       p.user-operations
         - if current_user.admin? || current_user.id == user.id
-          => link_to "Edit Pirate",
+          = link_to "Edit Pirate",
             edit_user_path(user),
             method: :get,
             class: "edit"

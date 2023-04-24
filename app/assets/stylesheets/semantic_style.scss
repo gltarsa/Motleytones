@@ -44,10 +44,6 @@ header {
     }
   }
 
-  .row {
-    min-height: $nav-row-height;
-  }
-
   .logo {
     color: $text-color;
     margin-bottom: 0;
@@ -58,7 +54,7 @@ header {
     font-size: $logo-font-size;
     padding-bottom: .5rem;
     @media ($bp-larger-than-mobile) { // 400px
-      font-size: $logo-font-size * 1.75;
+      font-size: $logo-font-size * 1.3;
       padding-bottom: 0;
     }
 
@@ -85,6 +81,7 @@ nav.menu {
 
   ul {
     margin-bottom: 0;
+    display: inline-flex;
 
     li {
       float: left;
@@ -93,7 +90,6 @@ nav.menu {
       margin-bottom: 0;
     }
 
-    // TODO: either user this .active class or delete it
     li.active a,
     li.active span {
       background: $nav-button-bkg;
@@ -103,32 +99,6 @@ nav.menu {
       background: $nav-button-bkg;
       color: $text-color;
       padding: .2rem .4rem;
-    }
-
-    @media ($bp-larger-than-mobile) { // 400px
-      li {
-        margin: 0 0 1rem 0;
-      }
-    }
-
-    @media ($bp-larger-than-phablet) { // 550px
-      font-size: 1.6rem;
-
-      li {
-        padding-left: 3rem;
-        margin-bottom: 1rem;
-      }
-
-      li.home-button a {
-        padding: .8rem 1.5rem;
-      }
-    }
-
-    @media ($bp-larger-than-tablet) { // 750px
-      li {
-        line-height: $nav-row-height;
-        margin-left: -10px;
-      }
     }
 
     li,
@@ -153,6 +123,24 @@ nav.menu {
     li:hover span {
       background: $nav-button-bkg;
     }
+  }
+}
+
+/**********/
+/* Row adjustments
+/**********/
+.row {
+  min-height: $nav-row-height;
+}
+
+.row.flex, .row .flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .right {
+    margin-right: 2rem;
+    margin-left: auto;
   }
 }
 
@@ -193,6 +181,18 @@ article, footer {
     border-style: solid;
     border-width: thin;
     padding: .5rem;
+  }
+
+  p.user-operations, p.gig-operations {
+    a {
+      margin-right: 1.7rem;
+    }
+  }
+
+  label.required {
+    abbr {
+      color: $alert-color;
+    }
   }
 }
 
@@ -253,13 +253,12 @@ article.admin {
 .dropotron {
   max-height: $menu-max-height;
   overflow-y: scroll;
-  background: $text-color;
+  background: $article-bkg-color;
   letter-spacing: 0.025em;
   color: $basic-font-color;
   text-decoration: none;
   border-radius: 6px;
   padding: 0.25em 0;
-  // min-width: 27rem;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1), 0 0.25em 0.25em 0.1em rgba(0,0,0,0.025);
   margin-top: calc(-0.75em + 1px);
   margin-left: -1px;
@@ -276,6 +275,17 @@ article.admin {
       line-height: 3rem;
       font-size: 1.6rem;
     }
+
+    a.sign-out {
+      @extend .add;
+      color: $alert-color;
+    }  }
+
+  li.gigs {
+    border-top-style: none;
+    line-height: 2rem;
+    font-size: 1.5rem;
+    max-width: 40rem;
   }
 
   .informational {
@@ -342,27 +352,6 @@ footer {
       color: inherit;
     }
   }
-}
-
-/********/
-/* Icons
-/********/
-.icon {
-  position: relative;
-  text-decoration: none;
-}
-
-.icon:before {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-transform: none !important;
-}
-
-.icon > .label {
-  display: none;
 }
 
 /*********/
@@ -436,67 +425,43 @@ img.image.adjustable {
 .widget.friend-list {
   color: $text-color;
   font-size: 1.1rem;
+  font-weight: 600;
   li { margin: 0; }
 }
 
 .widget.contact {
-  color: $text-color;
-  font-weight: 800;
-}
+  font-size: $contact-font-size;
+  color: $contact-font-color;
+  font-weight: 600;
 
-.widget.contact ul {
-  //overflow: hidden;
-  position: relative;
-  left: -4px;
-  top: 4px;
-  margin-bottom: 0.5rem;
-}
+  h2 {
+    font-weight: 800;
+  }
 
-.widget.contact ul li {
-  display: inline-block;
-  margin-right: 0.25em;
-}
+  .facebook-tile {
+    width: 4rem;
+    display: inline;
+  }
 
-.widget.contact ul li a {
-  display: inline-block;
-  width: 4.5rem;
-  height: 4.5rem;
-  text-align: center;
-  line-height: 4.5rem;
-  border-radius: 0.6rem;
-  outline: 0;
-  opacity: 0.75;
-  text-decoration: none;
-  background: #222222;
-  -moz-transition: background-color .25s ease-in-out;
-  -webkit-transition: background-color .25s ease-in-out;
-  -o-transition: background-color .25s ease-in-out;
-  -ms-transition: background-color .25s ease-in-out;
-  transition: background-color .25s ease-in-out;
-}
+  .label, .facebook {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+  }
 
-.widget.contact ul li a:before {
-  color: #f3f3f3;
-  font-size: 1.75em;
-  line-height: 1.5em;
-}
-
-.widget.contact ul li a:hover {
-  background: #444444;
-}
-
-.widget.contact ul li a:active {
-  background: #666666;
+  .email {
+    margin-top: 1rem;
+  }
 }
 
 /**********/
 /* General utility classes
 /**********/
 .container {
-  margin-bottom: 1rem;
+  margin: 1rem;
   width: 100%;
   @media ($bp-larger-than-phablet) { // 550px
-    margin-bottom: 2rem;
+    margin: 2rem;
     width: 95%;
   }
 }
@@ -515,6 +480,12 @@ img.image.adjustable {
 
   #user_name, #user_tone_name { width: 75%; }
   #user_email { width: 50% }
+
+  .form-actions {
+    .btn, a  {
+      margin-right: 1.4rem;
+    }
+  }
 }
 
 .flash {
@@ -708,27 +679,28 @@ form {
     margin-top: 1rem;
     margin-bottom: 0;
     margin-left: 1.5em;
-  }
-
-  .edit {
-  }
-
-  .delete {
-    color: $alert-color;
-    float: right;
+    background-color: $article-bkg-color;
+    height: $button-height;
+    line-height: $button-height;
+    padding: $button-left-right-pad;
   }
 
   .add {
     background: $article-bkg-color;
     color: $link-color;
     padding: 0 1.5rem;
-    margin: .2rem;
-    margin-left: 0;
+    margin: .2rem .2rem .2rem 0;
   }
 
-  .sign-out {
-    @extend .add;
-    margin-left: 1.5em;
+  .copy {
+    background: $article-bkg-color;
+    color: $link-color;
+    padding: 0 1.5rem;
+    margin: .2rem .2rem .2rem 0;
+  }
+
+  .delete {
     color: $alert-color;
+    float: right;
   }
 }

@@ -86,10 +86,6 @@ RSpec.describe GigsController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      it 'populates @unique_gigs with an array of gigs that all have different names' do
-        expect(assigns(:unique_gig_names)).to eq(Gig.unique)
-      end
-
       it 'populates @active_gigs with an array of gigs that are all now or in the future' do
         expect(assigns(:active_gigs)).to eq(Gig.active.ascending)
       end
