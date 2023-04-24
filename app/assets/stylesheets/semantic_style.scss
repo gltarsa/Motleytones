@@ -188,6 +188,12 @@ article, footer {
       margin-right: 1.7rem;
     }
   }
+
+  label.required {
+    abbr {
+      color: $alert-color;
+    }
+  }
 }
 
 article {
