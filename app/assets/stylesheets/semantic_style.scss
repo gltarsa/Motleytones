@@ -275,7 +275,11 @@ article.admin {
       line-height: 3rem;
       font-size: 1.6rem;
     }
-  }
+
+    a.sign-out {
+      @extend .add;
+      color: $alert-color;
+    }  }
 
   li.gigs {
     border-top-style: none;
@@ -698,11 +702,5 @@ form {
   .delete {
     color: $alert-color;
     float: right;
-  }
-
-  .sign-out {
-    @extend .add;
-    margin-left: 1.5em;
-    color: $alert-color;
   }
 }

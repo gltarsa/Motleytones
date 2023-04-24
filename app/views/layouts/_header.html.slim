@@ -40,7 +40,7 @@ header
                   li
                     = link_to "Manage Pirates", users_path
                   li
-                    = button_to "Sign Out", destroy_user_session_path, method: :get, class: "sign-out"
+                    = link_to "Sign Out", destroy_user_session_path, method: :get, class: "sign-out"
                 - else
                   li
                     = link_to "Sign in", new_user_session_path
