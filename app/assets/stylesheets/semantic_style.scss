@@ -676,6 +676,9 @@ form {
     margin-bottom: 0;
     margin-left: 1.5em;
     background-color: $article-bkg-color;
+    height: $button-height;
+    line-height: $button-height;
+    padding: $button-left-right-pad;
   }
 
   .add {
