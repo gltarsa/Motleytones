@@ -9,10 +9,10 @@
       start_year: 2010, end_year: Date.today.year + 1, selected: @user.band_start_date
     = f.input :password, required: if_new, autocomplete: "off", label: "New Password", hint: "leave it blank if you don't want to change it"
     = f.input :password_confirmation, required: if_new, label: "Confirm New Password"
-    = f.input :admin
+    = f.input :admin, inline_label: " Admin"
 
-  .form-actions
-    = f.button :submit, button_name
+  .form-actions.button_to
+    = f.button :submit, button_name, class: "misc"
     - if @user.persisted?
       = link_to "Cancel", users_path
     -else

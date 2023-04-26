@@ -675,6 +675,7 @@ form {
 // Rails button_to styling
 .button_to {
   display: inline;
+
   input {
     margin-top: 1rem;
     margin-bottom: 0;
@@ -685,14 +686,7 @@ form {
     padding: $button-left-right-pad;
   }
 
-  .add {
-    background: $article-bkg-color;
-    color: $link-color;
-    padding: 0 1.5rem;
-    margin: .2rem .2rem .2rem 0;
-  }
-
-  .copy {
+  .add, .copy, .misc {
     background: $article-bkg-color;
     color: $link-color;
     padding: 0 1.5rem;
