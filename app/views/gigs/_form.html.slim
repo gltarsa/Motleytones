@@ -13,8 +13,8 @@
     = f.input :name, placeholder: "[event name](and link), plus optional other info"
     = f.input :note, placeholder: "optional additional information"
     = f.input :location, placeholder: "optional City, ST"
-    = f.input :published
+    = f.input :published, inline_label: " Published"
 
-  .form-actions
-    = f.button :submit, button_name
+  .form-actions.button_to
+    = f.button :submit, button_name, class: "misc"
     = link_to "Cancel", gigs_path
