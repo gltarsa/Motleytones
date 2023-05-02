@@ -20,6 +20,22 @@ section.main-content.container
                 table[border="1" cellspacing="0"]
                   tbody
                     tr
+                      - [ "https://www.youtube.com/watch?v=kdaeYVfj8A4" ].each do |url|
+                        td.thumbnail
+                          = link_to(image_tag("video-icons/meetup.onewheel-visit.png",
+                                      alt: "Oak City OneWheel visits",
+                                      class: "image thumbnail"),
+                              url, target: '_blank')
+                        td
+                          = link_to "Experience the Pirate Singing Meetup", url, target: '_blank'
+                          |< from the Outside; Oak City OneWheel visits our
+
+                          =< link_to "Pirate Singing Meetup", "https://www.meetup.com/motley-tones-pirate-singing/", target: "_blank"
+                          |< at
+
+                          =< link_to "Nicklepoint Brewery", "https://www.nickelpointbrewing.com/", target: "_blank"
+
+                    tr
                       - [ "http://vimeo.com/105455785" ].each do |url|
                         td.thumbnail
                           = link_to(image_tag("video-icons/ceilidh-cary.2014.png", alt: "Ceilidh @ The Cary", class: "image thumbnail"), url)
