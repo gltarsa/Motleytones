@@ -3,22 +3,21 @@ source 'https://rubygems.org'
 gem 'ahoy_matey', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-rails'
-# gem 'devise'  need 4.6.0 for security issue (3/19/2019)
-gem "devise", ">= 4.6.0"
+gem 'devise', '>= 4.6.0'   # gem 'devise'  need 4.6.0 for security issue (3/19/2019)
 gem 'font-awesome-rails', '~> 4.4'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '~> 4.0'
+gem 'net-http'             # needed until all the gems drop support for Ruby 2.5.5
 gem 'pg', '~> 1.1.0'
-gem 'sassc-rails'
+gem 'puma', '> 6.0'
 gem 'rails', '~> 6.1'
 gem 'rubocop-rails'
-gem "simple_form", ">= 5.0.0"
+gem 'sassc-rails'
+gem 'simple_form', '>= 5.0.0'
 gem 'slim-rails'
 gem 'sprockets'
 gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
 gem 'uglifier', '>= 1.3.0'
-gem 'puma', '> 6.0'
-gem "net-http"  # needed until all the gems drop support for Ruby 2.5.5
 
 group :development, :test do
   gem 'awesome_print'
