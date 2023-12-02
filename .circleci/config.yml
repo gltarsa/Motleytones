@@ -32,7 +32,7 @@ jobs:
     #   https://circleci.com/docs/2.0/docker-image-tags.json
     #   -legacy suffix causes phantomjs to be loaded
     docker:
-      - image: cimg/ruby:2.7.7-browsers
+      - image: cimg/ruby:2.7.8-browsers
       - image: cimg/postgres:14.2-postgis
         environment:
           POSTGRES_USER: ubuntu
