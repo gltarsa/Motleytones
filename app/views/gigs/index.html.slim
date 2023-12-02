@@ -11,7 +11,7 @@ section.main-content.gig-management
             = button_to "Copy from . . .", "#", class: "copy"
             ul
               - @unique_gig_names.each do |gig|
-                li.gigs = link_to "#{gig.name}", copy_gig_path(gig.id)
+                li.gigs = link_to "#{gig.name} (#{gig.date})", copy_gig_path(gig.id)
 
   .row
     - @active_gigs.each do |gig|
