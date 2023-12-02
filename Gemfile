@@ -48,4 +48,4 @@ group :test do
   gem 'simplecov', require: false
 end
 
-ruby '2.7.7'
+ruby '2.7.8'
