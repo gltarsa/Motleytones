@@ -30,8 +30,12 @@ class GigsController < ApplicationController
   end
 
   def copy
-    @gig = Gig.find(params[:id])
-    @gig.published = false
+    target = Gig.find(params[:id])
+    target.published = false
+    target.created_at = nil
+    target.updated_at = nil
+    target.date = nil
+    @gig = Gig.new(target.attributes)
     render :new
   end
 

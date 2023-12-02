@@ -58,7 +58,8 @@ unless Rails.env == "production"
     "#{events[rand(events.count).round]} #{kind[rand(kind.count).round]}"
   end
 
-  12.times do |n|
+  # using #downto so that older gigs will have lower id numbers
+  12.downto(1) do |n|
     # Always one New Years gig; we vary the casing so that we can check for proper operation
     # of the clone menu reducing code:
     #   * no case insensitive dups
@@ -68,7 +69,7 @@ unless Rails.env == "production"
     Gig.create!(
       published: true,
       date: date.beginning_of_year,
-      days: rand(6).round,
+      days: rand(6).round + 1,
       # name: "#{Faker::Commerce.product_name} #{day_type}",
 
       name: "   [#{date.year} #{%w[New new nEw neW nEW].sample} Years Day Celebration](#{Faker::Internet.url})  123",
@@ -78,7 +79,7 @@ unless Rails.env == "production"
     Gig.create!(
       published: true,
       date: date.end_of_year,
-      days: rand(6).round,
+      days: rand(6).round + 1,
       name: "   [#{%w[New new nEw neW nEW].sample} Years Eve #{date.year} Party](#{Faker::Internet.url}) 345",
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
@@ -86,7 +87,7 @@ unless Rails.env == "production"
     Gig.create!(
       published: true,
       date: Date.today.years_ago(n).end_of_year,
-      days: rand(6).round,
+      days: rand(6).round + 1,
       name: "Cancelled: [Bad Luck Party](#{Faker::Internet.url})",
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
@@ -94,7 +95,7 @@ unless Rails.env == "production"
     Gig.create!(
       published: true,
       date: Date.today.years_ago(n).beginning_of_year,
-      days: rand(6).round,
+      days: rand(6).round + 1,
       name: "Canceled: [Bad Luk Party](#{Faker::Internet.url})",
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
@@ -103,7 +104,7 @@ unless Rails.env == "production"
         published: (rand(3).round > 0),
         date: Faker::Date.between(from: Date.today.years_ago(n).beginning_of_year,
                                   to: Date.today.years_ago(n).end_of_year),
-        days: rand(6).round,
+        days: rand(6).round + 1,
         name: "#{Faker::Commerce.product_name} #{day_type}",
         location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
     end
