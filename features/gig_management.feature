@@ -15,7 +15,7 @@ Feature: Gig Management
   * Edit and Create screens have token description notes
 
   @javascript
-  Scenario: An admin user can create gig entries
+  Scenario: An admin user can create gig entries from scratch
     Given I am signed in as an admin user
     When I navigate to the Manage Gigs page
     And I click Add Gig
@@ -64,6 +64,25 @@ Feature: Gig Management
     And the published field is changed
     When I click Manage Gigs
     Then I am on the Manage Gigs page
+
+
+  @javascript
+  Scenario: An admin user can create gig entries from a previous gig
+    Given I am signed in as an admin user
+    When I navigate to the Manage Gigs page
+    And I click Copy From...
+    And I choose an entry
+    Then I see the Add Gig page
+    And I see today's date
+    And I see it is a one day event
+    And I see it is not published
+    And I see it has the same name as the copied gig
+    And I see it has the same note as the copied gig
+    And I see it has the same location as the copied gig
+    When I click Add Gig
+    Then the cloned gig is created
+    And I see information for the gig on the schedule page
+    And I see the original gig on the schedule page
 
   @javascript
   Scenario: It is not possible to edit a gig to have the same name and date as a previous gig
