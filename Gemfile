@@ -18,7 +18,7 @@ gem 'simple_form', '~> 5.0'
 gem 'slim-rails'
 gem 'sprockets'
 gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
-gem 'uglifier', '~> 4.0'
+gem "terser", "~> 1.2"
 
 group :development, :test do
   gem 'awesome_print'
@@ -51,3 +51,4 @@ group :test do
 end
 
 ruby '3.3.0'
+
