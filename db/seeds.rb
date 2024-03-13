@@ -59,7 +59,7 @@ unless Rails.env == "production"
   end
 
   # using #downto so that older gigs will have lower id numbers
-  12.downto(-1) do |n|
+  12.downto(0) do |n|
     # Always one New Years gig; we vary the casing so that we can check for proper operation
     # of the clone menu reducing code:
     #   * no case insensitive dups

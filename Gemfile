@@ -3,25 +3,26 @@ source 'https://rubygems.org'
 gem 'ahoy_matey', '~> 2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'coffee-rails'
-gem 'devise', '>= 4.6.0'   # gem 'devise'  need 4.6.0 for security issue (3/19/2019)
+gem 'csv', '~> 3.0'
+gem 'devise', '~> 4.6'
 gem 'font-awesome-rails', '~> 4.4'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails', '~> 4.0'
 gem 'net-http'             # needed until all the gems drop support for Ruby 2.5.5
-gem 'pg', '~> 1.1.0'
+gem 'pg', '~> 1.5'
 gem 'puma', '> 6.0'
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 7.1'
 gem 'rubocop-rails'
 gem 'sassc-rails'
-gem 'simple_form', '>= 5.0.0'
+gem 'simple_form', '~> 5.0'
 gem 'slim-rails'
 gem 'sprockets'
 gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 4.0'
 
 group :development, :test do
   gem 'awesome_print'
-  gem 'database_cleaner', '~> 2.0'
+  gem 'database_cleaner', '~> 2.0' # upgrade this as separate card
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-byebug'
@@ -32,7 +33,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console' # console when execption or <%= console %> in views
+  gem 'web-console' # console when exception or <%= console %> in views
 end
 
 group :production do
@@ -42,10 +43,11 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
-  gem 'webdrivers', '~> 5.0', require: false
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '~> 5.3', require: false
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
 end
 
-ruby '2.7.8'
+ruby '3.3.0'
