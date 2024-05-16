@@ -3,15 +3,7 @@
 section.main-content.gig-management
   .row.flex
     .eleven.columns.offset-by-one.schedule
-      nav.menu.clone.no-print
-        = button_to "Add gig", new_gig_path, method: :get, class: "add"
-
-        ul
-          li.navigation
-            = button_to "Copy from . . .", "#", class: "copy"
-            ul
-              - @unique_gig_names.each do |gig|
-                li.gigs = link_to "#{gig.name} (#{gig.date})", copy_gig_path(gig.id)
+      = button_to "Add gig", new_gig_path, method: :get, class: "add"
 
   .row
     - @active_gigs.each do |gig|
@@ -25,9 +17,3 @@ section.main-content.gig-management
         .ten.columns.offset-by-one
           article.expired class="gig-id-#{gig.id} #{gig.published ? nil : 'unpublished'}"
             = render "gig", gig: gig
-
-javascript:
-  $('nav.menu.clone > ul').dropotron({
-    expandMode: 'click',
-    mode: 'instant'
-  });
