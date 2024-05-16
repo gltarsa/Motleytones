@@ -30,3 +30,7 @@ hr
       method: :delete,
       class: "delete management",
       data: { confirm: "Are you sure (action is permanent)?" }
+
+    = link_to "Clone",
+        copy_gig_path(gig.id),
+        class: "clone management"
