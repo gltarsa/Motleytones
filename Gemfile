@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'ahoy_matey', '~> 2.0'
@@ -17,8 +19,8 @@ gem 'sassc-rails'
 gem 'simple_form', '~> 5.0'
 gem 'slim-rails'
 gem 'sprockets'
-gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
 gem "terser", "~> 1.2"
+gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolinks
 
 group :development, :test do
   gem 'awesome_print'
@@ -43,11 +45,11 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
-  gem 'selenium-webdriver'
-  gem 'webdrivers', '~> 5.3', require: false
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
+  gem 'webdrivers', '~> 5.3', require: false
 end
 
 ruby '3.3.0'
