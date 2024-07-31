@@ -164,6 +164,13 @@ Feature: Gig Management
     When I navigate to the Performance Schedule page
     Then I see the published gig is expired
 
+  @javascript @unpublished
+  Scenario: An unpublished one day gig that is one day past is expired
+    Given I am signed in as an admin user
+    And there is at least one unpublished one-day gig dated yesterday
+    When I navigate to the Performance Schedule page
+    Then the unpublished gig is expired
+
   @javascript
   Scenario: A two day gig that is one day past is active
     Given I am signed in as an admin user

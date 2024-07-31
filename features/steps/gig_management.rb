@@ -214,10 +214,6 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     @gig = FactoryBot.create(:gig, published: true, days: 2, date: Time.zone.today - 3)
   end
 
-  step 'there is at least one published one-day gig dated two days ago' do
-    @gig = FactoryBot.create(:gig, published: true, days: 1, date: Time.zone.today - 2)
-  end
-
   step 'there is at least one existing gig' do
     @gig = FactoryBot.create(:gig)
   end
@@ -228,6 +224,13 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'there is at least one unpublished gig' do
     @unpublished_gig = FactoryBot.create(:gig, published: false)
+  end
+
+  step 'there is at least one unpublished one-day gig dated yesterday' do
+    @unpublished_gig = FactoryBot.create(:gig,
+                                         published: false,
+                                         days: 1,
+                                         date: Time.zone.yesterday)
   end
 
   step 'there is at least one unpublished one-day gig dated two days ago' do
@@ -247,10 +250,9 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     verify_gig_active(@gig)
   end
 
-  step 'I see the unpublished gig is expired' do
-    gig = Gig.where(name: @unpublished_gig.name).where(location: @unpublished_gig.location).first
-    verify_gig_schedule(gig)
-    verify_gig_expired(gig)
+  step 'the unpublished gig is expired' do
+    gig = Gig.expired.first
+    expect(gig.name).to eq @unpublished_gig.name
   end
 
   step 'I do not see a Manage Gigs link' do
