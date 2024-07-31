@@ -11,6 +11,6 @@ class Gig < ApplicationRecord
   scope :published,  -> { where(published: true) }
   scope :ascending,  -> { order(date: :asc) }
   scope :descending, -> { order(date: :desc) }
-  scope :expired,    -> { where("date + days < ?", Time.zone.today) }
-  scope :active,     -> { where("date + days >= ?", Time.zone.today) }
+  scope :expired,    -> { where("date + (days - 1) < ?", Time.zone.today) }
+  scope :active,     -> { where("date + (days - 1) >= ?", Time.zone.today) }
 end

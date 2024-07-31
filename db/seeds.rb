@@ -70,9 +70,8 @@ unless Rails.env == "production"
       published: true,
       date: date.beginning_of_year,
       days: rand(6).round + 1,
-      # name: "#{Faker::Commerce.product_name} #{day_type}",
-
       name: "   [#{date.year} #{%w[New new nEw neW nEW].sample} Years Day Celebration](#{Faker::Internet.url})  123",
+      note: Faker::Lorem.sentence,
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
     # Always one New Years Eve gig
@@ -81,6 +80,7 @@ unless Rails.env == "production"
       date: date.end_of_year,
       days: rand(6).round + 1,
       name: "   [#{%w[New new nEw neW nEW].sample} Years Eve #{date.year} Party](#{Faker::Internet.url}) 345",
+      note: Faker::Lorem.sentence,
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
     # Always one cancelled gig
@@ -89,6 +89,7 @@ unless Rails.env == "production"
       date: Date.today.years_ago(n).end_of_year,
       days: rand(6).round + 1,
       name: "Cancelled: [Bad Luck Party](#{Faker::Internet.url})",
+      note: Faker::Lorem.sentence,
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
     # Always one canceled (one l) gig
@@ -97,18 +98,8 @@ unless Rails.env == "production"
       date: Date.today.years_ago(n).beginning_of_year,
       days: rand(6).round + 1,
       name: "Canceled: [Bad Luk Party](#{Faker::Internet.url})",
+      note: Faker::Lorem.sentence,
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
-
-    # Always four Ordinally named gigs (1st, 2nd, 3rd, 4th)
-    1.upto(4) do |place_num|
-      Gig.create!(
-        published: true,
-        date: Faker::Date.between(from: Date.today.years_ago(n).beginning_of_year,
-                                  to: Date.today.years_ago(n).end_of_year),
-        days: rand(6).round + 1,
-        name: "[#{place_num.ordinalize} #{Faker::Commerce.product_name}](#{Faker::Internet.url}) #{day_type}",
-        location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
-    end
 
     6.times do
       Gig.create!(
@@ -117,6 +108,7 @@ unless Rails.env == "production"
                                   to: Date.today.years_ago(n).end_of_year),
         days: rand(6).round + 1,
         name: "#{Faker::Commerce.product_name} #{day_type}",
+        note: Faker::Lorem.sentence,
         location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
     end
   end
