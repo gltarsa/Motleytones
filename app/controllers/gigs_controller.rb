@@ -11,7 +11,6 @@ class GigsController < ApplicationController
   def index
     @active_gigs = Gig.active.ascending
     @expired_gigs = Gig.expired.descending
-    @unique_gig_names = regularize_names(Gig.all)
   end
 
   def new
@@ -61,18 +60,6 @@ class GigsController < ApplicationController
   def allowed_gig_params
     params.require(:gig).permit(:date, :days, :name,
                                 :note, :location, :published)
-  end
-
-  def regularize_names(gigs)
-    front_bracket = /\[/
-    rest_of_bracket = /].*$/
-    ordinal_and_year = /\d+(st|nd|rd|th|)/
-
-    # skip cancelled gigs, remove square brackets, leading ordinal, year
-    gigs = gigs.filter { |g| !g.name.match?(/cancelled|canceled/i) }.each do |g|
-      g.name = g.name.gsub(front_bracket, "").gsub(rest_of_bracket, "").gsub(ordinal_and_year, "").strip
-    end
-    gigs.sort_by(&:name).uniq { |g| g.name.downcase }.sort_by { |g| g.name.downcase }
   end
 
   def require_admin

@@ -101,18 +101,6 @@ unless Rails.env == "production"
       note: Faker::Lorem.sentence,
       location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
 
-    # Always four Ordinally named gigs (1st, 2nd, 3rd, 4th)
-    1.upto(4) do |place_num|
-      Gig.create!(
-        published: true,
-        date: Faker::Date.between(from: Date.today.years_ago(n).beginning_of_year,
-                                  to: Date.today.years_ago(n).end_of_year),
-        days: rand(6).round + 1,
-        name: "[#{place_num.ordinalize} #{Faker::Commerce.product_name}](#{Faker::Internet.url}) #{day_type}",
-        note: Faker::Lorem.sentence,
-        location: "#{Faker::Address.city}, #{Faker::Address.state_abbr}" )
-    end
-
     6.times do
       Gig.create!(
         published: (rand(3).round > 0),
