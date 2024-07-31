@@ -24,8 +24,8 @@ Feature: Gig Management
     When I fill in the gig fields
     And I click Add Gig
     Then the gig is created
-    And I see information for the gig on the home page
-    And I see information for the gig on the schedule page
+    And I see the gig on the home page
+    And I see the gig on the schedule page
 
   @javascript
   Scenario: It is not possible to create a gig with the same name and date as a previous gig
@@ -43,7 +43,7 @@ Feature: Gig Management
     Given I am signed in as an admin user
     And there is at least one published gig
     When I navigate to the Manage Gigs page
-    Then I see information for a gig
+    Then I see a gig
     When I click Delete and confirm deletion for that gig
     Then I see a notice indicating that the gig is deleted
     And that gig is deleted
@@ -65,24 +65,24 @@ Feature: Gig Management
     When I click Manage Gigs
     Then I am on the Manage Gigs page
 
-
-  @javascript
-  Scenario: An admin user can create gig entries from a previous gig
+  @javascript @clone
+  Scenario: An admin user can clone gig entries from a previous gig
     Given I am signed in as an admin user
+    And there is at least one published gig
     When I navigate to the Manage Gigs page
-    And I click Copy From...
-    And I choose an entry
+    Then I see the source gig
+    And I click the Clone link for that gig
     Then I see the Add Gig page
-    And I see today's date
-    And I see it is a one day event
-    And I see it is not published
-    And I see it has the same name as the copied gig
-    And I see it has the same note as the copied gig
-    And I see it has the same location as the copied gig
+    And it has today's date
+    And it is not published
+    And it is the same number of days as the source gig
+    And it has the same name as the source gig
+    And it has the same note as the source gig
+    And it has the same location as the source gig
     When I click Add Gig
-    Then the cloned gig is created
-    And I see information for the gig on the schedule page
-    And I see the original gig on the schedule page
+    Then the gig is created
+    And I see the gig on the schedule page
+    And I see the source gig on the schedule page
 
   @javascript
   Scenario: It is not possible to edit a gig to have the same name and date as a previous gig
@@ -145,8 +145,8 @@ Feature: Gig Management
     And there is at least one published gig
     And there is at least one unpublished gig
     When I navigate to the Performance Schedule page
-    Then I see information for the published gig
-    And I do not see information for the unpublished gig
+    Then I see the published gig
+    And I do not see the unpublished gig
 
   @javascript
   Scenario: Both published and unpublished gigs appear on the Gig Management page
@@ -154,43 +154,13 @@ Feature: Gig Management
     And there is at least one published gig
     And there is at least one unpublished gig
     When I navigate to the Manage Gigs page
-    Then I see information for the published gig
-    And  I see information for the unpublished gig
+    Then I see the published gig
+    And  I see the unpublished gig
 
   @javascript
-  Scenario: A one day gig that is one day past is active
+  Scenario: A one day gig that is one day past is expired
     Given I am signed in as an admin user
     And there is at least one published one-day gig dated yesterday
-    When I navigate to the Performance Schedule page
-    Then I see the published gig is active
-
-  @javascript
-  Scenario: A one day gig that is two days past is marked expired on the schedule page
-    Given I am signed in as an admin user
-    And there is at least one published one-day gig dated two days ago
-    When I navigate to the Performance Schedule page
-    Then I see the published gig is expired
-
-  @javascript
-  Scenario: A one day gig that is two days past is marked expired on the Gig Management page
-    Given I am signed in as an admin user
-    And there is at least one published one-day gig dated two days ago
-    And there is at least one unpublished one-day gig dated two days ago
-    When I navigate to the Manage Gigs page
-    Then I see the published gig is expired
-    And  I see the unpublished gig is expired
-
-  @javascript
-  Scenario: A two day gig that is two days past is active
-    Given I am signed in as an admin user
-    And there is at least one published two-day gig dated two days ago
-    When I navigate to the Performance Schedule page
-    Then I see the published gig is active
-
-  @javascript
-  Scenario: A two day gig that is three days past is marked expired
-    Given I am signed in as an admin user
-    And there is at least one published two-day gig dated three days ago
     When I navigate to the Performance Schedule page
     Then I see the published gig is expired
 
@@ -200,3 +170,10 @@ Feature: Gig Management
     And there is at least one published two-day gig dated yesterday
     When I navigate to the Performance Schedule page
     Then I see the published gig is active
+
+  @javascript
+  Scenario: A two day gig that is two days past is expired
+    Given I am signed in as an admin user
+    And there is at least one published two-day gig dated two days ago
+    When I navigate to the Performance Schedule page
+    Then I see the published gig is expired

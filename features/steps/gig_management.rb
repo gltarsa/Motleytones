@@ -29,6 +29,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(page).to have_title('Manage Gigs')
   end
 
+  step 'I click the Clone link for that gig' do
+    find(".gig-id-#{@gig.id}").click_link('Clone')
+  end
+
   step 'I see the Add Gig page' do
     expect(page).to have_title('Add Gig')
   end
@@ -54,6 +58,33 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     check 'gig_published'
   end
 
+  step 'it has today\'s date' do
+    date = Time.zone.today
+    expect(find('select#gig_date_1i').value).to eq date.year.to_s
+    expect(find('select#gig_date_2i').value).to eq date.month.to_s
+    expect(find('select#gig_date_3i').value).to eq date.day.to_s
+  end
+
+  step 'it is the same number of days as the source gig' do
+    expect(find('input#gig_days').value).to eq @source_gig.days.to_s
+  end
+
+  step 'it is not published' do
+    expect(page.find('input#gig_published')).not_to be_checked
+  end
+
+  step 'it has the same name as the source gig' do
+    expect(page).to have_css('textarea#gig_name', text: @gig.name)
+  end
+
+  step 'it has the same note as the source gig' do
+    expect(page).to have_css('textarea#gig_note', text: @gig.note)
+  end
+
+  step 'it has the same location as the source gig' do
+    expect(page).to have_css('textarea#gig_location', text: @gig.location)
+  end
+
   step 'I click Add Gig' do
     click_link_or_button 'Add gig'
   end
@@ -67,33 +98,43 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(@gig).not_to be_nil
   end
 
-  step 'I see information for a gig' do
+  step 'I see a gig' do
     @gig = Gig.where(name: @gig.name).where(location: @gig.location).first
     verify_gig_schedule(@gig)
   end
 
-  step 'I see information for the unpublished gig' do
+  step 'I see the source gig' do
+    @source_gig = Gig.where(name: @gig.name).where(location: @gig.location).first
+    verify_gig_schedule(@source_gig)
+  end
+
+  step 'I see the unpublished gig' do
     gig = Gig.where(name: @unpublished_gig.name).where(location: @unpublished_gig.location).first
     verify_gig_schedule(gig)
   end
 
-  step 'I do not see information for the unpublished gig' do
+  step 'I do not see the unpublished gig' do
     gig = Gig.where(name: @unpublished_gig.name).where(location: @unpublished_gig.location).first
     expect(page).not_to have_css(".gig-id-#{gig.id}")
   end
 
-  step 'I see information for the published gig' do
-    i_see_information_for_a_gig
+  step 'I see the published gig' do
+    i_see_a_gig
   end
 
-  step 'I see information for the gig on the home page' do
+  step 'I see the gig on the home page' do
     visit root_path
-    i_see_information_for_a_gig
+    i_see_a_gig
   end
 
-  step 'I see information for the gig on the schedule page' do
+  step 'I see the gig on the schedule page' do
     visit '/schedule'
     verify_gig_schedule(@gig)
+  end
+
+  step 'I see the source gig on the schedule page' do
+    visit '/schedule'
+    verify_gig_schedule(@source_gig)
   end
 
   step 'I navigate to the Performance Schedule page' do
@@ -197,12 +238,12 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see the published gig is expired' do
-    i_see_information_for_a_gig
+    i_see_a_gig
     verify_gig_expired(@gig)
   end
 
   step 'I see the published gig is active' do
-    i_see_information_for_a_gig
+    i_see_a_gig
     verify_gig_active(@gig)
   end
 
