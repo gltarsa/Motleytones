@@ -1,14 +1,21 @@
 = render 'shared/display_errors', thing: gig
 = simple_form_for gig do |f|
   .form-inputs
-    = f.input :date, required: true, start_year: 2010, end_year: Date.today.year + 5
     p.note
+      | <tt>Cancelled:</tt> or <tt>Canceled:</tt> in a gig name
+      br
+      | will cause the gig to display with a line
+      br
+      | through the text.
+      br
+      br
       | These tokens can go in any section:
       br
       | &nbsp;&nbsp; add a link: <tt>[link text](http://url)</tt>
       br
       | &nbsp;&nbsp; add info email link: <tt>@info</tt>
 
+    = f.input :date, required: true, start_year: 2010, end_year: Date.today.year + 5
     = f.input :days
     = f.input :name, placeholder: "[event name](and link), plus optional other info"
     = f.input :note, placeholder: "optional additional information"
