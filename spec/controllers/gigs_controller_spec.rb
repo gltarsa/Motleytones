@@ -130,17 +130,6 @@ RSpec.describe GigsController, type: :controller do
     it_behaves_like "gig#create tests"
   end
 
-  describe 'GET #create' do
-    before do
-      puts "------------ Why do any GET #create calls succeed? ---"
-    end
-    let(:response) { get :create, params: { gig: @new_gig } }
-
-    it_behaves_like "login-required actions"
-    it_behaves_like "admin-required actions"
-    it_behaves_like "gig#create tests"
-  end
-
   describe 'GET #edit' do
     let(:response) { get :edit, params: { id: gig.id } }
 

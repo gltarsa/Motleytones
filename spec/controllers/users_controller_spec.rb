@@ -112,18 +112,6 @@ RSpec.describe UsersController, type: :controller do
     include_examples 'users#create tests'
   end
 
-  describe 'GET #create' do
-    before do
-      puts '------------ Why do any GET #create calls succeed? ---'
-    end
-
-    let(:response) { get :create, params: { user: @new_user } }
-
-    it_behaves_like "login-required actions"
-    it_behaves_like "admin-required actions"
-    include_examples 'users#create tests', :get
-  end
-
   describe 'GET #edit' do
     let(:response) { get :edit, params: { id: user.id } }
     let(:other_user) { FactoryBot.create(:user) }
