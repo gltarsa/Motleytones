@@ -7,7 +7,7 @@ section
           - current_year = gig.date.year
           = render 'separator_pic', year: current_year
         - if gig.published
-          li class="gig-id-#{gig.id}"
+          li class="gig-id-#{gig.id} #{canceled(gig)? 'canceled' : ''}"
             = render 'gigs/gig_oneline', gig: gig
 
       hr
@@ -18,4 +18,4 @@ section
           = render 'separator_pic', year: current_year
         - if gig.published
           li.expired class="gig-id-#{gig.id}"
-            = render 'gigs/gig_oneline', gig: gig, gig_type: "expired"
+            = render 'gigs/gig_oneline', gig: gig
