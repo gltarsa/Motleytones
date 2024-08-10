@@ -4,6 +4,6 @@ module ApplicationHelper
   def canceled(gig)
     return false unless gig
 
-    gig.name.downcase.include?('canceled:') || gig.name.downcase.include?('cancelled:')
+    gig.name.downcase.match?(/cancell*ed[\W]/i)
   end
 end
