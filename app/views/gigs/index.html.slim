@@ -9,11 +9,11 @@ section.main-content.gig-management
     - @active_gigs.each do |gig|
       .row.schedule
         .ten.columns.offset-by-one
-          article class="gig-id-#{gig.id} #{canceled(gig) ? 'canceled' : ''} #{gig.published ? nil : 'unpublished'}"
-            = render "gig", gig: gig
+          article class="gig-id-#{gig.id} #{gig.published ? nil : 'unpublished'}"
+            = render "gig", gig: gig, decoration: canceled(gig) ? 'strike-out' : ''
 
     - @expired_gigs.each do |gig|
       .row.schedule
         .ten.columns.offset-by-one
-          article.expired class="gig-id-#{gig.id} #{gig.published ? nil : 'unpublished'}"
-            = render "gig", gig: gig
+          article class="gig-id-#{gig.id} #{gig.published ? nil : 'unpublished'}"
+            = render "gig", gig: gig, decoration: 'strike-out'
