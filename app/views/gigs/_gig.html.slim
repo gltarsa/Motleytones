@@ -2,24 +2,26 @@ li
   = render 'gig_oneline', gig: gig, decoration: (decoration if defined? decoration)
 hr
 
-.schedule-information
-  p.gig-date.date class=(decoration if defined? decoration)
+.schedule-information class=(decoration if defined? decoration)
+  p.gig-date.date
     span.heading> Date:
     |
     span.gig-days #{date_thru_range(gig.date, gig.days)}
     - if gig.days > 1
       |  (#{gig.days} days)
-  p.gig-name class=(decoration if defined? decoration)
+  p.gig-name
     span.heading> Name:
     | #{gig.name}
-  p.gig-note class=(decoration if defined? decoration)
+  p.gig-note
     span.heading> Note:
     | #{gig.note}
-  p.gig-location class=(decoration if defined? decoration)
+  p.gig-location
     span.heading> Location:
     | #{gig.location}
-  p.gig-published.heading class=(decoration if defined? decoration)
+  p.gig-published.heading
     span> Published? #{(gig.published)? "Y" : "N"}
+
+.schedule-information
   p.gig-operations
     = link_to "Edit",
       edit_gig_path(gig),
