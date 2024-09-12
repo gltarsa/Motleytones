@@ -1,4 +1,4 @@
-span class=(decoration if defined? decoration)
+span
   span.gig-date.date #{date_range(gig.date, gig.days)}:
   span.gig-name      #{process_markup(gig.name)}
   - unless gig.note.blank?
