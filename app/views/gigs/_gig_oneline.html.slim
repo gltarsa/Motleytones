@@ -1,7 +1,8 @@
-span.gig-date.date #{date_range(gig.date, gig.days)}:
-span.gig-name      #{process_markup(gig.name)}
-- unless gig.note.blank?
-  span.gig-note<      #{process_markup(gig.note)}
-- unless gig.location.blank?
-  | ,
-  span.gig-location< #{process_markup(gig.location)}
+span
+  span.gig-date.date #{date_range(gig.date, gig.days)}:
+  span.gig-name      #{process_markup(gig.name)}
+  - unless gig.note.blank?
+    span.gig-note<      #{process_markup(gig.note)}
+  - unless gig.location.blank?
+    | ,
+    span.gig-location< #{process_markup(gig.location)}
