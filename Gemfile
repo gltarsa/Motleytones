@@ -30,7 +30,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rescue'
   gem 'rspec-rails'
-  gem 'spinach-rails', '~> 0.2'
+  gem 'spinach-rails'
   gem 'spring'
 end
 
@@ -47,10 +47,9 @@ group :test do
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~>4.0'
   gem 'simplecov', require: false
-  gem 'webdrivers', '~> 5.3', require: false
 end
 
-ruby '3.3.0'
+ruby '3.3.5'
 
