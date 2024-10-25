@@ -3,7 +3,6 @@
 ENV['RAILS_ENV'] = 'test'
 require 'spinach-rails'
 require 'database_cleaner'
-require 'webdrivers'
 require_relative '../../config/environment'
 require_relative '../../spec/spec_helper'
 
