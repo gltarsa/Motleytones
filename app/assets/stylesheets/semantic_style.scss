@@ -163,6 +163,10 @@ article, footer {
     line-height: 100%;
   }
 
+  h3.center {
+    text-align: center;
+  }
+
   h1 {
     font-size: 4rem;
     text-align: center;
@@ -394,9 +398,10 @@ img.image.adjustable {
   margin-left: 2rem;
 }
 
-.image.centered {
+.image.center {
   display: block;
-  margin-top: .5rem;
+  margin: auto;
+  margin-bottom: .5rem;
 }
 
 .image.bio {
