@@ -3,7 +3,7 @@
 section.main-content.gig-management
   .row.flex
     .eleven.columns.offset-by-one.schedule
-      = button_to "Add gig", new_gig_path, method: :get, class: "add"
+      = button_to "Add gig", new_gig_path, method: :get, class: "fix-spacing"
 
   .row
     - @active_gigs.each do |gig|

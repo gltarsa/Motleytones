@@ -23,18 +23,20 @@
     p.gig-published.heading
       span> Published? #{(gig.published)? "Y" : "N"}
 
-.schedule-information
-  p.gig-operations
-    = link_to "Edit",
-      edit_gig_path(gig),
-      class: "edit management"
+.operation-buttons
+  .gig-operations
+    = button_to "Edit",
+        edit_gig_path(gig),
+        method: :get,
+        class: "edit fix-spacing"
 
-    = link_to "Delete",
-      gig_path(gig),
-      method: :delete,
-      class: "delete management",
-      data: { confirm: "Are you sure (action is permanent)?" }
+    = button_to "Delete",
+        gig_path(gig),
+        method: :delete,
+        class: "delete fix-spacing",
+        data: { confirm: "Are you sure (action is permanent)?" }
 
-    = link_to "Clone",
+    = button_to "Clone",
         copy_gig_path(gig.id),
-        class: "clone management"
+        method: :get,
+        class: "clone fix-spacing"

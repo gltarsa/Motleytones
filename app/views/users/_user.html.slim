@@ -25,13 +25,13 @@
         | ID: #{user.id}
       p.user-operations
         - if current_user.admin? || current_user.id == user.id
-          = link_to "Edit Pirate",
+          = button_to "Edit Pirate",
             edit_user_path(user),
             method: :get,
-            class: "edit"
+            class: "edit fix-spacing"
         - if current_user.admin? && current_user != user
-          = link_to "Delete Pirate",
+          = button_to "Delete Pirate",
             user_path(user),
             method: :delete,
-            class: "delete",
+            class: "delete fix-spacing",
             data: { confirm: "Are you sure (action is permanent)?" }

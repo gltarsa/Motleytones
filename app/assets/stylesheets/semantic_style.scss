@@ -281,7 +281,7 @@ article.admin {
     }
 
     a.sign-out {
-      @extend .add;
+      @extend .fix-spacing;
       color: $alert-color;
     }  }
 
@@ -613,7 +613,7 @@ $schedule-box-margin: 0.3rem;
   ul { margin-bottom: 0; }
 }
 
-.user-information, .schedule-information {
+.user-information, .schedule-information, .operation-buttons {
   column-count: 1;
   -webkit-column-count: 1;
   -moz-column-count: 1;
@@ -634,6 +634,10 @@ $schedule-box-margin: 0.3rem;
   .user-admin {
     margin: .2rem .2rem;
     font-weight: 600;
+  }
+
+  .button_to input {
+    margin-bottom: 0;
   }
 }
 
@@ -683,7 +687,7 @@ form {
 
   input {
     margin-top: 1rem;
-    margin-bottom: 0;
+    margin-bottom: .2rem;
     margin-left: 1.5em;
     background-color: $article-bkg-color;
     height: $button-height;
@@ -691,11 +695,11 @@ form {
     padding: $button-left-right-pad;
   }
 
-  .add, .copy, .misc {
+  .fix-spacing, .copy, .misc {
     background: $article-bkg-color;
     color: $link-color;
     padding: 0 1.5rem;
-    margin: .2rem .2rem .2rem 0;
+    margin: 1.5rem 1.5rem 1rem 0;
   }
 
   .delete {
