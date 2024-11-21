@@ -21,7 +21,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I navigate to the Manage Gigs page' do
     find('li.navigation').click
-    click_link 'Manage Gigs'
+    click_on 'Manage Gigs'
     i_am_on_the_manage_gigs_page
   end
 
@@ -29,8 +29,8 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(page).to have_title('Manage Gigs')
   end
 
-  step 'I click the Clone link for that gig' do
-    find(".gig-id-#{@gig.id}").click_link('Clone')
+  step 'I click Clone for that gig' do
+    find(".gig-id-#{@gig.id}").click_on('Clone')
   end
 
   step 'I see the Add Gig page' do
@@ -86,11 +86,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I click Add Gig' do
-    click_link_or_button 'Add gig'
+    click_on 'Add gig'
   end
 
   step 'I click Manage Gigs' do
-    click_link 'Manage gigs'
+    click_on 'Manage gigs'
   end
 
   step 'the gig is created' do
@@ -139,13 +139,13 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I navigate to the Performance Schedule page' do
     find('li.navigation').click
-    click_link 'Performance Schedule'
+    click_on 'Performance Schedule'
     expect(page.title).to eq('Motley Performance Schedule')
   end
 
   step 'I click Delete and confirm deletion for that gig' do
     my_accept_alert do
-      find(".gig-id-#{@gig.id}").click_link('Delete')
+      find(".gig-id-#{@gig.id}").click_on('Delete')
     end
   end
 
@@ -154,11 +154,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I click Edit for the first gig' do
-    find(".gig-id-#{@gig.id}").click_link('Edit')
+    find(".gig-id-#{@gig.id}").click_on('Edit')
   end
 
   step 'I click Edit for the new gig' do
-    find(".gig-id-#{@new_gig.id}").click_link('Edit')
+    find(".gig-id-#{@new_gig.id}").click_on('Edit')
   end
 
   step 'I am sent to the Change Gig page' do
@@ -260,11 +260,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I do not see an Edit button' do
-    expect(page).not_to have_button('Edit')
+    expect(page).to have_no_button('Edit')
   end
 
   step 'I do not see a Delete button' do
-    expect(page).not_to have_button('Delete')
+    expect(page).to have_no_button('Delete')
   end
 
   step 'I see an alert containing "You must be signed in to access that page"' do

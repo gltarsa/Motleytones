@@ -21,13 +21,13 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
 
   step 'I navigate to the Manage Pirates page' do
     find('li.navigation').click
-    click_link 'Manage Pirates'
+    click_on 'Manage Pirates'
     expect(page).to have_title('Motley Users')
   end
 
   step 'I navigate to the Profile page' do
     find('li.navigation').click
-    click_link 'Profile'
+    click_on 'Profile'
     expect(page).to have_title('Motley User')
   end
 
@@ -148,11 +148,11 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I click Add Pirate' do
-    click_link_or_button 'Add pirate'
+    click_on 'Add pirate'
   end
 
   step 'I click Add' do
-    click_link_or_button 'Add'
+    click_on 'Add'
   end
 
   step 'the account is created' do
