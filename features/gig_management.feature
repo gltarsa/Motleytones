@@ -71,7 +71,7 @@ Feature: Gig Management
     And there is at least one published gig
     When I navigate to the Manage Gigs page
     Then I see the source gig
-    And I click the Clone link for that gig
+    And I click Clone for that gig
     Then I see the Add Gig page
     And it has today's date
     And it is not published
@@ -100,7 +100,7 @@ Feature: Gig Management
   Scenario: A user who is not signed in cannot access any of the gig management features
     Given I am not signed in
     When I look at the Navigation Menu
-    And I do not see a Manage Gigs Link
+    And I do not see a Manage Gigs link
 
     # This test started failing.  It _looks_ like the page is not switching, but it seems clear that it should be.
     # Rather than try and fix it I realized that this is a useless test as we are checking for an Edit and
@@ -125,7 +125,7 @@ Feature: Gig Management
   Scenario: A non-admin user cannot access any gig management features
     Given I am signed in as a non-admin user
     When I look at the Navigation Menu
-    And I do not see a Manage Gigs Link
+    And I do not see a Manage Gigs link
 
     When I visit the Gig Management page directly
     Then I am sent to the Home page

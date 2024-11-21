@@ -9,7 +9,7 @@ class Spinach::Features::SignOut < Spinach::FeatureSteps
 
   step 'I navigate to Sign Out' do
     find("li.navigation").click
-    click_link_or_button "Sign Out"
+    click_on "Sign Out"
     expect(page).to have_title("The Motley Tones")
   end
 

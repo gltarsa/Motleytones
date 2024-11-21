@@ -3,6 +3,6 @@ section.main-content
   .row
     - if current_user.admin?
       .two.columns.offset-by-one
-        = button_to "Add pirate", new_user_path, method: :get, class: "add"
+        = button_to "Add pirate", new_user_path, method: :get, class: "fix-spacing"
 
     = render partial: "user", collection: @users.sort
