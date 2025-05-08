@@ -13,7 +13,7 @@ gem 'jquery-rails', '~> 4.0'
 gem 'net-http'             # needed until all the gems drop support for Ruby 2.5.5
 gem 'pg', '~> 1.5'
 gem 'puma', '> 6.0'
-gem 'rails', '~> 7.1'
+gem 'rails', '~> 7.2'
 gem 'rubocop-rails'
 gem 'sassc-rails'
 gem 'simple_form', '~> 5.0'
