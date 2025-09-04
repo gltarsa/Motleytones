@@ -23,17 +23,16 @@ footer
               span.label
                 | facebook.com/motleytones
 
-          p.email.simple-print
-            = mail_to info_email,
-              info_email,
-              subject: "Motley Tones information needed",
-              class: "contact-email"
-
     .row
       .eight.columns
         ul.copyright
           li
             = t('.copyright', year: Time.now.strftime("%Y"))
+            - if current_user.admin?
+              br
+              | version: #{APP_VERSION}
       .four.columns
         ul
           li.visit-count #{number_with_delimiter(Visit.count)} visitors
+
+
