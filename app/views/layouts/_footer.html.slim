@@ -28,7 +28,7 @@ footer
         ul.copyright
           li
             = t('.copyright', year: Time.now.strftime("%Y"))
-            - if current_user.admin?
+            - if current_user&.admin?
               br
               | version: #{APP_VERSION}
       .four.columns
