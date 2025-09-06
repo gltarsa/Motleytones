@@ -25,14 +25,13 @@ footer
 
     .row
       .eight.columns
-        ul.copyright
+        ul.copyright.version
           li
             = t('.copyright', year: Time.now.strftime("%Y"))
             - if current_user&.admin?
               br
-              | version: #{APP_VERSION}
+              = t('.version', sha: APP_VERSION)
+
       .four.columns
         ul
           li.visit-count #{number_with_delimiter(Visit.count)} visitors
-
-

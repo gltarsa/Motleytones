@@ -8,3 +8,4 @@ en:
   layouts:
     footer:
       copyright: "© %{year} The Motley Tones. All rights reserved."
+      version: "version: %{sha}"
