@@ -58,9 +58,9 @@ jobs:
     # Set the APP_VERSION environment variable from the built-in CIRCLE_SHA1
     # When deploying directly, this variable will be used by the app at runtime
     - run:
-      name: Build and Deploy
-      command: |
-        export APP_VERSION=$CIRCLE_SHA1
+        name: "Build and Deploy"
+        command: |
+          export APP_VERSION=$CIRCLE_SHA1
 
     # Dependencies
     #   This would typically go in either a build or a build-and-test job when using workflows
@@ -90,33 +90,34 @@ jobs:
 
     # TODO: change this to use environment variables
     - run:
-      name: Build config/database.yml for Test
-      command: |-
-        mkdir -p config && echo 'test:
-          database: circle_ruby_test
-          adapter: <%= ENV["DATABASE_ADAPTER"] %>
-          encoding: <%= ENV["DATABASE_ENCODING"] %>
-          pool: <%= ENV["DATABASE_POOL"] %>
-          timeout: <%= ENV["DATABASE_TIMEOUT"] %>
-          username: ubuntu
-          host: localhost
-        ' > config/database.yml
+        name: "Build config/database.yml for Test"
+        command: |-
+          mkdir -p config && echo 'test:
+            database: circle_ruby_test
+            adapter: <%= ENV["DATABASE_ADAPTER"] %>
+            encoding: <%= ENV["DATABASE_ENCODING"] %>
+            pool: <%= ENV["DATABASE_POOL"] %>
+            timeout: <%= ENV["DATABASE_TIMEOUT"] %>
+            username: ubuntu
+            host: localhost
+          ' > config/database.yml
+
     - run:
-      name: set RAILS_ENV variables and bundle exed
-      command: |
-        export RAILS_ENV="test"
-        export RACK_ENV="test"
-        bundle exec rake db:create db:schema:load --trace
+        name: "Set RAILS_ENV variables and DB schema load"
+        command: |
+          export RAILS_ENV="test"
+          export RACK_ENV="test"
+          bundle exec rake db:create db:schema:load --trace
 
     # Test
     #   This would typically be a build job when using workflows, possibly combined with build
     - run:
-      name: Test
-      command: |
-        export RAILS_ENV="test"
-        export RACK_ENV="test"
-        bundle exec rspec --color --format progress spec
-        bundle exec spinach
+        name: "Test"
+        command: |
+          export RAILS_ENV="test"
+          export RACK_ENV="test"
+          bundle exec rspec --color --format progress spec
+          bundle exec spinach
 
     # Teardown
     #   If you break your build into multiple jobs with workflows, you will
