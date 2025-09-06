@@ -22,9 +22,14 @@ Feature: Decorations
     And I see a copyright notice with the current year
     And I see a visit counter
     And I see a contact widget
+    And I do not see a version number
+
+  Scenario: The footer contains expected elements when logged in as admin
+    Given I am signed in as an admin user
+    When I look at the footer of the home page
+    Then I see a version number
 
   Scenario: The contact widget has all expected elements
     Given I am not signed in
     When I look at the contact widget on the home page
     Then I see a Facebook tile/image that links to the FB page
-    And I see a contact email link

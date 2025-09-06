@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 class Spinach::Features::Decorations < Spinach::FeatureSteps
+  include Helpers
+
   step 'I am not signed in' do
     visit root_path
+  end
+
+  step 'I am signed in as an admin user' do
+    sign_in_admin_user
   end
 
   step 'I look at the header of the home page' do
@@ -24,7 +30,7 @@ class Spinach::Features::Decorations < Spinach::FeatureSteps
   end
 
   step 'I see a copyright notice with the current year' do
-    expect(page).to have_css("footer .copyright li")
+    expect(page).to have_css("footer .copyright li", text: "© #{Date.current.year}")
   end
 
   step 'I see a visit counter' do
@@ -42,7 +48,11 @@ class Spinach::Features::Decorations < Spinach::FeatureSteps
     expect(page).to have_css("section.widget.contact img.facebook-tile")
   end
 
-  step 'I see a contact email link' do
-    expect(page).to have_css("section.widget.contact a.contact-email")
+  step 'I see a version number' do
+    expect(page).to have_css("footer ul.version", text: "version:")
+  end
+
+  step 'I do not see a version number' do
+    expect(page).not_to have_css("footer ul.version", text: "version:")
   end
 end
