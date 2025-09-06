@@ -14,7 +14,7 @@ gem 'net-http'             # needed until all the gems drop support for Ruby 2.5
 gem 'pg', '~> 1.5'
 gem 'puma', '> 6.0'
 gem 'rails', '~> 7.2'
-gem 'rubocop-rails'
+gem 'rubocop-rails', require: false  # CLI; no need to load this for normal operation.
 gem 'sassc-rails'
 gem 'simple_form', '~> 5.0'
 gem 'slim-rails'
@@ -29,8 +29,6 @@ group :development, :test do
   gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rescue'
-  gem 'rspec-rails'
-  gem 'spinach-rails'
   gem 'spring'
 end
 
@@ -47,8 +45,10 @@ group :test do
   gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
+  gem 'rspec-rails'
   gem 'selenium-webdriver', '~>4.23.0'
   gem 'simplecov', require: false
+  gem 'spinach-rails'
 end
 
 ruby '3.3.5'

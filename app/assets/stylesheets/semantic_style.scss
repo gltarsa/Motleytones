@@ -336,7 +336,6 @@ article.admin {
 }
 
 /*********/
-/* Footer
 /*********/
 footer {
   margin-top: 0;
@@ -348,7 +347,7 @@ footer {
     list-style: none;
   }
 
-  .copyright, .visit-count {
+  .copyright, version, .visit-count {
     color: $copyright-color;
     font-size: 1.4rem;
 
