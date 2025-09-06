@@ -8,7 +8,8 @@
 # Any of these may be changed.
 
 # inherit_from: .rubocop_todo.yml
-require: rubocop-rails
+plugins: rubocop-rails
+ # require: rubocop-rails
 
 AllCops:
   Include:
@@ -30,7 +31,7 @@ AllCops:
 Rails:
   Enabled: true
 
-StringLiterals:
+Style/StringLiterals:
   Enabled: false
 
 # We want to put empty methods on three lines
@@ -53,7 +54,7 @@ Metrics/ClassLength:
   Exclude:
     - 'features/steps/**/*'
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 
 Style/SymbolArray:
