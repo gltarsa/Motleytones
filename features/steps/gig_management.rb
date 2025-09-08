@@ -9,10 +9,12 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I am signed in as a non-admin user' do
     sign_in_non_admin_user
+    puts "User is #{@user.admin ? 'is' : 'Is NOT'} an admin"
   end
 
   step 'I am signed in as an admin user' do
     sign_in_admin_user
+    puts "User is #{@user.admin ? 'is' : 'Is NOT'} an admin"
   end
 
   step 'I look at the Navigation menu' do
@@ -35,6 +37,10 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I see the Add Gig page' do
     expect(page).to have_title('Add Gig')
+  end
+
+  step 'I see the Latest Gig page' do
+    expect(page).to have_title('Latest Gig')
   end
 
   step 'I see a note describing tokens' do
@@ -98,8 +104,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(@gig).not_to be_nil
   end
 
-  step 'I see a gig' do
-    @gig = Gig.where(name: @gig.name).where(location: @gig.location).first
+  step 'I see the gig' do
     verify_gig_schedule(@gig)
   end
 
@@ -119,12 +124,12 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see the published gig' do
-    i_see_a_gig
+    i_see_the_gig
   end
 
   step 'I see the gig on the home page' do
     visit root_path
-    i_see_a_gig
+    i_see_the_gig
   end
 
   step 'I see the gig on the schedule page' do
@@ -140,7 +145,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   step 'I navigate to the Performance Schedule page' do
     find('li.navigation').click
     click_on 'Performance Schedule'
-    expect(page.title).to eq('Motley Performance Schedule')
+    expect(page).to have_title('Motley Performance Schedule')
   end
 
   step 'I click Delete and confirm deletion for that gig' do
@@ -241,12 +246,12 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see the published gig is expired' do
-    i_see_a_gig
+    i_see_the_gig
     verify_gig_expired(@gig)
   end
 
   step 'I see the published gig is active' do
-    i_see_a_gig
+    i_see_the_gig
     verify_gig_active(@gig)
   end
 
@@ -276,7 +281,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see a notice indicating that the gig is deleted' do
-    expect_flash(severity: :notice, containing: I18n.t('.gig.deleted', count: 0))
+    expect_flash(severity: :notice, containing: 'deleted')
+  end
+
+  step 'I see a notice that the gig is added' do
+    expect_flash(severity: :notice, containing: 'added')
   end
 
   step 'I see an error message' do

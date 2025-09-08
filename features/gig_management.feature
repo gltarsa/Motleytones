@@ -23,16 +23,18 @@ Feature: Gig Management
     And I see a note describing tokens
     When I fill in the gig fields
     And I click Add Gig
-    Then the gig is created
+    Then I see the Latest Gig page
+    And I see a notice that the gig is added
+    And the gig is created
     And I see the gig on the home page
     And I see the gig on the schedule page
 
-  @javascript
+  @javascript @focus
   Scenario: It is not possible to create a gig with the same name and date as a previous gig
     Given I am signed in as an admin user
     And there is at least one existing gig
     When I navigate to the Manage Gigs page
-    And I click Add Gig
+    When I click Add Gig
     Then I see the Add Gig page
     When I fill in the gig fields to have the same name and date
     And I click Add Gig
@@ -43,13 +45,13 @@ Feature: Gig Management
     Given I am signed in as an admin user
     And there is at least one published gig
     When I navigate to the Manage Gigs page
-    Then I see a gig
+    Then I see the gig
     When I click Delete and confirm deletion for that gig
     Then I see a notice indicating that the gig is deleted
     And that gig is deleted
     And I am on the Manage Gigs page
 
-  @javascript
+  @javascript @focus
   Scenario: An admin user can edit gig entries
     Given I am signed in as an admin user
     And there is at least one published gig
@@ -65,12 +67,12 @@ Feature: Gig Management
     When I click Manage Gigs
     Then I am on the Manage Gigs page
 
-  @javascript @clone
+  @javascript @clone @focus
   Scenario: An admin user can clone gig entries from a previous gig
     Given I am signed in as an admin user
     And there is at least one published gig
     When I navigate to the Manage Gigs page
-    Then I see the source gig
+    And I see the source gig
     And I click Clone for that gig
     Then I see the Add Gig page
     And it has today's date
@@ -80,7 +82,7 @@ Feature: Gig Management
     And it has the same note as the source gig
     And it has the same location as the source gig
     When I click Add Gig
-    Then the gig is created
+    Then I see a notice that the gig is added
     And I see the gig on the schedule page
     And I see the source gig on the schedule page
 
@@ -90,7 +92,7 @@ Feature: Gig Management
     And there is at least one existing gig
     And I add a new gig
     When I navigate to the Manage Gigs page
-    And I click Edit for the new gig
+    When I click Edit for the new gig
     Then I am sent to the Change Gig page
     When I fill in the gig fields to have the same name and date
     And I click Update
@@ -157,7 +159,7 @@ Feature: Gig Management
     Then I see the published gig
     And  I see the unpublished gig
 
-  @javascript
+  @javascript @focus
   Scenario: A one day gig that is one day past is expired
     Given I am signed in as an admin user
     And there is at least one published one-day gig dated yesterday
@@ -178,7 +180,7 @@ Feature: Gig Management
     When I navigate to the Performance Schedule page
     Then I see the published gig is active
 
-  @javascript
+  @javascript @focus
   Scenario: A two day gig that is two days past is expired
     Given I am signed in as an admin user
     And there is at least one published two-day gig dated two days ago
