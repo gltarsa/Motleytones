@@ -24,11 +24,16 @@ gem 'turbolinks', '~> 5.0.0' # Read more: https://github.com/turbolinks/turbolin
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'capybara'
   gem 'database_cleaner', '~> 2.0' # upgrade this as separate card
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-byebug'
   gem 'pry-rescue'
+  gem 'rspec_junit_formatter'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver', '~>4.23.0'
+  gem 'spinach-rails'
   gem 'spring'
 end
 
@@ -41,14 +46,9 @@ group :production do
 end
 
 group :test do
-  gem 'capybara'
   gem 'launchy'
   gem 'rails-controller-testing'
-  gem 'rspec_junit_formatter'
-  gem 'rspec-rails'
-  gem 'selenium-webdriver', '~>4.23.0'
   gem 'simplecov', require: false
-  gem 'spinach-rails'
 end
 
 ruby '3.3.5'

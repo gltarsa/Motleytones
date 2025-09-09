@@ -4,7 +4,7 @@ Feature: User Management
   will have admin privileges.
 
   Admin users have the ability to change any profiles and
-  delete any account but his own.
+  delete any user but his own.
 
   * A user who is not signed up cannot access any of the user management
     buttons on the Manage Pirates page.
@@ -59,6 +59,7 @@ Feature: User Management
     Then I am sent to the Change Pirate Information page
     When I change the mutable fields
     And I click Update
+    Then I see a notice that the user was updated
     Then the mutable fields are changed
 
   @javascript
@@ -69,6 +70,7 @@ Feature: User Management
     Then I am sent to the Change Pirate Information page
     When I change my password
     And I click Update
+    Then I see a notice that the user was updated
     Then I see my name on the users page
 
   @javascript
@@ -79,6 +81,7 @@ Feature: User Management
     Then I am sent to the Change Pirate Information page
     When I change the admin checkbox
     And I click Update
+    Then I see a notice that the user was updated
     And the admin field is not changed
 
   @javascript @admin
@@ -92,13 +95,14 @@ Feature: User Management
     Then the mutable fields are not changed
 
   @javascript @admin
-  Scenario: Admin users can create a new user account
+  Scenario: Admin users can create a new user
     Given I am signed in as an admin user
     When I navigate to the Manage Pirates page
     And I click Add Pirate
     And I fill in the fields
     And I click Add
-    Then the account is created
+    Then I see a notice that the user was added
+    And the user is created
     And I am still in the admin account
 
   @javascript @admin
@@ -109,16 +113,16 @@ Feature: User Management
     And I click Add Pirate
     And I fill in the fields to have the same name as the other user
     And I click Add
-    Then I see an error message
+    And I see an error message
 
   @javascript @admin @delete
-  Scenario:  Admin users can delete a user account
+  Scenario:  Admin users can delete a user
     Given I am signed in as an admin user
     And there is at least one other user
     When I navigate to the Manage Pirates page
     Then I see information for another user
     When I click Delete and confirm deletion for that other user
-    Then I see a notice indicating the other user has been deleted
+    Then I see a notice that the other user has been deleted
     And that other user is deleted
 
   @javascript @admin
@@ -132,7 +136,7 @@ Feature: User Management
   # band_start_date to be changed to the first of the year has been fixed.
   # Trello 104: Added a check to ensure that the logged in user does not change
   # when editing attributes of another user.
-  Scenario:  Admin users can edit a user account from the Manage Pirates Page
+  Scenario:  Admin users can edit a user from the Manage Pirates Page
     Given I am signed in as an admin user
     And there is at least one other user
     When I navigate to the Manage Pirates page
@@ -142,6 +146,7 @@ Feature: User Management
     When I change the mutable fields for that other user
     And I change the admin checkbox
     And I click Update
+    Then I see a notice that the user was updated
     Then the mutable fields for that other user are changed
     And the admin field is changed
     And I am still logged into the original admin account

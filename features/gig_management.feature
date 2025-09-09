@@ -29,7 +29,7 @@ Feature: Gig Management
     And I see the gig on the home page
     And I see the gig on the schedule page
 
-  @javascript @focus
+  @javascript
   Scenario: It is not possible to create a gig with the same name and date as a previous gig
     Given I am signed in as an admin user
     And there is at least one existing gig
@@ -51,7 +51,7 @@ Feature: Gig Management
     And that gig is deleted
     And I am on the Manage Gigs page
 
-  @javascript @focus
+  @javascript
   Scenario: An admin user can edit gig entries
     Given I am signed in as an admin user
     And there is at least one published gig
@@ -67,7 +67,7 @@ Feature: Gig Management
     When I click Manage Gigs
     Then I am on the Manage Gigs page
 
-  @javascript @clone @focus
+  @javascript @clone
   Scenario: An admin user can clone gig entries from a previous gig
     Given I am signed in as an admin user
     And there is at least one published gig
@@ -159,7 +159,7 @@ Feature: Gig Management
     Then I see the published gig
     And  I see the unpublished gig
 
-  @javascript @focus
+  @javascript
   Scenario: A one day gig that is one day past is expired
     Given I am signed in as an admin user
     And there is at least one published one-day gig dated yesterday
@@ -180,7 +180,7 @@ Feature: Gig Management
     When I navigate to the Performance Schedule page
     Then I see the published gig is active
 
-  @javascript @focus
+  @javascript
   Scenario: A two day gig that is two days past is expired
     Given I am signed in as an admin user
     And there is at least one published two-day gig dated two days ago
