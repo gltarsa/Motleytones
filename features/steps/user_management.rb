@@ -43,6 +43,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     visit edit_user_path(1) # any user id will work for this test
   end
 
+  step 'I am on the Motley Users page' do
+    expect(page).to have_title('Motley Users')
+  end
+
   step 'I do not see a Manage Pirates link' do
     expect(page).to have_no_link('Manage Pirates')
   end
@@ -64,15 +68,15 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I am sent to the Change Pirate Information page' do
-    expect(page.title).to eq('Modify Pirate Profile')
+    expect(page).to have_title('Modify Pirate Profile')
   end
 
   step 'I am sent to the Root page' do
-    expect(page.title).to eq('The Motley Tones')
+    expect(page).to have_title('The Motley Tones')
   end
 
   step 'I am sent to the Sign In page' do
-    expect(page.title).to eq('Sign In')
+    expect(page).to have_title('Sign In')
   end
 
   step 'I see an alert containing "You must be signed in to access that page"' do
@@ -83,7 +87,15 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect_flash(severity: :alert, containing: 'You must be an admin user to access that page')
   end
 
-  step 'I see a notice indicating the other user has been deleted' do
+  step 'I see a notice that the user was added' do
+    expect_flash(severity: :notice, containing: 'added')
+  end
+
+  step 'I see a notice that the user was updated' do
+    expect_flash(severity: :notice, containing: 'updated')
+  end
+
+  step 'I see a notice that the other user has been deleted' do
     expect_flash(severity: :notice, containing: I18n.t('devise.registrations.pirate_deleted', count: 1))
   end
 
@@ -97,12 +109,12 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I click Edit for that other user' do
-    user_article(@another_user).click_on 'Edit'
+    find(user_article(@another_user)).click_on 'Edit'
   end
 
   step 'I click Delete and confirm deletion for that other user' do
     my_accept_alert do
-      user_article(@another_user).find('.delete').click
+      find(user_article(@another_user)).find('.delete').click
     end
   end
 
@@ -155,7 +167,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     click_on 'Add'
   end
 
-  step 'the account is created' do
+  step 'the user is created' do
     user = User.find_by(email: @another_user.email)
     expect(user).not_to be_nil
   end
@@ -213,7 +225,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'the admin field is changed' do
-    within user_article(@another_user) do
+    within find(user_article(@another_user)) do
       if @old_admin_value
         expect(page).not_to have_css('p.user-admin')
       else
@@ -241,7 +253,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   private
 
   def user_article(user)
-    find("article.user-id-#{user.id}")
+    "article.user-id-#{user.id}"
   end
 
   # support for unit testy way to check for attribute changes
@@ -258,8 +270,8 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     set_date('user_band_start_date', @changed_date)
   end
 
-  def expect_mutable_fields_to_be_changed(user) # rubocop: disable AbcSize
-    within user_article(user) do
+  def expect_mutable_fields_to_be_changed(user) # rubocop: disable Metrics/AbcSize
+    within find(user_article(user)) do
       expect(page).to have_css('.user-name', text: change(user.name))
       expect(page).to have_css('.user-tone-name', text: change(user.tone_name))
       expect(page).to have_css('.user-email', text: change(user.email))
@@ -269,8 +281,8 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(raw_mutable_attributes(User.find(user.id))).not_to eql(@original_raw_mutable_attributes)
   end
 
-  def expect_mutable_fields_not_to_be_changed(user) # rubocop: disable AbcSize
-    within user_article(user) do
+  def expect_mutable_fields_not_to_be_changed(user) # rubocop: disable Metrics/AbcSize
+    within find(user_article(user)) do
       expect(page).to have_css('.user-name', text: user.name)
       expect(page).to have_css('.user-tone-name', text: user.tone_name)
       expect(page).to have_css('.user-email', text: user.email)

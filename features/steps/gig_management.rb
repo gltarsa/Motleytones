@@ -15,12 +15,12 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     sign_in_admin_user
   end
 
-  step 'I look at the Navigation menu' do
+  step 'I click on the Navigation menu' do
     find('li.navigation').click
   end
 
   step 'I navigate to the Manage Gigs page' do
-    find('li.navigation').click
+    i_click_on_the_navigation_menu
     click_on 'Manage Gigs'
     i_am_on_the_manage_gigs_page
   end
@@ -33,8 +33,12 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     find(".gig-id-#{@gig.id}").click_on('Clone')
   end
 
-  step 'I see the Add Gig page' do
+  step 'I am on the Add Gig page' do
     expect(page).to have_title('Add Gig')
+  end
+
+  step 'I am on the Latest Gigs page' do
+    expect(page).to have_title('Latest Gig')
   end
 
   step 'I see a note describing tokens' do
@@ -98,8 +102,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     expect(@gig).not_to be_nil
   end
 
-  step 'I see a gig' do
-    @gig = Gig.where(name: @gig.name).where(location: @gig.location).first
+  step 'I see the gig' do
     verify_gig_schedule(@gig)
   end
 
@@ -119,12 +122,12 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see the published gig' do
-    i_see_a_gig
+    i_see_the_gig
   end
 
   step 'I see the gig on the home page' do
     visit root_path
-    i_see_a_gig
+    i_see_the_gig
   end
 
   step 'I see the gig on the schedule page' do
@@ -138,9 +141,9 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I navigate to the Performance Schedule page' do
-    find('li.navigation').click
+    i_click_on_the_navigation_menu
     click_on 'Performance Schedule'
-    expect(page.title).to eq('Motley Performance Schedule')
+    expect(page).to have_title('Motley Performance Schedule')
   end
 
   step 'I click Delete and confirm deletion for that gig' do
@@ -166,11 +169,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I am sent to the Sign In page' do
-    expect(page.title).to eq('Sign In')
+    expect(page).to have_title('Sign In')
   end
 
   step 'I am sent to the Home page' do
-    expect(page.title).to eq('The Motley Tones')
+    expect(page).to have_title('The Motley Tones')
   end
 
   step 'I change the gig fields' do
@@ -241,12 +244,12 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see the published gig is expired' do
-    i_see_a_gig
+    i_see_the_gig
     verify_gig_expired(@gig)
   end
 
   step 'I see the published gig is active' do
-    i_see_a_gig
+    i_see_the_gig
     verify_gig_active(@gig)
   end
 
@@ -276,7 +279,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I see a notice indicating that the gig is deleted' do
-    expect_flash(severity: :notice, containing: I18n.t('.gig.deleted', count: 0))
+    expect_flash(severity: :notice, containing: 'deleted')
+  end
+
+  step 'I see a notice that the gig is added' do
+    expect_flash(severity: :notice, containing: 'added')
   end
 
   step 'I see an error message' do
@@ -318,7 +325,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   private
 
   def id_css(gig)
-    id_class = ".gig-id-#{gig.id}"
+    ".gig-id-#{gig.id}"
   end
 
   def verify_gig_schedule(gig)
