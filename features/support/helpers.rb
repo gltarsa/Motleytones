@@ -54,5 +54,6 @@ module Helpers
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: password
     click_button 'Sign in'
+    expect(page).to have_title('Motley User')
   end
 end
