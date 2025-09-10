@@ -92,6 +92,7 @@ Feature: User Management
     Then I am sent to the Change Pirate Information page
     When I change the mutable fields
     And I click Cancel
+    Then I am on the Motley Users page
     Then the mutable fields are not changed
 
   @javascript @admin

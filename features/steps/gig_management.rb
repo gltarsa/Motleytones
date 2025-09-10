@@ -9,20 +9,18 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
 
   step 'I am signed in as a non-admin user' do
     sign_in_non_admin_user
-    puts "User is #{@user.admin ? 'is' : 'Is NOT'} an admin"
   end
 
   step 'I am signed in as an admin user' do
     sign_in_admin_user
-    puts "User is #{@user.admin ? 'is' : 'Is NOT'} an admin"
   end
 
-  step 'I look at the Navigation menu' do
+  step 'I click on the Navigation menu' do
     find('li.navigation').click
   end
 
   step 'I navigate to the Manage Gigs page' do
-    find('li.navigation').click
+    i_click_on_the_navigation_menu
     click_on 'Manage Gigs'
     i_am_on_the_manage_gigs_page
   end
@@ -35,11 +33,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
     find(".gig-id-#{@gig.id}").click_on('Clone')
   end
 
-  step 'I see the Add Gig page' do
+  step 'I am on the Add Gig page' do
     expect(page).to have_title('Add Gig')
   end
 
-  step 'I see the Latest Gig page' do
+  step 'I am on the Latest Gigs page' do
     expect(page).to have_title('Latest Gig')
   end
 
@@ -143,7 +141,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I navigate to the Performance Schedule page' do
-    find('li.navigation').click
+    i_click_on_the_navigation_menu
     click_on 'Performance Schedule'
     expect(page).to have_title('Motley Performance Schedule')
   end
@@ -171,11 +169,11 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   end
 
   step 'I am sent to the Sign In page' do
-    expect(page.title).to eq('Sign In')
+    expect(page).to have_title('Sign In')
   end
 
   step 'I am sent to the Home page' do
-    expect(page.title).to eq('The Motley Tones')
+    expect(page).to have_title('The Motley Tones')
   end
 
   step 'I change the gig fields' do
@@ -327,7 +325,7 @@ class Spinach::Features::GigManagement < Spinach::FeatureSteps
   private
 
   def id_css(gig)
-    id_class = ".gig-id-#{gig.id}"
+    ".gig-id-#{gig.id}"
   end
 
   def verify_gig_schedule(gig)

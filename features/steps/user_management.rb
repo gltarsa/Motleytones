@@ -43,6 +43,10 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     visit edit_user_path(1) # any user id will work for this test
   end
 
+  step 'I am on the Motley Users page' do
+    expect(page).to have_title('Motley Users')
+  end
+
   step 'I do not see a Manage Pirates link' do
     expect(page).to have_no_link('Manage Pirates')
   end
@@ -64,15 +68,15 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
   end
 
   step 'I am sent to the Change Pirate Information page' do
-    expect(page.title).to eq('Modify Pirate Profile')
+    expect(page).to have_title('Modify Pirate Profile')
   end
 
   step 'I am sent to the Root page' do
-    expect(page.title).to eq('The Motley Tones')
+    expect(page).to have_title('The Motley Tones')
   end
 
   step 'I am sent to the Sign In page' do
-    expect(page.title).to eq('Sign In')
+    expect(page).to have_title('Sign In')
   end
 
   step 'I see an alert containing "You must be signed in to access that page"' do
@@ -266,7 +270,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     set_date('user_band_start_date', @changed_date)
   end
 
-  def expect_mutable_fields_to_be_changed(user) # rubocop: disable AbcSize
+  def expect_mutable_fields_to_be_changed(user) # rubocop: disable Metrics/AbcSize
     within find(user_article(user)) do
       expect(page).to have_css('.user-name', text: change(user.name))
       expect(page).to have_css('.user-tone-name', text: change(user.tone_name))
@@ -277,7 +281,7 @@ class Spinach::Features::UserManagement < Spinach::FeatureSteps
     expect(raw_mutable_attributes(User.find(user.id))).not_to eql(@original_raw_mutable_attributes)
   end
 
-  def expect_mutable_fields_not_to_be_changed(user) # rubocop: disable AbcSize
+  def expect_mutable_fields_not_to_be_changed(user) # rubocop: disable Metrics/AbcSize
     within find(user_article(user)) do
       expect(page).to have_css('.user-name', text: user.name)
       expect(page).to have_css('.user-tone-name', text: user.tone_name)
