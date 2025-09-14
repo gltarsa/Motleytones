@@ -49,7 +49,7 @@ Feature: User Management
   Scenario: A non-admin user cannot delete his own profile
     Given I am signed in as a non-admin user
     When I navigate to the Profile page
-    And I do not see a Delete button
+    Then I do not see a Delete button
 
   @javascript
   Scenario: A non-admin user can edit his own profile
@@ -60,7 +60,7 @@ Feature: User Management
     When I change the mutable fields
     And I click Update
     Then I see a notice that the user was updated
-    Then the mutable fields are changed
+    And the mutable fields are changed
 
   @javascript
   Scenario: A user changes remains logged in when he changes his password
@@ -71,7 +71,7 @@ Feature: User Management
     When I change my password
     And I click Update
     Then I see a notice that the user was updated
-    Then I see my name on the users page
+    And I see my name on the users page
 
   @javascript
   Scenario: A non-admin user cannot change his admin status
@@ -93,7 +93,7 @@ Feature: User Management
     When I change the mutable fields
     And I click Cancel
     Then I am on the Motley Users page
-    Then the mutable fields are not changed
+    And the mutable fields are not changed
 
   @javascript @admin
   Scenario: Admin users can create a new user
