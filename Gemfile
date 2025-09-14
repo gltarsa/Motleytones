@@ -47,6 +47,7 @@ end
 
 group :test do
   gem 'launchy'
+  gem 'capybara-screenshot'
   gem 'rails-controller-testing'
   gem 'simplecov', require: false
 end

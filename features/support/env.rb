@@ -3,8 +3,13 @@
 ENV['RAILS_ENV'] = 'test'
 require 'spinach-rails'
 require 'database_cleaner'
+# uncomment this to get automatic screen dumps for test failures, not recommended for CI.
+# require 'capybara-screenshot/spinach'
 require_relative '../../config/environment'
 require_relative '../../spec/spec_helper'
+
+# Keep only the screenshots generated from the last failing test suite
+Capybara::Screenshot.prune_strategy = :keep_last_run
 
 JS_DRIVER = :selenium_chrome_headless
 
